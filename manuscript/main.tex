@@ -98,61 +98,56 @@ real-time classifier process.
 
 \begin{figure}[t]
 \centering
-\scriptsize
+\footnotesize
 \begin{tikzpicture}[
-  node distance=5mm and 6mm,
-  box/.style={
+  node distance=4mm and 6mm,
+  stage/.style={
     draw,
-    rounded corners=2pt,
+    rounded corners=3pt,
     align=center,
-    minimum height=9mm,
-    text width=24mm,
-    fill=edgegray
+    minimum height=8mm,
+    text width=33mm,
+    fill=edgegray,
+    line width=0.3pt
   },
-  artifact/.style={
+  blue/.style={
+    stage,
     draw=edgeblue,
-    rounded corners=2pt,
-    align=center,
-    minimum height=9mm,
-    text width=24mm,
-    fill=edgeblue!8
+    fill=edgeblue!7
   },
-  runtime/.style={
+  green/.style={
+    stage,
     draw=edgegreen,
-    rounded corners=2pt,
-    align=center,
-    minimum height=9mm,
-    text width=24mm,
-    fill=edgegreen!8
+    fill=edgegreen!7
   },
-  stream/.style={
+  orange/.style={
+    stage,
     draw=edgeorange,
-    rounded corners=2pt,
-    align=center,
-    minimum height=9mm,
-    text width=25mm,
     fill=edgeorange!8
   },
-  arrow/.style={-{Latex[length=2mm]}, thick}
+  arrow/.style={-{Latex[length=1.8mm]}, line width=0.45pt},
+  lane/.style={font=\bfseries\footnotesize, anchor=east}
 ]
-\node[box] (spark) {Spark training\\and SHAP selection};
-\node[artifact, right=of spark] (export) {ONNX-EdgeIDS\\exporter};
-\node[artifact, right=of export] (artifact) {ONNX / NumPy\\serving artifact};
+\node[lane] at (-0.55, 0) {Offline};
+\node[blue] (train) at (0, 0) {Spark training\\feature selection};
+\node[blue, right=of train] (exporter) {ONNX-EdgeIDS\\exporter};
+\node[blue, right=of exporter] (artifact) {ONNX / NumPy\\artifact};
 
-\node[stream, below=12mm of spark] (producer) {CSV/Kafka\\flow replay};
-\node[runtime, right=of producer] (gate) {Jetson \#1\\anomaly gate};
-\node[stream, right=of gate] (topic) {Kafka suspicious\\flow topic};
-\node[runtime, right=of topic] (classifier) {Jetson \#2\\ONNX classifier};
-\node[box, below=of classifier] (metrics) {Latency, throughput,\\and agreement metrics};
+\node[lane] at (-0.55, -1.45) {Online};
+\node[orange] (replay) at (0, -1.45) {Kafka flow\\replay};
+\node[green, right=of replay] (gate) {Jetson \#1\\gate};
+\node[orange, right=of gate] (topic) {Suspicious\\topic};
+\node[green, right=of topic] (serve) {Jetson \#2\\ONNX serving};
 
-\draw[arrow] (spark) -- (export);
-\draw[arrow] (export) -- (artifact);
-\draw[arrow] (artifact) |- (classifier);
-\draw[arrow] (producer) -- (gate);
+\node[stage, below=7mm of serve, text width=33mm] (metrics) {validation and\\latency metrics};
+
+\draw[arrow] (train) -- (exporter);
+\draw[arrow] (exporter) -- (artifact);
+\draw[arrow] (artifact) -- ++(0,-0.58) -| (serve);
+\draw[arrow] (replay) -- (gate);
 \draw[arrow] (gate) -- (topic);
-\draw[arrow] (topic) -- (classifier);
-\draw[arrow] (classifier) -- (metrics);
-\draw[arrow, dashed] (spark) to[bend right=18] node[below, align=center] {Spark-vs-export\\validation} (metrics);
+\draw[arrow] (topic) -- (serve);
+\draw[arrow] (serve) -- (metrics);
 \end{tikzpicture}
 \caption{ONNX-EdgeIDS workflow. Spark remains the training and model-selection
 runtime, while the exported artifact is served by a lightweight ONNX or NumPy

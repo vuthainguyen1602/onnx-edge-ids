@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Vu"
     given-names: "Thai Nguyen"
-version: "0.1.0"
+version: "0.2.0"
 date-released: "2026-09-12"
 repository-code: "https://github.com/vuthainguyen1602/onnx-edge-ids"
 license: "MIT"

@@ -1,0 +1,7 @@
+\begin{abstract}
+ONNX-EdgeIDS is research software for deploying machine-learning network intrusion detection on resource-constrained edge devices. It provides Kafka flow replay, a first-stage anomaly gate that filters high-volume traffic, and a second-stage ONNX Runtime classifier node for low-latency inference on Jetson-class hardware. The package also includes a transparent NumPy inference backend, artifact preparation scripts, feature-order checks, and validation utilities so that researchers can compare exported predictions with a reference offline model before deployment. ONNX-EdgeIDS turns the limitation of heavyweight IDS serving stacks into a reusable software contribution: model training and selection remain offline, while the online path uses portable artifacts and lightweight runtimes for reproducible throughput, latency, and load-shedding experiments.
+\end{abstract}
+
+\begin{keywords}
+Intrusion detection \sep ONNX Runtime \sep Edge computing \sep Kafka \sep Jetson \sep Research software
+\end{keywords}

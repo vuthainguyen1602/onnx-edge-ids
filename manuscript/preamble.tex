@@ -1,0 +1,34 @@
+%% The class draws the e-mail and URL footnotes with JPEG icons from a thumbnails/ directory
+%% that ships with Elsevier's full template bundle. Missing icons are disabled here so the
+%% vendored CAS files build cleanly from this repository.
+\ExplSyntaxOn
+\bool_gset_true:N \g_stm_nologo_bool
+\ExplSyntaxOff
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{tabularx}
+
+\definecolor{linknavy}{RGB}{18,40,75}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=linknavy,
+  linkcolor=linknavy,
+  citecolor=linknavy,
+  breaklinks=true
+}
+
+\captionsetup[table]{skip=8pt}
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{{figures/}}
+\setlength{\emergencystretch}{1em}
+\AtBeginDocument{\hypersetup{hidelinks}}
+\raggedbottom

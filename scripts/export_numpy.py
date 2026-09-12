@@ -1,100 +1,172 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Export a deployed Spark ``PipelineModel`` to a pure-NumPy RandomForest artifact.
+Export an ONNX RandomForest artifact to the compact NumPy runtime format.
 
 The exported ``.npz`` contains:
-  * fitted StandardScaler offset/scale,
+  * fitted scaler offset/scale,
   * flattened RandomForest nodes,
-  * per-leaf class scores weighted exactly like Spark's averaged forest output,
+  * per-leaf class scores,
   * feature-column metadata for order checks.
 
 Usage:
     python scripts/export_numpy.py \
-        --model artifacts/ids_pipeline_model \
-        --out   model/ids_rf_numpy.npz \
-        --features model/feature_columns.json
+        --model artifacts/ids_rf.onnx \
+        --out   artifacts/ids_rf_numpy.npz \
+        --features artifacts/feature_columns.json
 """
 
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-JETSON_DIR = os.path.dirname(SCRIPT_DIR)
-sys.path.insert(0, SCRIPT_DIR)
-sys.path.insert(0, JETSON_DIR)
 
-from export_onnx import (  # noqa: E402
-    _read_json,
-    read_stages,
-    load_assembler,
-    load_scaler,
-    load_forest,
-)
+def _read_json(path):
+    with open(path, "r") as f:
+        return json.load(f)
 
 
-def flatten_forest(by_tree, tree_weights, n_classes):
-    tree_offsets = [0]
+def _attr_map(node):
+    return {attr.name: attr for attr in node.attribute}
+
+
+def _floats(attr):
+    return np.asarray(attr.floats, dtype=np.float64)
+
+
+def _ints(attr):
+    return np.asarray(attr.ints, dtype=np.int64)
+
+
+def _strings(attr):
+    return [value.decode("utf-8") for value in attr.strings]
+
+
+def _find_node(graph, op_type):
+    matches = [node for node in graph.node if node.op_type == op_type]
+    if len(matches) != 1:
+        raise ValueError(f"[ERR] Expected exactly one {op_type} node, found {len(matches)}")
+    return matches[0]
+
+
+def _input_dim(model):
+    shape = model.graph.input[0].type.tensor_type.shape.dim
+    if len(shape) < 2 or not shape[1].dim_value:
+        raise ValueError("[ERR] ONNX input must have a fixed feature dimension")
+    return int(shape[1].dim_value)
+
+
+def _feature_columns_from_doc(model):
+    if not model.doc_string:
+        return None
+    try:
+        metadata = json.loads(model.doc_string)
+    except json.JSONDecodeError:
+        return None
+    columns = metadata.get("feature_columns")
+    if isinstance(columns, list) and all(isinstance(col, str) for col in columns):
+        return columns
+    return None
+
+
+def load_onnx_arrays(model_path, feature_columns):
+    import onnx
+
+    model = onnx.load(model_path)
+    n_features = _input_dim(model)
+
+    scaler_attrs = _attr_map(_find_node(model.graph, "Scaler"))
+    offset = _floats(scaler_attrs["offset"])
+    scale = _floats(scaler_attrs["scale"])
+    if len(offset) != n_features or len(scale) != n_features:
+        raise ValueError(
+            f"[ERR] Scaler dim mismatch: input={n_features}, "
+            f"offset={len(offset)}, scale={len(scale)}"
+        )
+
+    forest_attrs = _attr_map(_find_node(model.graph, "TreeEnsembleClassifier"))
+    treeids = _ints(forest_attrs["nodes_treeids"])
+    nodeids = _ints(forest_attrs["nodes_nodeids"])
+    featureids = _ints(forest_attrs["nodes_featureids"])
+    values = _floats(forest_attrs["nodes_values"])
+    modes = _strings(forest_attrs["nodes_modes"])
+    truenodeids = _ints(forest_attrs["nodes_truenodeids"])
+    falsenodeids = _ints(forest_attrs["nodes_falsenodeids"])
+
+    class_labels = _ints(forest_attrs["classlabels_int64s"])
+    class_index = {int(label): i for i, label in enumerate(class_labels)}
+    n_classes = len(class_labels)
+
+    pairs = [(int(tid), int(nid)) for tid, nid in zip(treeids, nodeids)]
+    global_index = {pair: i for i, pair in enumerate(sorted(pairs))}
+    nodes_by_tree = {}
+    for tid, nid in pairs:
+        nodes_by_tree.setdefault(tid, []).append(nid)
+
     left = []
     right = []
     feature = []
     threshold = []
     is_leaf = []
-    leaf_scores = []
+    leaf_scores = np.zeros((len(pairs), n_classes), dtype=np.float64)
+    tree_offsets = [0]
 
-    total_weight = sum(float(w) for w in tree_weights.values()) or float(len(by_tree))
+    row_by_pair = {pair: i for i, pair in enumerate(pairs)}
+    for tid in sorted(nodes_by_tree):
+        for nid in sorted(nodes_by_tree[tid]):
+            src = row_by_pair[(tid, nid)]
+            mode = modes[src]
+            is_leaf_node = mode == "LEAF"
 
-    for tid in sorted(by_tree):
-        nodes = sorted(by_tree[tid], key=lambda n: n["id"])
-        local_index = {int(n["id"]): i for i, n in enumerate(nodes)}
-        base = tree_offsets[-1]
-        weight = float(tree_weights.get(tid, 1.0)) / total_weight
-
-        for node in nodes:
-            node_left = int(node["leftChild"])
-            node_right = int(node["rightChild"])
-            leaf = node_left < 0 or node_right < 0
-
-            is_leaf.append(leaf)
-            if leaf:
+            is_leaf.append(is_leaf_node)
+            if is_leaf_node:
                 left.append(-1)
                 right.append(-1)
                 feature.append(-1)
                 threshold.append(0.0)
-
-                stats = np.asarray(node["impurityStats"], dtype=np.float64)
-                total = stats.sum()
-                dist = stats / total if total > 0 else np.full(n_classes, 1.0 / n_classes)
-                leaf_scores.append(dist * weight)
+            elif mode == "BRANCH_LEQ":
+                left.append(global_index[(tid, int(truenodeids[src]))])
+                right.append(global_index[(tid, int(falsenodeids[src]))])
+                feature.append(int(featureids[src]))
+                threshold.append(float(values[src]))
             else:
-                split = node["split"]
-                if int(split["numCategories"]) >= 0:
-                    raise NotImplementedError(
-                        f"[ERR] Tree {tid} uses a categorical split; "
-                        "the current NumPy export handles continuous splits only."
-                    )
+                raise NotImplementedError(f"[ERR] Unsupported tree node mode: {mode}")
 
-                left.append(base + local_index[node_left])
-                right.append(base + local_index[node_right])
-                feature.append(int(split["featureIndex"]))
-                threshold.append(float(split["leftCategoriesOrThreshold"][0]))
-                leaf_scores.append(np.zeros(n_classes, dtype=np.float64))
+        tree_offsets.append(len(left))
 
-        tree_offsets.append(base + len(nodes))
+    class_treeids = _ints(forest_attrs["class_treeids"])
+    class_nodeids = _ints(forest_attrs["class_nodeids"])
+    class_ids = _ints(forest_attrs["class_ids"])
+    class_weights = _floats(forest_attrs["class_weights"])
+    for tid, nid, class_id, weight in zip(
+        class_treeids, class_nodeids, class_ids, class_weights
+    ):
+        row = global_index[(int(tid), int(nid))]
+        leaf_scores[row, class_index[int(class_id)]] = float(weight)
 
-    return {
+    doc_columns = _feature_columns_from_doc(model)
+    if feature_columns is None:
+        feature_columns = doc_columns or [f"feature_{i}" for i in range(n_features)]
+    elif doc_columns is not None and list(feature_columns) != list(doc_columns):
+        raise ValueError(
+            "[ERR] ONNX feature order differs from feature_columns.json; "
+            "the served matrix would be permuted.\n"
+            f"  onnx[:5]={list(doc_columns)[:5]}\n"
+            f"  file[:5]={list(feature_columns)[:5]}"
+        )
+
+    arrays = {
         "tree_offsets": np.asarray(tree_offsets, dtype=np.int64),
         "left": np.asarray(left, dtype=np.int64),
         "right": np.asarray(right, dtype=np.int64),
         "feature": np.asarray(feature, dtype=np.int64),
         "threshold": np.asarray(threshold, dtype=np.float64),
         "is_leaf": np.asarray(is_leaf, dtype=np.bool_),
-        "leaf_scores": np.vstack(leaf_scores).astype(np.float64),
+        "leaf_scores": leaf_scores,
     }
+    return offset, scale, arrays, feature_columns, n_features, n_classes
 
 
 def numpy_predict(matrix, offset, scale, arrays):
@@ -124,90 +196,27 @@ def numpy_predict(matrix, offset, scale, arrays):
                 feat = arrays["feature"][cur_branch]
                 go_left = scaled[branch_rows, feat] <= arrays["threshold"][cur_branch]
                 node[branch_rows] = np.where(
-                    go_left, arrays["left"][cur_branch], arrays["right"][cur_branch])
+                    go_left, arrays["left"][cur_branch], arrays["right"][cur_branch]
+                )
 
     return np.argmax(scores, axis=1).astype(np.int64), scores
 
 
-def validate(npz_path, spark_model_dir, csv_path, feature_columns, n_rows):
-    from pyspark.sql import SparkSession
-    from pyspark.ml import PipelineModel
-    import pandas as pd
-
-    df = pd.read_csv(csv_path, nrows=n_rows)
-    df.columns = [c.strip() for c in df.columns]
-    missing = [c for c in feature_columns if c not in df.columns]
-    if missing:
-        raise ValueError(f"[ERR] CSV is missing {len(missing)} feature columns: {missing[:5]}")
-
-    x = df[feature_columns].replace([np.inf, -np.inf], np.nan).fillna(0.0)
-    matrix = x.to_numpy(dtype=np.float64)
-
-    artifact = np.load(npz_path, allow_pickle=False)
-    numpy_labels, numpy_probs = numpy_predict(
-        matrix,
-        artifact["offset"].astype(np.float64),
-        artifact["scale"].astype(np.float64),
-        {k: artifact[k] for k in (
-            "tree_offsets", "left", "right", "feature",
-            "threshold", "is_leaf", "leaf_scores"
-        )},
-    )
-
-    spark = (SparkSession.builder.appName("export_numpy_validate")
-             .master("local[*]").config("spark.ui.enabled", "false").getOrCreate())
-    spark.sparkContext.setLogLevel("ERROR")
-    sdf = spark.createDataFrame(x.astype(float))
-    rows = (PipelineModel.load(spark_model_dir).transform(sdf)
-            .select("prediction", "probability").collect())
-    spark_labels = np.array([int(r["prediction"]) for r in rows], dtype=np.int64)
-    spark_probs = np.array([list(r["probability"]) for r in rows], dtype=np.float64)
-    spark.stop()
-
-    agreement = float(np.mean(numpy_labels == spark_labels))
-    max_delta = float(np.max(np.abs(numpy_probs - spark_probs)))
-    print(f"\n[VALIDATE] rows={len(spark_labels)}")
-    print(f"  label agreement : {agreement:.6%}")
-    print(f"  max |dprob|     : {max_delta:.3e}")
-    if agreement < 1.0:
-        idx = np.flatnonzero(numpy_labels != spark_labels)[:5]
-        print(f"  [WARN] disagreeing rows: {idx.tolist()}")
-    return agreement, max_delta
-
-
 def main():
-    ap = argparse.ArgumentParser(description="Spark PipelineModel -> NumPy artifact")
-    ap.add_argument("--model", required=True, help="Saved Spark PipelineModel directory")
+    ap = argparse.ArgumentParser(description="ONNX RandomForest -> NumPy artifact")
+    ap.add_argument("--model", required=True, help="Input .onnx model")
     ap.add_argument("--out", required=True, help="Output .npz path")
     ap.add_argument("--features", default=None, help="feature_columns.json (order check)")
-    ap.add_argument("--validate-csv", default=None, help="CSV to compare Spark vs NumPy on")
-    ap.add_argument("--validate-rows", type=int, default=5000)
     args = ap.parse_args()
 
-    stages = read_stages(args.model)
-    classes = [s["meta"]["class"].split(".")[-1] for s in stages]
-    if classes != ["VectorAssembler", "StandardScalerModel", "RandomForestClassificationModel"]:
-        raise NotImplementedError(f"[ERR] Unsupported pipeline shape: {classes}")
-
-    input_cols = load_assembler(stages[0])
-    offset, scale = load_scaler(stages[1])
-    by_tree, tree_weights, n_features, n_classes = load_forest(stages[2])
-
-    if args.features:
-        expected = _read_json(args.features)
-        if list(expected) != list(input_cols):
-            raise ValueError(
-                "[ERR] Assembler column order differs from feature_columns.json; "
-                "the served matrix would be permuted.\n"
-                f"  assembler[:5]={list(input_cols)[:5]}\n"
-                f"  features  [:5]={list(expected)[:5]}"
-            )
-        print(f"[OK] Feature order matches {args.features}")
+    feature_columns = _read_json(args.features) if args.features else None
+    offset, scale, arrays, input_cols, n_features, n_classes = load_onnx_arrays(
+        args.model, feature_columns
+    )
 
     if len(input_cols) != n_features:
-        raise ValueError(f"[ERR] assembler cols={len(input_cols)} != forest features={n_features}")
+        raise ValueError(f"[ERR] feature columns={len(input_cols)} != model features={n_features}")
 
-    arrays = flatten_forest(by_tree, tree_weights, n_classes)
     metadata = {
         "producer": "ONNX-EdgeIDS/scripts/export_numpy.py",
         "source_model": os.path.abspath(args.model),
@@ -216,6 +225,7 @@ def main():
         "n_classes": int(n_classes),
         "n_trees": int(len(arrays["tree_offsets"]) - 1),
         "n_nodes": int(len(arrays["left"])),
+        "inference_dtype": "float32",
     }
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
@@ -227,11 +237,9 @@ def main():
         **arrays,
     )
     size_mb = os.path.getsize(args.out) / (1024 * 1024)
+    print(f"[OK] Feature order matches {args.features}" if args.features else "[OK] Loaded ONNX")
     print(f"[OK] Wrote {args.out} ({size_mb:.2f} MB)")
     print(f"  Trees: {metadata['n_trees']} | nodes: {metadata['n_nodes']}")
-
-    if args.validate_csv:
-        validate(args.out, args.model, args.validate_csv, list(input_cols), args.validate_rows)
 
 
 if __name__ == "__main__":

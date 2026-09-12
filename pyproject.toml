@@ -19,11 +19,7 @@ onnx = [
     "onnxruntime>=1.16",
 ]
 export = [
-    "pyarrow>=12",
-]
-validate = [
-    "pandas>=1.5",
-    "pyspark>=3.4",
+    "onnx>=1.14",
 ]
 gate = [
     "joblib>=1.3",

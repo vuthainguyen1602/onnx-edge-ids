@@ -24,6 +24,7 @@ class NumpyInferenceEngine(InferenceEngine):
         self.is_leaf = None
         self.leaf_scores = None
         self.n_classes = 0
+        self.inference_dtype = np.float64
         self._load_model()
 
     def _load_model(self):
@@ -32,24 +33,28 @@ class NumpyInferenceEngine(InferenceEngine):
 
         data = np.load(self.model_path, allow_pickle=False)
         self.meta = json.loads(str(data["metadata_json"]))
-        self.offset = data["offset"].astype(np.float64, copy=False)
-        self.scale = data["scale"].astype(np.float64, copy=False)
+        dtype_name = self.meta.get("inference_dtype", "float64")
+        if dtype_name not in {"float32", "float64"}:
+            raise ValueError(f"Unsupported NumPy inference dtype: {dtype_name}")
+        self.inference_dtype = np.dtype(dtype_name).type
+        self.offset = data["offset"].astype(self.inference_dtype, copy=False)
+        self.scale = data["scale"].astype(self.inference_dtype, copy=False)
         self.tree_offsets = data["tree_offsets"].astype(np.int64, copy=False)
         self.left = data["left"].astype(np.int64, copy=False)
         self.right = data["right"].astype(np.int64, copy=False)
         self.feature = data["feature"].astype(np.int64, copy=False)
-        self.threshold = data["threshold"].astype(np.float64, copy=False)
+        self.threshold = data["threshold"].astype(self.inference_dtype, copy=False)
         self.is_leaf = data["is_leaf"].astype(bool, copy=False)
-        self.leaf_scores = data["leaf_scores"].astype(np.float64, copy=False)
+        self.leaf_scores = data["leaf_scores"].astype(self.inference_dtype, copy=False)
         self.n_classes = int(self.leaf_scores.shape[1])
 
     def _infer(self, matrix):
-        x = np.ascontiguousarray(matrix, dtype=np.float64)
+        x = np.ascontiguousarray(matrix, dtype=self.inference_dtype)
         if x.ndim != 2 or x.shape[1] != len(self.offset):
             raise ValueError(f"Expected matrix shape (n, {len(self.offset)}), got {x.shape}")
 
         scaled = (x - self.offset) * self.scale
-        scores = np.zeros((scaled.shape[0], self.n_classes), dtype=np.float64)
+        scores = np.zeros((scaled.shape[0], self.n_classes), dtype=self.inference_dtype)
 
         for t in range(len(self.tree_offsets) - 1):
             base = int(self.tree_offsets[t])

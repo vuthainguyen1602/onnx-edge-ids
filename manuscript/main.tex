@@ -14,7 +14,7 @@
 \definecolor{edgeorange}{HTML}{D9822B}
 \definecolor{edgegray}{HTML}{F2F4F8}
 
-\title{ONNX-EdgeIDS: A Lightweight ONNX Serving Layer for Spark-Trained Intrusion Detection on Jetson Edge Devices}
+\title{ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection}
 \author{Thai Nguyen Vu \and \todo{Coauthors}}
 \date{}
 
@@ -22,23 +22,22 @@
 \maketitle
 
 \begin{abstract}
-ONNX-EdgeIDS is a lightweight serving layer for network intrusion detection
-models trained in Apache Spark and deployed on resource-constrained edge
-devices. The software addresses a practical gap observed in Spark-based edge
-IDS deployments: Spark is useful for distributed training, feature selection,
-and reproducible evaluation, but running a JVM-backed Spark \texttt{PipelineModel}
-for every inference batch is costly on an 8 GB Jetson board. ONNX-EdgeIDS
-separates the training and serving stacks. It exports a Spark-trained
-RandomForest intrusion-detection pipeline, including feature order checks and
-standardization parameters, into a portable ONNX or NumPy artifact; validates
-the exported model against the original Spark model; and serves network-flow
-messages through a lightweight runtime suitable for Kafka-based edge pipelines.
-The software enables researchers and practitioners to preserve Spark-based
-model development while measuring and deploying lower-latency edge inference.
+ONNX-EdgeIDS is a research-software toolkit for deploying machine-learning
+network intrusion detection on resource-constrained edge devices. It provides a
+Kafka flow replay utility, a first-stage anomaly gate that filters high-volume
+traffic, and a second-stage ONNX Runtime classifier node for low-latency
+inference on Jetson-class hardware. The package also includes a transparent
+NumPy inference backend, artifact export scripts, feature-order checks, and
+validation utilities so that researchers can compare exported predictions with a
+reference offline model before deployment. ONNX-EdgeIDS turns the limitation of
+heavyweight IDS serving stacks into a reusable software contribution: model
+training and selection remain offline, while the online path uses portable
+artifacts and lightweight runtimes for reproducible throughput, latency, and
+load-shedding experiments.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Intrusion detection; ONNX Runtime; edge computing;
-Apache Spark; Jetson; research software
+Kafka; Jetson; research software
 
 \section*{Code metadata}
 
@@ -48,11 +47,11 @@ Apache Spark; Jetson; research software
 \toprule
 Current code version & v0.1.0 \\
 Permanent link to code/repository used for this code version & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
-Permanent link to reproducible capsule & \todo{Optional} \\
+Permanent link to reproducible capsule & \todo{Optional Zenodo/Code Ocean link after release archive} \\
 Legal code license & MIT \\
 Code versioning system used & Git \\
-Software code languages, tools, and services used & Python, NumPy, ONNX Runtime, PySpark, Kafka \\
-Compilation requirements, operating environments, and dependencies & Python $\geq$ 3.9; NumPy; optional PyArrow for export; optional PySpark for validation; optional ONNX Runtime for ONNX serving \\
+Software code languages, tools, and services used & Python, NumPy, ONNX Runtime, Kafka \\
+Compilation requirements, operating environments, and dependencies & Python $\geq$ 3.9; NumPy; kafka-python; optional ONNX Runtime for ONNX serving; optional conversion dependencies for preparing artifacts from an offline model \\
 Developer documentation/manual & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
 Support email for questions & thaivn\_ph@utc.edu.vn \\
 \bottomrule
@@ -66,33 +65,38 @@ Support email for questions & thaivn\_ph@utc.edu.vn \\
 \begin{tabular}{p{0.36\linewidth}p{0.56\linewidth}}
 \toprule
 Software name & ONNX-EdgeIDS \\
-Software type & Model-export and edge-inference software \\
+Software type & Edge-inference, model-artifact validation, and load-test software \\
 Repository & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
 Target users & Researchers and engineers deploying ML-based network IDS models on edge devices \\
-Supported model family in current release & Spark RandomForest classification pipelines with vector assembly and standard scaling \\
-Main inputs & Saved Spark \texttt{PipelineModel}, feature-column metadata, network-flow records \\
-Main outputs & ONNX/NumPy inference artifact, predictions, probabilities/confidence values, validation reports \\
+Supported model family in current release & ONNX-compatible binary IDS classifiers; current utilities include a NumPy fallback for tree-ensemble artifacts \\
+Main inputs & Feature-column metadata, ONNX or NumPy model artifact, and Kafka network-flow records \\
+Main outputs & Predictions, confidence values, forwarded suspicious-flow messages, validation reports, and latency/throughput logs \\
 Hardware evaluated & NVIDIA Jetson Orin Nano Super; \todo{fill exact board/OS} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\section{Motivation and significance}
+\section{Impact overview}
 
-Machine-learning intrusion detection systems often use distributed data
-processing frameworks during training because traffic datasets are large,
-feature engineering is expensive, and repeated model evaluation must be
-reproducible. Apache Spark is a good fit for that phase. The deployment phase
-has different constraints: the classifier may run on an edge board with limited
-memory and strict latency requirements. Keeping Spark in the serving path can
-therefore simplify reproducibility while imposing avoidable runtime overhead.
+Machine-learning intrusion detection research often reports classifier accuracy
+but leaves deployment behavior hard to reproduce. Edge deployments add a second
+problem: the online classifier must process bursts of network flows under memory
+and latency limits. ONNX-EdgeIDS addresses this gap by packaging the serving
+side of an IDS experiment as reusable software rather than as an ad hoc runtime
+script tied to a single training environment.
 
-ONNX-EdgeIDS was created to make this trade-off explicit and reusable. The
-software keeps Spark where it is useful--training, feature selection, and
-offline evaluation--then exports the selected classifier to a lightweight
-serving artifact for edge inference. This allows the same model-development
-workflow to be reused while removing the JVM and Spark scheduler from the
-real-time classifier process.
+The software contributes a two-stage architecture for reproducible edge
+experiments. A lightweight gate node consumes raw flow records and forwards only
+suspicious candidates to a second Kafka topic. A classifier node on a separate
+edge device consumes that reduced stream and serves an ONNX artifact. This
+separation lets researchers measure the gate hit rate, classifier latency,
+end-to-end throughput, and backpressure under controlled traffic replay.
+
+ONNX-EdgeIDS is useful for follow-up work because it treats the model artifact,
+feature order, and validation report as part of the software interface. This
+reduces the chance that an IDS result is caused by a hidden preprocessing
+mismatch, and it makes deployment comparisons possible across CPU ONNX Runtime,
+accelerator-backed ONNX providers, and the transparent NumPy backend.
 
 \section{Software description}
 
@@ -110,27 +114,15 @@ real-time classifier process.
     fill=edgegray,
     line width=0.3pt
   },
-  blue/.style={
-    stage,
-    draw=edgeblue,
-    fill=edgeblue!7
-  },
-  green/.style={
-    stage,
-    draw=edgegreen,
-    fill=edgegreen!7
-  },
-  orange/.style={
-    stage,
-    draw=edgeorange,
-    fill=edgeorange!8
-  },
+  blue/.style={stage, draw=edgeblue, fill=edgeblue!7},
+  green/.style={stage, draw=edgegreen, fill=edgegreen!7},
+  orange/.style={stage, draw=edgeorange, fill=edgeorange!8},
   arrow/.style={-{Latex[length=1.8mm]}, line width=0.45pt},
   lane/.style={font=\bfseries\footnotesize, anchor=east}
 ]
 \node[lane] at (-0.55, 0) {Offline};
-\node[blue] (train) at (0, 0) {Spark training\\feature selection};
-\node[blue, right=of train] (exporter) {ONNX-EdgeIDS\\exporter};
+\node[blue] (train) at (0, 0) {Model training\\and selection};
+\node[blue, right=of train] (exporter) {ONNX-EdgeIDS\\artifact prep};
 \node[blue, right=of exporter] (artifact) {ONNX / NumPy\\artifact};
 
 \node[lane] at (-0.55, -1.45) {Online};
@@ -149,78 +141,54 @@ real-time classifier process.
 \draw[arrow] (topic) -- (serve);
 \draw[arrow] (serve) -- (metrics);
 \end{tikzpicture}
-\caption{ONNX-EdgeIDS workflow. Spark remains the training and model-selection
-runtime, while the exported artifact is served by a lightweight ONNX or NumPy
-runtime in the two-stage edge pipeline.}
+\caption{ONNX-EdgeIDS workflow. Offline model development produces a portable
+artifact; the online path replays traffic through Kafka and serves the classifier
+with lightweight edge runtimes.}
 \label{fig:onnx-edgeids-workflow}
 \end{figure}
 
-ONNX-EdgeIDS contains three components. First, the exporter reads a saved Spark
-\texttt{PipelineModel}. In the current release, the supported pipeline shape is
-\texttt{VectorAssembler} $\rightarrow$ \texttt{StandardScalerModel}
-$\rightarrow$ \texttt{RandomForestClassificationModel}. The exporter checks
-that the assembler input order matches the runtime feature list, reads scaler
-statistics and tree node tables from Spark's saved format, and emits a portable
-artifact for serving.
+ONNX-EdgeIDS contains four main components. The artifact preparation scripts
+create ONNX and NumPy serving artifacts and write the feature-column metadata
+that fixes the runtime input order. The validation module compares exported
+predictions against a reference offline model on replayed flow records and
+reports label agreement and confidence differences.
 
-Second, the validation module compares the exported artifact with the original
-Spark pipeline on replayed network-flow records. It reports label agreement and
-probability differences. This step is essential because an edge runtime should
-not silently change the behavior of the model selected during offline
-evaluation.
+The prediction layer exposes a small NumPy-based interface shared by the ONNX
+and NumPy backends. This keeps the application code independent from the
+training toolchain and allows the same batch of feature vectors to be evaluated
+through either backend. The ONNX Runtime backend is the default serving path;
+the NumPy backend is intended for debugging, model-inspection, and environments
+where ONNX Runtime is not installed.
 
-Third, the serving runtime receives batches of preprocessed network-flow
-features and returns class labels and confidence values without importing
-PySpark. The ONNX Runtime backend is intended for production-style deployment,
-while the NumPy backend provides a transparent fallback useful for debugging,
-validation, and environments where ONNX Runtime is unavailable.
-
-\section{Impact overview}
-
-ONNX-EdgeIDS has practical impact for researchers building edge intrusion
-detection systems because it separates two concerns that are often coupled:
-distributed model development and edge model serving. A Spark-only deployment
-forces the edge classifier to pay for a large runtime even when the selected
-model is a compact tree ensemble. ONNX-EdgeIDS lets researchers keep the
-Spark-based training evidence while deploying a smaller inference stack.
-
-The software also improves reproducibility. The exporter records the feature
-ordering, scaler parameters, model structure, and code version used to create
-the serving artifact. The validation step gives a measurable contract between
-the published Spark model and the exported runtime. This is especially
-important for network IDS research, where small preprocessing differences can
-produce misleading performance claims.
-
-Finally, ONNX-EdgeIDS lowers the barrier for comparing deployment runtimes. The
-same trained model and feature set can be evaluated through Spark, NumPy, ONNX
-Runtime CPU, and accelerator-backed ONNX providers. This makes it easier to
-quantify how much edge performance is limited by the model itself versus the
-runtime stack.
+The Kafka utilities implement the two-stage deployment. The producer replays CSV
+flow records to an input topic. The gate node performs fast first-stage
+filtering and forwards suspicious records to a second topic. The classifier node
+loads the ONNX or NumPy artifact, emits class labels and confidence values, and
+records per-message latency so that the deployment can be profiled on one or two
+Jetson devices.
 
 \section{Illustrative use case}
 
-The motivating use case is a Jetson-based real-time IDS pipeline. Network-flow
-records are replayed through Kafka, converted into the selected feature order,
-classified on the edge device, and stored as verdicts for monitoring. In the
-baseline system, the classifier loads a Spark \texttt{PipelineModel}. With
-ONNX-EdgeIDS, the same model is exported and served by a lightweight runtime.
+The motivating use case is a two-Jetson IDS experiment. Jetson \#1 runs the
+Kafka broker and the gate node, while Jetson \#2 runs the classifier node. The
+researcher prepares an ONNX artifact from the selected offline IDS model, syncs
+the repository and artifacts to both boards, starts the Kafka topics, replays a
+traffic CSV, and records throughput and p95 latency from the classifier logs.
 
 \todo{Insert final validation numbers: rows, label agreement, max probability
 delta, artifact size.}
 
-\todo{Insert final deployment numbers: PySpark throughput/p95/RAM/energy versus
-ONNX Runtime throughput/p95/RAM/energy.}
+\todo{Insert final deployment numbers: gate throughput, classifier throughput,
+p95 latency, RAM, and power on the two Jetson boards.}
 
 \section{Limitations and future work}
 
-The current release focuses on Spark RandomForest classifiers because that model
-family was selected for the edge IDS deployment. Support for additional Spark
-ML model families, such as gradient-boosted trees, requires separate export and
-validation logic. Probability parity also needs careful reporting: label
-agreement is the primary correctness measure, while confidence values should be
-validated before being used for alert thresholds. Future work will integrate
-accelerator-backed ONNX providers such as TensorRT on Jetson and extend the
-export workflow to additional IDS datasets.
+The current release focuses on binary IDS classifiers and tree-ensemble serving
+artifacts. Additional model families require adapter-specific validation before
+they should be used for alert thresholds. The present Kafka pipeline measures
+inference behavior on replayed flow records rather than on live packet capture.
+Future work will add TensorRT-backed ONNX Runtime measurements on Jetson,
+additional IDS datasets, and adapters for more model families.
 
 \section*{Acknowledgements}
 

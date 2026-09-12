@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "onnx-edge-ids"
 version = "0.1.0"
-description = "Lightweight ONNX/NumPy serving layer for Spark-trained edge IDS classifiers"
+description = "Lightweight ONNX/NumPy serving layer for edge IDS classifiers"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [

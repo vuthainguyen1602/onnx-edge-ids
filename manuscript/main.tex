@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{multicol}
 \usepackage{caption}
+\setlength{\parskip}{0pt}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
 
 \newcommand{\todo}[1]{{\color{red}[TODO: #1]}}
@@ -22,8 +23,10 @@
 
 \begin{document}
 \maketitle
+\vspace{-1.5em}
 
 \begin{abstract}
+\small
 ONNX-EdgeIDS is a research-software toolkit for deploying machine-learning
 network intrusion detection on resource-constrained edge devices. It provides a
 Kafka flow replay utility, a first-stage anomaly gate that filters high-volume
@@ -40,89 +43,43 @@ load-shedding experiments.
 
 \noindent\textbf{Keywords:} Intrusion detection; ONNX Runtime; edge computing;
 Kafka; Jetson; research software
-\vspace{0.75em}
+\vspace{0.25em}
 
 \section*{Code metadata}
-
+\vspace{-0.6em}
 \begin{center}
-\small
-\begin{tabular}{p{0.28\textwidth}p{0.66\textwidth}}
+\footnotesize
+\begin{tabular}{p{0.24\textwidth}p{0.70\textwidth}}
 \toprule
 Current code version & v0.1.0 \\
-Permanent link to code/repository used for this code version & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
-Permanent link to reproducible capsule & \todo{Optional Zenodo/Code Ocean link after release archive} \\
+Repository for this version & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
+Reproducible capsule & \todo{Optional Zenodo/Code Ocean link after release archive} \\
 Legal code license & MIT \\
 Code versioning system used & Git \\
-Software code languages, tools, and services used & Python, NumPy, ONNX Runtime, Kafka \\
-Compilation requirements, operating environments, and dependencies & Python $\geq$ 3.9; NumPy; kafka-python; optional ONNX Runtime for ONNX serving; optional conversion dependencies for preparing artifacts from an offline model \\
-Developer documentation/manual & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
-Support email for questions & thaivn\_ph@utc.edu.vn \\
+Languages/tools/services & Python, NumPy, ONNX Runtime, Kafka \\
+Requirements/dependencies & Python $\geq$ 3.9; NumPy; kafka-python; optional ONNX Runtime; optional artifact-conversion dependencies \\
+Documentation/manual & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
+Support email & thaivn\_ph@utc.edu.vn \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section*{Software metadata}
-
-\begin{center}
-\small
-\begin{tabular}{p{0.28\textwidth}p{0.66\textwidth}}
-\toprule
-Software name & ONNX-EdgeIDS \\
-Software type & Edge-inference, model-artifact validation, and load-test software \\
-Repository & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
-Target users & Researchers and engineers deploying ML-based network IDS models on edge devices \\
-Supported model family in current release & ONNX-compatible binary IDS classifiers; current utilities include a NumPy fallback for tree-ensemble artifacts \\
-Main inputs & Feature-column metadata, ONNX or NumPy model artifact, and Kafka network-flow records \\
-Main outputs & Predictions, confidence values, forwarded suspicious-flow messages, validation reports, and latency/throughput logs \\
-Hardware evaluated & NVIDIA Jetson Orin Nano Super; \todo{fill exact board/OS} \\
-\bottomrule
-\end{tabular}
-\end{center}
-
+\vspace{-0.6em}
 \begin{center}
 \footnotesize
-\begin{tikzpicture}[
-  node distance=4mm and 6mm,
-  stage/.style={
-    draw,
-    rounded corners=3pt,
-    align=center,
-    minimum height=8mm,
-    text width=33mm,
-    fill=edgegray,
-    line width=0.3pt
-  },
-  blue/.style={stage, draw=edgeblue, fill=edgeblue!7},
-  green/.style={stage, draw=edgegreen, fill=edgegreen!7},
-  orange/.style={stage, draw=edgeorange, fill=edgeorange!8},
-  arrow/.style={-{Latex[length=1.8mm]}, line width=0.45pt},
-  lane/.style={font=\bfseries\footnotesize, anchor=east}
-]
-\node[lane] at (-0.55, 0) {Offline};
-\node[blue] (train) at (0, 0) {Model training\\and selection};
-\node[blue, right=of train] (exporter) {ONNX-EdgeIDS\\artifact prep};
-\node[blue, right=of exporter] (artifact) {ONNX / NumPy\\artifact};
-
-\node[lane] at (-0.55, -1.45) {Online};
-\node[orange] (replay) at (0, -1.45) {Kafka flow\\replay};
-\node[green, right=of replay] (gate) {Jetson \#1\\gate};
-\node[orange, right=of gate] (topic) {Suspicious\\topic};
-\node[green, right=of topic] (serve) {Jetson \#2\\ONNX serving};
-
-\node[stage, below=7mm of serve, text width=33mm] (metrics) {validation and\\latency metrics};
-
-\draw[arrow] (train) -- (exporter);
-\draw[arrow] (exporter) -- (artifact);
-\draw[arrow] (artifact) -- ++(0,-0.58) -| (serve);
-\draw[arrow] (replay) -- (gate);
-\draw[arrow] (gate) -- (topic);
-\draw[arrow] (topic) -- (serve);
-\draw[arrow] (serve) -- (metrics);
-\end{tikzpicture}
-\captionof{figure}{ONNX-EdgeIDS workflow. Offline model development produces a portable
-artifact; the online path replays traffic through Kafka and serves the classifier
-with lightweight edge runtimes.}
-\label{fig:onnx-edgeids-workflow}
+\begin{tabular}{p{0.24\textwidth}p{0.70\textwidth}}
+\toprule
+Software name & ONNX-EdgeIDS \\
+Software type & Edge inference, artifact validation, and load-test software \\
+Repository & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
+Target users & Researchers and engineers deploying ML-based IDS on edge devices \\
+Supported model family in current release & ONNX-compatible binary IDS classifiers; NumPy fallback for tree ensembles \\
+Main inputs & Feature metadata, ONNX/NumPy artifact, Kafka flow records \\
+Main outputs & Predictions, confidence values, suspicious-flow messages, validation and latency logs \\
+Hardware evaluated & NVIDIA Jetson Orin Nano Super; \todo{board/OS} \\
+\bottomrule
+\end{tabular}
 \end{center}
 
 \begin{multicols}{2}
@@ -156,6 +113,34 @@ create ONNX and NumPy serving artifacts and write the feature-column metadata
 that fixes the runtime input order. The validation module compares exported
 predictions against a reference offline model on replayed flow records and
 reports label agreement and confidence differences.
+
+
+\begin{center}
+\scriptsize
+\begin{tikzpicture}[
+  node distance=2.5mm and 3.5mm,
+  stage/.style={draw, rounded corners=2pt, align=center, minimum height=5.5mm,
+    text width=17mm, fill=edgegray, line width=0.25pt},
+  blue/.style={stage, draw=edgeblue, fill=edgeblue!7},
+  green/.style={stage, draw=edgegreen, fill=edgegreen!7},
+  orange/.style={stage, draw=edgeorange, fill=edgeorange!8},
+  arrow/.style={-{Latex[length=1.4mm]}, line width=0.35pt}
+]
+\node[blue] (dev) {Offline\\model};
+\node[blue, right=of dev] (art) {ONNX/NumPy\\artifact};
+\node[orange, below=of dev] (flow) {Kafka\\flows};
+\node[green, right=of flow] (gate) {Gate};
+\node[orange, right=of gate] (sus) {Suspicious\\topic};
+\node[green, right=of sus] (cls) {Classifier};
+\draw[arrow] (dev) -- (art);
+\draw[arrow] (art) -| (cls);
+\draw[arrow] (flow) -- (gate);
+\draw[arrow] (gate) -- (sus);
+\draw[arrow] (sus) -- (cls);
+\end{tikzpicture}
+\captionof{figure}{Two-stage ONNX-EdgeIDS serving path.}
+\label{fig:onnx-edgeids-workflow}
+\end{center}
 
 The prediction layer exposes a small NumPy-based interface shared by the ONNX
 and NumPy backends. This keeps the application code independent from the

@@ -1,12 +1,18 @@
-\documentclass[11pt]{article}
+\documentclass[10pt]{article}
 
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
 
 \newcommand{\todo}[1]{{\color{red}[TODO: #1]}}
+\definecolor{edgeblue}{HTML}{2F6FED}
+\definecolor{edgegreen}{HTML}{2E8B57}
+\definecolor{edgeorange}{HTML}{D9822B}
+\definecolor{edgegray}{HTML}{F2F4F8}
 
 \title{ONNX-EdgeIDS: A Lightweight ONNX Serving Layer for Spark-Trained Intrusion Detection on Jetson Edge Devices}
 \author{Thai Nguyen Vu \and \todo{Coauthors}}
@@ -89,6 +95,70 @@ workflow to be reused while removing the JVM and Spark scheduler from the
 real-time classifier process.
 
 \section{Software description}
+
+\begin{figure}[t]
+\centering
+\scriptsize
+\begin{tikzpicture}[
+  node distance=5mm and 6mm,
+  box/.style={
+    draw,
+    rounded corners=2pt,
+    align=center,
+    minimum height=9mm,
+    text width=24mm,
+    fill=edgegray
+  },
+  artifact/.style={
+    draw=edgeblue,
+    rounded corners=2pt,
+    align=center,
+    minimum height=9mm,
+    text width=24mm,
+    fill=edgeblue!8
+  },
+  runtime/.style={
+    draw=edgegreen,
+    rounded corners=2pt,
+    align=center,
+    minimum height=9mm,
+    text width=24mm,
+    fill=edgegreen!8
+  },
+  stream/.style={
+    draw=edgeorange,
+    rounded corners=2pt,
+    align=center,
+    minimum height=9mm,
+    text width=25mm,
+    fill=edgeorange!8
+  },
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[box] (spark) {Spark training\\and SHAP selection};
+\node[artifact, right=of spark] (export) {ONNX-EdgeIDS\\exporter};
+\node[artifact, right=of export] (artifact) {ONNX / NumPy\\serving artifact};
+
+\node[stream, below=12mm of spark] (producer) {CSV/Kafka\\flow replay};
+\node[runtime, right=of producer] (gate) {Jetson \#1\\anomaly gate};
+\node[stream, right=of gate] (topic) {Kafka suspicious\\flow topic};
+\node[runtime, right=of topic] (classifier) {Jetson \#2\\ONNX classifier};
+\node[box, below=of classifier] (metrics) {Latency, throughput,\\and agreement metrics};
+
+\draw[arrow] (spark) -- (export);
+\draw[arrow] (export) -- (artifact);
+\draw[arrow] (artifact) |- (classifier);
+\draw[arrow] (producer) -- (gate);
+\draw[arrow] (gate) -- (topic);
+\draw[arrow] (topic) -- (classifier);
+\draw[arrow] (classifier) -- (metrics);
+\draw[arrow, dashed] (spark) to[bend right=18] node[below, align=center] {Spark-vs-export\\validation} (metrics);
+\end{tikzpicture}
+\caption{ONNX-EdgeIDS workflow. Spark remains the training and model-selection
+runtime, while the exported artifact is served by a lightweight ONNX or NumPy
+runtime in the two-stage edge pipeline.}
+\label{fig:onnx-edgeids-workflow}
+\end{figure}
 
 ONNX-EdgeIDS contains three components. First, the exporter reads a saved Spark
 \texttt{PipelineModel}. In the current release, the supported pipeline shape is

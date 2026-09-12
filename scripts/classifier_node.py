@@ -26,7 +26,7 @@ from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine
 
 def main():
     parser = argparse.ArgumentParser(description="ONNX-EdgeIDS Jetson classifier node")
-    parser.add_argument("--bootstrap", required=True, help="Kafka bootstrap server, e.g. 192.168.1.165:9092")
+    parser.add_argument("--bootstrap", required=True, help="Kafka bootstrap server, e.g. <mac-ip>:9092")
     parser.add_argument("--topic", default="ids-suspicious-flow")
     parser.add_argument("--group-id", default="onnx-edge-ids-classifier")
     parser.add_argument("--engine", choices=["onnx", "numpy"], default="onnx")
@@ -108,24 +108,36 @@ def main():
             metrics_file.flush()
         batch = []
 
+    deadline = None
+
     try:
         while True:
-            records = consumer.poll(timeout_ms=int(args.linger_ms), max_records=args.batch_size)
-            if not records:
-                flush_batch()
-                continue
+            # Wait the full linger window for the first record of a batch, then
+            # only the time still left before that batch is due.
+            if deadline is None:
+                timeout_ms = int(args.linger_ms)
+            else:
+                timeout_ms = max(0, int((deadline - time.monotonic()) * 1000.0))
+
+            records = consumer.poll(
+                timeout_ms=timeout_ms, max_records=args.batch_size - len(batch)
+            )
 
             for topic_records in records.values():
                 for message in topic_records:
+                    if not batch:
+                        deadline = time.monotonic() + args.linger_ms / 1000.0
                     batch.append(message.value)
-                    if len(batch) >= args.batch_size:
-                        flush_batch()
 
-                    if args.max_messages and total >= args.max_messages:
-                        flush_batch()
-                        return
+            if len(batch) >= args.batch_size or (
+                deadline is not None and time.monotonic() >= deadline
+            ):
+                flush_batch()
+                deadline = None
 
-            flush_batch()
+            if args.max_messages and total >= args.max_messages:
+                flush_batch()
+                return
     finally:
         flush_batch()
         consumer.close()

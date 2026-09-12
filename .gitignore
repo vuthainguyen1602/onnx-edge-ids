@@ -1,4 +1,4 @@
-# Build artifacts
+# LaTeX build artifacts
 *.aux
 *.bbl
 *.blg
@@ -10,15 +10,17 @@
 *.fdb_latexmk
 *.synctex.gz
 *.pdf
-!manuscript/figures/*.pdf
+
+# The manuscript is maintained outside this code repository
+manuscript/
 
 # Local experiment outputs
-artifacts/
 results/
-*.npz
-*.onnx
 *.csv
-*.json
+
+# Anomaly-gate models are sourced from the upstream thesis repository
+# and are not redistributed here; see docs/deploy_2jetson.md.
+artifacts/anomaly_*
 
 # Python / OS / IDE
 __pycache__/

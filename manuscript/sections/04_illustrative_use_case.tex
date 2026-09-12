@@ -1,5 +1,0 @@
-\section{Illustrative use case}
-
-The motivating use case is a two-Jetson IDS experiment. Jetson \#1 runs the Kafka broker and the gate node, while Jetson \#2 runs the classifier node. The researcher prepares an ONNX artifact from the selected offline IDS model, syncs the repository and artifacts to both boards, starts the Kafka topics, replays a traffic CSV, and records throughput and p95 latency from the classifier logs.
-
-The current repository already supports this workflow with separate deployment scripts for the two devices. The remaining manuscript fill-ins are empirical: number of validation rows, label agreement, maximum confidence delta, artifact size, gate throughput, classifier throughput, p95 latency, memory use, and board power during replay. These values should be inserted only after running the final two-device experiment.

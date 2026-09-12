@@ -1,0 +1,27 @@
+# Build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.pdf
+
+# Local experiment outputs
+artifacts/
+results/
+*.npz
+*.onnx
+*.csv
+*.json
+
+# Python / OS / IDE
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.idea/
+.vscode/

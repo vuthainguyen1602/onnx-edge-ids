@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\newcommand{\todo}[1]{{\color{red}[TODO: #1]}}
+
+\title{ONNX-EdgeIDS: A Lightweight ONNX Serving Layer for Spark-Trained Intrusion Detection on Jetson Edge Devices}
+\author{Thai Nguyen Vu \and \todo{Coauthors}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+ONNX-EdgeIDS is a lightweight serving layer for network intrusion detection
+models trained in Apache Spark and deployed on resource-constrained edge
+devices. The software addresses a practical gap observed in Spark-based edge
+IDS deployments: Spark is useful for distributed training, feature selection,
+and reproducible evaluation, but running a JVM-backed Spark \texttt{PipelineModel}
+for every inference batch is costly on an 8 GB Jetson board. ONNX-EdgeIDS
+separates the training and serving stacks. It exports a Spark-trained
+RandomForest intrusion-detection pipeline, including feature order checks and
+standardization parameters, into a portable ONNX or NumPy artifact; validates
+the exported model against the original Spark model; and serves network-flow
+messages through a lightweight runtime suitable for Kafka-based edge pipelines.
+The software enables researchers and practitioners to preserve Spark-based
+model development while measuring and deploying lower-latency edge inference.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Intrusion detection; ONNX Runtime; edge computing;
+Apache Spark; Jetson; research software
+
+\section*{Code metadata}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{0.36\linewidth}p{0.56\linewidth}}
+\toprule
+Current code version & v0.1.0 \\
+Permanent link to code/repository used for this code version & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
+Permanent link to reproducible capsule & \todo{Optional} \\
+Legal code license & MIT \\
+Code versioning system used & Git \\
+Software code languages, tools, and services used & Python, NumPy, ONNX Runtime, PySpark, Kafka \\
+Compilation requirements, operating environments, and dependencies & Python $\geq$ 3.9; NumPy; optional PyArrow for export; optional PySpark for validation; optional ONNX Runtime for ONNX serving \\
+Developer documentation/manual & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
+Support email for questions & thaivn\_ph@utc.edu.vn \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Software metadata}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{0.36\linewidth}p{0.56\linewidth}}
+\toprule
+Software name & ONNX-EdgeIDS \\
+Software type & Model-export and edge-inference software \\
+Repository & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
+Target users & Researchers and engineers deploying ML-based network IDS models on edge devices \\
+Supported model family in current release & Spark RandomForest classification pipelines with vector assembly and standard scaling \\
+Main inputs & Saved Spark \texttt{PipelineModel}, feature-column metadata, network-flow records \\
+Main outputs & ONNX/NumPy inference artifact, predictions, probabilities/confidence values, validation reports \\
+Hardware evaluated & NVIDIA Jetson Orin Nano Super; \todo{fill exact board/OS} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Motivation and significance}
+
+Machine-learning intrusion detection systems often use distributed data
+processing frameworks during training because traffic datasets are large,
+feature engineering is expensive, and repeated model evaluation must be
+reproducible. Apache Spark is a good fit for that phase. The deployment phase
+has different constraints: the classifier may run on an edge board with limited
+memory and strict latency requirements. Keeping Spark in the serving path can
+therefore simplify reproducibility while imposing avoidable runtime overhead.
+
+ONNX-EdgeIDS was created to make this trade-off explicit and reusable. The
+software keeps Spark where it is useful--training, feature selection, and
+offline evaluation--then exports the selected classifier to a lightweight
+serving artifact for edge inference. This allows the same model-development
+workflow to be reused while removing the JVM and Spark scheduler from the
+real-time classifier process.
+
+\section{Software description}
+
+ONNX-EdgeIDS contains three components. First, the exporter reads a saved Spark
+\texttt{PipelineModel}. In the current release, the supported pipeline shape is
+\texttt{VectorAssembler} $\rightarrow$ \texttt{StandardScalerModel}
+$\rightarrow$ \texttt{RandomForestClassificationModel}. The exporter checks
+that the assembler input order matches the runtime feature list, reads scaler
+statistics and tree node tables from Spark's saved format, and emits a portable
+artifact for serving.
+
+Second, the validation module compares the exported artifact with the original
+Spark pipeline on replayed network-flow records. It reports label agreement and
+probability differences. This step is essential because an edge runtime should
+not silently change the behavior of the model selected during offline
+evaluation.
+
+Third, the serving runtime receives batches of preprocessed network-flow
+features and returns class labels and confidence values without importing
+PySpark. The ONNX Runtime backend is intended for production-style deployment,
+while the NumPy backend provides a transparent fallback useful for debugging,
+validation, and environments where ONNX Runtime is unavailable.
+
+\section{Impact overview}
+
+ONNX-EdgeIDS has practical impact for researchers building edge intrusion
+detection systems because it separates two concerns that are often coupled:
+distributed model development and edge model serving. A Spark-only deployment
+forces the edge classifier to pay for a large runtime even when the selected
+model is a compact tree ensemble. ONNX-EdgeIDS lets researchers keep the
+Spark-based training evidence while deploying a smaller inference stack.
+
+The software also improves reproducibility. The exporter records the feature
+ordering, scaler parameters, model structure, and code version used to create
+the serving artifact. The validation step gives a measurable contract between
+the published Spark model and the exported runtime. This is especially
+important for network IDS research, where small preprocessing differences can
+produce misleading performance claims.
+
+Finally, ONNX-EdgeIDS lowers the barrier for comparing deployment runtimes. The
+same trained model and feature set can be evaluated through Spark, NumPy, ONNX
+Runtime CPU, and accelerator-backed ONNX providers. This makes it easier to
+quantify how much edge performance is limited by the model itself versus the
+runtime stack.
+
+\section{Illustrative use case}
+
+The motivating use case is a Jetson-based real-time IDS pipeline. Network-flow
+records are replayed through Kafka, converted into the selected feature order,
+classified on the edge device, and stored as verdicts for monitoring. In the
+baseline system, the classifier loads a Spark \texttt{PipelineModel}. With
+ONNX-EdgeIDS, the same model is exported and served by a lightweight runtime.
+
+\todo{Insert final validation numbers: rows, label agreement, max probability
+delta, artifact size.}
+
+\todo{Insert final deployment numbers: PySpark throughput/p95/RAM/energy versus
+ONNX Runtime throughput/p95/RAM/energy.}
+
+\section{Limitations and future work}
+
+The current release focuses on Spark RandomForest classifiers because that model
+family was selected for the edge IDS deployment. Support for additional Spark
+ML model families, such as gradient-boosted trees, requires separate export and
+validation logic. Probability parity also needs careful reporting: label
+agreement is the primary correctness measure, while confidence values should be
+validated before being used for alert thresholds. Future work will integrate
+accelerator-backed ONNX providers such as TensorRT on Jetson and extend the
+export workflow to additional IDS datasets.
+
+\section*{Acknowledgements}
+
+\todo{Funding and acknowledgements.}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

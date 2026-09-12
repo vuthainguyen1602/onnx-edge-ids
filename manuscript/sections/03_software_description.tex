@@ -1,0 +1,28 @@
+\section{Software description}
+
+\subsection{Software architecture}
+
+ONNX-EdgeIDS is a standalone repository for preparing portable IDS model artifacts and serving them in a Kafka-based edge pipeline. Fig.~\ref{fig:workflow} shows the intended workflow. Offline model development produces the classifier selected by the research protocol. ONNX-EdgeIDS then prepares a portable ONNX or transparent NumPy artifact and records the feature-column order expected at runtime. The online path replays flow records through Kafka, filters them through a first-stage gate, and sends suspicious candidates to a classifier node running on a second edge device.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig_workflow.pdf}
+\caption{ONNX-EdgeIDS workflow. Offline model development produces a portable artifact; the online path replays network flows through Kafka and serves the classifier with lightweight edge runtimes.}
+\label{fig:workflow}
+\end{figure*}
+
+The artifact preparation scripts create ONNX and NumPy serving artifacts and write the feature-column metadata that fixes the runtime input order. The validation module compares exported predictions against a reference offline model on replayed flow records and reports label agreement and confidence differences. This validation step is part of the software interface: an artifact is not considered deployment-ready until it reproduces the reference model within the stated tolerance.
+
+\subsection{Software functionalities}
+
+The prediction layer exposes a small NumPy-based interface shared by the ONNX and NumPy backends. This keeps the application code independent from the training toolchain and allows the same batch of feature vectors to be evaluated through either backend. The ONNX Runtime backend is the default serving path; the NumPy backend is intended for debugging, model inspection, and environments where ONNX Runtime is not installed.
+
+The Kafka utilities implement the two-stage deployment. The producer replays CSV flow records to an input topic. The gate node performs fast first-stage filtering and forwards suspicious records to a second topic. The classifier node loads the ONNX or NumPy artifact, emits class labels and confidence values, and records per-message latency so that the deployment can be profiled on one or two Jetson devices.
+
+The main software components are:
+\begin{itemize}[leftmargin=1.4em]
+  \item \texttt{export\_onnx.py}, \texttt{export\_numpy.py}, and \texttt{export\_artifacts.sh}, which prepare serving artifacts and feature metadata from a reference offline model.
+  \item \texttt{inference\_engine.py}, \texttt{onnx\_engine.py}, and \texttt{numpy\_engine.py}, which expose a shared prediction interface for ONNX Runtime and NumPy backends.
+  \item \texttt{csv\_producer.py}, \texttt{gate\_node.py}, and \texttt{classifier\_node.py}, which replay traffic, apply the first-stage gate, and serve the second-stage classifier through Kafka.
+  \item \texttt{smoke\_predict.py}, which checks that an exported artifact can load and return predictions before it is copied to the edge boards.
+\end{itemize}

@@ -4,11 +4,13 @@
 *.blg
 *.log
 *.out
+*.abs
 *.toc
 *.fls
 *.fdb_latexmk
 *.synctex.gz
 *.pdf
+!manuscript/figures/*.pdf
 
 # Local experiment outputs
 artifacts/

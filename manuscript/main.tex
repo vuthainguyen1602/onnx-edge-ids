@@ -1,11 +1,13 @@
 \documentclass[10pt]{article}
 
-\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[a4paper,margin=0.75in,columnsep=0.24in]{geometry}
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{multicol}
+\usepackage{caption}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric}
 
 \newcommand{\todo}[1]{{\color{red}[TODO: #1]}}
@@ -38,12 +40,13 @@ load-shedding experiments.
 
 \noindent\textbf{Keywords:} Intrusion detection; ONNX Runtime; edge computing;
 Kafka; Jetson; research software
+\vspace{0.75em}
 
 \section*{Code metadata}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{p{0.36\linewidth}p{0.56\linewidth}}
+\begin{center}
+\small
+\begin{tabular}{p{0.28\textwidth}p{0.66\textwidth}}
 \toprule
 Current code version & v0.1.0 \\
 Permanent link to code/repository used for this code version & \url{https://github.com/vuthainguyen1602/onnx-edge-ids} \\
@@ -56,13 +59,13 @@ Developer documentation/manual & \url{https://github.com/vuthainguyen1602/onnx-e
 Support email for questions & thaivn\_ph@utc.edu.vn \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
 \section*{Software metadata}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{p{0.36\linewidth}p{0.56\linewidth}}
+\begin{center}
+\small
+\begin{tabular}{p{0.28\textwidth}p{0.66\textwidth}}
 \toprule
 Software name & ONNX-EdgeIDS \\
 Software type & Edge-inference, model-artifact validation, and load-test software \\
@@ -74,34 +77,9 @@ Main outputs & Predictions, confidence values, forwarded suspicious-flow message
 Hardware evaluated & NVIDIA Jetson Orin Nano Super; \todo{fill exact board/OS} \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\section{Impact overview}
-
-Machine-learning intrusion detection research often reports classifier accuracy
-but leaves deployment behavior hard to reproduce. Edge deployments add a second
-problem: the online classifier must process bursts of network flows under memory
-and latency limits. ONNX-EdgeIDS addresses this gap by packaging the serving
-side of an IDS experiment as reusable software rather than as an ad hoc runtime
-script tied to a single training environment.
-
-The software contributes a two-stage architecture for reproducible edge
-experiments. A lightweight gate node consumes raw flow records and forwards only
-suspicious candidates to a second Kafka topic. A classifier node on a separate
-edge device consumes that reduced stream and serves an ONNX artifact. This
-separation lets researchers measure the gate hit rate, classifier latency,
-end-to-end throughput, and backpressure under controlled traffic replay.
-
-ONNX-EdgeIDS is useful for follow-up work because it treats the model artifact,
-feature order, and validation report as part of the software interface. This
-reduces the chance that an IDS result is caused by a hidden preprocessing
-mismatch, and it makes deployment comparisons possible across CPU ONNX Runtime,
-accelerator-backed ONNX providers, and the transparent NumPy backend.
-
-\section{Software description}
-
-\begin{figure}[t]
-\centering
+\begin{center}
 \footnotesize
 \begin{tikzpicture}[
   node distance=4mm and 6mm,
@@ -141,11 +119,37 @@ accelerator-backed ONNX providers, and the transparent NumPy backend.
 \draw[arrow] (topic) -- (serve);
 \draw[arrow] (serve) -- (metrics);
 \end{tikzpicture}
-\caption{ONNX-EdgeIDS workflow. Offline model development produces a portable
+\captionof{figure}{ONNX-EdgeIDS workflow. Offline model development produces a portable
 artifact; the online path replays traffic through Kafka and serves the classifier
 with lightweight edge runtimes.}
 \label{fig:onnx-edgeids-workflow}
-\end{figure}
+\end{center}
+
+\begin{multicols}{2}
+
+\section{Impact overview}
+
+Machine-learning intrusion detection research often reports classifier accuracy
+but leaves deployment behavior hard to reproduce. Edge deployments add a second
+problem: the online classifier must process bursts of network flows under memory
+and latency limits. ONNX-EdgeIDS addresses this gap by packaging the serving
+side of an IDS experiment as reusable software rather than as an ad hoc runtime
+script tied to a single training environment.
+
+The software contributes a two-stage architecture for reproducible edge
+experiments. A lightweight gate node consumes raw flow records and forwards only
+suspicious candidates to a second Kafka topic. A classifier node on a separate
+edge device consumes that reduced stream and serves an ONNX artifact. This
+separation lets researchers measure the gate hit rate, classifier latency,
+end-to-end throughput, and backpressure under controlled traffic replay.
+
+ONNX-EdgeIDS is useful for follow-up work because it treats the model artifact,
+feature order, and validation report as part of the software interface. This
+reduces the chance that an IDS result is caused by a hidden preprocessing
+mismatch, and it makes deployment comparisons possible across CPU ONNX Runtime,
+accelerator-backed ONNX providers, and the transparent NumPy backend.
+
+\section{Software description}
 
 ONNX-EdgeIDS contains four main components. The artifact preparation scripts
 create ONNX and NumPy serving artifacts and write the feature-column metadata
@@ -196,5 +200,6 @@ additional IDS datasets, and adapters for more model families.
 
 \bibliographystyle{plain}
 \bibliography{references}
+\end{multicols}
 
 \end{document}

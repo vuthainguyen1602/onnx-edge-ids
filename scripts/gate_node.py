@@ -62,6 +62,13 @@ def main():
     parser.add_argument("--threshold", default=str(ROOT / "artifacts" / "anomaly_threshold.json"))
     parser.add_argument("--batch-size", type=int, default=100)
     parser.add_argument("--linger-ms", type=float, default=1000.0)
+    parser.add_argument("--flush-every", type=int, default=0,
+                        help="Block on producer.flush() every N gate batches. "
+                             "0 (default) flushes only at shutdown and lets the "
+                             "producer batch freely; a synchronous flush per batch "
+                             "costs ~30-50%% throughput from an edge board. Set 1 to "
+                             "narrow the window in which an unclean exit can drop "
+                             "already-committed input offsets.")
     parser.add_argument("--max-messages", type=int, default=0)
     args = parser.parse_args()
 
@@ -89,10 +96,11 @@ def main():
     )
     total = 0
     forwarded = 0
+    batches_done = 0
     batch = []
 
     def flush_batch():
-        nonlocal total, forwarded, batch
+        nonlocal total, forwarded, batches_done, batch
         if not batch:
             return
         result = gate.score_batch(batch)
@@ -105,7 +113,9 @@ def main():
             payload["_anomaly_score"] = float(result.scores[i])
             producer.send(args.output_topic, key=str(total + i), value=payload)
             forwarded += 1
-        producer.flush()
+        batches_done += 1
+        if args.flush_every and batches_done % args.flush_every == 0:
+            producer.flush()
         total += len(batch)
         print(
             f"[{total:,}] gate={result.inference_time_ms:.3f}ms "
@@ -113,23 +123,39 @@ def main():
         )
         batch = []
 
+    deadline = None
+
     try:
         while True:
-            records = consumer.poll(timeout_ms=int(args.linger_ms), max_records=args.batch_size)
-            if not records:
-                flush_batch()
-                continue
+            # Wait the full linger window for the first record of a batch, then
+            # only the time still left before that batch is due.
+            if deadline is None:
+                timeout_ms = int(args.linger_ms)
+            else:
+                timeout_ms = max(0, int((deadline - time.monotonic()) * 1000.0))
+
+            records = consumer.poll(
+                timeout_ms=timeout_ms, max_records=args.batch_size - len(batch)
+            )
+
             for topic_records in records.values():
                 for record in topic_records:
+                    if not batch:
+                        deadline = time.monotonic() + args.linger_ms / 1000.0
                     batch.append(record.value)
-                    if len(batch) >= args.batch_size:
-                        flush_batch()
-                    if args.max_messages and total >= args.max_messages:
-                        flush_batch()
-                        return
-            flush_batch()
+
+            if len(batch) >= args.batch_size or (
+                deadline is not None and time.monotonic() >= deadline
+            ):
+                flush_batch()
+                deadline = None
+
+            if args.max_messages and total >= args.max_messages:
+                flush_batch()
+                return
     finally:
         flush_batch()
+        producer.flush()
         consumer.close()
         producer.close()
 

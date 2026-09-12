@@ -6,9 +6,7 @@ ONNX-EdgeIDS
 
 ## One-sentence pitch
 
-ONNX-EdgeIDS helps researchers export Spark-trained network intrusion detection
-models into lightweight ONNX or NumPy artifacts so Jetson-class edge devices can
-serve real-time traffic without running PySpark in the inference process.
+ONNX-EdgeIDS helps researchers prepare lightweight ONNX or NumPy artifacts for network intrusion detection, validate prediction parity against a reference offline model, and serve real-time traffic on Jetson-class edge devices through a two-stage Kafka pipeline.
 
 ## What the paper is about
 
@@ -25,29 +23,24 @@ supporting evidence for impact, not the center of the article.
 
 ## Impact overview angle
 
-The SOICT work exposed a limitation: using the same Spark stack for training and
-serving makes the system reproducible, but costly on an 8 GB Jetson board.
-ONNX-EdgeIDS turns that limitation into reusable software by separating the
-training runtime from the serving runtime.
+The SOICT work exposed a limitation: the IDS model can be accurate while the serving stack remains too heavy for an 8 GB Jetson board. ONNX-EdgeIDS turns that limitation into reusable software by separating offline model development from online serving.
 
 ## Claims we can safely make now
 
-- The software targets Spark RandomForest IDS pipelines with feature assembly
-  and standard scaling.
+- The software targets ONNX-compatible binary IDS classifiers and includes a transparent NumPy fallback for tree-ensemble artifacts.
 - It preserves feature-order metadata and validates exported artifacts against
-  Spark predictions.
+  reference-model predictions.
 - It enables lightweight edge serving with ONNX Runtime or a transparent NumPy
   fallback.
-- It supports benchmarking Spark, NumPy, and ONNX runtimes on the same trained
-  model and feature set.
+- It supports benchmarking NumPy and ONNX runtimes on the same trained model artifact and feature set.
 
 ## Claims to make only after measurement
 
-- Exact throughput gain over PySpark.
+- Exact throughput gain over the previous heavyweight serving baseline.
 - Exact p95 latency reduction.
 - Exact energy saving.
 - TensorRT/CUDA acceleration benefit.
-- Probability parity with Spark confidence output.
+- Probability parity with the reference confidence output.
 
 ## Required submission fill-ins
 

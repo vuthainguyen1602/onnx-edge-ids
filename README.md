@@ -15,38 +15,29 @@ Impact Overview statement and code/repository metadata.
 
 ## Proposed Title
 
-ONNX-EdgeIDS: A Lightweight ONNX Serving Layer for Spark-Trained Intrusion
-Detection on Jetson Edge Devices
+ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection
 
 ## Software Pitch
 
-ONNX-EdgeIDS bridges distributed IDS model training and lightweight edge
-deployment. It exports a Spark-trained intrusion-detection pipeline into a
-portable ONNX or NumPy serving artifact, validates the exported classifier
-against the original Spark `PipelineModel`, and serves real-time network-flow
-messages on Jetson-class edge devices without running PySpark in the inference
-process.
+ONNX-EdgeIDS prepares portable ONNX or transparent NumPy IDS artifacts, validates exported predictions against a reference offline model, and serves real-time network-flow messages on Jetson-class edge devices. The package focuses on the serving side of the problem: Kafka flow replay, a first-stage gate, a second-stage classifier node, and scripts for measuring throughput and latency without carrying a heavyweight training runtime into the inference path.
 
 ## Why This Fits Software Impacts
 
 The core contribution is reusable software:
 
-- exporter: Spark `PipelineModel` to lightweight serving artifact;
+- artifact preparation: offline IDS model to lightweight serving artifact;
 - runtime: ONNX/NumPy classifier interface for Kafka-streamed network flows;
-- validation: Spark-versus-exported-artifact prediction checks;
+- validation: reference-model-versus-exported-artifact prediction checks;
 - benchmark scripts: edge inference cost, latency, memory, and energy.
 
-The SOICT paper can be cited as the research context that exposed the software
-need: Spark serving works but is costly on Jetson. This article should focus on
-the resulting software artifact and its impact, not repeat the full distributed
-IDS evaluation.
+The SOICT paper can be cited as the research context that exposed the software need: the IDS model can be accurate while the serving stack is still too heavy for edge hardware. This article should focus on the resulting software artifact and its impact, not repeat the full distributed IDS evaluation.
 
 ## Files
 
 - `manuscript/main.tex`: Software Impacts draft.
 - `manuscript/references.bib`: bibliography.
 - `src/onnx_edge_ids/`: reusable ONNX/NumPy inference package.
-- `scripts/export_artifacts.sh`: Spark `PipelineModel` to ONNX + NumPy artifacts.
+- `scripts/export_artifacts.sh`: reference offline model to ONNX + NumPy artifacts.
 - `scripts/init_topics.py`: create Kafka input/suspicious topics.
 - `scripts/csv_producer.py`: replay CSV rows to Kafka at a target rate.
 - `scripts/gate_node.py`: Jetson #1 anomaly gate with Kafka forwarding.
@@ -59,7 +50,7 @@ IDS evaluation.
 
 ## Quick Local Test
 
-From this repository:
+Optional artifact export from the thesis reference model:
 
 ```bash
 MODEL_DIR=/Users/thainguyenvu/Desktop/Thesis_IDS/jetson/model/ids_pipeline_model \

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use ONNX-EdgeIDS, please cite the Software Impacts article or this archived software release."
-title: "ONNX-EdgeIDS: A Lightweight ONNX Serving Layer for Spark-Trained Intrusion Detection on Jetson Edge Devices"
+title: "ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection"
 type: software
 authors:
   - family-names: "Vu"

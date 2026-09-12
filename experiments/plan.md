@@ -4,7 +4,7 @@
 
 Primary model:
 
-- RandomForest on SHAP Top-30 features, same selected model as SOICT deployment.
+- ONNX-compatible binary classifier on selected CICIDS2017 flow features.
 
 Optional models:
 
@@ -13,10 +13,9 @@ Optional models:
 
 ## Engines
 
-1. PySpark `PipelineModel` serving: reproduced baseline.
-2. NumPy artifact serving: dependency-minimal fallback.
-3. ONNX Runtime CPU provider.
-4. ONNX Runtime CUDA/TensorRT provider if Jetson setup supports it.
+1. NumPy artifact serving: dependency-minimal fallback.
+2. ONNX Runtime CPU provider.
+3. ONNX Runtime CUDA/TensorRT provider if Jetson setup supports it.
 
 ## Measurements
 
@@ -44,10 +43,10 @@ End-to-end streaming:
 For each exported artifact:
 
 - Check feature order against `feature_columns.json`.
-- Compare predictions against Spark `PipelineModel` on at least 5,000 replay rows.
+- Compare NumPy predictions against ONNX Runtime on at least 5,000 replay rows.
 - Report label agreement.
 - Report max and mean probability delta.
-- If probability delta is non-zero, store Spark-compatible confidence as a
+- If probability delta is non-zero, store ONNX-compatible confidence as a
   secondary issue and base correctness on labels plus attack F1.
 
 ## Minimum Table Set
@@ -69,14 +68,13 @@ Table 3: End-to-end streaming cost.
 
 ## Minimum Figure Set
 
-- Architecture figure: Spark training path versus ONNX serving path.
+- Architecture figure: ONNX/NumPy artifact path and edge serving path.
 - Bar chart: throughput and p95 by runtime.
-- Optional: latency CDF for PySpark vs ONNX.
+- Optional: latency CDF for NumPy vs ONNX.
 
 ## Acceptance Criteria For A Real Paper Draft
 
 - ONNX runtime integrated into classifier role, not only microbenchmark.
 - At least three repeated runs per runtime.
 - Same replay rate, batch size, feature set, and board state.
-- Explicit statement that SOICT is prior system paper; this is the serving
-  optimization paper.
+- Explicit statement that SOICT is prior system context; this is the ONNX/Kafka serving software paper.

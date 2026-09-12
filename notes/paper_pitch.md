@@ -6,7 +6,7 @@ ONNX-EdgeIDS
 
 ## One-sentence pitch
 
-ONNX-EdgeIDS helps researchers prepare lightweight ONNX or NumPy artifacts for network intrusion detection, validate prediction parity against a reference offline model, and serve real-time traffic on Jetson-class edge devices through a two-stage Kafka pipeline.
+ONNX-EdgeIDS helps researchers serve lightweight ONNX or NumPy artifacts for network intrusion detection, validate ONNX/NumPy prediction parity, and replay CICIDS2017-derived flow traffic on Jetson-class edge devices through a two-stage Kafka pipeline.
 
 ## What the paper is about
 
@@ -28,8 +28,9 @@ The SOICT work exposed a limitation: the IDS model can be accurate while the ser
 ## Claims we can safely make now
 
 - The software targets ONNX-compatible binary IDS classifiers and includes a transparent NumPy fallback for tree-ensemble artifacts.
-- It preserves feature-order metadata and validates exported artifacts against
-  reference-model predictions.
+- It preserves feature-order metadata for CICIDS2017-derived flow records and validates NumPy artifacts against ONNX predictions.
+- Cite the IDS 2017/CICIDS2017 dataset paper whenever describing replay data:
+  Sharafaldin, Lashkari, and Ghorbani, ICISSP 2018.
 - It enables lightweight edge serving with ONNX Runtime or a transparent NumPy
   fallback.
 - It supports benchmarking NumPy and ONNX runtimes on the same trained model artifact and feature set.
@@ -40,7 +41,7 @@ The SOICT work exposed a limitation: the IDS model can be accurate while the ser
 - Exact p95 latency reduction.
 - Exact energy saving.
 - TensorRT/CUDA acceleration benefit.
-- Probability parity with the reference confidence output.
+- Probability parity between ONNX Runtime and the NumPy fallback.
 
 ## Required submission fill-ins
 

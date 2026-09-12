@@ -1,0 +1,5 @@
+# Optional dependencies for Jetson classifier node.
+# If onnxruntime is unavailable for the JetPack/Python combination,
+# use the NumPy backend with EDGE_ENGINE=numpy.
+
+onnxruntime>=1.16

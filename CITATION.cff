@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use ONNX-EdgeIDS, please cite the Software Impacts article or this archived software release."
+title: "ONNX-EdgeIDS: A Lightweight ONNX Serving Layer for Spark-Trained Intrusion Detection on Jetson Edge Devices"
+type: software
+authors:
+  - family-names: "Vu"
+    given-names: "Thai Nguyen"
+version: "0.1.0"
+date-released: "2026-09-12"
+repository-code: "https://github.com/vuthainguyen1602/onnx-edge-ids"
+license: "MIT"

@@ -1,5 +1,7 @@
 # ONNX-EdgeIDS Software Impacts Submission
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22731927.svg)](https://doi.org/10.5281/zenodo.22731927)
+
 This repository is the manuscript workspace for a **Software Impacts** article,
 not a long SOICT-style systems paper.
 

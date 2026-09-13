@@ -6,7 +6,6 @@
 - [x] Abstract focuses on software and reuse.
 - [x] Code metadata table filled.
 - [x] Impact overview section included.
-- [ ] References include prior SOICT system paper or thesis artifact when citeable.
 - [x] No overclaiming benchmark results before final measurement.
 
 Note: Software Impacts requires only the Code metadata table (C1-C9). The
@@ -59,5 +58,5 @@ removed.
 ## Scope Boundary
 
 This article is about ONNX-EdgeIDS as reusable software. The distributed Kafka
-deployment from SOICT is background and motivation. Do not recast the whole
-SOICT paper here.
+deployment it grew out of is background and motivation only. Do not recast that
+systems work here.

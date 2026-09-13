@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22731927.svg)](https://doi.org/10.5281/zenodo.22731927)
 
 This repository is the manuscript workspace for a **Software Impacts** article,
-not a long SOICT-style systems paper.
+not a long systems paper.
 
 Software Impacts publishes short software publications. The submission should
 make the software artifact citable and reusable, with an impact overview and
@@ -32,7 +32,7 @@ The core contribution is reusable software:
 - validation: ONNX-versus-NumPy prediction checks;
 - benchmark scripts: edge inference cost, latency, memory, and energy.
 
-The SOICT paper can be cited as the research context that exposed the software need: the IDS model can be accurate while the serving stack is still too heavy for edge hardware. This article should focus on the resulting software artifact and its impact, not repeat the full distributed IDS evaluation.
+The research context that exposed the software need is that an IDS model can be accurate while the serving stack is still too heavy for edge hardware. This article focuses on the resulting software artifact and its impact, not on a full distributed IDS evaluation.
 
 ## Files
 

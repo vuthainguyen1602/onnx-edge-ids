@@ -16,13 +16,14 @@ removed.
 ## Software Artifact
 
 - [x] Public Git repository.
-- [ ] Tagged release matching manuscript version.
+- [x] Tagged release matching manuscript version: v0.2.0, matching C1.
 - [x] Open-source license.
 - [x] README with install, export, validation, and inference examples.
 - [x] Requirements file or `pyproject.toml`.
 - [x] Example data or instructions for obtaining replay data.
 - [x] Tests or smoke checks.
-- [ ] Archive DOI via Zenodo, Software Heritage, or equivalent.
+- [x] Archive DOI via Zenodo, Software Heritage, or equivalent:
+      10.5281/zenodo.22731928 (v0.2.0); concept DOI 10.5281/zenodo.22731927.
 
 ## Validation Data Measured
 
@@ -42,8 +43,13 @@ removed.
 - Jetson #2 has no Ethernet link and currently runs over Wi-Fi. Inference
   latency, memory and power are measured in-process and unaffected, but
   end-to-end transport figures should be re-taken on a wired link.
-- The v0.1.0 tag predates the artifacts, the batching fix and
-  `validate_parity.py`; retag before submitting.
+- The Zenodo record for v0.2.0 carries the right title and author name, taken
+  from CITATION.cff, but no ORCID, affiliation or keywords: `.zenodo.json` was
+  added after the v0.2.0 tag, so it is absent from the archived tree. Fix by
+  editing the record at https://zenodo.org/records/22731928 and republishing,
+  which keeps the DOI. Later releases pick the file up automatically.
+- v0.1.0 stays where it is. It is already published and must keep describing
+  the tree archived under that name.
 - `artifacts/anomaly_*` (the gate autoencoder, scaler and threshold) come from
   the upstream thesis repository and are not redistributed here.
 

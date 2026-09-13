@@ -35,7 +35,10 @@ removed.
       classifier 20,185 rows/s, p95 0.0676 ms/row, 155.6 MB RSS, 4.64 W (ONNX);
       152 rows/s, p95 8.2267 ms/row, 46.2 MB RSS, 4.93 W (NumPy);
       gate 13,915 rows/s, p95 0.0783 ms/row, 28.64% forward rate.
-- [ ] Engine cold-start load time.
+- [x] Engine cold-start load time (mean of both boards, page cache dropped):
+      ONNX Runtime 294.5 ms to build the session, 3.1 ms first prediction,
+      542.3 ms process start to first verdict; NumPy 79.7 ms to load,
+      115.1 ms first prediction, 368.4 ms to first verdict.
 - [ ] End-to-end throughput over a wired link on both boards.
 
 ## Known Gaps Before Submission

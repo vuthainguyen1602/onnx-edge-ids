@@ -11,3 +11,11 @@ version: "0.2.0"
 date-released: "2026-09-13"
 repository-code: "https://github.com/vuthainguyen1602/onnx-edge-ids"
 license: "MIT"
+doi: "10.5281/zenodo.22731927"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22731927"
+    description: "Concept DOI for all versions"
+  - type: doi
+    value: "10.5281/zenodo.22731928"
+    description: "DOI for version 0.2.0"

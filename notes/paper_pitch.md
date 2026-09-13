@@ -18,12 +18,12 @@ This is a software publication. The paper should describe:
 - where the code is archived;
 - what impact it has on edge IDS research and deployment.
 
-It should not read like a full experimental SOICT follow-up. The benchmarks are
+It should not read like a full experimental systems paper. The benchmarks are
 supporting evidence for impact, not the center of the article.
 
 ## Impact overview angle
 
-The SOICT work exposed a limitation: the IDS model can be accurate while the serving stack remains too heavy for an 8 GB Jetson board. ONNX-EdgeIDS turns that limitation into reusable software by separating offline model development from online serving.
+Earlier deployment work exposed a limitation: the IDS model can be accurate while the serving stack remains too heavy for an 8 GB Jetson board. ONNX-EdgeIDS turns that limitation into reusable software by separating offline model development from online serving.
 
 ## Claims we can safely make now
 

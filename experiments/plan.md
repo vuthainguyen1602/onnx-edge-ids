@@ -77,4 +77,4 @@ Table 3: End-to-end streaming cost.
 - ONNX runtime integrated into classifier role, not only microbenchmark.
 - At least three repeated runs per runtime.
 - Same replay rate, batch size, feature set, and board state.
-- Explicit statement that SOICT is prior system context; this is the ONNX/Kafka serving software paper.
+- Explicit statement that the earlier deployment work is prior system context; this is the ONNX/Kafka serving software paper.

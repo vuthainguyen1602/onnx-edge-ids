@@ -1,0 +1,33 @@
+{
+  "title": "ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection",
+  "description": "<p>ONNX-EdgeIDS is research software for deploying machine-learning network intrusion detection on resource-constrained edge devices. It provides Kafka replay for CICIDS2017-derived flow records, a first-stage anomaly gate that filters high-volume traffic, and a second-stage ONNX Runtime classifier node for low-latency inference on Jetson-class hardware. The package also includes a transparent NumPy inference backend, artifact preparation scripts, feature-order checks, and validation utilities for comparing ONNX and NumPy predictions before deployment.</p><p>This release ships the ONNX and NumPy serving artifacts with the repository, fixes batch accumulation in both Kafka nodes, and adds <code>validate_parity.py</code> as a release gate.</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "version": "0.2.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Vu, Thai Nguyen",
+      "affiliation": "Campus in Ho Chi Minh City, University of Transport and Communications, Ho Chi Minh City, Vietnam",
+      "orcid": "0009-0001-9714-1031"
+    }
+  ],
+  "keywords": [
+    "intrusion detection",
+    "ONNX Runtime",
+    "edge computing",
+    "Apache Kafka",
+    "NVIDIA Jetson",
+    "CICIDS2017",
+    "research software"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/vuthainguyen1602/onnx-edge-ids",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ]
+}

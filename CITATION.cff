@@ -5,7 +5,9 @@ type: software
 authors:
   - family-names: "Vu"
     given-names: "Thai Nguyen"
+    orcid: "https://orcid.org/0009-0001-9714-1031"
+    affiliation: "Campus in Ho Chi Minh City, University of Transport and Communications"
 version: "0.2.0"
-date-released: "2026-09-12"
+date-released: "2026-09-13"
 repository-code: "https://github.com/vuthainguyen1602/onnx-edge-ids"
 license: "MIT"

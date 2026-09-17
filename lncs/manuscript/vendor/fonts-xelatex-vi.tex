@@ -1,0 +1,9 @@
+% Shared XeLaTeX font setup for Vietnamese manuscripts.
+% TeX Gyre Termes is a Times-compatible font that ships with TeX Live / MacTeX,
+% covers Vietnamese, and needs no MS-Office fonts -> builds on any machine.
+% If TeX Gyre Termes is missing (e.g. BasicTeX without the tex-gyre package),
+% fall back to macOS' built-in Times New Roman instead of silently dropping to
+% nullfont (which produces blank pages).
+\IfFontExistsTF{TeX Gyre Termes}
+  {\setmainfont{TeX Gyre Termes}[Ligatures=TeX]}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}

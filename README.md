@@ -2,8 +2,11 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22731927.svg)](https://doi.org/10.5281/zenodo.22731927)
 
-This repository is the manuscript workspace for a **Software Impacts** article,
-not a long systems paper.
+This repository is the software and the workspace for a **Software Impacts**
+article about it. A separate, longer systems paper that studies the same
+software lives under [`lncs/`](lncs/) with its own experiment code; the two
+manuscripts are independent and the Software Impacts article does not depend on
+anything in `lncs/`.
 
 Software Impacts publishes short software publications. The submission should
 make the software artifact citable and reusable, with an impact overview and
@@ -51,6 +54,7 @@ The research context that exposed the software need is that an IDS model can be 
 - `deploy/sync_to_jetson.sh`: rsync this repo to a Jetson node.
 - `experiments/plan.md`: validation and benchmark plan.
 - `notes/paper_pitch.md`: idea notes and contribution boundaries.
+- `lncs/`: LNCS systems paper (manuscript, experiment code, result files): boundary-directed runtime parity testing, block-lockstep traversal, exact early exit, behaviour under distribution shift. See `lncs/README.md`.
 
 ## Dataset
 

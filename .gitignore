@@ -11,11 +11,11 @@
 *.synctex.gz
 *.pdf
 
-# The manuscript is maintained outside this code repository
-manuscript/
+# The Software Impacts manuscript is maintained outside this code repository
+/manuscript/
 
 # Local experiment outputs
-results/
+/results/
 *.csv
 
 # Anomaly-gate models are sourced from the upstream thesis repository
@@ -23,6 +23,8 @@ results/
 artifacts/anomaly_*
 
 # Python / OS / IDE
+venv/
+*.egg-info/
 __pycache__/
 *.py[cod]
 .pytest_cache/

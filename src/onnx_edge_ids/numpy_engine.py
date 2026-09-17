@@ -49,39 +49,43 @@ class NumpyInferenceEngine(InferenceEngine):
         self.n_classes = int(self.leaf_scores.shape[1])
 
     def _infer(self, matrix):
+        """Traverse every tree in lockstep instead of one tree at a time.
+
+        Node ids are globally unique across the flattened forest (tree_offsets
+        partitions the flat arrays), so a (n_trees, n_rows) matrix of global
+        node ids can be gathered/scattered directly without per-tree index
+        arithmetic. This turns the Python-level loop from O(n_trees x depth)
+        iterations into O(depth) iterations, each vectorized over every tree
+        and every row at once -- the per-tree version pays NumPy's per-call
+        dispatch overhead n_trees times per batch, which dominates at small
+        batch sizes since each call then does very little actual work.
+        """
         x = np.ascontiguousarray(matrix, dtype=self.inference_dtype)
         if x.ndim != 2 or x.shape[1] != len(self.offset):
             raise ValueError(f"Expected matrix shape (n, {len(self.offset)}), got {x.shape}")
 
         scaled = (x - self.offset) * self.scale
-        scores = np.zeros((scaled.shape[0], self.n_classes), dtype=self.inference_dtype)
+        n_rows = scaled.shape[0]
+        n_trees = len(self.tree_offsets) - 1
 
-        for t in range(len(self.tree_offsets) - 1):
-            base = int(self.tree_offsets[t])
-            end = int(self.tree_offsets[t + 1])
-            node = np.full(scaled.shape[0], base, dtype=np.int64)
-            active = np.ones(scaled.shape[0], dtype=bool)
+        node = np.repeat(self.tree_offsets[:-1].reshape(-1, 1), n_rows, axis=1)
+        active = np.ones((n_trees, n_rows), dtype=bool)
+        scores = np.zeros((n_rows, self.n_classes), dtype=self.inference_dtype)
 
-            while np.any(active):
-                rows = np.flatnonzero(active)
-                cur = node[rows]
-                leaf = self.is_leaf[cur]
-                if np.any(leaf):
-                    leaf_rows = rows[leaf]
-                    scores[leaf_rows] += self.leaf_scores[node[leaf_rows]]
-                    active[leaf_rows] = False
+        while np.any(active):
+            leaf = self.is_leaf[node] & active
+            if np.any(leaf):
+                t_idx, r_idx = np.nonzero(leaf)
+                np.add.at(scores, r_idx, self.leaf_scores[node[t_idx, r_idx]])
+                active[t_idx, r_idx] = False
 
-                branch_rows = rows[~leaf]
-                if branch_rows.size:
-                    cur_branch = node[branch_rows]
-                    feat = self.feature[cur_branch]
-                    go_left = scaled[branch_rows, feat] <= self.threshold[cur_branch]
-                    node[branch_rows] = np.where(
-                        go_left, self.left[cur_branch], self.right[cur_branch]
-                    )
-
-                if np.any((node < base) | (node >= end)):
-                    raise RuntimeError("Tree traversal left the exported node range")
+            branch = active
+            if np.any(branch):
+                t_idx, r_idx = np.nonzero(branch)
+                cur = node[t_idx, r_idx]
+                feat = self.feature[cur]
+                go_left = scaled[r_idx, feat] <= self.threshold[cur]
+                node[t_idx, r_idx] = np.where(go_left, self.left[cur], self.right[cur])
 
         preds = np.argmax(scores, axis=1).astype(np.int64)
         return preds, scores

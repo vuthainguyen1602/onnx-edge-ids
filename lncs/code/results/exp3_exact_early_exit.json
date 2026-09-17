@@ -1,0 +1,29 @@
+{
+  "rows": 447275,
+  "trees": 200,
+  "schedule_first_check_after": 104,
+  "gate_forward_rate": 0.11301324688390811,
+  "gate_attack_recall": 0.7228691405086664,
+  "subsets": {
+    "gate_forwarded": {
+      "rows": 50548,
+      "labels_identical_to_full_forest": 50548,
+      "attack_f1": 0.9999,
+      "mean_trees_used": 104.12,
+      "rows_decided_at_first_check": 0.9927593574424309,
+      "full_forest_seconds": 2.62,
+      "early_exit_seconds": 1.27,
+      "speedup": 2.05
+    },
+    "all_traffic": {
+      "rows": 447275,
+      "labels_identical_to_full_forest": 447275,
+      "attack_f1": 0.9825,
+      "mean_trees_used": 105.02,
+      "rows_decided_at_first_check": 0.9522128444469287,
+      "full_forest_seconds": 28.58,
+      "early_exit_seconds": 14.9,
+      "speedup": 1.92
+    }
+  }
+}

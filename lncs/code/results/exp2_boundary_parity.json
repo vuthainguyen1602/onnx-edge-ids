@@ -1,0 +1,37 @@
+{
+  "internal_nodes": 95741,
+  "distinct_feature_threshold_pairs": 815,
+  "variants": {
+    "on_threshold": {
+      "probes": 95741,
+      "probes_reaching_their_node": 95664,
+      "numpy_float32_vs_onnx_label_disagreements": 0,
+      "numpy_float64_vs_onnx_label_disagreements": 143
+    },
+    "one_ulp_below": {
+      "probes": 95741,
+      "probes_reaching_their_node": 95664,
+      "numpy_float32_vs_onnx_label_disagreements": 0,
+      "numpy_float64_vs_onnx_label_disagreements": 7
+    },
+    "one_ulp_above": {
+      "probes": 95741,
+      "probes_reaching_their_node": 95664,
+      "numpy_float32_vs_onnx_label_disagreements": 0,
+      "numpy_float64_vs_onnx_label_disagreements": 178
+    }
+  },
+  "boundary_total": {
+    "probes": 287223,
+    "numpy_float32_vs_onnx_label_disagreements": 0,
+    "numpy_float64_vs_onnx_label_disagreements": 328
+  },
+  "random_replay": {
+    "rows": 447275,
+    "numpy_float32_vs_onnx_label_disagreements": 0,
+    "numpy_float64_vs_onnx_label_disagreements": 15,
+    "float64_disagreement_rate": 3.353641495724107e-05,
+    "prob_2000_row_replay_sees_no_disagreement": 0.935126041878245
+  },
+  "seconds": 120.7
+}

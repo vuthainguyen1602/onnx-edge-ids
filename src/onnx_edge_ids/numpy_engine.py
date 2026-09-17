@@ -48,17 +48,21 @@ class NumpyInferenceEngine(InferenceEngine):
         self.leaf_scores = data["leaf_scores"].astype(self.inference_dtype, copy=False)
         self.n_classes = int(self.leaf_scores.shape[1])
 
+    # (tree, row) pairs advanced per lockstep block. A whole-forest trees x rows
+    # matrix falls out of cache at large batches and ends up slower than the
+    # per-tree loop; blocks of about this many pairs measured fastest across
+    # batch sizes 1..2000 on real CICIDS2017 flows.
+    PAIRS_PER_BLOCK = 8192
+
     def _infer(self, matrix):
-        """Traverse every tree in lockstep instead of one tree at a time.
+        """Advance cache-sized blocks of trees in lockstep instead of one tree at a time.
 
         Node ids are globally unique across the flattened forest (tree_offsets
-        partitions the flat arrays), so a (n_trees, n_rows) matrix of global
-        node ids can be gathered/scattered directly without per-tree index
-        arithmetic. This turns the Python-level loop from O(n_trees x depth)
-        iterations into O(depth) iterations, each vectorized over every tree
-        and every row at once -- the per-tree version pays NumPy's per-call
-        dispatch overhead n_trees times per batch, which dominates at small
-        batch sizes since each call then does very little actual work.
+        partitions the flat arrays), so a (block_trees, n_rows) matrix of global
+        node ids can be gathered directly without per-tree index arithmetic.
+        The per-tree version pays NumPy's per-call dispatch overhead once per
+        tree per level, which dominates at the small batches a streaming
+        classifier serves.
         """
         x = np.ascontiguousarray(matrix, dtype=self.inference_dtype)
         if x.ndim != 2 or x.shape[1] != len(self.offset):
@@ -67,25 +71,21 @@ class NumpyInferenceEngine(InferenceEngine):
         scaled = (x - self.offset) * self.scale
         n_rows = scaled.shape[0]
         n_trees = len(self.tree_offsets) - 1
-
-        node = np.repeat(self.tree_offsets[:-1].reshape(-1, 1), n_rows, axis=1)
-        active = np.ones((n_trees, n_rows), dtype=bool)
+        block = max(1, self.PAIRS_PER_BLOCK // max(n_rows, 1))
         scores = np.zeros((n_rows, self.n_classes), dtype=self.inference_dtype)
 
-        while np.any(active):
-            leaf = self.is_leaf[node] & active
-            if np.any(leaf):
-                t_idx, r_idx = np.nonzero(leaf)
-                np.add.at(scores, r_idx, self.leaf_scores[node[t_idx, r_idx]])
-                active[t_idx, r_idx] = False
-
-            branch = active
-            if np.any(branch):
-                t_idx, r_idx = np.nonzero(branch)
+        for start in range(0, n_trees, block):
+            roots = self.tree_offsets[start:min(start + block, n_trees)]
+            node = np.repeat(roots.reshape(-1, 1), n_rows, axis=1)
+            active = ~self.is_leaf[node]
+            while np.any(active):
+                t_idx, r_idx = np.nonzero(active)
                 cur = node[t_idx, r_idx]
-                feat = self.feature[cur]
-                go_left = scaled[r_idx, feat] <= self.threshold[cur]
-                node[t_idx, r_idx] = np.where(go_left, self.left[cur], self.right[cur])
+                go_left = scaled[r_idx, self.feature[cur]] <= self.threshold[cur]
+                nxt = np.where(go_left, self.left[cur], self.right[cur])
+                node[t_idx, r_idx] = nxt
+                active[t_idx, r_idx] = ~self.is_leaf[nxt]
+            scores += self.leaf_scores[node].sum(axis=0)
 
         preds = np.argmax(scores, axis=1).astype(np.int64)
         return preds, scores

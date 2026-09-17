@@ -1,0 +1,43 @@
+{
+  "machine": "arm64 Darwin arm",
+  "numpy": "2.5.3",
+  "trees": 200,
+  "label_agreement_5000_rows": 5000,
+  "batches": [
+    {
+      "batch": 1,
+      "rows": 500,
+      "per_tree_rows_s": 78.1,
+      "lockstep_rows_s": 5539.9,
+      "speedup": 71.0
+    },
+    {
+      "batch": 20,
+      "rows": 3000,
+      "per_tree_rows_s": 1424.0,
+      "lockstep_rows_s": 15807.1,
+      "speedup": 11.1
+    },
+    {
+      "batch": 100,
+      "rows": 10000,
+      "per_tree_rows_s": 4509.1,
+      "lockstep_rows_s": 16051.0,
+      "speedup": 3.6
+    },
+    {
+      "batch": 500,
+      "rows": 10000,
+      "per_tree_rows_s": 11770.9,
+      "lockstep_rows_s": 16141.7,
+      "speedup": 1.4
+    },
+    {
+      "batch": 2000,
+      "rows": 20000,
+      "per_tree_rows_s": 18176.8,
+      "lockstep_rows_s": 15849.5,
+      "speedup": 0.9
+    }
+  ]
+}

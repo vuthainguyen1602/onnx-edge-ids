@@ -1,0 +1,226 @@
+{
+  "cicids2017_in_distribution": {
+    "rows": 447275,
+    "attack_rate": 0.1501,
+    "detector": {
+      "precision": 0.9724,
+      "recall": 0.9929,
+      "f1": 0.9825
+    },
+    "gate": {
+      "forward_rate": 0.113,
+      "attack_recall": 0.7229,
+      "benign_forward_rate": 0.0053
+    },
+    "two_stage_end_to_end": {
+      "precision": 0.9999,
+      "recall": 0.7228,
+      "f1": 0.8391
+    },
+    "replay_parity_vs_onnx": {
+      "numpy_float32_label_disagreements": 0,
+      "numpy_float64_label_disagreements": 15
+    },
+    "on_threshold_probes_vs_onnx": {
+      "probes": 95741,
+      "numpy_float32_label_disagreements": 0,
+      "numpy_float64_label_disagreements": 143
+    },
+    "exact_early_exit_all_traffic": {
+      "rows": 447275,
+      "labels_identical_to_full_forest": 447275,
+      "mean_trees_used": 105.02,
+      "rows_decided_at_first_check": 0.9522
+    },
+    "exact_early_exit_gate_forwarded": {
+      "rows": 50548,
+      "labels_identical_to_full_forest": 50548,
+      "mean_trees_used": 104.12,
+      "rows_decided_at_first_check": 0.9928
+    },
+    "per_attack": {
+      "Bot": {
+        "rows": 290,
+        "classifier_recall": 0.8276,
+        "gate_recall": 0.0379
+      },
+      "DDoS": {
+        "rows": 25694,
+        "classifier_recall": 0.9992,
+        "gate_recall": 0.6289
+      },
+      "DoS GoldenEye": {
+        "rows": 2020,
+        "classifier_recall": 0.9881,
+        "gate_recall": 0.4149
+      },
+      "DoS Hulk": {
+        "rows": 34446,
+        "classifier_recall": 0.9923,
+        "gate_recall": 0.8892
+      },
+      "DoS Slowhttptest": {
+        "rows": 1023,
+        "classifier_recall": 0.9961,
+        "gate_recall": 0.259
+      },
+      "DoS slowloris": {
+        "rows": 1068,
+        "classifier_recall": 0.9953,
+        "gate_recall": 0.5749
+      },
+      "FTP-Patator": {
+        "rows": 1147,
+        "classifier_recall": 0.9983,
+        "gate_recall": 0.0
+      },
+      "Heartbleed": {
+        "rows": 3,
+        "classifier_recall": 1.0,
+        "gate_recall": 1.0
+      },
+      "Infiltration": {
+        "rows": 12,
+        "classifier_recall": 0.6667,
+        "gate_recall": 0.4167
+      },
+      "PortScan": {
+        "rows": 383,
+        "classifier_recall": 0.9869,
+        "gate_recall": 0.0392
+      },
+      "SSH-Patator": {
+        "rows": 642,
+        "classifier_recall": 0.9408,
+        "gate_recall": 0.0
+      },
+      "Web Attack \ufffd Brute Force": {
+        "rows": 311,
+        "classifier_recall": 0.865,
+        "gate_recall": 0.0
+      },
+      "Web Attack \ufffd Sql Injection": {
+        "rows": 6,
+        "classifier_recall": 0.3333,
+        "gate_recall": 0.0
+      },
+      "Web Attack \ufffd XSS": {
+        "rows": 111,
+        "classifier_recall": 0.8739,
+        "gate_recall": 0.027
+      }
+    }
+  },
+  "cse_cic_ids2018_shifted": {
+    "rows": 477771,
+    "attack_rate": 0.1274,
+    "detector": {
+      "precision": 0.3117,
+      "recall": 0.1926,
+      "f1": 0.2381
+    },
+    "gate": {
+      "forward_rate": 0.0249,
+      "attack_recall": 0.0091,
+      "benign_forward_rate": 0.0272
+    },
+    "two_stage_end_to_end": {
+      "precision": 0.0718,
+      "recall": 0.0059,
+      "f1": 0.011
+    },
+    "replay_parity_vs_onnx": {
+      "numpy_float32_label_disagreements": 0,
+      "numpy_float64_label_disagreements": 6
+    },
+    "on_threshold_probes_vs_onnx": {
+      "probes": 95741,
+      "numpy_float32_label_disagreements": 0,
+      "numpy_float64_label_disagreements": 125
+    },
+    "exact_early_exit_all_traffic": {
+      "rows": 477771,
+      "labels_identical_to_full_forest": 477771,
+      "mean_trees_used": 108.16,
+      "rows_decided_at_first_check": 0.7182
+    },
+    "exact_early_exit_gate_forwarded": {
+      "rows": 11912,
+      "labels_identical_to_full_forest": 11912,
+      "mean_trees_used": 132.23,
+      "rows_decided_at_first_check": 0.3195
+    },
+    "per_attack": {
+      "Bot": {
+        "rows": 5972,
+        "classifier_recall": 0.0008,
+        "gate_recall": 0.0023
+      },
+      "Brute Force -Web": {
+        "rows": 26,
+        "classifier_recall": 0.1923,
+        "gate_recall": 0.1538
+      },
+      "Brute Force -XSS": {
+        "rows": 11,
+        "classifier_recall": 0.5455,
+        "gate_recall": 0.3636
+      },
+      "DDOS attack-HOIC": {
+        "rows": 11756,
+        "classifier_recall": 0.0,
+        "gate_recall": 0.0
+      },
+      "DDOS attack-LOIC-UDP": {
+        "rows": 60,
+        "classifier_recall": 0.0,
+        "gate_recall": 1.0
+      },
+      "DDoS attacks-LOIC-HTTP": {
+        "rows": 22999,
+        "classifier_recall": 0.4679,
+        "gate_recall": 0.0013
+      },
+      "DoS attacks-GoldenEye": {
+        "rows": 1634,
+        "classifier_recall": 0.3054,
+        "gate_recall": 0.0251
+      },
+      "DoS attacks-Hulk": {
+        "rows": 10035,
+        "classifier_recall": 0.0,
+        "gate_recall": 0.0
+      },
+      "DoS attacks-SlowHTTPTest": {
+        "rows": 8,
+        "classifier_recall": 0.0,
+        "gate_recall": 0.0
+      },
+      "DoS attacks-Slowloris": {
+        "rows": 378,
+        "classifier_recall": 0.9868,
+        "gate_recall": 0.754
+      },
+      "FTP-BruteForce": {
+        "rows": 6,
+        "classifier_recall": 0.0,
+        "gate_recall": 0.0
+      },
+      "Infilteration": {
+        "rows": 4277,
+        "classifier_recall": 0.018,
+        "gate_recall": 0.0274
+      },
+      "SQL Injection": {
+        "rows": 6,
+        "classifier_recall": 0.1667,
+        "gate_recall": 0.0
+      },
+      "SSH-Bruteforce": {
+        "rows": 3713,
+        "classifier_recall": 0.0,
+        "gate_recall": 0.0
+      }
+    }
+  }
+}

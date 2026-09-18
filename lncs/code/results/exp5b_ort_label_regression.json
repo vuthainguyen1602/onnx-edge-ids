@@ -1,5 +1,5 @@
 {
-  "model": "sklearn_rf_full.onnx",
+  "model": "sklearn_rf.onnx",
   "rows": 447275,
   "runs": [
     {

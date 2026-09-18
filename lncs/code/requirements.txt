@@ -4,3 +4,8 @@ pyarrow>=14
 scikit-learn>=1.3
 joblib>=1.3
 pytest>=7
+# exp5 / exp5b only
+lightgbm>=4
+xgboost>=2
+skl2onnx>=1.18
+onnxmltools>=1.12

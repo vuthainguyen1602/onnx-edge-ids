@@ -5,6 +5,7 @@ Code for the measurements in the LNCS manuscript. The per-tree baseline, the flo
 ```
 lncs/code/
   edgeids/forest.py      per-tree loop, block-lockstep traversal, exact early exit
+  edgeids/onnx_forest.py generic traversal of any ONNX Scaler + TreeEnsembleClassifier graph (all split modes), boundary prober
   edgeids/data.py        labelled test split loader, deployed anomaly gate
   experiments/           one script per experiment, each writes results/<name>.json
   results/               JSON written by the last run (the numbers quoted in the paper)
@@ -35,7 +36,11 @@ python lncs/code/experiments/exp1_lockstep_benchmark.py --data $DATA   # Table: 
 python lncs/code/experiments/exp2_boundary_parity.py    --data $DATA   # Table: boundary-directed parity
 python lncs/code/experiments/exp3_exact_early_exit.py   --data $DATA   # Table: exact early exit
 python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: distribution shift
+python lncs/code/experiments/exp5_generalization.py --train /path/to/train_data.parquet --test $DATA   # Table: other forests, other converters
+python lncs/code/experiments/exp5b_ort_label_regression.py --model lncs/code/results/exp5_models/sklearn_rf.onnx --data $DATA   # ONNX Runtime version sweep
 ```
+
+`exp5` trains four more forests (scikit-learn RandomForest and HistGradientBoosting, LightGBM, XGBoost) on a 600,000-row sample of the training split, exports them with skl2onnx/onnxmltools and runs the boundary probe on each; it needs `lightgbm xgboost skl2onnx onnxmltools` (in `requirements.txt`) and writes the exported models to `results/exp5_models/` (not committed). `exp5b` installs each requested ONNX Runtime release into a throwaway venv and replays the test split through one exported model.
 
 | Script | Question | Headline result (`results/*.json`) |
 |--------|----------|-----------------------------------|
@@ -43,6 +48,8 @@ python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted /path/to/cs
 | `exp2` | Does replaying random rows find a runtime that disagrees with ONNX Runtime at split thresholds? | float64 traversal: 328 label flips on 287,223 boundary probes, 15 on 447,275 replayed rows; float32: 0 and 0 |
 | `exp3` | How many of the 200 trees does traffic need if labels must stay identical? | 104.1 on gate-forwarded flows, 2.0x, 50,548/50,548 labels identical |
 | `exp4` | With model and gate frozen, what breaks on CSE-CIC-IDS2018 traffic and what does not? | F1 0.98 to 0.24, gate attack recall 0.72 to 0.01; float32 parity 0 flips and early exit exact on 477,771 shifted flows; undecided-at-first-check 4.8% to 28.2% |
+| `exp5` | Do the probes generalize to other trainers and to converter parity (framework vs ONNX Runtime)? | float32 traversal 0 flips on every forest; probes 24 to 169x denser than replay where divergence is rare (sklearn RF, LightGBM, Spark RF), 3 to 7x where replay already sees 0.2 to 0.3% flips (HGB, XGBoost); trees/pair 72 (Spark, 32 bins) vs 4 (255 bins) vs 2 (exact splits) |
+| `exp5b` | Does the ONNX Runtime release change the labels of a stock skl2onnx RandomForest export? | 1.26.0 and 1.27.0 label attack whenever P(attack) > 0 instead of > 0.5: 380,842 of 447,275 flows relabelled; 1.19.2 to 1.25.1 and 1.28.0 to 1.30.0 agree with scikit-learn |
 
 Throughput numbers were taken on an Apple M3 (ARM64); they have not been re-measured on the Jetson boards. Label-agreement and disagreement counts do not depend on the machine.
 

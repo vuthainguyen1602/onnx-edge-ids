@@ -54,7 +54,7 @@ The research context that exposed the software need is that an IDS model can be 
 - `deploy/sync_to_jetson.sh`: rsync this repo to a Jetson node.
 - `experiments/plan.md`: validation and benchmark plan.
 - `notes/paper_pitch.md`: idea notes and contribution boundaries.
-- `lncs/`: LNCS systems paper (manuscript, experiment code, result files): boundary-directed runtime parity testing, block-lockstep traversal, exact early exit, behaviour under distribution shift. See `lncs/README.md`.
+- `lncs/`: LNCS systems paper (manuscript, experiment code, result files): boundary-directed runtime parity testing, its generalization to scikit-learn/LightGBM/XGBoost exports and to converter parity, an ONNX Runtime release sweep, block-lockstep traversal, exact early exit, behaviour under distribution shift. See `lncs/README.md`.
 
 ## Dataset
 

@@ -42,7 +42,7 @@ python scripts/validate_parity.py --csv <path to a CICIDS2017-derived replay CSV
 
 Follow `../docs/deploy_2jetson.md`: gate on Jetson #1, `classifier_node.py --engine onnx|numpy --batch-size 1|20|500 --metrics-csv ...` on Jetson #2.
 
-**Step 3 — regenerate the boundary-parity, traversal and early-exit tables** with `code/experiments/` (see `code/README.md`), then re-run `exp1` and `exp3` on the Jetson boards: their throughput numbers were taken on an ARM64 development machine.
+**Step 3 — regenerate the boundary-parity, traversal, early-exit and generalization tables** with `code/experiments/` (see `code/README.md`; `exp5` needs the training split and `lightgbm xgboost skl2onnx onnxmltools`, `exp5b` creates one venv per ONNX Runtime release), then re-run `exp1` and `exp3` on the Jetson boards: their throughput numbers were taken on an ARM64 development machine.
 
 **Step 4 — wired-link end-to-end run (the pending measurement):**
 
@@ -57,6 +57,7 @@ Repeat Step 2 over a wired inter-board link instead of Wi-Fi, and report produce
 - Artifact size (ONNX vs. NumPy)
 - End-to-end (producer-to-verdict) throughput/latency over a **wired** link — pending
 - Boundary-probe and replay disagreement counts per runtime (`exp2`)
+- The same counts, plus framework-vs-ONNX-Runtime parity and trees moved per probe, on scikit-learn/LightGBM/XGBoost exports (`exp5`); label agreement across ONNX Runtime releases (`exp5b`)
 - Detector, gate, parity and early-exit behaviour on shifted traffic (`exp4`)
 - Block-lockstep and exact-early-exit throughput, re-measured on Jetson hardware — pending
 
@@ -69,7 +70,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly (15 pages, 0 undefined citations/references). On-board numbers come from the software's own validation run; the boundary-parity, traversal and early-exit tables come from `code/results/*.json`. The remaining `\ph{...}` markers are the Jetson re-measurement of those two throughput tables and the wired-link latency.
+Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The remaining `\ph{...}` markers are the Jetson re-measurement of those two throughput tables and the wired-link latency.
 
 ## Cross-reference
 

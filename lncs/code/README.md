@@ -14,6 +14,8 @@ lncs/code/
 
 ## Setup
 
+For the full walk-through (data layout, gate artifacts, what each result field means, what depends on the machine) see [`../REPRODUCE.md`](../REPRODUCE.md).
+
 ```bash
 python -m venv venv && source venv/bin/activate
 pip install -e . && pip install -r lncs/code/requirements.txt

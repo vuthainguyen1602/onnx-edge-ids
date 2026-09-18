@@ -51,6 +51,6 @@ python lncs/code/experiments/exp5b_ort_label_regression.py --model lncs/code/res
 | `exp5` | Do the probes generalize to other trainers and to converter parity (framework vs ONNX Runtime)? | float32 traversal 0 flips on every forest; probes 24 to 169x denser than replay where divergence is rare (sklearn RF, LightGBM, Spark RF), 3 to 7x where replay already sees 0.2 to 0.3% flips (HGB, XGBoost); trees/pair 72 (Spark, 32 bins) vs 4 (255 bins) vs 2 (exact splits) |
 | `exp5b` | Does the ONNX Runtime release change the labels of a stock skl2onnx RandomForest export? | 1.26.0 and 1.27.0 label attack whenever P(attack) > 0 instead of > 0.5: 380,842 of 447,275 flows relabelled; 1.19.2 to 1.25.1 and 1.28.0 to 1.30.0 agree with scikit-learn |
 
-Throughput numbers were taken on an Apple M3 (ARM64); they have not been re-measured on the Jetson boards. Label-agreement and disagreement counts do not depend on the machine.
+Throughput numbers were taken on an Apple M3 (ARM64); they have not been re-measured on the Jetson boards. Label-agreement and disagreement counts do not depend on the machine, so none of these experiments needs Jetson hardware: any x86 or ARM64 machine with the dataset and artifacts reproduces the counts.
 
 `anomaly_*.pkl` were pickled with an older scikit-learn; loading them under a newer one prints a version warning.

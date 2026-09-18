@@ -29,6 +29,8 @@ The serving software itself is the rest of this repository (`../src/onnx_edge_id
 
 ## Reproduce
 
+No Jetson is needed for Steps 1 and 3: the experiments under `code/` and the parity check run on any x86 or ARM64 machine, and their disagreement and label-identity counts come out the same there (throughput differs and is labelled by machine wherever it appears). Step 2's Kafka pipeline runs on any two Linux/macOS hosts; only the power column of Table `tab:engines` requires the boards (`tegrastats`).
+
 **Step 1 — export the NumPy fallback from an ONNX artifact, then validate parity (fills Table `tab:parity`):**
 
 ```bash

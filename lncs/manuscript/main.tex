@@ -4,9 +4,9 @@
 % kept outside the repository.
 % Compile: ./compile.sh
 %
-% STATUS: draft. Venue/deadline not yet chosen (see ../README.md); author
-% order and institute block are copied from an earlier companion paper and
-% must be re-confirmed before submission.
+% STATUS: draft. Venue/deadline not yet chosen (see ../README.md).
+% Single author; the co-authors of the earlier companion paper are not on
+% this manuscript.
 %
 % RESULT PROVENANCE: the cold-start, throughput, latency, memory, power, and
 % parity numbers in this draft are the same validation-run figures recorded
@@ -62,28 +62,17 @@
 
 \titlerunning{Boundary-Probed Parity for Edge Intrusion Detection}
 
-\author{Thai Nguyen Vu\inst{1} \and
-Dung Van Bui\inst{2,3} \and
-Nhut Tri Do\inst{2,3} \and
-Van Du Nguyen\inst{4}}
+\author{Thai Nguyen Vu}
 
-\authorrunning{T. V. Nguyen et al.}
+\authorrunning{T. V. Nguyen}
 
 \institute{Campus in Ho Chi Minh City, University of Transport and Communications, Ho Chi Minh City, Vietnam\\
-\email{thaivn\_ph@utc.edu.vn}
-\and
-Vietnam National University Ho Chi Minh City, Ho Chi Minh City, Vietnam
-\and
-University of Information Technology, Ho Chi Minh City, Vietnam\\
-\email{dungbv.17@grad.uit.edu.vn, trinhutdo@uit.edu.vn}
-\and
-Faculty of Information Technology, Nong Lam University, Ho Chi Minh City, Vietnam\\
-\email{nvdu@hcmuaf.edu.vn}}
+\email{thaivn\_ph@utc.edu.vn}}
 
 \maketitle
 
 \begin{abstract}
-An edge intrusion detector that ships a primary and a fallback runtime promises the same verdict from both. We study that promise on a two-stage Kafka pipeline on Jetson Orin Nano Super boards whose 200-tree classifier is served by ONNX Runtime or by a NumPy engine exported from the same ONNX graph. Replaying recorded flows through both runtimes is a weak test of it, because recorded flows almost never sit on a split threshold, the only place tree runtimes can disagree. We instead build one input per split node that lands on its threshold, plus its two float32 neighbours: 287{,}223 probes covering all 95{,}741 nodes. A float64 NumPy traversal flips 328 labels against ONNX Runtime on the probes but only 15 on the 447{,}275-row CICIDS2017 test split, so a 2{,}000-row replay gate misses it 93.5\% of the time; the deployed float32 traversal flips none. Flips reach the label because the forest's splits share only 815 distinct thresholds, so one boundary value moves many trees at once. We also make the fallback usable at streaming batch sizes with a block-lockstep traversal ($71\times$ at batch 1, $11\times$ at 20, $0.9\times$ at 2{,}000), and add an early-exit rule that provably keeps the full forest's label: gate-forwarded traffic needs 104 of 200 trees, a $2.0\times$ saving at the rule's ceiling. Frozen and run on CSE-CIC-IDS2018 traffic, the detector collapses (F1 0.98 to 0.24) while both serving guarantees hold on all 477{,}771 shifted flows, and the share of flows early exit cannot settle rises from 4.8\% to 28.2\%, a label-free drift signal the serving path computes anyway. \ph{Jetson re-measurement of the traversal tables and wired-link latency are pending.}
+An edge intrusion detector that ships a primary and a fallback inference runtime promises the same verdict from both. We examine that promise for a two-stage Kafka pipeline on Jetson Orin Nano Super boards whose 200-tree random forest is served either by ONNX Runtime or by a NumPy engine exported from the same ONNX graph. Replaying recorded traffic is a weak test of it: two tree runtimes can only disagree when a feature value lands on a split threshold, and recorded flows almost never do. We instead derive one probe per split node, on its threshold and one float32 step either side. A float64 NumPy traversal flips 328 labels against ONNX Runtime on the probes but only 15 on the whole labelled CICIDS2017 test split, so a 2{,}000-row replay gate would pass it 93.5\% of the time; the deployed float32 traversal flips none. Flips reach the label because Spark MLlib's binned split search leaves the forest's splits sharing only 815 distinct thresholds, which also makes the exhaustive probe cheap. Two further changes make the fallback usable in streaming: a block-lockstep traversal that is $71\times$ faster at batch size 1, and an exact early-exit rule that halves the trees evaluated on gate-forwarded traffic without being able to change a label. Frozen and run on CSE-CIC-IDS2018 traffic, the detector collapses while both serving guarantees hold on every shifted flow, and the share of flows early exit cannot settle rises from 4.8\% to 28.2\%, a label-free drift signal the serving path computes anyway.
 
 \keywords{Intrusion detection \and Edge computing \and ONNX Runtime \and Differential testing \and Random forest \and Apache Kafka.}
 \end{abstract}
@@ -97,12 +86,11 @@ The response to that limitation was \textsc{ONNX-EdgeIDS}\footnote{\url{https://
 We integrate both runtimes into a two-stage Kafka pipeline -- an anomaly gate on one Jetson board forwarding suspicious flows to a classifier on a second -- and then ask three questions that the integration itself raises. \emph{Do the two runtimes really agree?} Replaying recorded flows says yes, but recorded flows almost never sit on a split threshold, which is the only place two tree runtimes can disagree; we probe every threshold directly instead (Sect.~\ref{sec:boundary}). \emph{Why is the NumPy fallback slow at the small batches a streaming node serves?} Because it pays Python dispatch once per tree per level; advancing blocks of trees in lockstep removes that (Sect.~\ref{sec:lockstep}). \emph{How much of the forest does forwarded traffic need?} Barely more than half, under a rule that cannot change a label (Sect.~\ref{sec:earlyexit}).
 
 \textbf{Contributions.}
-(1) \emph{Boundary-directed parity testing} for tree-ensemble serving artifacts: one probe per split node, on the threshold and one float32 step either side, with a path-satisfying construction that reaches 99.9\% of nodes. On the deployed forest it exposes a float64/float32 traversal divergence $34\times$ more densely than replaying the whole labelled test split, and shows that a 2{,}000-row replay gate would miss it 93.5\% of the time;
-(2) The observation that explains why such divergences flip \emph{labels}, not just one tree's vote: histogram-trained forests reuse thresholds (815 distinct pairs for 95{,}741 splits here), so arithmetic disagreement at one value is correlated across the ensemble rather than averaged out by it -- and the same fact makes an exhaustive boundary gate cheap;
-(3) A block-lockstep NumPy traversal, measured on real flows against the per-tree loop it replaces, including the batch size at which it stops winning;
-(4) An exact early-exit rule for the binary forest and its measured cost on gate-forwarded traffic;
-(5) A shift stress test that separates what drift breaks (the detector and the gate) from what it cannot (runtime parity and early-exit exactness), and shows the early-exit undecided rate acting as a label-free drift signal;
-(6) A framework-agnostic ONNX-to-NumPy exporter, on-board measurements of both runtimes, and the experiment code, artifacts and result files behind every number in this paper\footnote{\url{https://github.com/vuthainguyen1602/onnx-edge-ids} (directory \texttt{lncs/code/}); software archive: \url{https://doi.org/10.5281/zenodo.22731927}.}.
+(1) \emph{Boundary-directed parity testing} for tree-ensemble serving artifacts: one probe per split node, on the threshold and one float32 step either side, with a path-satisfying construction that reaches 99.9\% of nodes. On the deployed forest it exposes a float64/float32 traversal divergence $34\times$ more densely than replaying the whole labelled test split, and shows that a 2{,}000-row replay gate would miss it 93.5\% of the time. We also explain why such divergences flip \emph{labels} rather than single votes: the trainer's binned split search leaves 95{,}741 splits sharing 815 distinct thresholds, so arithmetic disagreement at one value is correlated across the ensemble, and the same fact makes an exhaustive boundary gate cheap;
+(2) A block-lockstep NumPy traversal, measured on real flows against the per-tree loop it replaces, including the batch size at which it stops winning;
+(3) An exact early-exit rule for the binary forest and its measured cost on gate-forwarded traffic;
+(4) A shift stress test that separates what drift breaks (the detector and the gate) from what it cannot (runtime parity and early-exit exactness), and shows the early-exit undecided rate acting as a label-free drift signal.
+The framework-agnostic ONNX-to-NumPy exporter, the on-board measurements of both runtimes, and the experiment code, artifacts and result files behind every number in this paper are public\footnote{\url{https://github.com/vuthainguyen1602/onnx-edge-ids} (directory \texttt{lncs/code/}); software archive: \url{https://doi.org/10.5281/zenodo.22731927}.}.
 
 \section{Related Work}
 
@@ -378,7 +366,7 @@ A detector that can be served by two runtimes is only as trustworthy as the evid
 
 \begin{credits}
 \subsubsection{\discintname}
-The authors declare that they have no competing interests.
+The author declares that he has no competing interests.
 \end{credits}
 
 \bibliographystyle{splncs04}

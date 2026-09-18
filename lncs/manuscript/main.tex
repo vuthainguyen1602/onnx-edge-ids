@@ -58,9 +58,9 @@
 
 \renewcommand{\figurename}{Fig.}
 
-\title{Two Runtimes, One Verdict: Boundary-Verified ONNX/NumPy Serving for Streaming Intrusion Detection at the Edge}
+\title{Two Runtimes, One Verdict: Boundary-Probed Parity for Tree-Ensemble Intrusion Detection at the Edge}
 
-\titlerunning{Boundary-Verified ONNX/NumPy Serving for Edge Intrusion Detection}
+\titlerunning{Boundary-Probed Parity for Edge Intrusion Detection}
 
 \author{Thai Nguyen Vu\inst{1} \and
 Dung Van Bui\inst{2,3} \and
@@ -108,20 +108,20 @@ We integrate both runtimes into a two-stage Kafka pipeline -- an anomaly gate on
 
 \textbf{Edge intrusion detection.} Single-board deployments of ML-based IDS are now common, from early Raspberry Pi systems~\cite{sforzin2016rpids} to recent ensemble and metaheuristic-optimized detectors on IoT-edge and industrial-control hardware~\cite{baalaji2025ensemble,asghar2026hedid,zhang2026edgeics} and autoencoder- or generative-model-based detection on Jetson boards~\cite{hasan2025iiot,diazgorrin2026jetson}. These studies optimize the detector; the present paper instead treats the \emph{serving stack} as the object of study, on the observation (from earlier deployment work on this system) that model accuracy and serving cost are separate axes that a single evaluation can conflate.
 
-\textbf{Serving classical ML on constrained hardware.} ONNX\footnote{\url{https://onnx.ai/}} standardizes a small operator set, including \texttt{TreeEnsembleClassifier} for decision-tree ensembles, so a model trained in one framework can be served by any ONNX-compatible runtime; ONNX Runtime\footnote{\url{https://onnxruntime.ai/}} is the reference CPU/GPU implementation and is what we target as the primary backend. Nakandala et al.~\cite{nakandala2020hummingbird} make a related argument for tree ensembles specifically: compiling scikit-learn-style pipelines into tensor operations lets a GPU tensor runtime, rather than a tree-optimized one, serve them, with large reported speedups over native execution on batched workloads. Our NumPy fallback takes the opposite trade-off deliberately: no compilation step and no GPU dependency, at the cost of the batch-size sensitivity this trades in. Koschel et al.~\cite{koschel2023arm} show that this cost is not fundamental to ARM hardware: porting the QuickScorer tree-traversal algorithm from Intel AVX to ARM NEON yields up to $9.4\times$ speedups for ensemble inference on IoT-class ARM devices, with fixed-point quantization improving throughput further at a small accuracy cost. We do not port QuickScorer's bitvector algorithm or write NEON intrinsics; we do take its underlying lesson -- evaluate many trees in lockstep rather than one at a time -- and apply it at the NumPy level to \texttt{NumpyInferenceEngine}'s traversal loop, with a measured result rather than a citation (Sect.~\ref{sec:lockstep}).
+\textbf{Serving classical ML on constrained hardware.} ONNX\footnote{\url{https://onnx.ai/}} standardizes a small operator set, including \texttt{TreeEnsembleClassifier} for decision-tree ensembles, so a model trained in one framework can be served by any ONNX-compatible runtime; ONNX Runtime\footnote{\url{https://onnxruntime.ai/}} is the reference CPU/GPU implementation and is what we target as the primary backend. Nakandala et al.~\cite{nakandala2020hummingbird} make a related argument for tree ensembles specifically: compiling scikit-learn-style pipelines into tensor operations lets a GPU tensor runtime, rather than a tree-optimized one, serve them, with large reported speedups over native execution on batched workloads. Our NumPy fallback takes the opposite trade-off deliberately: no compilation step and no GPU dependency, at the cost of the batch-size sensitivity this trades in. Koschel et al.~\cite{koschel2023arm} show that this cost is not fundamental to ARM hardware: porting the QuickScorer tree-traversal algorithm from Intel AVX to ARM NEON yields up to $9.4\times$ speedups for ensemble inference on IoT-class ARM devices, with fixed-point quantization improving throughput further at a small accuracy cost. We do not port QuickScorer's bitvector algorithm or write NEON intrinsics; we do take its underlying lesson -- evaluate many trees in lockstep rather than one at a time -- and apply it at the NumPy level to the NumPy engine's traversal loop, with a measured result rather than a citation (Sect.~\ref{sec:lockstep}).
 
 \textbf{ONNX and quantization in network intrusion detection.} Model compilation and quantization for ONNX-served detectors is an active line of work in this application domain specifically: Eren et al.~\cite{eren2026drdos} report a systematic comparison of ONNX compilation and quantization configurations for DrDoS/amplification-attack detectors (MLP, CNN, GRU architectures), showing that quantized ONNX export can materially change throughput and latency for network-security classifiers without simply assuming DNN-quantization results transfer unchanged. Their target model family is different from the tree ensemble served here, but the result establishes that ONNX-level quantization is a validated, actively studied lever in exactly this application space, and motivates evaluating it against our tree-ensemble graph rather than the deep architectures it was demonstrated on.
 
 \textbf{Two-stage detection, ensemble early exit, and runtime equivalence.} Cheap-filter-then-forest cascades are now routine in intrusion detection, including on embedded targets~\cite{ferreira2026canbus}; our pipeline has that shape and we claim nothing new for it. Stopping an ensemble before every member has voted is also old: Hern\'andez-Lobato et al.~\cite{hernandezlobato2009pruning} halt once the remaining votes are statistically unlikely to change the outcome, and Wang et al.~\cite{wang2018qwyc} learn an evaluation order and per-step thresholds jointly. Both trade a small, tunable disagreement for speed. An intrusion detector with two runtimes cannot take that trade without making the runtimes disagree with each other, so Sect.~\ref{sec:earlyexit} uses the exact counterpart -- stop only when the unevaluated trees cannot flip the label -- and measures what the exactness costs. On equivalence, differential testing of numerical libraries is well established for deep-learning APIs, where boundary and non-finite inputs are known to expose inconsistent comparison semantics~\cite{duan2026xamt}, and Naik et al.~\cite{naik2026sensitivity} analyze symbolically how far a tree ensemble's output can move under small input perturbations. The precision sensitivity of tree thresholds under float32 export is documented by the converter projects themselves. What we have not found is this applied where it bites operationally: as a release gate for two \emph{serving} runtimes of one deployed detector, with probes derived from the model's own split table rather than from recorded or random inputs.
 
-\textbf{Evaluation protocol.} Arp et al.~\cite{arp2022dosdonts} and Lanvin et al.~\cite{lanvin2023errors} document how easily an offline security-ML evaluation is inflated by leakage or dataset artifacts; the classifier served by this toolkit was selected under a leakage-aware, deduplicated CICIDS2017~\cite{sharafaldin2018toward} protocol with SHAP-based~\cite{lundberg2017unified} feature selection in earlier work on this system, out of scope for the present paper. What is in scope here is a different correctness question: whether the \emph{exported serving artifacts} reproduce the classifier they were exported from. Sect.~\ref{sec:export} treats that as a release-gated, measured property rather than an assumption.
+\textbf{Evaluation protocol.} Arp et al.~\cite{arp2022dosdonts} and Lanvin et al.~\cite{lanvin2023errors} document how easily an offline security-ML evaluation is inflated by leakage or dataset artifacts; the classifier served by this toolkit was selected under a leakage-aware, deduplicated CICIDS2017~\cite{sharafaldin2018toward} protocol with SHAP-based~\cite{lundberg2017unified} feature selection in earlier work on this system, out of scope for the present paper. What is in scope here is a different correctness question: whether the \emph{exported serving artifacts} reproduce the classifier they were exported from. Sect.~\ref{sec:parity} treats that as a release-gated, measured property rather than an assumption.
 
-\section{System Architecture}
+\section{System}
 \label{sec:arch}
 
-\subsection{Two-Stage Kafka Pipeline}
+\subsection{Two-Stage Pipeline with a Swappable Classifier}
 
-Fig.~\ref{fig:architecture} shows the deployment topology. A coordinator host runs Kafka and replays CICIDS2017-derived flow records onto an input topic at a configurable rate. Jetson~\#1 runs the anomaly gate: a scikit-learn autoencoder and scaler (loaded via \texttt{joblib}, trained offline and out of scope here) score each batch, and flows whose reconstruction error clears a calibrated threshold are forwarded to a suspicious-flow topic with their anomaly score attached. Jetson~\#2 consumes that topic and classifies each flow with the swappable \texttt{InferenceEngine} described below. Both gate and classifier batch their Kafka consumption with the same policy: a batch is served either once it reaches a target size or once a linger timeout elapses since its first record, whichever comes first, so a thin stream still gets bounded latency instead of waiting indefinitely to fill a batch.
+Fig.~\ref{fig:architecture} shows the deployment. A coordinator host runs Kafka and replays CICIDS2017-derived flow records onto an input topic at a configurable rate. Jetson~\#1 runs the anomaly gate, a scikit-learn autoencoder and scaler trained offline (out of scope here); flows whose reconstruction error clears a calibrated threshold are forwarded, with their anomaly score attached, to a suspicious-flow topic. Jetson~\#2 consumes that topic and classifies each flow with the 200-tree random forest. Both nodes serve a batch once it reaches a target size or once a linger timeout has elapsed since its first record, whichever comes first, so a thin stream still gets bounded latency instead of waiting to fill a batch.
 
 \begin{figure}[t]
   \centering
@@ -130,69 +130,40 @@ Fig.~\ref{fig:architecture} shows the deployment topology. A coordinator host ru
       font=\small, >=Stealth, every node/.style={align=center},
       pc/.style ={draw=gray!60,        thick, rounded corners, fill=gray!8,  minimum width=11.6cm, minimum height=1.2cm, inner sep=3pt},
       jet/.style={draw=accGreen!80!black, thick, rounded corners, fill=accGreen!8, text width=4.4cm, minimum height=1.9cm, inner sep=4pt},
+      eng/.style={draw=accBlue, thick, rounded corners, fill=accBlue!5, text width=2.0cm, minimum height=0.9cm, inner sep=2pt, font=\footnotesize},
       lbl/.style={font=\footnotesize, fill=white, inner sep=1.5pt, align=center, text=accBlue!75!black},
       arr/.style ={-{Stealth[length=2.5mm]}, thick, draw=gray!60!black},
   ]
-    \node[pc]  (pc)  at (0, 0.0)   {\textbf{Coordinator (Mac, Kafka)}\\[2pt]
-        \texttt{csv\_producer.py}: CICIDS2017-derived replay $\rightarrow$ \texttt{ids-network-flow}};
-    \node[jet] (j1)  at (-4.2,-3.4) {\textbf{Jetson Orin Nano Super \#1}\\[2pt] \texttt{gate\_node.py}\\[2pt]
-        sklearn autoencoder gate\\ (joblib artifacts)};
-    \node[jet] (j2)  at ( 4.2,-3.4) {\textbf{Jetson Orin Nano Super \#2}\\[2pt] \texttt{classifier\_node.py}\\[2pt]
-        \texttt{InferenceEngine}: \texttt{onnx} or \texttt{numpy}};
+    \node[pc]  (pc)  at (0, 0.0)   {\textbf{Coordinator (Kafka)}\\[2pt]
+        CICIDS2017-derived replay $\rightarrow$ \texttt{ids-network-flow}};
+    \node[jet] (j1)  at (-4.2,-3.4) {\textbf{Jetson Orin Nano Super \#1}\\[2pt] anomaly gate\\[2pt]
+        sklearn autoencoder + scaler\\ (joblib artifacts)};
+    \node[jet] (j2)  at ( 4.2,-3.4) {\textbf{Jetson Orin Nano Super \#2}\\[2pt] classifier\\[2pt]
+        feature-matrix builder $\rightarrow$\\ inference-engine contract};
+    \node[eng] (onnx)  at (2.9,-5.9) {ONNX Runtime\\ (\texttt{.onnx})};
+    \node[eng] (numpy) at (5.5,-5.9) {NumPy engine\\ (\texttt{.npz})};
+    \draw[arr] (j2.south -| onnx)  -- (onnx.north);
+    \draw[arr] (j2.south -| numpy) -- (numpy.north);
+    \node[lbl] at (4.2,-6.8) {one flag: \texttt{--engine onnx\,|\,numpy}};
 
     \draw[arr] (pc.south -| j1) -- node[lbl]{ids-network-flow} (j1.north);
     \draw[arr] (j1.east) -- node[lbl]{ids-suspicious-flow\\ (anomaly score attached)} (j2.west);
   \end{tikzpicture}}
-  \caption{Two-stage Kafka pipeline: gate on Jetson~\#1, swappable ONNX/NumPy classifier on Jetson~\#2. This minimal toolkit prints per-batch metrics and an optional CSV; the PostgreSQL/alerting/Grafana stack of the earlier deployment work is out of scope here.}
+  \caption{Two-stage Kafka pipeline: gate on Jetson~\#1, classifier on Jetson~\#2 with two backends behind one contract, selected by a single flag. This minimal toolkit prints per-batch metrics and an optional CSV; the PostgreSQL/alerting/Grafana stack of the earlier deployment work is out of scope here.}
   \label{fig:architecture}
 \end{figure}
 
-\subsection{Swappable Classifier Tier}
+The classifier tier is built around one contract. A feature-matrix builder turns a batch of flow records into a dense float32 matrix in a fixed column order, mapping missing and non-finite values to zero. An inference-engine interface takes that matrix and returns predictions, per-row confidences and batch timing, and has two implementations behind one command-line flag: ONNX Runtime with its CPU execution provider (GPU and TensorRT providers are selectable but not evaluated here), and a NumPy engine that loads the flattened forest of Sect.~\ref{sec:export} and walks every tree with a vectorized loop over an active-row mask, accumulating leaf class scores as rows reach leaves. Nothing else in the pipeline changes when the flag changes.
 
-\begin{itemize}
-  \item \textbf{\texttt{FeatureMatrixBuilder}} turns a batch of Kafka flow dicts into a dense \texttt{float32} matrix in a fixed column order, mapping missing/NaN/Inf values to zero.
-  \item \textbf{\texttt{InferenceEngine}} is the shared contract: \texttt{create\_inference\_engine(engine, model\_path, providers)} returns either backend, and both return a common \texttt{BatchPrediction} (predictions, per-row confidences, batch timing/attack-count stats), so \texttt{classifier\_node.py} never branches on which backend is active.
-  \item \textbf{\texttt{OnnxInferenceEngine}} loads the \texttt{.onnx} artifact with ONNX Runtime's CPU execution provider (GPU/TensorRT providers are selectable but not evaluated in this paper).
-  \item \textbf{\texttt{NumpyInferenceEngine}} loads the flattened forest described in Sect.~\ref{sec:export} and walks every tree with a vectorized loop over an active-row boolean mask: at each step, active rows look up their current node's split feature and threshold, move left or right, and rows that land on a leaf accumulate that leaf's class scores and drop out of the mask.
-\end{itemize}
-
-Fig.~\ref{fig:engine-contract} shows the contract. Selecting a backend is a single \texttt{--engine onnx|numpy} flag to \texttt{classifier\_node.py}; nothing else in the pipeline changes.
-
-\begin{figure}[t]
-  \centering
-  \resizebox{0.8\textwidth}{!}{%
-  \begin{tikzpicture}[
-      font=\small, >=Stealth, every node/.style={align=center},
-      jet/.style={draw=accGreen!80!black, thick, rounded corners, fill=accGreen!8, text width=5.4cm, minimum height=1.5cm, inner sep=4pt},
-      eng/.style={draw=accBlue, thick, rounded corners, fill=accBlue!5, text width=3.6cm, minimum height=1.5cm, inner sep=3pt, font=\footnotesize},
-      lbl/.style={font=\footnotesize, fill=white, inner sep=1.5pt, align=center, text=accBlue!75!black},
-      arr/.style ={-{Stealth[length=2.5mm]}, thick, draw=gray!60!black},
-  ]
-    \node[jet] (j2) at (0, 0) {\textbf{Jetson Orin Nano Super \#2}\\[2pt]
-        Kafka consumer $\rightarrow$ \texttt{FeatureMatrixBuilder}\\[2pt] \texttt{InferenceEngine} contract};
-    \node[eng] (numpy) at (-2.3,-3.0)   {\texttt{NumpyInferenceEngine}\\[2pt] flattened node\\ table (\texttt{.npz})\\[2pt] dependency-minimal};
-    \node[eng] (onnx)  at ( 2.3,-3.0) {\texttt{OnnxInferenceEngine}\\[2pt] \texttt{TreeEnsemble}\\ \texttt{Classifier} graph\\[2pt] (\texttt{.onnx})};
-    \draw[arr] (j2.south -| numpy) -- (numpy.north);
-    \draw[arr] (j2.south -| onnx)  -- (onnx.north);
-    \node[lbl, above=0.05cm of j2.north east, xshift=0.9cm] {\texttt{--engine onnx\,|\,numpy}};
-  \end{tikzpicture}}
-  \caption{Swappable classifier tier on Jetson~\#2: one feature-matrix builder, one \texttt{InferenceEngine} contract, two backends selected by a single flag.}
-  \label{fig:engine-contract}
-\end{figure}
-
-\section{Model Export and Conversion Correctness}
+\subsection{NumPy Export from the ONNX Graph}
 \label{sec:export}
 
-\subsection{Framework-Agnostic NumPy Export}
-
-The NumPy exporter (\texttt{scripts/export\_numpy.py}) treats the ONNX file as the single source of truth: it loads the graph with the \texttt{onnx} package and reads the \texttt{ai.onnx.ml.Scaler} node's \texttt{offset}/\texttt{scale} attributes and the \texttt{ai.onnx.ml.TreeEnsembleClassifier} node's \texttt{nodes\_treeids}, \texttt{nodes\_nodeids}, \texttt{nodes\_featureids}, \texttt{nodes\_values}, \texttt{nodes\_modes}, \texttt{nodes\_truenodeids}, \texttt{nodes\_falsenodeids}, \texttt{classlabels\_int64s}, \texttt{class\_treeids}, \texttt{class\_nodeids}, \texttt{class\_ids}, and \texttt{class\_weights} attributes -- all part of the ONNX operator specification, not of any particular training framework's internal format. It currently supports the \texttt{BRANCH\_LEQ} split mode only and raises rather than silently mis-converting on any other mode, so a future export from a framework using a different split convention fails loudly instead of producing a plausible-looking but wrong artifact. Because the exporter never touches how the ONNX graph was produced, the same code exports a NumPy fallback for any ONNX tree ensemble that uses this operator, independent of its training framework.
-
-A second correctness check is feature-order agreement: if the source ONNX model's \texttt{doc\_string} carries a JSON \texttt{feature\_columns} list (as this project's exporter embeds at ONNX-export time), \texttt{export\_numpy.py} verifies it matches the externally supplied \texttt{feature\_columns.json} and refuses to export on a mismatch, since a silently permuted feature order would produce confident, wrong predictions rather than an obvious failure.
+The exporter treats the ONNX file as the single source of truth. It reads the \texttt{Scaler} node's offset and scale and the \texttt{TreeEnsembleClassifier} node's node table (tree and node ids, split features, thresholds, split modes, child ids) and leaf table (class ids and weights), all of which are attributes fixed by the ONNX operator specification rather than by any training framework's internal format, and writes them as flat arrays to a compressed \texttt{.npz} file. Because the exporter never touches how the graph was produced, it exports a NumPy fallback for any ONNX tree ensemble that uses this operator. It supports the \texttt{BRANCH\_LEQ} split mode only and raises on any other, so an export from a framework with a different split convention fails loudly instead of producing a plausible but wrong artifact. It also refuses to export when the feature-column list embedded in the ONNX model's doc string disagrees with the externally supplied one, since a silently permuted feature order yields confident, wrong predictions rather than an obvious failure.
 
 \subsection{Parity as a Release Gate}
 \label{sec:parity}
 
-\texttt{scripts/validate\_parity.py} runs both backends over the same batch-built feature matrix and reports label agreement and the maximum confidence deviation between them; it exits non-zero if agreement falls below a configurable threshold (default: exact, 1.0) or the deviation exceeds a tolerance (default $10^{-5}$), so it is usable as a CI-style gate rather than only a manual check, and it optionally writes a machine-readable JSON report. On a validation run of 2{,}000 replayed CICIDS2017-derived flows, the two backends agreed on every label (2{,}000/2{,}000) with a maximum confidence deviation of 0.0, i.e.\ bit-identical decisions on the sampled flows; Table~\ref{tab:parity} reports this alongside artifact size.
+A validation script runs both backends over the same batch-built feature matrix and reports label agreement and the maximum confidence deviation between them. It exits non-zero if agreement falls below a threshold (default: exact) or the deviation exceeds a tolerance (default $10^{-5}$), so it can gate a release rather than serve as a one-off check, and it optionally writes a JSON report. On a validation run of 2{,}000 replayed CICIDS2017-derived flows the two backends agreed on every label with a maximum confidence deviation of 0.0, i.e.\ bit-identical decisions on the sampled flows (Table~\ref{tab:parity}); the NumPy artifact is also $6\times$ smaller than the ONNX graph. This is the gate the software shipped with, and the next section asks what it actually establishes.
 
 \begin{table}[htbp]
   \caption{Export validation: NumPy-vs-ONNX prediction parity on a replay sample.}
@@ -210,10 +181,10 @@ A second correctness check is feature-order agreement: if the source ONNX model'
     NumPy artifact size & 1.23\,MB ($6.0\times$ smaller) \\
     \bottomrule
   \end{tabular}
-  \tabnote{Source: \texttt{scripts/validate\_parity.py} on a single replay run (this software's own submission-checklist validation run); re-run on a held-out sample as a submission gate rather than treated as a one-time result.}
+  \tabnote{Source: the software's own parity script on a single replay run (its submission-checklist validation run); re-run on a held-out sample as a submission gate rather than treated as a one-time result.}
 \end{table}
 
-\subsection{Boundary-Directed Parity Testing}
+\section{Boundary-Directed Parity Testing}
 \label{sec:boundary}
 
 Two tree runtimes fed the same row can only disagree if, at some split, they place the row on different sides of the threshold. That can only happen when the scaled feature value is within rounding distance of the threshold, and recorded traffic is almost never there. Replay therefore tests the runtimes where they cannot differ. We test them where they can.
@@ -296,7 +267,7 @@ Table~\ref{tab:coldstart} breaks down the time from process start to the first s
 \subsection{NumPy Batch-Size Sensitivity}
 \label{sec:batch-sensitivity}
 
-The original \texttt{NumpyInferenceEngine} traverses each tree with its own Python-level \texttt{while}-loop, one tree at a time; because each such loop's per-call NumPy dispatch overhead is paid once per tree regardless of how little work that call does, its throughput scales strongly with batch size on Jetson hardware: 9\,rows/s at batch 1, 150\,rows/s at batch 20, and 1{,}650\,rows/s at batch 500 on the same board (\texttt{submission\_checklist.md}, this software's own validation run). ONNX Runtime is comparatively insensitive to batch size over the same range (Sect.~\ref{sec:discussion}). This means the two backends should not be compared at a single fixed batch size without stating it, and a deployment choosing the NumPy fallback should size its batch/linger policy accordingly rather than default to a small batch tuned for the ONNX path -- or, as Sect.~\ref{sec:lockstep} shows, the per-tree loop itself is the thing to fix at those batch sizes.
+The original NumPy engine traverses each tree with its own Python-level \texttt{while}-loop, one tree at a time; because each such loop's per-call NumPy dispatch overhead is paid once per tree regardless of how little work that call does, its throughput scales strongly with batch size on Jetson hardware: 9\,rows/s at batch 1, 150\,rows/s at batch 20, and 1{,}650\,rows/s at batch 500 on the same board (\texttt{submission\_checklist.md}, this software's own validation run). ONNX Runtime is comparatively insensitive to batch size over the same range (Sect.~\ref{sec:discussion}). This means the two backends should not be compared at a single fixed batch size without stating it, and a deployment choosing the NumPy fallback should size its batch/linger policy accordingly rather than default to a small batch tuned for the ONNX path -- or, as Sect.~\ref{sec:lockstep} shows, the per-tree loop itself is the thing to fix at those batch sizes.
 
 \subsection{Block-Lockstep Traversal}
 \label{sec:lockstep}
@@ -355,13 +326,13 @@ Table~\ref{tab:earlyexit} shows the rule running at its ceiling: 99.3\% of the f
 Nothing in this paper adapts the detector to drift~\cite{gama2014survey}, so it is fair to ask which of its results still hold once traffic stops resembling the training data. We freeze the deployed forest, gate and threshold (all fitted on CICIDS2017) and run them unchanged on the CSE-CIC-IDS2018 test split: 477{,}771 flows from a different network, year and attack toolset, carrying the same 29 features. This is a cross-dataset shift, harsher than gradual drift, and we use it as a stress test rather than a drift model.
 
 \begin{table}[htbp]
-  \caption{The deployed model and gate, frozen, on in-distribution and shifted traffic.}
+  \caption{The deployed model and gate, frozen, on the in-distribution (CICIDS2017) and shifted (CSE-CIC-IDS2018) test splits.}
   \label{tab:drift}
   \centering
   \small
   \begin{tabular}{l r r}
     \toprule
-     & CICIDS2017 test & CSE-CIC-IDS2018 test \\
+     & CICIDS2017 & CSE-CIC-IDS2018 \\
     \midrule
     Flows                                         & 447{,}275 & 477{,}771 \\
     \multicolumn{3}{l}{\emph{Detection quality (moves with the data)}} \\
@@ -370,16 +341,16 @@ Nothing in this paper adapts the detector to drift~\cite{gama2014survey}, so it 
     \quad Gate forward rate (benign only)         & 0.113 (0.005) & 0.025 (0.027) \\
     \quad Two-stage end-to-end attack F1          & 0.839 & 0.011 \\
     \multicolumn{3}{l}{\emph{Serving guarantees (do not move)}} \\
-    \quad NumPy float32 vs.\ ONNX Runtime, replay flips  & 0 & 0 \\
-    \quad NumPy float32 vs.\ ONNX Runtime, on-threshold probe flips & 0 / 95{,}741 & 0 / 95{,}741 \\
-    \quad NumPy float64 vs.\ ONNX Runtime, replay / probe flips & 15 / 143 & 6 / 125 \\
+    \quad float32 vs.\ ORT, replay flips  & 0 & 0 \\
+    \quad float32 vs.\ ORT, on-threshold probe flips & 0 / 95{,}741 & 0 / 95{,}741 \\
+    \quad float64 vs.\ ORT, replay / probe flips & 15 / 143 & 6 / 125 \\
     \quad Early-exit labels identical to full forest & 447{,}275 & 477{,}771 \\
     \multicolumn{3}{l}{\emph{Early-exit statistics (label-free)}} \\
     \quad Mean trees used, all / forwarded        & 105.0 / 104.1 & 108.2 / 132.2 \\
     \quad Undecided at first check, all / forwarded & 4.8\% / 0.7\% & 28.2\% / 68.1\% \\
     \bottomrule
   \end{tabular}
-  \tabnote{Source: \texttt{lncs/code/results/exp4\_drift.json}. Probe rows take their unconstrained features from the dataset in that column; the probed thresholds are the model's and do not change.}
+  \tabnote{Source: \texttt{lncs/code/results/exp4\_drift.json}. float32/float64: dtype of the NumPy traversal; ORT: ONNX Runtime. Probe rows take their unconstrained features from the dataset in that column; the probed thresholds are the model's and do not change.}
 \end{table}
 
 Table~\ref{tab:drift} separates three kinds of result. \emph{Detection quality collapses}: classifier F1 falls from 0.983 to 0.238, and the anomaly gate, whose threshold is a quantile of 2017 benign traffic, passes under 1\% of 2018 attacks while forwarding five times more benign flows than before, so the two-stage pipeline detects almost nothing end to end. Several 2018 attack families (HOIC, Hulk, SSH brute force) are missed by the classifier entirely. This agrees with the cross-dataset failures reported for these datasets and is not something a serving layer can repair. \emph{The serving guarantees are untouched}: the float32 traversal agrees with ONNX Runtime on every shifted flow and on every threshold probe built from shifted rows, and exact early exit returns the full forest's label on all 477{,}771 flows. They are properties of the model and the arithmetic, not of the traffic. The boundary gate has a further advantage here: a replay gate is only as current as its recording, whereas the probe set is regenerated from each retrained model's split table and needs no traffic at all. Note also that replay finds even fewer float64 flips on shifted traffic (6) than in distribution (15); replay-based parity evidence gets weaker exactly when the model is about to be retrained.

@@ -18,7 +18,7 @@ Findings, all regenerable from `code/`:
 
 ## Title
 
-*Two Runtimes, One Verdict: Boundary-Verified ONNX/NumPy Serving for Streaming Intrusion Detection at the Edge*
+*Two Runtimes, One Verdict: Boundary-Probed Parity for Tree-Ensemble Intrusion Detection at the Edge*
 
 ## Code
 

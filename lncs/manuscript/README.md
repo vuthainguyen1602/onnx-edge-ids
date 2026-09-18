@@ -9,7 +9,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly as of this draft (17 pages, 0 undefined citations/references, no overfull boxes).
+Compiles cleanly as of this draft (16 pages, 0 undefined citations/references, no overfull boxes).
 
 ## TODO before submission
 
@@ -29,5 +29,5 @@ Compiles cleanly as of this draft (17 pages, 0 undefined citations/references, n
 - [ ] Decide whether the boundary prober should become part of `scripts/validate_parity.py`, the package's release gate
 - [ ] Run the wired-link end-to-end benchmark and fill the remaining `\ph{...}`
 - [ ] Repeat the steady-state/cold-start/parity measurements across multiple runs (the software's own acceptance criteria call for this; current numbers are a single run)
-- [ ] Verify target venue's page limit/template requirements once chosen; at 17 pages, Table `tab:parity` and Sect. 6.3 are the first cuts if 15 is the limit
+- [ ] Verify target venue's page limit/template requirements once chosen; at 16 pages, Table `tab:parity` and Sect. 6.3 are the first cuts if 15 is the limit
 - [ ] Decide whether/how to cross-reference the parallel Software Impacts submission for the same software once that one is finalized, so the two don't duplicate claims

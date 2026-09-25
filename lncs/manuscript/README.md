@@ -13,7 +13,8 @@ Compiles cleanly as of this draft (17 pages, 0 undefined citations/references, n
 
 ## TODO before submission
 
-- [ ] Pick a venue and deadline, update `../README.md` and the title page
+- [x] Venue picked: target DIMVA 2027 (cycle 2 ~Feb 2027 by the 2026 pattern; CFP not yet out), backup ACNS 2027 cycle 2 (Jan 21, 2027). See `../README.md`
+- [ ] When the DIMVA 2027 CFP appears, confirm dates/page limits and register the HotCRP submission
 - [x] Single author (Thai Nguyen Vu, UTC), matching `../../CITATION.cff`; the co-authors of the earlier companion paper were removed
 - [x] No trainer-framework-specific content anywhere in `main.tex`/`references.bib` or in `../code/`; the deployed forest's trainer is described only as a 32-bin histogram trainer (Sect. 3.1, 4), which is all the threshold-sharing explanation needs
 - [x] No `\input`/`\bibliography` paths outside this repository

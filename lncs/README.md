@@ -2,7 +2,7 @@
 
 Full systems-paper (Springer LNCS) treatment of the software in this repository: a framework-agnostic ONNX/NumPy serving toolkit for a two-stage Kafka edge intrusion detection pipeline on Jetson Orin Nano Super.
 
-**Venue:** TBD. This is a different manuscript from the short **Software Impacts** article about the same software (`../notes/paper_pitch.md`, `../submission_checklist.md`; that manuscript is kept outside the repository). The two are meant to be read independently, not merged.
+**Venue:** target DIMVA 2027 (LNCS; 2026 pattern: cycle 1 ~Dec, cycle 2 ~Feb, 18 pages + 5 bibliography + 2 appendix — watch dimva.org for the 2027 CFP); backup ACNS 2027 cycle 2 (deadline Jan 21, 2027 AoE, 20 pages excluding references). Both fit the current 17-page draft without cuts; no double submission. This is a different manuscript from the short **Software Impacts** article about the same software (`../notes/paper_pitch.md`, `../submission_checklist.md`; that manuscript is kept outside the repository). The two are meant to be read independently, not merged.
 
 ## Research question
 

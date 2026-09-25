@@ -109,7 +109,7 @@ pd.read_parquet("data/test_data.parquet")[cols].head(20000).to_csv("replay_cicid
 
 ## Step 4: gate artifacts (only for `exp3`, `exp4` and the pipeline)
 
-The anomaly gate (autoencoder, scaler, threshold) is not redistributed. Copy `anomaly_autoencoder.pkl`, `anomaly_scaler.pkl` and `anomaly_threshold.json` into `artifacts/` from the upstream thesis repository as described in `docs/deploy_2jetson.md`. `exp1`, `exp2`, `exp5`, `exp5b` and the tests do not need them. The pickles were written with an older scikit-learn and print a version warning on load; that is expected.
+The anomaly gate (autoencoder, scaler, threshold) is not redistributed. Copy `anomaly_autoencoder.pkl`, `anomaly_scaler.pkl` and `anomaly_threshold.json` into `artifacts/` from the upstream thesis repository as described in `docs/deploy_2jetson.md`. `exp1`, `exp2`, `exp2b`, `exp5`, `exp5b` and the tests do not need them. The pickles were written with an older scikit-learn and print a version warning on load; that is expected.
 
 ## Step 5: run the experiments
 
@@ -122,6 +122,7 @@ DATA2018=/path/to/data_2018/test_data.parquet
 
 python lncs/code/experiments/exp1_lockstep_benchmark.py --data $DATA
 python lncs/code/experiments/exp2_boundary_parity.py    --data $DATA
+python lncs/code/experiments/exp2b_probe_ablation.py    --data $DATA        # reads exp2's JSON for the density ratios
 python lncs/code/experiments/exp3_exact_early_exit.py   --data $DATA        # needs Step 4
 python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted $DATA2018   # needs Step 4
 python lncs/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA
@@ -135,6 +136,7 @@ What to expect, and which numbers depend on your machine:
 |--------|-------------|---------------------|-------------------|
 | `exp1` | per-tree vs lockstep | label agreement on 5,000 rows | all rows/s and speedups (71x at batch 1 ... 0.9x at 2,000 on Apple M3) |
 | `exp2` | boundary parity | 95,741 internal nodes, 815 distinct (feature, threshold) pairs, 287,223 probes, float64 flips 328 on probes and 15 on replay, float32 flips 0 and 0 | the `seconds` field |
+| `exp2b` | probe ablation (unrouted row of the boundary table) | 133 float64 flips on 286,065 unrouted probes (117 rows per pair, seed 0), 38% of probes exercising their pair, 27% of internal nodes exercised, float32 flips 0 | the `seconds` field |
 | `exp3` | exact early exit | 104.1 of 200 trees on gate-forwarded rows, labels identical on every row, share of rows decided at the first check | the `*_seconds` and `speedup` fields (2.05x on Apple M3) |
 | `exp4` | distribution shift | F1 and gate recall on both splits, 0 parity flips, early exit exact, undecided share 4.8% vs 28.2% | none |
 | `exp5` | other forests | float32 flips 0 on every forest; probe-vs-replay density ratios; trees per shared threshold (72 / 4 / 2) | `train_seconds` |
@@ -180,6 +182,6 @@ This writes `lncs/manuscript/main.pdf` and `lncs/output/onnx-edge-ids-lncs.pdf`.
 ## If something does not match
 
 - **Counts differ against ONNX Runtime but the float32 traversal still shows 0 flips:** check `python -c "import onnxruntime; print(onnxruntime.__version__)"`. The paper's counts are against 1.30.0 with the CPU provider.
-- **`exp2` flips differ by a handful on replay:** the replay rows are the test split, so a different split gives a different count; the probe counts should match exactly since they come from the forest.
+- **`exp2` flips differ by a handful on replay:** the replay rows are the test split, so a different split gives a different count; the probe counts should match exactly since they come from the forest. `exp2b`'s probes embed test-split rows too (base rows drawn with seed 0), so all of its counts move with the split; the routed-vs-unrouted density ratio should stay near 2.5x.
 - **`exp3`/`exp4` fail to load `anomaly_*.pkl`:** Step 4 was skipped, or a very old scikit-learn is installed; 1.3 or newer loads them with a warning.
 - **`exp5b` fails to install a release:** that release has no wheel for your Python or platform. Drop it from `--versions`; the regression is visible with `1.25.1,1.26.0,1.28.0` alone.

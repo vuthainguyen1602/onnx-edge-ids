@@ -11,7 +11,7 @@ A detector served by a primary runtime (ONNX Runtime) and a fallback runtime (Nu
 Findings, all regenerable from `code/`:
 
 - **Boundary-directed parity testing.** One probe per split node, on the threshold and one float32 step either side (287,223 probes, 99.9% reach their node). A float64 NumPy traversal flips 328 labels against ONNX Runtime on the probes but only 15 on the whole 447,275-row labelled test split, so a 2,000-row replay gate misses it 93.5% of the time. The deployed float32 traversal flips none.
-- **Why labels flip.** The forest's 95,741 splits share 815 distinct (feature, threshold) pairs, so one boundary value moves many trees at once; the same fact makes an exhaustive gate cheap.
+- **Why labels flip.** The forest's 95,741 splits share 815 distinct (feature, threshold) pairs, so one boundary value moves many trees at once; the same fact makes an exhaustive gate cheap. The path-satisfying construction matters: the same boundary values written into unrouted random rows exercise 27% of the nodes and find 2.5x fewer flips.
 - **Block-lockstep traversal.** 71x at batch 1, 11x at 20, 1.4x at 500, and 0.9x at 2,000 (where the old per-tree loop still wins), on real flows.
 - **Exact early exit.** Gate-forwarded traffic needs 104.1 of 200 trees on average with labels provably identical to the full forest: 2.0x, the rule's ceiling.
 - **Other forests, other converters.** On scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost exported with skl2onnx/onnxmltools, the same probes find float64-traversal and framework-vs-ONNX-Runtime divergence 3 to 169x more densely than replay; the float32 traversal never disagrees. Threshold sharing is a matter of bin count (72 trees per pair at the deployed trainer's 32 bins, 4 at 255, 2 for exact splits). ONNX Runtime 1.26.0 and 1.27.0 relabel 85% of flows for a stock scikit-learn export (P > 0 instead of P > 0.5); replay catches that, probes are not meant to.
@@ -60,7 +60,7 @@ Repeat Step 2 over a wired inter-board link instead of Wi-Fi, and report produce
 - Label agreement / max confidence deviation between backends (parity gate)
 - Artifact size (ONNX vs. NumPy)
 - End-to-end (producer-to-verdict) throughput/latency over a **wired** link — pending
-- Boundary-probe and replay disagreement counts per runtime (`exp2`)
+- Boundary-probe and replay disagreement counts per runtime (`exp2`), and the routed-vs-unrouted probe ablation (`exp2b`)
 - The same counts, plus framework-vs-ONNX-Runtime parity and trees moved per probe, on scikit-learn/LightGBM/XGBoost exports (`exp5`); label agreement across ONNX Runtime releases (`exp5b`)
 - Detector, gate, parity and early-exit behaviour on shifted traffic (`exp4`)
 - Block-lockstep and exact-early-exit throughput, re-measured on Jetson hardware — pending

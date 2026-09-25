@@ -1,0 +1,48 @@
+{
+  "internal_nodes": 95741,
+  "distinct_feature_threshold_pairs": 815,
+  "base_rows_per_pair": 117,
+  "seed": 0,
+  "variants": {
+    "on_threshold": {
+      "probes": 95355,
+      "probes_exercising_their_pair": 36396,
+      "numpy_float32_vs_onnx_label_disagreements": 0,
+      "numpy_float64_vs_onnx_label_disagreements": 49
+    },
+    "one_ulp_below": {
+      "probes": 95355,
+      "probes_exercising_their_pair": 36396,
+      "numpy_float32_vs_onnx_label_disagreements": 0,
+      "numpy_float64_vs_onnx_label_disagreements": 33
+    },
+    "one_ulp_above": {
+      "probes": 95355,
+      "probes_exercising_their_pair": 36396,
+      "numpy_float32_vs_onnx_label_disagreements": 0,
+      "numpy_float64_vs_onnx_label_disagreements": 51
+    }
+  },
+  "unrouted_total": {
+    "probes": 286065,
+    "probes_exercising_their_pair": 109188,
+    "share_exercising_their_pair": 0.3817,
+    "internal_nodes_exercised": 25429,
+    "share_of_internal_nodes_exercised": 0.2656,
+    "numpy_float32_vs_onnx_label_disagreements": 0,
+    "numpy_float64_vs_onnx_label_disagreements": 133,
+    "float64_flip_density": 0.0004649292992851275
+  },
+  "routed_reference_exp2": {
+    "probes": 287223,
+    "numpy_float64_vs_onnx_label_disagreements": 328,
+    "float64_flip_density": 0.0011419698283215481,
+    "internal_nodes_reached": 95664
+  },
+  "density_ratios": {
+    "unrouted_vs_replay": 13.9,
+    "routed_vs_replay": 34.1,
+    "routed_vs_unrouted": 2.46
+  },
+  "seconds": 34.1
+}

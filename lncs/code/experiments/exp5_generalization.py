@@ -1,4 +1,4 @@
-"""Does boundary-directed parity testing generalize beyond the deployed Spark forest?
+"""Does boundary-directed parity testing generalize beyond the deployed forest?
 
 Trains tree ensembles of several families on the same 29 CICIDS2017 features,
 with the same StandardScaler front end as the deployed pipeline, exports each
@@ -11,7 +11,7 @@ to ONNX, and runs the boundary probe of exp2 on every one of them:
   * converter parity: the training framework's own prediction against ONNX
     Runtime, on the same probes and replay (the double-to-float export issue).
 
-The deployed Spark MLlib forest is included as the reference point; its
+The deployed forest is included as the reference point; its
 numbers should reproduce exp2 (815 pairs, 0 / 15 replay flips).
 """
 
@@ -200,7 +200,7 @@ def main():
     ap.add_argument("--test", required=True, help="test_data.parquet directory")
     ap.add_argument("--train-rows", type=int, default=600000)
     ap.add_argument("--max-nodes", type=int, default=100000, help="internal nodes probed per model (all if fewer)")
-    ap.add_argument("--models", default="spark_rf_deployed,sklearn_rf,sklearn_hgb,lightgbm,xgboost_hist")
+    ap.add_argument("--models", default="deployed_rf,sklearn_rf,sklearn_hgb,lightgbm,xgboost_hist")
     ap.add_argument("--model-dir", default=os.path.join(RESULTS, "exp5_models"))
     ap.add_argument("--out", default=os.path.join(RESULTS, "exp5_generalization.json"))
     ap.add_argument("--seed", type=int, default=0)
@@ -234,8 +234,8 @@ def main():
     catalogue = build_models(args.seed)
     for key in args.models.split(","):
         t0 = time.perf_counter()
-        if key == "spark_rf_deployed":
-            desc, onnx_path, native = "deployed Spark MLlib RandomForest (maxBins=32)", os.path.join(ARTIFACTS, "ids_rf.onnx"), None
+        if key == "deployed_rf":
+            desc, onnx_path, native = "deployed RandomForest (32-bin histogram trainer)", os.path.join(ARTIFACTS, "ids_rf.onnx"), None
             print(f"== {key}: {desc}", flush=True)
             entry = {"description": desc, "train_seconds": None}
         else:

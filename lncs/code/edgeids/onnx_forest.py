@@ -5,7 +5,7 @@ this module reads any ONNX tree ensemble directly: every split mode the
 operator defines, an optional ``ai.onnx.ml.Scaler`` in front of it, base
 values, and the NONE / LOGISTIC / SOFTMAX post-transforms. It exists so the
 boundary-directed parity test can be run on forests from any training
-framework, not only on the deployed Spark MLlib export.
+framework, not only on the deployed forest's export.
 """
 
 from dataclasses import dataclass

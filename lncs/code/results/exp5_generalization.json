@@ -13,8 +13,8 @@
   "test_rows": 447275,
   "max_nodes_probed": 100000,
   "models": {
-    "spark_rf_deployed": {
-      "description": "deployed Spark MLlib RandomForest (maxBins=32)",
+    "deployed_rf": {
+      "description": "deployed RandomForest (32-bin histogram trainer)",
       "train_seconds": null,
       "trees": 200,
       "nodes": 191682,

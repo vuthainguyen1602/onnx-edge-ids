@@ -142,7 +142,7 @@ What to expect, and which numbers depend on your machine:
 
 Notes:
 
-- `exp5` trains scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost on a 600,000-row sample (`--train-rows`, seed 0), writes the exported models to `lncs/code/results/exp5_models/` and probes up to 100,000 internal nodes per model (`--max-nodes`). The counts for the four trained forests depend on the training sample; the row for the deployed forest (`spark_rf_deployed`) does not. Use `--models` to run a subset.
+- `exp5` trains scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost on a 600,000-row sample (`--train-rows`, seed 0), writes the exported models to `lncs/code/results/exp5_models/` and probes up to 100,000 internal nodes per model (`--max-nodes`). The counts for the four trained forests depend on the training sample; the row for the deployed forest (`deployed_rf`) does not. Use `--models` to run a subset.
 - `exp5b` creates one virtualenv per release under `$TMPDIR/exp5b_ort_venvs` (`--venv-dir`) and installs `onnxruntime==<version>` into each, so it needs network access and a Python for which wheels of every listed release exist (the paper's run used Python 3.12; trim `--versions` if a release has no wheel for yours). The committed result was taken on this same export (`exp5` with the default seed and 600,000 training rows), so a re-run with the defaults reproduces the count exactly; a different training sample reproduces the relabelling pattern (0 flips on agreeing releases, hundreds of thousands on 1.26.0 and 1.27.0), not the count.
 - `exp1` timings are noisy on a busy machine. Close other work and, on laptops, keep the machine on mains power.
 

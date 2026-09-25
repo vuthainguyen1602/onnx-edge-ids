@@ -15,7 +15,7 @@ Compiles cleanly as of this draft (17 pages, 0 undefined citations/references, n
 
 - [ ] Pick a venue and deadline, update `../README.md` and the title page
 - [x] Single author (Thai Nguyen Vu, UTC), matching `../../CITATION.cff`; the co-authors of the earlier companion paper were removed
-- [x] No PySpark/Spark content anywhere in `main.tex`/`references.bib`; the deployed forest's trainer is described only as a 32-bin histogram trainer (Sect. 3.1, 4), which is all the threshold-sharing explanation needs
+- [x] No trainer-framework-specific content anywhere in `main.tex`/`references.bib` or in `../code/`; the deployed forest's trainer is described only as a 32-bin histogram trainer (Sect. 3.1, 4), which is all the threshold-sharing explanation needs
 - [x] No `\input`/`\bibliography` paths outside this repository
 - [x] Boundary-directed parity experiment (`../code/experiments/exp2_boundary_parity.py`): 287,223 probes, float32 0 flips, float64 328 flips vs 15 on full replay
 - [x] Block-lockstep traversal measured on real flows, including the batch size where it loses (`exp1`); shipped in `src/onnx_edge_ids/numpy_engine.py` since `894238a`

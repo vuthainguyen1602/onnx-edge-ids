@@ -172,13 +172,13 @@ batch is flushed when it fills *or* when the linger window expires, so under a
 thin stream both nodes serve small batches by design; raise `--linger-ms` to
 trade added delay for fuller batches.
 
-Batch size dominates the NumPy backend. On an Orin Nano it serves roughly
+Batch size dominates the NumPy backend. On an Orin Nano Super it serves roughly
 9 rows/s at `--batch-size 1`, 150 rows/s at 20, and 1,650 rows/s at 500, because
 its tree traversal is vectorised across the batch. The ONNX backend is far less
 sensitive. Size the batch for the backend actually in use.
 
 The gate does not block on `producer.flush()` per batch by default. Measured on
-an Orin Nano against a broker one hop away, a synchronous flush every batch costs
+an Orin Nano Super against a broker one hop away, a synchronous flush every batch costs
 about 10% of end-to-end gate throughput (915 vs 831 rows/s over 20,000 records at
 a 28.6% forward rate); in isolation the produce path alone loses closer to 30%,
 but the gate forwards only a fraction of what it consumes, so the cost is spread

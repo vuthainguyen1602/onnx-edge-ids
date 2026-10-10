@@ -38,13 +38,15 @@ removed.
       ONNX Runtime 294.5 ms to build the session, 3.1 ms first prediction,
       542.3 ms process start to first verdict; NumPy 79.7 ms to load,
       115.1 ms first prediction, 368.4 ms to first verdict.
-- [ ] End-to-end throughput over a wired link on both boards.
+- [x] Transport link stated: Jetson #2 runs over Wi-Fi (setup paragraph of the
+      use case). Not re-taken on a wired link: the inter-board link carries 3.4%
+      of its bandwidth and the ceiling is the pure-Python Kafka client, which
+      runs 2.6-4.5x faster on a laptop CPU with the same code.
 
 ## Known Gaps Before Submission
 
-- Jetson #2 has no Ethernet link and currently runs over Wi-Fi. Inference
-  latency, memory and power are measured in-process and unaffected, but
-  end-to-end transport figures should be re-taken on a wired link.
+- Jetson #2 has no Ethernet link and runs over Wi-Fi. The article says so;
+  wired transport figures remain optional, since Wi-Fi is not the bound.
 - The Zenodo record for v0.2.0 carries the right title and author name, taken
   from CITATION.cff, but no ORCID, affiliation or keywords: `.zenodo.json` was
   added after the v0.2.0 tag, so it is absent from the archived tree. Fix by

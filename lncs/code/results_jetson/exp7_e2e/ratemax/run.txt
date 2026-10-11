@@ -1,0 +1,5 @@
+rate=0 limit=10000 passes=2 tag=20261011_200253
+ 20:03:02 up 2 days,  7:57,  0 users,  load average: 1.42, 1.28, 1.05
+ 20:03:02 up 2 days,  7:57,  0 users,  load average: 0.02, 0.08, 0.08
+[OK] Sent 10,000 rows in 7.0s (1437.2 rows/s)
+[OK] Sent 10,000 rows in 6.7s (1497.1 rows/s)

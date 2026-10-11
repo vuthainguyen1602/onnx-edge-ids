@@ -33,13 +33,20 @@ removed.
 - [x] Jetson throughput, p95 latency, memory, and energy:
       classifier 20,185 rows/s, p95 0.0676 ms/row, 155.6 MB RSS, 4.64 W (ONNX);
       152 rows/s, p95 8.2267 ms/row, 46.2 MB RSS, 4.93 W (NumPy);
-      gate 13,915 rows/s, p95 0.0783 ms/row, 28.64% forward rate.
+      gate 13,915 rows/s, p95 0.0783 ms/row, 28.64% forward rate (first
+      validation run). Re-measured 2026-10-11 on Jetson #2 serving a 20,000-record
+      Kafka replay (lncs/code/results_jetson/exp6_gate_node.json): 21,191 rows/s,
+      p95 0.0569 ms/row, 123.6 MB RSS, 5.25 W input rail (4.75 W idle), 11.8%
+      forwarded. Both papers now quote the re-measurement.
 - [x] Engine cold-start load time (mean of both boards, page cache dropped):
       ONNX Runtime 294.5 ms to build the session, 3.1 ms first prediction,
       542.3 ms process start to first verdict; NumPy 79.7 ms to load,
       115.1 ms first prediction, 368.4 ms to first verdict.
-- [x] Transport link stated: Jetson #2 runs over Wi-Fi (setup paragraph of the
-      use case). Not re-taken on a wired link: the inter-board link carries 3.4%
+- [x] Transport link stated: both boards and the workstation are on one Wi-Fi
+      LAN, 5-8 ms median round trip (setup paragraph of the use case). End-to-end
+      latency over that link: lncs/code/results_jetson/exp7_e2e.json (64 rows/s:
+      p50 1.58 s, p95 2.11 s; max rate: p50 3.55 s, p95 6.44 s, gate drains ~965
+      rows/s). Not re-taken on a wired link: the inter-board link carries 3.4%
       of its bandwidth and the ceiling is the pure-Python Kafka client, which
       runs 2.6-4.5x faster on a laptop CPU with the same code.
 

@@ -38,6 +38,13 @@ removed.
       Kafka replay (lncs/code/results_jetson/exp6_gate_node.json): 21,191 rows/s,
       p95 0.0569 ms/row, 123.6 MB RSS, 5.25 W input rail (4.75 W idle), 11.8%
       forwarded. Both papers now quote the re-measurement.
+- [x] Repeated 2026-10-11, five runs per backend on Jetson #2, 25 W mode
+      (lncs/code/results_jetson/exp8_summary.json; the article's Table 2 now
+      quotes these): ONNX 15,174 +/- 179 rows/s, p95 0.0847 ms/row, 156.8 MB,
+      4.66 W; per-tree NumPy (v0.2.0) 127 +/- 1 rows/s, p95 9.50 ms/row,
+      47.6 MB, 4.99 W. Cold start, five runs per board: ONNX 373 ms load,
+      7 ms first prediction, 670 ms to first verdict; NumPy 80, 114, 482 ms.
+      The single-run ONNX capacity below (20,185) was not reproduced.
 - [x] Engine cold-start load time (mean of both boards, page cache dropped):
       ONNX Runtime 294.5 ms to build the session, 3.1 ms first prediction,
       542.3 ms process start to first verdict; NumPy 79.7 ms to load,

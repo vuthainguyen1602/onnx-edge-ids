@@ -74,7 +74,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the gate row of the engine table comes from `code/results_jetson/exp6_gate_node.json`; the end-to-end table comes from `code/results_jetson/exp7_e2e.json`; the remaining `\ph{...}` marker is the repeat of the single-run on-board figures.
+Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the gate row of the engine table comes from `code/results_jetson/exp6_gate_node.json`; the end-to-end table comes from `code/results_jetson/exp7_e2e.json`; the classifier and cold-start tables are five-run means from `code/results_jetson/exp8_summary.json`. No `\ph{...}` markers remain.
 
 ## Cross-reference
 

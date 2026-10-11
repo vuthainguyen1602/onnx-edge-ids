@@ -1,0 +1,21 @@
+tag=20261011_203036 reps=5 rate=1000 passes=3 engines=numpy
+numpy_rep1 pass1: [OK] Sent 10,000 rows in 19.1s (523.1 rows/s)
+numpy_rep1 pass2: [OK] Sent 10,000 rows in 20.5s (487.5 rows/s)
+numpy_rep1 pass3: [OK] Sent 10,000 rows in 18.7s (534.1 rows/s)
+[numpy_rep1] 178 batches
+numpy_rep2 pass1: [OK] Sent 10,000 rows in 18.0s (554.1 rows/s)
+numpy_rep2 pass2: [OK] Sent 10,000 rows in 17.6s (567.0 rows/s)
+numpy_rep2 pass3: [OK] Sent 10,000 rows in 17.7s (565.1 rows/s)
+[numpy_rep2] 178 batches
+numpy_rep3 pass1: [OK] Sent 10,000 rows in 17.6s (567.4 rows/s)
+numpy_rep3 pass2: [OK] Sent 10,000 rows in 17.5s (570.5 rows/s)
+numpy_rep3 pass3: [OK] Sent 10,000 rows in 18.7s (534.6 rows/s)
+[numpy_rep3] 178 batches
+numpy_rep4 pass1: [OK] Sent 10,000 rows in 17.6s (568.0 rows/s)
+numpy_rep4 pass2: [OK] Sent 10,000 rows in 18.1s (551.6 rows/s)
+numpy_rep4 pass3: [OK] Sent 10,000 rows in 16.6s (603.4 rows/s)
+[numpy_rep4] 178 batches
+numpy_rep5 pass1: [OK] Sent 10,000 rows in 16.5s (605.7 rows/s)
+numpy_rep5 pass2: [OK] Sent 10,000 rows in 16.8s (596.7 rows/s)
+numpy_rep5 pass3: [OK] Sent 10,000 rows in 17.7s (566.3 rows/s)
+[numpy_rep5] 178 batches

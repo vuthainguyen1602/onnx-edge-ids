@@ -1,0 +1,90 @@
+{
+  "machine": "ubuntu",
+  "reps": 5,
+  "summary": {
+    "onnx": {
+      "load_ms": {
+        "mean": 369.8,
+        "sd": 2.3
+      },
+      "first_ms": {
+        "mean": 6.9,
+        "sd": 2.2
+      },
+      "to_first_verdict_ms": {
+        "mean": 660.7,
+        "sd": 16.1
+      }
+    },
+    "numpy": {
+      "load_ms": {
+        "mean": 79.3,
+        "sd": 1.2
+      },
+      "first_ms": {
+        "mean": 112.9,
+        "sd": 1.6
+      },
+      "to_first_verdict_ms": {
+        "mean": 469.1,
+        "sd": 3.6
+      }
+    }
+  },
+  "runs": {
+    "onnx": [
+      {
+        "load_ms": 367.0,
+        "first_ms": 5.3,
+        "to_first_verdict_ms": 649.0
+      },
+      {
+        "load_ms": 370.9,
+        "first_ms": 7.7,
+        "to_first_verdict_ms": 654.2
+      },
+      {
+        "load_ms": 373.1,
+        "first_ms": 9.9,
+        "to_first_verdict_ms": 659.0
+      },
+      {
+        "load_ms": 369.8,
+        "first_ms": 7.3,
+        "to_first_verdict_ms": 688.7
+      },
+      {
+        "load_ms": 368.4,
+        "first_ms": 4.1,
+        "to_first_verdict_ms": 652.4
+      }
+    ],
+    "numpy": [
+      {
+        "load_ms": 78.3,
+        "first_ms": 115.3,
+        "to_first_verdict_ms": 468.0
+      },
+      {
+        "load_ms": 81.3,
+        "first_ms": 112.2,
+        "to_first_verdict_ms": 474.7
+      },
+      {
+        "load_ms": 78.6,
+        "first_ms": 111.8,
+        "to_first_verdict_ms": 465.0
+      },
+      {
+        "load_ms": 78.5,
+        "first_ms": 113.7,
+        "to_first_verdict_ms": 470.1
+      },
+      {
+        "load_ms": 79.6,
+        "first_ms": 111.4,
+        "to_first_verdict_ms": 467.5
+      }
+    ]
+  }
+}

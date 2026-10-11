@@ -121,6 +121,6 @@ python scripts/classifier_node.py \
 
 ## Citation And License
 
-This repository is versioned as `v0.1.0` and released under the MIT license.
+The current release is `v0.3.0`, under the MIT license.
 After the first public release is archived, update `CITATION.cff` and the
 manuscript with the archive DOI.

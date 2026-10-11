@@ -246,10 +246,10 @@ The testbed is two NVIDIA Jetson Orin Nano Super Developer Kits (6-core Arm Cort
 
 \subsection{Steady-State Cost per Backend}
 
-Table~\ref{tab:engines} reports classifier-node cost at batch size 20 for each backend, with the gate's own cost reported separately since it runs a different model (an autoencoder, not the forest). ONNX Runtime sustains roughly $133\times$ the NumPy backend's throughput at this batch size and a fraction of its p95 latency, at the cost of higher resident memory and marginally lower measured board power (4.64 vs.\ 4.93\,W; since power is not idle-subtracted, this difference should be read cautiously rather than as a per-inference energy claim). The NumPy row here is the original per-tree traversal, measured on the Jetson boards; Sect.~\ref{sec:lockstep} replaces that traversal and measures the replacement on different (ARM64 development) hardware, so the two are not yet merged into one table.
+Table~\ref{tab:engines} reports classifier-node cost at batch size 20 for each backend, with the gate's own cost reported separately since it runs a different model (an autoencoder, not the forest). ONNX Runtime sustains roughly $133\times$ the NumPy backend's throughput at this batch size and a fraction of its p95 latency, at the cost of higher resident memory and marginally lower measured board power (4.64 vs.\ 4.93\,W; since power is not idle-subtracted, this difference should be read cautiously rather than as a per-inference energy claim). The NumPy row here is the original per-tree traversal, measured on the Jetson boards; Sect.~\ref{sec:lockstep} replaces that traversal and measures the replacement on the same board type but outside the streaming pipeline, so the two are not yet merged into one table.
 
 \begin{table}[htbp]
-  \caption{Classifier-node steady-state cost per backend (batch size 20) and gate cost, single validation run on Jetson hardware.}
+  \caption{Classifier-node steady-state cost per backend (batch size 20, single validation run on Jetson hardware) and gate-node cost (batch size 100, Kafka replay on Jetson~\#2).}
   \label{tab:engines}
   \centering
   \small
@@ -259,10 +259,10 @@ Table~\ref{tab:engines} reports classifier-node cost at batch size 20 for each b
     \midrule
     Classifier (ONNX Runtime) & 20{,}185 & 0.0676 & 155.6 & 4.64 \\
     Classifier (NumPy)        & 152     & 8.2267 & 46.2  & 4.93 \\
-    Gate (sklearn autoencoder) & 13{,}915 & 0.0783 & \ph{TBD} & \ph{TBD} \\
+    Gate (sklearn autoencoder) & 21{,}191 & 0.0569 & 123.6 & 5.25 \\
     \bottomrule
   \end{tabular}
-  \tabnote{Power is total-board \texttt{tegrastats} power, not idle-subtracted. Gate throughput/latency reported at its own default batch size (100); its forward rate to the classifier topic was 28.64\% on the 20{,}000-record replay sample used for that run, which is not the test split of Sect.~\ref{sec:drift} (11.3\%). Source: \texttt{submission\_checklist.md} in the software repository, single validation run.}
+  \tabnote{Power is total-board \texttt{tegrastats} power (\texttt{VDD\_IN}), not idle-subtracted. Gate row: \texttt{gate\_node.py} at its default batch size serving a 20{,}000-record Kafka replay; throughput and p95 are its own inference time, RSS is the node process's, and the board drew 4.75\,W idle before the replay (\texttt{lncs/code/results\_jetson/exp6\_gate\_node.json}). Its forward rate on that replay was 11.8\%, close to the test split's 11.3\% (Sect.~\ref{sec:drift}). The software's earlier validation run recorded 13{,}915\,rows/s and 0.0783\,ms/row for the gate on Jetson~\#1. Classifier rows: \texttt{submission\_checklist.md} in the software repository.}
 \end{table}
 
 \subsection{Cold Start: Time to First Verdict}

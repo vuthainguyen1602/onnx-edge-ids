@@ -74,7 +74,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the remaining `\ph{...}` markers are the wired-link latency and the gate's RSS/power.
+Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the gate row of the engine table comes from `code/results_jetson/exp6_gate_node.json`; the remaining `\ph{...}` marker is the wired-link latency.
 
 ## Cross-reference
 

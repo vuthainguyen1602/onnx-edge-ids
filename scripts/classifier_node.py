@@ -39,6 +39,9 @@ def main():
                         help="Stop after this many messages; 0 means run forever.")
     parser.add_argument("--metrics-csv", default="",
                         help="Optional CSV path for per-batch latency metrics.")
+    parser.add_argument("--latency-csv", default="",
+                        help="Optional CSV path: per message, the producer's _timestamp, the "
+                             "gate's _forwarded_at and the verdict time (each host's own clock).")
     args = parser.parse_args()
 
     builder = FeatureMatrixBuilder(args.features)
@@ -63,6 +66,14 @@ def main():
             ],
         )
         metrics_writer.writeheader()
+    latency_file = None
+    latency_writer = None
+    if args.latency_csv:
+        latency_path = Path(args.latency_csv)
+        latency_path.parent.mkdir(parents=True, exist_ok=True)
+        latency_file = latency_path.open("w", newline="")
+        latency_writer = csv.writer(latency_file)
+        latency_writer.writerow(["sent_at", "forwarded_at", "verdict_at", "prediction"])
     consumer = KafkaConsumer(
         args.topic,
         bootstrap_servers=args.bootstrap,
@@ -86,7 +97,13 @@ def main():
             return
         started = time.time()
         result = engine.predict_batch(builder.build(batch))
+        verdict_at = time.time()
         total += result.stats["batch_size"]
+        if latency_writer:
+            for message, pred in zip(batch, result.predictions.tolist()):
+                latency_writer.writerow([message.get("_timestamp"), message.get("_forwarded_at"),
+                                         f"{verdict_at:.6f}", int(pred)])
+            latency_file.flush()
         wall_ms = (time.time() - started) * 1000.0
         throughput = total / max(time.time() - started_all, 1e-9)
         print(
@@ -143,6 +160,8 @@ def main():
         consumer.close()
         if metrics_file:
             metrics_file.close()
+        if latency_file:
+            latency_file.close()
 
 
 if __name__ == "__main__":

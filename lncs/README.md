@@ -46,11 +46,11 @@ python scripts/validate_parity.py --csv <path to a CICIDS2017-derived replay CSV
 
 Follow `../docs/deploy_2jetson.md`: gate on Jetson #1, `classifier_node.py --engine onnx|numpy --batch-size 1|20|500 --metrics-csv ...` on Jetson #2.
 
-**Step 3 — regenerate the boundary-parity, traversal, early-exit and generalization tables** with `code/experiments/` (see `code/README.md`; `exp5` needs the training split and `lightgbm xgboost skl2onnx onnxmltools`, `exp5b` creates one venv per ONNX Runtime release), then re-run `exp1` and `exp3` on the Jetson boards: their throughput numbers were taken on an ARM64 development machine.
+**Step 3 — regenerate the boundary-parity, traversal, early-exit and generalization tables** with `code/experiments/` (see `code/README.md`; `exp5` needs the training split and `lightgbm xgboost skl2onnx onnxmltools`, `exp5b` creates one venv per ONNX Runtime release). `exp1` and `exp3` were also re-run on Jetson #2 (`code/results_jetson/`), which the paper's traversal and early-exit tables quote.
 
-**Step 4 — wired-link end-to-end run (the pending measurement):**
+**Step 4 — end-to-end run over Wi-Fi (Table `tab:e2e`):**
 
-Repeat Step 2 over a wired inter-board link instead of Wi-Fi, and report producer-timestamp-to-verdict latency/throughput, not just in-process classifier cost.
+From the coordinator, `code/experiments/exp7_e2e_run.sh` starts the gate on Jetson #1 and the ONNX classifier on Jetson #2 with `--latency-csv`, replays the CSV at a given rate, and takes each board's clock offset before and after (`exp7_clock_offset.py`); `exp7_e2e_summary.py` writes `code/results_jetson/exp7_e2e.json`. All three hosts are on Wi-Fi; a wired re-run would only shrink the transport share, a few milliseconds next to the batching delays.
 
 ## Metrics to report
 
@@ -59,7 +59,7 @@ Repeat Step 2 over a wired inter-board link instead of Wi-Fi, and report produce
 - RSS (MB) and total-board power (W, `tegrastats`, not idle-subtracted)
 - Label agreement / max confidence deviation between backends (parity gate)
 - Artifact size (ONNX vs. NumPy)
-- End-to-end (producer-to-verdict) throughput/latency over a **wired** link — pending
+- End-to-end (producer-to-verdict) latency per stage over Wi-Fi, light and maximum load (`exp7`) — done 2026-10-11
 - Boundary-probe and replay disagreement counts per runtime (`exp2`), and the routed-vs-unrouted probe ablation (`exp2b`)
 - The same counts, plus framework-vs-ONNX-Runtime parity and trees moved per probe, on scikit-learn/LightGBM/XGBoost exports (`exp5`); label agreement across ONNX Runtime releases (`exp5b`)
 - Detector, gate, parity and early-exit behaviour on shifted traffic (`exp4`)
@@ -74,7 +74,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the gate row of the engine table comes from `code/results_jetson/exp6_gate_node.json`; the remaining `\ph{...}` marker is the wired-link latency.
+Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the gate row of the engine table comes from `code/results_jetson/exp6_gate_node.json`; the end-to-end table comes from `code/results_jetson/exp7_e2e.json`; the remaining `\ph{...}` marker is the repeat of the single-run on-board figures.
 
 ## Cross-reference
 

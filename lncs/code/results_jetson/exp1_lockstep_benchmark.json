@@ -1,0 +1,43 @@
+{
+  "machine": "aarch64 Linux aarch64",
+  "numpy": "2.2.6",
+  "trees": 200,
+  "label_agreement_5000_rows": 5000,
+  "batches": [
+    {
+      "batch": 1,
+      "rows": 500,
+      "per_tree_rows_s": 17.8,
+      "lockstep_rows_s": 1435.3,
+      "speedup": 80.5
+    },
+    {
+      "batch": 20,
+      "rows": 3000,
+      "per_tree_rows_s": 324.7,
+      "lockstep_rows_s": 6325.8,
+      "speedup": 19.5
+    },
+    {
+      "batch": 100,
+      "rows": 10000,
+      "per_tree_rows_s": 1083.9,
+      "lockstep_rows_s": 6594.4,
+      "speedup": 6.1
+    },
+    {
+      "batch": 500,
+      "rows": 10000,
+      "per_tree_rows_s": 3292.7,
+      "lockstep_rows_s": 7112.9,
+      "speedup": 2.2
+    },
+    {
+      "batch": 2000,
+      "rows": 20000,
+      "per_tree_rows_s": 6020.1,
+      "lockstep_rows_s": 7059.7,
+      "speedup": 1.2
+    }
+  ]
+}

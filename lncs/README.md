@@ -12,8 +12,8 @@ Findings, all regenerable from `code/`:
 
 - **Boundary-directed parity testing.** One probe per split node, on the threshold and one float32 step either side (287,223 probes, 99.9% reach their node). A float64 NumPy traversal flips 328 labels against ONNX Runtime on the probes but only 15 on the whole 447,275-row labelled test split, so a 2,000-row replay gate misses it 93.5% of the time. The deployed float32 traversal flips none.
 - **Why labels flip.** The forest's 95,741 splits share 815 distinct (feature, threshold) pairs, so one boundary value moves many trees at once; the same fact makes an exhaustive gate cheap. The path-satisfying construction matters: the same boundary values written into unrouted random rows exercise 27% of the nodes and find 2.5x fewer flips.
-- **Block-lockstep traversal.** 71x at batch 1, 11x at 20, 1.4x at 500, and 0.9x at 2,000 (where the old per-tree loop still wins), on real flows.
-- **Exact early exit.** Gate-forwarded traffic needs 104.1 of 200 trees on average with labels provably identical to the full forest: 2.0x, the rule's ceiling.
+- **Block-lockstep traversal.** On Jetson #2: 80x at batch 1, 20x at 20, 2.2x at 500, 1.2x at 2,000, on real flows. On an Apple M3 the old per-tree loop wins at 2,000 (0.9x), so the crossover depends on the host.
+- **Exact early exit.** Gate-forwarded traffic needs 104.1 of 200 trees on average with labels provably identical to the full forest: 1.9x on Jetson #2 (2.05x on the M3), the rule's ceiling.
 - **Other forests, other converters.** On scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost exported with skl2onnx/onnxmltools, the same probes find float64-traversal and framework-vs-ONNX-Runtime divergence 3 to 169x more densely than replay; the float32 traversal never disagrees. Threshold sharing is a matter of bin count (72 trees per pair at the deployed trainer's 32 bins, 4 at 255, 2 for exact splits). ONNX Runtime 1.26.0 and 1.27.0 relabel 85% of flows for a stock scikit-learn export (P > 0 instead of P > 0.5); replay catches that, probes are not meant to.
 - **Distribution shift.** This work does not make the detector robust to drift. Frozen and run on CSE-CIC-IDS2018, classifier F1 falls 0.98 to 0.24 and gate attack recall 0.72 to 0.01. Runtime parity and early-exit exactness hold on all 477,771 shifted flows, and the share of flows early exit cannot settle rises 4.8% to 28.2% without labels.
 
@@ -63,7 +63,7 @@ Repeat Step 2 over a wired inter-board link instead of Wi-Fi, and report produce
 - Boundary-probe and replay disagreement counts per runtime (`exp2`), and the routed-vs-unrouted probe ablation (`exp2b`)
 - The same counts, plus framework-vs-ONNX-Runtime parity and trees moved per probe, on scikit-learn/LightGBM/XGBoost exports (`exp5`); label agreement across ONNX Runtime releases (`exp5b`)
 - Detector, gate, parity and early-exit behaviour on shifted traffic (`exp4`)
-- Block-lockstep and exact-early-exit throughput, re-measured on Jetson hardware — pending
+- Block-lockstep and exact-early-exit throughput, re-measured on Jetson #2 — done 2026-10-11 (`code/results_jetson/`)
 
 ## Manuscript
 
@@ -74,7 +74,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The remaining `\ph{...}` markers are the Jetson re-measurement of those two throughput tables and the wired-link latency.
+Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the remaining `\ph{...}` markers are the wired-link latency and the gate's RSS/power.
 
 ## Cross-reference
 

@@ -134,10 +134,10 @@ What to expect, and which numbers depend on your machine:
 
 | Script | Paper table | Machine-independent | Machine-dependent |
 |--------|-------------|---------------------|-------------------|
-| `exp1` | per-tree vs lockstep | label agreement on 5,000 rows | all rows/s and speedups (71x at batch 1 ... 0.9x at 2,000 on Apple M3) |
+| `exp1` | per-tree vs lockstep | label agreement on 5,000 rows | all rows/s and speedups (71x at batch 1 ... 0.9x at 2,000 on Apple M3; 80x ... 1.2x on Jetson #2) |
 | `exp2` | boundary parity | 95,741 internal nodes, 815 distinct (feature, threshold) pairs, 287,223 probes, float64 flips 328 on probes and 15 on replay, float32 flips 0 and 0 | the `seconds` field |
 | `exp2b` | probe ablation (unrouted row of the boundary table) | 133 float64 flips on 286,065 unrouted probes (117 rows per pair, seed 0), 38% of probes exercising their pair, 27% of internal nodes exercised, float32 flips 0 | the `seconds` field |
-| `exp3` | exact early exit | 104.1 of 200 trees on gate-forwarded rows, labels identical on every row, share of rows decided at the first check | the `*_seconds` and `speedup` fields (2.05x on Apple M3) |
+| `exp3` | exact early exit | 104.1 of 200 trees on gate-forwarded rows, labels identical on every row, share of rows decided at the first check | the `*_seconds` and `speedup` fields (2.05x on Apple M3, 1.94x on Jetson #2) |
 | `exp4` | distribution shift | F1 and gate recall on both splits, 0 parity flips, early exit exact, undecided share 4.8% vs 28.2% | none |
 | `exp5` | other forests | float32 flips 0 on every forest; probe-vs-replay density ratios; trees per shared threshold (72 / 4 / 2) | `train_seconds` |
 | `exp5b` | release sweep | 1.26.0 and 1.27.0 label attack whenever P > 0 (negative first probability column); the other releases agree with scikit-learn | none |

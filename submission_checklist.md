@@ -23,6 +23,9 @@ removed.
 - [x] Tests or smoke checks.
 - [x] Archive DOI via Zenodo, Software Heritage, or equivalent:
       10.5281/zenodo.22731928 (v0.2.0); concept DOI 10.5281/zenodo.22731927.
+      v0.3.0 (2026-10-11, block-lockstep NumPy, --latency-csv, lncs/ code):
+      10.5281/zenodo.23299232, with ORCID, affiliation and keywords from
+      .zenodo.json. The Software Impacts article still describes v0.2.0.
 
 ## Validation Data Measured
 

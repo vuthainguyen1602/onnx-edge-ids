@@ -92,7 +92,7 @@ We integrate both runtimes into a two-stage Kafka pipeline (an anomaly gate on o
 (2) A block-lockstep NumPy traversal, measured on the board on real flows against the per-tree loop it replaces, across batch sizes 1 to 2{,}000;
 (3) An exact early-exit rule for the binary forest and its measured cost on gate-forwarded traffic;
 (4) A shift stress test that separates what drift breaks (the detector and the gate) from what it cannot (runtime parity and early-exit exactness), and shows the early-exit undecided rate acting as a label-free drift signal.
-The framework-agnostic ONNX-to-NumPy exporter, the on-board measurements of both runtimes, and the experiment code, artifacts and result files behind every number in this paper are public\footnote{\url{https://github.com/vuthainguyen1602/onnx-edge-ids} (directory \texttt{lncs/code/}); software archive: \url{https://doi.org/10.5281/zenodo.22731927}.}.
+The framework-agnostic ONNX-to-NumPy exporter, the on-board measurements of both runtimes, and the experiment code, artifacts and result files behind every number in this paper are public\footnote{\url{https://github.com/vuthainguyen1602/onnx-edge-ids} (directory \texttt{lncs/code/}); software archive of the measured version, v0.3.0: \url{https://doi.org/10.5281/zenodo.23299232}.}.
 
 \section{Related Work}
 

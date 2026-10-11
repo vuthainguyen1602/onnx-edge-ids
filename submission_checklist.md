@@ -62,13 +62,12 @@ removed.
 
 ## Known Gaps Before Submission
 
-- Jetson #2 has no Ethernet link and runs over Wi-Fi. The article says so;
-  wired transport figures remain optional, since Wi-Fi is not the bound.
-- The Zenodo record for v0.2.0 carries the right title and author name, taken
-  from CITATION.cff, but no ORCID, affiliation or keywords: `.zenodo.json` was
-  added after the v0.2.0 tag, so it is absent from the archived tree. Fix by
-  editing the record at https://zenodo.org/records/22731928 and republishing,
-  which keeps the DOI. Later releases pick the file up automatically.
+- All three hosts run over Wi-Fi (no Ethernet link). The articles say so, and
+  the end-to-end latency was measured over that link (exp7).
+- Fixed 2026-10-11: the v0.2.0 Zenodo record now carries the ORCID,
+  affiliation and keywords (edited and republished, DOI unchanged). It had
+  lacked them because `.zenodo.json` was added after the v0.2.0 tag; v0.3.0
+  picked the file up automatically.
 - v0.1.0 stays where it is. It is already published and must keep describing
   the tree archived under that name.
 - `artifacts/anomaly_*` (the gate autoencoder, scaler and threshold) come from

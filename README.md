@@ -115,9 +115,11 @@ python scripts/classifier_node.py \
 
 ## Before Submission
 
-- Archive the software release and fill in the Zenodo/Software Heritage DOI.
-- Run export validation on replay flows and fill metadata tables.
-- Add at least one figure showing the train/export/serve workflow.
+- [x] Software release archived (Zenodo DOIs in `CITATION.cff` and the article).
+- [x] Export validation on replay flows on four hosts/runtimes: `validation/`.
+- [x] Workflow figure (train / export / release gate / serve) in the article.
+- [ ] Fill the Software Impacts submission form (repository URL, tag, license,
+      archive DOI, contact e-mail) from `submission_checklist.md`.
 
 ## Citation And License
 

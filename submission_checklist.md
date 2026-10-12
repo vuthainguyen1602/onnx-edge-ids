@@ -29,9 +29,14 @@ removed.
 
 ## Validation Data Measured
 
-- [x] Number of replay rows used for export validation: 2,000.
-- [x] ONNX vs NumPy label agreement: 2000/2000 (100.0000%).
-- [x] ONNX vs NumPy probability delta: 0.0 max.
+- [x] Export validation re-run 2026-10-13 on four Python environments
+      (workstation M3: NumPy 2.5.3/ORT 1.30.0 and NumPy 1.26.4/ORT 1.27.0;
+      Jetson #1 and #2: NumPy 2.2.6/ORT 1.23.2), over the first 2,000 and all
+      10,000 rows of the 2026-09-30 replay CSV, v0.2.0 engines: label agreement
+      2000/2000 and 10000/10000 everywhere, max probability delta 0.0, same
+      attack verdicts (317 and 1,562). Reports: `validation/parity_hosts_20261013.json`;
+      the article's Table "Artifact validation" quotes them. (The earlier
+      2026-09-13 single-host check, 2000/2000 on the pre-09-30 CSV, is superseded.)
 - [x] Artifact size: 7.38 MB ONNX, 1.23 MB NumPy.
 - [x] Jetson throughput, p95 latency, memory, and energy:
       classifier 20,185 rows/s, p95 0.0676 ms/row, 155.6 MB RSS, 4.64 W (ONNX);

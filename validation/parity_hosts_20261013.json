@@ -1,0 +1,137 @@
+{
+  "artifact": {
+    "onnx": "artifacts/ids_rf.onnx",
+    "onnx_md5": "60de6235abeb91565ecb0dc832b9c7b8",
+    "numpy": "artifacts/ids_rf_numpy.npz",
+    "features": "artifacts/feature_columns.json"
+  },
+  "replay_csv": {
+    "name": "replay_cicids2017.csv",
+    "md5": "05bf0e1ce919f8b69c44c4c6a823b50a",
+    "rows": 10000,
+    "attacks_predicted": {
+      "2000": 317,
+      "10000": 1562
+    }
+  },
+  "batch_size": 20,
+  "measured": "2026-10-13",
+  "hosts": {
+    "mac_venv": {
+      "host": "Workstation (Apple M3, macOS 15, arm64)",
+      "python": "3.12.4",
+      "numpy": "2.5.3",
+      "onnxruntime": "1.30.0",
+      "engine_tag": "v0.2.0 worktree",
+      "runs": [
+        {
+          "generated_at": "2026-10-13T05:59:48+0700",
+          "rows": 2000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.010610500000000002,
+          "numpy_per_row_ms_mean": 1.1227075,
+          "passed": true
+        },
+        {
+          "generated_at": "2026-10-13T06:00:00+0700",
+          "rows": 10000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.0095658,
+          "numpy_per_row_ms_mean": 1.1169087,
+          "passed": true
+        }
+      ]
+    },
+    "mac_sys": {
+      "host": "Workstation (Apple M3, macOS 15, arm64)",
+      "python": "3.12.4",
+      "numpy": "1.26.4",
+      "onnxruntime": "1.27.0",
+      "engine_tag": "v0.2.0 worktree",
+      "runs": [
+        {
+          "generated_at": "2026-10-13T06:00:03+0700",
+          "rows": 2000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.011219000000000002,
+          "numpy_per_row_ms_mean": 1.3802795,
+          "passed": true
+        },
+        {
+          "generated_at": "2026-10-13T06:00:17+0700",
+          "rows": 10000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.0107132,
+          "numpy_per_row_ms_mean": 1.4270581999999998,
+          "passed": true
+        }
+      ]
+    },
+    "jetson1": {
+      "host": "Jetson #1 (Orin Nano Super, Cortex-A78AE, L4T 5.15.185, aarch64)",
+      "python": "3.10.12",
+      "numpy": "2.2.6",
+      "onnxruntime": "1.23.2",
+      "engine_tag": "v0.2.0 copy",
+      "runs": [
+        {
+          "generated_at": "2026-10-13T05:55:11+0700",
+          "rows": 2000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.061780999999999996,
+          "numpy_per_row_ms_mean": 9.488044999999998,
+          "passed": true
+        },
+        {
+          "generated_at": "2026-10-13T05:56:48+0700",
+          "rows": 10000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.0483553,
+          "numpy_per_row_ms_mean": 9.5725546,
+          "passed": true
+        }
+      ]
+    },
+    "jetson2": {
+      "host": "Jetson #2 (Orin Nano Super, Cortex-A78AE, L4T 5.15.185, aarch64)",
+      "python": "3.10.12",
+      "numpy": "2.2.6",
+      "onnxruntime": "1.23.2",
+      "engine_tag": "v0.2.0 copy",
+      "runs": [
+        {
+          "generated_at": "2026-10-13T05:58:09+0700",
+          "rows": 2000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.05071600000000001,
+          "numpy_per_row_ms_mean": 9.310570499999999,
+          "passed": true
+        },
+        {
+          "generated_at": "2026-10-13T05:59:45+0700",
+          "rows": 10000,
+          "batch_size": 20,
+          "label_agreement": 1.0,
+          "max_confidence_delta": 0.0,
+          "onnx_per_row_ms_mean": 0.0495325,
+          "numpy_per_row_ms_mean": 9.377782799999999,
+          "passed": true
+        }
+      ]
+    }
+  }
+}

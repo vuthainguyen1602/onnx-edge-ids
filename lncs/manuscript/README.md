@@ -9,26 +9,33 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly as of this draft (17 pages, 0 undefined citations/references, no overfull boxes).
+Compiles cleanly as of this draft (18 pages: main text ends on p. 16, references to p. 18; 0 undefined citations/references, no overfull boxes).
 
 ## TODO before submission
 
-- [x] Venue picked: target DIMVA 2027 (cycle 2 ~Feb 2027 by the 2026 pattern; CFP not yet out), backup ACNS 2027 cycle 2 (Jan 21, 2027). See `../README.md`
-- [ ] When the DIMVA 2027 CFP appears, confirm dates/page limits and register the HotCRP submission
+Venue: DIMVA 2027 (Enschede, 30 June–2 July 2027; CFP checked 2026-10-13 at dimva.org/dimva2027). Limits: 18 pages main text + 5 bibliography + 2 appendix, Springer LNCS template. Cycle 1: abstract 3 Dec 2026, paper 10 Dec 2026 (firm), notification 28 Jan 2027, https://dimva27r1.hotcrp.com/. Cycle 2: abstract 11 Feb 2027, paper 18 Feb 2027 (firm), notification 8 Apr 2027, https://dimva27r2.hotcrp.com/. A Cycle 1 reject may not be resubmitted to Cycle 2. Camera-ready 27 May 2027. Backup: ACNS 2027 Cycle 2, 21 Jan 2027 AoE, 20 pages excluding references, no parallel submission. See `../README.md`.
+
+Done:
+
+- [x] Venue picked and CFP confirmed (above); the draft fits the 18+5+2 limit without cuts
 - [x] Single author (Thai Nguyen Vu, UTC), matching `../../CITATION.cff`; the co-authors of the earlier companion paper were removed
 - [x] No trainer-framework-specific content anywhere in `main.tex`/`references.bib` or in `../code/`; the deployed forest's trainer is described only as a 32-bin histogram trainer (Sect. 3.1, 4), which is all the threshold-sharing explanation needs
-- [x] No `\input`/`\bibliography` paths outside this repository
+- [x] No `\input`/`\bibliography` paths outside this repository; no `\ph{...}` placeholders left
 - [x] Boundary-directed parity experiment (`../code/experiments/exp2_boundary_parity.py`): 287,223 probes, float32 0 flips, float64 328 flips vs 15 on full replay
 - [x] Block-lockstep traversal measured on real flows, including the batch size where it loses (`exp1`); shipped in `src/onnx_edge_ids/numpy_engine.py` since `894238a`
 - [x] Exact early exit measured on gate-forwarded traffic (`exp3`)
+- [x] `exp1` and `exp3` re-run on Jetson #2 (`../code/results_jetson/`); the traversal and early-exit tables quote the board
 - [x] Distribution-shift stress test on CSE-CIC-IDS2018 (`exp4`): detector and gate collapse, serving guarantees hold, undecided rate rises
 - [x] Probes on four more forests and their converters (`exp5`, Table `tab:generalize`): float32 0 flips everywhere, 24 to 169x denser than replay where divergence is rare, trees-moved diagnostic
 - [x] ONNX Runtime release sweep (`exp5b`): 1.26.0/1.27.0 relabel 85% of flows for a stock scikit-learn export (upstream PRs 27536, 28685, issue 28557), cited in Sect. 4.1
-- [ ] If the undecided-rate drift signal is to be claimed as more than an observation: calibrate an alarm threshold and measure false alarms on in-distribution windows
-- [ ] Re-run `exp1` and `exp3` on the Jetson Cortex-A78AE boards and merge into Table `tab:engines`
-- [ ] Re-run `exp2` against any other ONNX Runtime provider that will be deployed (CUDA/TensorRT): a different provider is a different runtime
+- [x] Gate-node row of Table `tab:engines` from a Kafka replay on Jetson #2 (`exp6`)
+- [x] End-to-end latency measured over Wi-Fi (`exp7`, Table `tab:e2e`); a wired re-run was dropped because the inter-board link carries 3.4% of its bandwidth and the ceiling is the pure-Python Kafka client
+- [x] Classifier steady-state and cold-start figures repeated five times per backend on Jetson #2, 25 W mode (`exp8`); Tables `tab:engines` and `tab:coldstart` report mean ± SD
+
+Open before the chosen cycle:
+
+- [ ] Choose Cycle 1 (10 Dec 2026) or Cycle 2 (18 Feb 2027); register the abstract on HotCRP a week before the paper deadline
+- [ ] Wait for the Software Impacts decision before citing it: cite only once accepted, otherwise do not mention it (the two manuscripts stay independent and must not duplicate claims)
+- [ ] Decide whether the undecided-rate drift signal stays an observation (as now) or gets a calibrated alarm threshold with false-alarm rates on in-distribution windows
 - [ ] Decide whether the boundary prober should become part of `scripts/validate_parity.py`, the package's release gate
-- [ ] Run the wired-link end-to-end benchmark and fill the remaining `\ph{...}`
-- [ ] Repeat the steady-state/cold-start/parity measurements across multiple runs (the software's own acceptance criteria call for this; current numbers are a single run)
-- [ ] Verify target venue's page limit/template requirements once chosen; at 17 pages, Table `tab:parity` and Sect. 6.3 are the first cuts if 15 is the limit
-- [ ] Decide whether/how to cross-reference the parallel Software Impacts submission for the same software once that one is finalized, so the two don't duplicate claims
+- [ ] Only if a CUDA/TensorRT provider is ever deployed: re-run `exp2` against it (a different provider is a different runtime); not needed for the CPU-only deployment described

@@ -9,7 +9,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly as of this draft (20 pages: main text ends three lines into p. 18, references to p. 20; 0 undefined citations/references, no overfull boxes). That is exactly the DIMVA main-text limit; trim before adding anything.
+Compiles cleanly as of this draft (19 pages: main text ends on p. 17, references to p. 19; 0 undefined citations/references, no overfull boxes), about one page under the DIMVA main-text limit. The replay-parity table was folded into the prose of Sect. 3.3 to make room.
 
 ## TODO before submission
 

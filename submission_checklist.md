@@ -9,7 +9,8 @@ is capped at 100 words, so the form abstract drops "transparent" and "before
 deployment" from the 105-word PDF abstract. APC quoted at submission: EUR 880 list,
 45% geographic discount, EUR 396 excl. taxes, charged only on acceptance (the
 USD 960 figure in manuscript/submission/FORM_FIELDS.md was the pre-discount
-estimate). Track at submit.elsevier.com/SIMPAC/submissions.
+estimate). Manuscript number **SIMPAC-D-26-00222** (confirmation e-mail 2026-10-13). Track at
+https://www.editorialmanager.com/SIMPAC/ (author login, "Submissions Being Processed").
 
 ## Manuscript
 

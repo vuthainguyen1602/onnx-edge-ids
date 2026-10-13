@@ -9,7 +9,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly as of this draft (18 pages: main text ends on p. 16, references to p. 18; 0 undefined citations/references, no overfull boxes).
+Compiles cleanly as of this draft (19 pages: main text ends on p. 17, references to p. 19; 0 undefined citations/references, no overfull boxes).
 
 ## TODO before submission
 

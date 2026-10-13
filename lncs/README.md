@@ -23,7 +23,7 @@ Findings, all regenerable from `code/`:
 
 ## Code
 
-Experiment code is in [`code/`](code/): the traversals, the early-exit rule, the boundary prober, the result files quoted in the paper, and tests that run without the dataset. See [`code/README.md`](code/README.md). It reads the served forests from `../artifacts/` and a test pins its traversal to the packaged `NumpyInferenceEngine`, so the paper and the package cannot drift apart silently.
+Experiment code is in [`code/`](code/): the traversals, the early-exit rule, the boundary prober, the result files quoted in the paper, and tests that run without the dataset. See [`code/README.md`](code/README.md). It reads the served forests from `../artifacts/` and a test pins its traversal to the packaged `NumpyInferenceEngine`, so the paper and the package cannot drift apart silently. Since v0.4.0 the package's release gate (`../scripts/validate_parity.py`) runs the same probe construction, dataset-free, from `../src/onnx_edge_ids/boundary_probe.py`.
 
 The serving software itself is the rest of this repository (`../src/onnx_edge_ids/`, `../scripts/`). The block-lockstep traversal measured in the paper is the one shipped in `../src/onnx_edge_ids/numpy_engine.py` since commit `894238a`; the on-board figures in the paper predate it and describe the per-tree traversal.
 

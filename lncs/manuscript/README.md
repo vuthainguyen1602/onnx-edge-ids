@@ -37,5 +37,5 @@ Open before the chosen cycle:
 - [ ] Choose Cycle 1 (10 Dec 2026) or Cycle 2 (18 Feb 2027); register the abstract on HotCRP a week before the paper deadline
 - [ ] Wait for the Software Impacts decision before citing it: cite only once accepted, otherwise do not mention it (the two manuscripts stay independent and must not duplicate claims)
 - [ ] Decide whether the undecided-rate drift signal stays an observation (as now) or gets a calibrated alarm threshold with false-alarm rates on in-distribution windows
-- [ ] Decide whether the boundary prober should become part of `scripts/validate_parity.py`, the package's release gate
+- [x] Boundary prober is part of `scripts/validate_parity.py` since v0.4.0 (2026-10-13): `src/onnx_edge_ids/boundary_probe.py`, dataset-free, on by default; Sect. 3.3 and the Discussion say so, numbers from `validation/parity_boundary_m3_20261013.json`
 - [ ] Only if a CUDA/TensorRT provider is ever deployed: re-run `exp2` against it (a different provider is a different runtime); not needed for the CPU-only deployment described

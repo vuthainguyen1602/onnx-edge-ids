@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-10-13T17:44:37+0700",
+  "source": "2000 synthetic rows (lognormal, seed=0)",
+  "rows": 2000,
+  "batch_size": 20,
+  "label_agreement": 1.0,
+  "max_confidence_delta": 0.0,
+  "onnx_per_row_ms_mean": 0.0164235,
+  "onnx_per_row_ms_p95": 0.018612499999999997,
+  "numpy_per_row_ms_mean": 0.05160649999999999,
+  "numpy_per_row_ms_p95": 0.05711499999999999,
+  "boundary_probes": {
+    "probes": 287223,
+    "internal_nodes": 95741,
+    "distinct_feature_threshold_pairs": 815,
+    "fraction_reaching_node_float32": 0.9991957468587126,
+    "label_disagreements": 0,
+    "label_disagreements_by_variant": {
+      "on_threshold": 0,
+      "one_ulp_below": 0,
+      "one_ulp_above": 0
+    },
+    "max_confidence_delta": 4.172325134277344e-07
+  },
+  "passed": true
+}

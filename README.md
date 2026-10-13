@@ -43,7 +43,7 @@ The research context that exposed the software need is that an IDS model can be 
 - `artifacts/`: the served ONNX and NumPy artifacts plus the feature-column metadata.
 - `scripts/export_numpy.py`: convert an ONNX tree-ensemble artifact to the NumPy format.
 - `scripts/export_artifacts.sh`: create the NumPy artifact from an ONNX artifact.
-- `scripts/validate_parity.py`: check that the NumPy artifact reproduces the ONNX artifact; exits non-zero outside tolerance.
+- `scripts/validate_parity.py`: check that the NumPy artifact reproduces the ONNX artifact on replayed rows and on a boundary probe of every split threshold; exits non-zero outside tolerance.
 - `scripts/init_topics.py`: create Kafka input/suspicious topics.
 - `scripts/csv_producer.py`: replay CICIDS2017-derived CSV flow rows to Kafka at a target rate.
 - `scripts/gate_node.py`: Jetson #1 anomaly gate with Kafka forwarding.
@@ -73,13 +73,36 @@ python scripts/smoke_predict.py --engine onnx --model artifacts/ids_rf.onnx
 python scripts/smoke_predict.py --engine numpy --model artifacts/ids_rf_numpy.npz
 ```
 
-Validate that the two backends agree before deploying. This is the check the
-manuscript reports, and it fails the command rather than only printing a warning:
+Validate that the two backends agree before deploying. The script fails the
+command rather than only printing a warning, and it runs two checks:
+
+- replay: both backends over the same rows (a replay CSV, or synthetic rows
+  when `--csv` is omitted), reporting label agreement and the largest
+  confidence difference;
+- boundary probes (on by default, `--no-boundary-probes` to skip): one row
+  per internal node of the forest, routed to that node and placed exactly on
+  its split threshold and one float32 step either side. The probes are built
+  from the NumPy artifact alone, so this check needs no dataset. For the
+  shipped forest that is 287,223 probes over 815 distinct feature/threshold
+  pairs, 99.9% of which reach their node; it takes a few seconds for ONNX
+  Runtime and about half a minute for the NumPy engine on a laptop. Replayed
+  traffic almost never sits on a threshold, which is the only place two tree
+  runtimes can disagree, so whether the replay check catches a fallback that
+  scales or compares in the wrong precision depends on which rows happened to
+  be sampled; the probes exercise every threshold, so they catch it every time.
 
 ```bash
 python scripts/validate_parity.py \
   --csv /path/to/replay_cicids2017.csv --rows 2000 \
   --report-json results/parity_report.json
+```
+
+The package's own tests (no dataset needed) cover the probe construction and
+the parity of the shipped artifacts:
+
+```bash
+pip install pytest
+pytest tests/
 ```
 
 ## Jetson #2 Minimal Classifier Test

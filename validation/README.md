@@ -1,5 +1,11 @@
 # Artifact validation records
 
+`parity_boundary_m3_20261013.json` is the first run of the release gate with the
+boundary probes (v0.4.0, Apple M3, NumPy 2.5.3, ONNX Runtime 1.30.0): 2,000
+synthetic replay rows plus 287,223 boundary probes (95,741 internal nodes x 3
+values, 815 distinct feature/threshold pairs, 99.92% reaching their node under
+float32), 0 label disagreements, maximum confidence difference 4.2e-7, 16 s.
+
 `parity_hosts_20261013.json` collects the `scripts/validate_parity.py` reports
 quoted by the Software Impacts article (Table "Artifact validation"). The same
 ONNX artifact (`artifacts/ids_rf.onnx`, md5 `60de6235…`) and its NumPy export

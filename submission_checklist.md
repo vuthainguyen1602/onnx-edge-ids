@@ -1,5 +1,16 @@
 # Software Impacts Submission Checklist
 
+**Submitted 2026-10-13 13:37 (ICT)** via submit.elsevier.com/SIMPAC (Elsevier's new
+submission portal; draft id 78592ee0-8922-4f41-950a-99b331889562). Article type
+Original Software, sole corresponding author, no competing interests, no funding,
+ethics "not applicable". Files: ONNX-EdgeIDS_manuscript.pdf, highlights.docx,
+cover_letter.docx (optional), Figure_1.pdf (optional). The portal's abstract box
+is capped at 100 words, so the form abstract drops "transparent" and "before
+deployment" from the 105-word PDF abstract. APC quoted at submission: EUR 880 list,
+45% geographic discount, EUR 396 excl. taxes, charged only on acceptance (the
+USD 960 figure in manuscript/submission/FORM_FIELDS.md was the pre-discount
+estimate). Track at submit.elsevier.com/SIMPAC/submissions.
+
 ## Manuscript
 
 - [x] Short descriptive paper, roughly three pages.

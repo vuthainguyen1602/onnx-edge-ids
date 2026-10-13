@@ -38,6 +38,7 @@ python lncs/code/experiments/exp1_lockstep_benchmark.py --data $DATA   # Table: 
 python lncs/code/experiments/exp2_boundary_parity.py    --data $DATA   # Table: boundary-directed parity
 python lncs/code/experiments/exp3_exact_early_exit.py   --data $DATA   # Table: exact early exit
 python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: distribution shift
+python lncs/code/experiments/exp9_drift_alarm.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: undecided-rate drift alarm
 python lncs/code/experiments/exp5_generalization.py --train /path/to/train_data.parquet --test $DATA   # Table: other forests, other converters
 python lncs/code/experiments/exp5b_ort_label_regression.py --model lncs/code/results/exp5_models/sklearn_rf.onnx --data $DATA   # ONNX Runtime version sweep
 ```
@@ -51,6 +52,7 @@ python lncs/code/experiments/exp5b_ort_label_regression.py --model lncs/code/res
 | `exp2b` | Does the path-satisfying construction earn its keep over writing boundary values into unrouted random rows? | unrouted probes at the same budget: 133 flips vs 328 (2.5x fewer), 27% of internal nodes exercised vs 99.9% reached; per exercising probe the densities agree |
 | `exp3` | How many of the 200 trees does traffic need if labels must stay identical? | 104.1 on gate-forwarded flows, 1.9x on Jetson #2 (2.05x on M3), 50,548/50,548 labels identical |
 | `exp4` | With model and gate frozen, what breaks on CSE-CIC-IDS2018 traffic and what does not? | F1 0.98 to 0.24, gate attack recall 0.72 to 0.01; float32 parity 0 flips and early exit exact on 477,771 shifted flows; undecided-at-first-check 4.8% to 28.2% |
+| `exp9` | Can the undecided rate be calibrated as a label-free drift alarm, and at what window size? | threshold = max over calibration windows: W=10,000 flows: 6.9%, 0/22 false alarms held out, 47/47 shifted windows detected; W=2,000: 0/112 and 140/238; 500 gate-forwarded flows: 3.4%, 0/51, 23/23 |
 | `exp5` | Do the probes generalize to other trainers and to converter parity (framework vs ONNX Runtime)? | float32 traversal 0 flips on every forest; probes 24 to 169x denser than replay where divergence is rare (sklearn RF, LightGBM, deployed RF), 3 to 7x where replay already sees 0.2 to 0.3% flips (HGB, XGBoost); trees/pair 72 (deployed RF, 32 bins) vs 4 (255 bins) vs 2 (exact splits) |
 | `exp5b` | Does the ONNX Runtime release change the labels of a stock skl2onnx RandomForest export? | 1.26.0 and 1.27.0 label attack whenever P(attack) > 0 instead of > 0.5: 380,842 of 447,275 flows relabelled; 1.19.2 to 1.25.1 and 1.28.0 to 1.30.0 agree with scikit-learn |
 | `exp6` | What does the gate node cost on the board while it serves a Kafka replay? | Jetson #2, batch 100: 21,191 rows/s inference, p95 0.0569 ms/row, 123.6 MB RSS, 5.25 W board power (4.75 W idle) |

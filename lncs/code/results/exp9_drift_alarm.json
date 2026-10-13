@@ -1,0 +1,210 @@
+{
+  "first_check_trees": 104,
+  "note": [
+    "captures' label phases (runs of a few dozen rows of one label), so a window of W",
+    "consecutive rows is a traffic segment with its own attack mix (2% to 22% attacks",
+    "per 10,000-row window in 2017), not a uniform random draw. That mix variation is",
+    "what the in-distribution spread measures and what a threshold has to absorb. The",
+    "windows are still not timed traffic, and the calibration covers one shift."
+  ],
+  "overall_undecided_rate": {
+    "in_distribution": {
+      "all": 0.0478,
+      "forwarded": 0.0072
+    },
+    "shifted": {
+      "all": 0.2818,
+      "forwarded": 0.6805
+    }
+  },
+  "all_traffic": {
+    "500": {
+      "windows_calibration": 447,
+      "windows_held_out": 447,
+      "windows_shifted": 955,
+      "in_distribution_rate_min_median_max": [
+        0.0,
+        0.014,
+        0.316
+      ],
+      "shifted_rate_min_median_max": [
+        0.0,
+        0.176,
+        0.982
+      ],
+      "thresholds": {
+        "max_of_calibration_windows": {
+          "threshold": 0.292,
+          "false_alarm_rate_held_out": 0.0045,
+          "false_alarms_held_out": "2/447",
+          "detection_rate_shifted": 0.3906,
+          "detections_shifted": "373/955"
+        },
+        "mean_plus_6sd": {
+          "threshold": 0.45527,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/447",
+          "detection_rate_shifted": 0.2754,
+          "detections_shifted": "263/955"
+        }
+      }
+    },
+    "2000": {
+      "windows_calibration": 111,
+      "windows_held_out": 112,
+      "windows_shifted": 238,
+      "in_distribution_rate_min_median_max": [
+        0.0,
+        0.0605,
+        0.121
+      ],
+      "shifted_rate_min_median_max": [
+        0.0,
+        0.2298,
+        0.879
+      ],
+      "thresholds": {
+        "max_of_calibration_windows": {
+          "threshold": 0.121,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/112",
+          "detection_rate_shifted": 0.5882,
+          "detections_shifted": "140/238"
+        },
+        "mean_plus_6sd": {
+          "threshold": 0.27238,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/112",
+          "detection_rate_shifted": 0.4664,
+          "detections_shifted": "111/238"
+        }
+      }
+    },
+    "10000": {
+      "windows_calibration": 22,
+      "windows_held_out": 22,
+      "windows_shifted": 47,
+      "in_distribution_rate_min_median_max": [
+        0.0307,
+        0.0486,
+        0.0692
+      ],
+      "shifted_rate_min_median_max": [
+        0.1828,
+        0.2892,
+        0.3728
+      ],
+      "thresholds": {
+        "max_of_calibration_windows": {
+          "threshold": 0.0692,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/22",
+          "detection_rate_shifted": 1.0,
+          "detections_shifted": "47/47"
+        },
+        "mean_plus_6sd": {
+          "threshold": 0.11314,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/22",
+          "detection_rate_shifted": 1.0,
+          "detections_shifted": "47/47"
+        }
+      }
+    }
+  },
+  "gate_forwarded": {
+    "100": {
+      "windows_calibration": 252,
+      "windows_held_out": 253,
+      "windows_shifted": 119,
+      "in_distribution_rate_min_median_max": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "shifted_rate_min_median_max": [
+        0.03,
+        0.82,
+        1.0
+      ],
+      "thresholds": {
+        "max_of_calibration_windows": {
+          "threshold": 0.1,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/253",
+          "detection_rate_shifted": 0.8992,
+          "detections_shifted": "107/119"
+        },
+        "mean_plus_6sd": {
+          "threshold": 0.1197,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/253",
+          "detection_rate_shifted": 0.8908,
+          "detections_shifted": "106/119"
+        }
+      }
+    },
+    "500": {
+      "windows_calibration": 50,
+      "windows_held_out": 51,
+      "windows_shifted": 23,
+      "in_distribution_rate_min_median_max": [
+        0.0,
+        0.002,
+        0.034
+      ],
+      "shifted_rate_min_median_max": [
+        0.5,
+        0.722,
+        0.918
+      ],
+      "thresholds": {
+        "max_of_calibration_windows": {
+          "threshold": 0.034,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/51",
+          "detection_rate_shifted": 1.0,
+          "detections_shifted": "23/23"
+        },
+        "mean_plus_6sd": {
+          "threshold": 0.06427,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/51",
+          "detection_rate_shifted": 1.0,
+          "detections_shifted": "23/23"
+        }
+      }
+    },
+    "2000": {
+      "windows_calibration": 12,
+      "windows_held_out": 13,
+      "windows_shifted": 5,
+      "in_distribution_rate_min_median_max": [
+        0.003,
+        0.007,
+        0.0135
+      ],
+      "shifted_rate_min_median_max": [
+        0.6605,
+        0.6925,
+        0.725
+      ],
+      "thresholds": {
+        "max_of_calibration_windows": {
+          "threshold": 0.0135,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/13",
+          "detection_rate_shifted": 1.0,
+          "detections_shifted": "5/5"
+        },
+        "mean_plus_6sd": {
+          "threshold": 0.02167,
+          "false_alarm_rate_held_out": 0.0,
+          "false_alarms_held_out": "0/13",
+          "detection_rate_shifted": 1.0,
+          "detections_shifted": "5/5"
+        }
+      }
+    }
+  }
+}

@@ -38,6 +38,8 @@ removed.
       v0.3.0 (2026-10-11, block-lockstep NumPy, --latency-csv, lncs/ code):
       10.5281/zenodo.23299232, with ORCID, affiliation and keywords from
       .zenodo.json. The Software Impacts article still describes v0.2.0.
+      v0.4.0 (2026-10-13, boundary probes in the parity release gate, tests/):
+      10.5281/zenodo.23339298.
 
 ## Validation Data Measured
 

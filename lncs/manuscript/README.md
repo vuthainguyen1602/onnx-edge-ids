@@ -9,7 +9,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly as of this draft (19 pages: main text ends on p. 17, references to p. 19; 0 undefined citations/references, no overfull boxes).
+Compiles cleanly as of this draft (20 pages: main text ends three lines into p. 18, references to p. 20; 0 undefined citations/references, no overfull boxes). That is exactly the DIMVA main-text limit; trim before adding anything.
 
 ## TODO before submission
 
@@ -36,6 +36,6 @@ Open before the chosen cycle:
 
 - [ ] Choose Cycle 1 (10 Dec 2026) or Cycle 2 (18 Feb 2027); register the abstract on HotCRP a week before the paper deadline
 - [ ] Wait for the Software Impacts decision before citing it: cite only once accepted, otherwise do not mention it (the two manuscripts stay independent and must not duplicate claims)
-- [ ] Decide whether the undecided-rate drift signal stays an observation (as now) or gets a calibrated alarm threshold with false-alarm rates on in-distribution windows
+- [x] Undecided-rate drift alarm calibrated (`exp9`, 2026-10-13, Table `tab:alarm`): max-over-calibration-windows threshold, 0 false alarms on held-out 2017 windows, 47/47 shifted windows at W=10,000, 23/23 on 500 forwarded flows; still one shift, windows are consecutive split rows
 - [x] Boundary prober is part of `scripts/validate_parity.py` since v0.4.0 (2026-10-13): `src/onnx_edge_ids/boundary_probe.py`, dataset-free, on by default; Sect. 3.3 and the Discussion say so, numbers from `validation/parity_boundary_m3_20261013.json`
 - [ ] Only if a CUDA/TensorRT provider is ever deployed: re-run `exp2` against it (a different provider is a different runtime); not needed for the CPU-only deployment described

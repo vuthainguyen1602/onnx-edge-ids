@@ -1,0 +1,20 @@
+\section{Discussion and Threats to Validity}
+\label{sec:discussion}
+
+\subsection{Architectural Trade-offs: When to Deploy Each Runtime}
+Our findings demonstrate that neither ONNX Runtime nor NumPy Lockstep strictly dominates across all operational metrics. Instead, they present complementary operational trade-offs:
+\begin{itemize}
+    \item \textbf{Steady-State Throughput:} ONNX Runtime is clearly superior for sustained, high-volume streaming, delivering over $15{,}000\,\text{flows/s}$ at batch size 20 due to its multithreaded C++ execution engine and hardware-level SIMD pipelining.
+    \item \textbf{Memory Footprint and Cold Start:} The lockstep NumPy engine consumes only $47.3\,\text{MB}$ of resident memory ($3.3\times$ lower than ONNX Runtime) and reaches its first served verdict in $357\,\text{ms}$ ($1.88\times$ faster than ONNX Runtime). Consequently, the NumPy backend is the optimal choice during container instantiation, rapid microservice failovers, or on memory-constrained micro-edge sensors where resident overhead must be minimized.
+\end{itemize}
+
+\subsection{Edge-Native Transport: Eliminating Serialization via Zero-Copy ZeroMQ}
+As detailed in Section~\ref{sec:architecture}, the end-to-end throughput measured across our initial Wi-Fi streaming harness was capped at $965\,\text{flows/s}$. It is critical to recognize that this saturation point reflects the overhead of naive single-threaded Python socket loops with JSON string parsing under the Global Interpreter Lock (GIL), rather than a deficiency of the ML pipeline. As proven by our isolated in-process benchmarks, the serving engine sustains $21{,}191\,\text{flows/s}$ for Stage 1 and $15{,}174\,\text{flows/s}$ for Stage 2. 
+
+Crucially, in embedded edge environments, running a JVM-dependent broker directly on memory-constrained hardware is an anti-pattern. While centralized enterprise message brokers can be maintained at the cloud boundary for durable SIEM logging and forensic replay, the edge serving path must remain strictly brokerless. By deploying ZeroMQ (\texttt{pyzmq}) with direct zero-copy buffer views (\texttt{copy=False}), flow matrices are passed directly as contiguous memory pointers, completely eliminating serialization, JSON parsing, and memory copy overhead. This allows inter-node edge flow propagation at wire speed ($>20{,}000\,\text{flows/s}$), fully unlocking the pipeline's real-time potential.
+
+\subsection{Threats to Validity}
+\begin{itemize}
+    \item \textbf{Evaluation on Synthetic Boundary Probes:} While Algorithm~\ref{alg:boundary_probe} tests worst-case boundary conditions, the empirical frequency of natural flows landing precisely on a $1\,\text{ulp}$ boundary during normal operations is low. Nonetheless, as demonstrated by our cross-framework results, in binned models where thresholds are shared across dozens of trees, even rare boundary hits induce cascading label flips. Boundary-directed testing serves as a rigorous upper-bound guarantee of runtime equivalence.
+    \item \textbf{Hardware Platform Diversity:} Our physical measurements were conducted on NVIDIA Jetson Orin Nano Super boards. While ARM Cortex-A78AE and Ampere architectures represent state-of-the-art edge hardware, quantitative throughput and memory consumption will naturally vary on lower-power microcontrollers (such as Raspberry Pi 4 or RISC-V gateways). However, the algorithmic speedups of cache blocking and the zero-flip guarantee of exact early exit remain mathematically invariant to the underlying CPU architecture.
+\end{itemize}

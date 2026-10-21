@@ -1,0 +1,48 @@
+%% Elsevier CAS Double-Column Template for Journal Submission
+%% Target: Computers & Security (COSE) / Future Generation Computer Systems (FGCS) / JSA
+\documentclass[a4paper,fleqn]{cas-dc}
+\input{preamble.tex}
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{Boundary-Directed Parity Testing for Edge Intrusion Detection}
+\shortauthors{Thai Nguyen Vu}
+
+\title[mode=title]{Two Runtimes, One Verdict: Boundary-Directed Parity Testing and Cache-Blocked Lockstep Traversal for Tree-Ensemble Edge Intrusion Detection}
+
+\author[1]{Thai {Nguyen Vu}}[orcid=0009-0001-9714-1031,
+ suffix={\,\href{https://orcid.org/0009-0001-9714-1031}%
+   {\normalfont\scriptsize https://orcid.org/0009-0001-9714-1031}}]
+\cormark[1]
+\ead{thaivn_ph@utc.edu.vn}
+\ead[url]{https://orcid.org/0009-0001-9714-1031}
+\credit{Conceptualization, Methodology, Software, Formal analysis, Validation, Writing --- original draft, Writing --- review \& editing, Visualization}
+
+\affiliation[1]{organization={Campus in Ho Chi Minh City, University of Transport and Communications},
+                city={Ho Chi Minh City},
+                country={Vietnam}}
+
+\cortext[1]{Corresponding author}
+
+\input{sections/00_abstract.tex}
+
+\maketitle
+
+\input{sections/01_introduction.tex}
+\input{sections/02_related_work.tex}
+\input{sections/03_architecture_testbed.tex}
+\input{sections/04_methodology.tex}
+\input{sections/05_experimental_evaluation.tex}
+\input{sections/06_generalization.tex}
+\input{sections/07_discussion.tex}
+\input{sections/08_conclusion.tex}
+
+\printcredits
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

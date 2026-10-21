@@ -26,11 +26,15 @@ from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine
 
 def main():
     parser = argparse.ArgumentParser(description="ONNX-EdgeIDS Jetson classifier node")
-    parser.add_argument("--bootstrap", required=True, help="Kafka bootstrap server, e.g. <mac-ip>:9092")
+    parser.add_argument("--transport", choices=["zeromq", "kafka"], default="zeromq",
+                        help="Transport protocol: 'zeromq' (zero-copy edge native) or 'kafka'")
+    parser.add_argument("--zmq-endpoint", default="tcp://*:5556",
+                        help="ZeroMQ bind endpoint when transport=zeromq")
+    parser.add_argument("--bootstrap", default="", help="Kafka bootstrap server, e.g. <mac-ip>:9092")
     parser.add_argument("--topic", default="ids-suspicious-flow")
     parser.add_argument("--group-id", default="onnx-edge-ids-classifier")
     parser.add_argument("--engine", choices=["onnx", "numpy"], default="onnx")
-    parser.add_argument("--model", default=str(ROOT / "artifacts" / "ids_rf.onnx"))
+    parser.add_argument("--model", default="")
     parser.add_argument("--features", default=str(ROOT / "artifacts" / "feature_columns.json"))
     parser.add_argument("--batch-size", type=int, default=20)
     parser.add_argument("--linger-ms", type=float, default=1000.0,
@@ -47,7 +51,14 @@ def main():
         parser.error("--batch-size must be at least 1")
 
     builder = FeatureMatrixBuilder(args.features)
-    engine = create_inference_engine(args.engine, args.model)
+    model_path = args.model
+    if not model_path:
+        if args.engine == "numpy":
+            model_path = str(ROOT / "artifacts" / "ids_rf_numpy.npz")
+        else:
+            model_path = str(ROOT / "artifacts" / "ids_rf.onnx")
+
+    engine = create_inference_engine(args.engine, model_path)
     metrics_file = None
     metrics_writer = None
     if args.metrics_csv:
@@ -76,6 +87,60 @@ def main():
         latency_file = latency_path.open("w", newline="")
         latency_writer = csv.writer(latency_file)
         latency_writer.writerow(["sent_at", "forwarded_at", "verdict_at", "prediction"])
+
+    if args.transport == "zeromq":
+        import zmq
+        ctx = zmq.Context()
+        sock = ctx.socket(zmq.PULL)
+        sock.bind(args.zmq_endpoint)
+        print(
+            f"[OK] ZeroMQ Classifier Node bound to {args.zmq_endpoint} | engine: {args.engine}"
+        )
+        total = 0
+        started_all = time.time()
+        try:
+            while True:
+                msg = sock.recv(copy=False)
+                started = time.time()
+                # Zero-copy view into contiguous float32 buffer
+                x_batch = np.frombuffer(msg.buffer, dtype=np.float32).reshape(-1, len(builder.feature_columns))
+                result = engine.predict_batch(x_batch)
+                verdict_at = time.time()
+                total += result.stats["batch_size"]
+                wall_ms = (time.time() - started) * 1000.0
+                throughput = total / max(time.time() - started_all, 1e-9)
+                print(
+                    f"[{total:,}] engine={result.stats['inference_time_ms']:.3f}ms "
+                    f"wall={wall_ms:.3f}ms rate={throughput:.1f}/s "
+                    f"attacks={result.stats['attacks_found']}/{result.stats['batch_size']}"
+                )
+                if metrics_writer:
+                    metrics_writer.writerow({
+                        "timestamp": time.time(),
+                        "total_messages": total,
+                        "batch_size": result.stats["batch_size"],
+                        "engine_ms": result.stats["inference_time_ms"],
+                        "wall_ms": round(wall_ms, 3),
+                        "avg_ms": result.stats["avg_time_ms"],
+                        "attacks_found": result.stats["attacks_found"],
+                        "throughput_since_start": round(throughput, 3),
+                    })
+                    metrics_file.flush()
+                if args.max_messages and total >= args.max_messages:
+                    return
+        finally:
+            sock.close()
+            ctx.term()
+            if metrics_file:
+                metrics_file.close()
+            if latency_file:
+                latency_file.close()
+
+    if not args.bootstrap:
+        print("[ERROR] --bootstrap is required when transport=kafka")
+        sys.exit(1)
+
+    from kafka import KafkaConsumer
     consumer = KafkaConsumer(
         args.topic,
         bootstrap_servers=args.bootstrap,
@@ -86,7 +151,7 @@ def main():
     )
 
     print(
-        f"[OK] Topic: {args.topic} | engine: {args.engine} | "
+        f"[OK] Kafka Topic: {args.topic} | engine: {args.engine} | "
         f"batch: {args.batch_size} | linger: {args.linger_ms:.0f}ms"
     )
     total = 0

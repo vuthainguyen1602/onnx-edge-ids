@@ -101,9 +101,12 @@ The package's own tests (no dataset needed) cover the probe construction and
 the parity of the shipped artifacts:
 
 ```bash
-pip install pytest
+pip install -e ".[onnx]" pytest
 pytest tests/
 ```
+
+CI (`.github/workflows/ci.yml`) runs these tests and the full parity gate on
+synthetic rows on every push and pull request.
 
 ## Jetson #2 Minimal Classifier Test
 
@@ -113,8 +116,7 @@ Copy this repo to Jetson #2, copy `artifacts/ids_rf.onnx` and
 ```bash
 python -m venv venv
 source venv/bin/activate
-pip install -e .
-pip install kafka-python
+pip install -e ".[kafka]"
 pip install -r requirements_jetson_onnx.txt
 
 python scripts/classifier_node.py \
@@ -146,6 +148,6 @@ python scripts/classifier_node.py \
 
 ## Citation And License
 
-The current release is `v0.3.0`, under the MIT license.
-After the first public release is archived, update `CITATION.cff` and the
-manuscript with the archive DOI.
+The current release is `v0.4.0`, under the MIT license, archived on Zenodo
+(concept DOI [10.5281/zenodo.22731927](https://doi.org/10.5281/zenodo.22731927);
+per-version DOIs in `CITATION.cff`).

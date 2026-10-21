@@ -43,6 +43,8 @@ def main():
                         help="Optional CSV path: per message, the producer's _timestamp, the "
                              "gate's _forwarded_at and the verdict time (each host's own clock).")
     args = parser.parse_args()
+    if args.batch_size < 1:
+        parser.error("--batch-size must be at least 1")
 
     builder = FeatureMatrixBuilder(args.features)
     engine = create_inference_engine(args.engine, args.model)

@@ -39,7 +39,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine
+from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine, load_feature_columns
 from onnx_edge_ids.boundary_probe import VARIANTS, build_probes, probes_reaching_node
 
 
@@ -102,7 +102,7 @@ def main():
                     help="Batch size used for the boundary probes.")
     args = ap.parse_args()
 
-    columns = json.load(open(args.features))
+    columns = load_feature_columns(args.features)
     rows, source = load_rows(args.csv, columns, args.rows, args.seed)
     matrix = FeatureMatrixBuilder(args.features).build(rows)
 

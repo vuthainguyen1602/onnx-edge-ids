@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: pip install -e ".[onnx]" pytest
+      - name: Tests
+        run: pytest -q tests lncs/code/tests
+      - name: Parity release gate (synthetic replay + boundary probes)
+        run: python scripts/validate_parity.py --rows 2000 --report-json results/parity_report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parity-report-py${{ matrix.python-version }}
+          path: results/parity_report.json
+          if-no-files-found: ignore

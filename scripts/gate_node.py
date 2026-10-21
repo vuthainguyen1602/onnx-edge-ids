@@ -52,7 +52,13 @@ class AnomalyGate:
 
 def main():
     parser = argparse.ArgumentParser(description="ONNX-EdgeIDS anomaly gate node")
-    parser.add_argument("--bootstrap", required=True)
+    parser.add_argument("--transport", choices=["zeromq", "kafka"], default="zeromq",
+                        help="Transport protocol: 'zeromq' (zero-copy edge native) or 'kafka'")
+    parser.add_argument("--zmq-in", default="tcp://*:5555",
+                        help="ZeroMQ bind endpoint for incoming network traffic")
+    parser.add_argument("--zmq-out", default="tcp://localhost:5556",
+                        help="ZeroMQ connect endpoint to forward suspicious flows to classifier")
+    parser.add_argument("--bootstrap", default="", help="Kafka bootstrap server, e.g. <mac-ip>:9092")
     parser.add_argument("--input-topic", default="ids-network-flow")
     parser.add_argument("--output-topic", default="ids-suspicious-flow")
     parser.add_argument("--group-id", default="onnx-edge-ids-gate")
@@ -75,6 +81,57 @@ def main():
         parser.error("--batch-size must be at least 1")
 
     gate = AnomalyGate(args.features, args.model, args.scaler, args.threshold)
+
+    if args.transport == "zeromq":
+        import zmq
+        ctx = zmq.Context()
+        sock_in = ctx.socket(zmq.PULL)
+        sock_in.bind(args.zmq_in)
+
+        sock_out = ctx.socket(zmq.PUSH)
+        sock_out.connect(args.zmq_out)
+
+        print(
+            f"[OK] ZeroMQ Gate Node listening on {args.zmq_in}, forwarding to {args.zmq_out} "
+            f"| threshold={gate.threshold:.6f}"
+        )
+        total = 0
+        forwarded = 0
+        try:
+            while True:
+                msg = sock_in.recv(copy=False)
+                t0 = time.perf_counter()
+                x = np.frombuffer(msg.buffer, dtype=np.float32).reshape(-1, len(gate.builder.feature_columns))
+                x_scaled = gate.scaler.transform(x)
+                x_hat = gate.model.predict(x_scaled)
+                if x_hat.ndim == 1:
+                    x_hat = x_hat.reshape(-1, x_scaled.shape[1])
+                mse = np.mean((x_scaled - x_hat) ** 2, axis=1)
+                is_anomaly = (mse >= gate.threshold)
+                
+                x_suspicious = x[is_anomaly]
+                if len(x_suspicious) > 0:
+                    sock_out.send(x_suspicious, copy=False)
+                    forwarded += len(x_suspicious)
+                
+                total += len(x)
+                gate_ms = (time.perf_counter() - t0) * 1000.0
+                print(
+                    f"[{total:,}] gate={gate_ms:.3f}ms "
+                    f"forwarded={forwarded:,}/{total:,} ({forwarded / total:.2%})"
+                )
+                if args.max_messages and total >= args.max_messages:
+                    return
+        finally:
+            sock_in.close()
+            sock_out.close()
+            ctx.term()
+
+    if not args.bootstrap:
+        print("[ERROR] --bootstrap is required when transport=kafka")
+        sys.exit(1)
+
+    from kafka import KafkaConsumer, KafkaProducer
     consumer = KafkaConsumer(
         args.input_topic,
         bootstrap_servers=args.bootstrap,
@@ -93,7 +150,7 @@ def main():
     )
 
     print(
-        f"[OK] Gate input={args.input_topic} output={args.output_topic} "
+        f"[OK] Kafka Gate input={args.input_topic} output={args.output_topic} "
         f"batch={args.batch_size} threshold={gate.threshold:.6f}"
     )
     total = 0

@@ -1,0 +1,21 @@
+{
+  "rows": 447275,
+  "tolerance": 1e-05,
+  "replay_rows": 2000,
+  "float32": {
+    "label_flips": 0,
+    "rows_over_tolerance": 0,
+    "rows_tripping_gate": 0,
+    "max_confidence_delta": 4.76837158203125e-07,
+    "prob_replay_passes_labels_only": 1.0,
+    "prob_replay_passes_labels_and_confidence": 1.0
+  },
+  "float64": {
+    "label_flips": 15,
+    "rows_over_tolerance": 6962,
+    "rows_tripping_gate": 6962,
+    "max_confidence_delta": 0.26481678773416206,
+    "prob_replay_passes_labels_only": 0.935126041878245,
+    "prob_replay_passes_labels_and_confidence": 2.364651488948707e-14
+  }
+}

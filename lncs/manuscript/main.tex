@@ -54,6 +54,7 @@
 \renewcommand{\floatpagefraction}{0.85}
 \setlength{\floatsep}{8pt plus 2pt minus 2pt}
 \setlength{\textfloatsep}{10pt plus 4pt minus 3pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
 \setlength{\emergencystretch}{1.5em}
 \providecommand{\babelshorthandoff}[1]{}
 
@@ -112,7 +113,7 @@ The framework-agnostic ONNX-to-NumPy exporter, the on-board measurements of both
 
 \subsection{Two-Stage Pipeline with a Swappable Classifier}
 
-Fig.~\ref{fig:architecture} shows the deployment. A coordinator host runs Kafka and replays CICIDS2017-derived flow records onto an input topic at a configurable rate. Jetson~\#1 runs the anomaly gate, a scikit-learn autoencoder and scaler trained offline (out of scope here). Flows whose reconstruction error clears a calibrated threshold are forwarded, with their anomaly score attached, to a suspicious-flow topic. Jetson~\#2 consumes that topic and classifies each flow with a 200-tree, depth-15 random forest trained in earlier work with a histogram-binning trainer and exported from its saved node table without retraining, so the board serves exactly the model selected offline. Both nodes serve a batch once it reaches a target size or once a linger timeout has elapsed since its first record, whichever comes first, so a thin stream still gets bounded latency instead of waiting to fill a batch.
+Fig.~\ref{fig:architecture} shows the deployment. A coordinator host runs Kafka~\cite{kreps2011kafka} and replays CICIDS2017-derived flow records onto an input topic at a configurable rate. Jetson~\#1 runs the anomaly gate, a scikit-learn autoencoder and scaler trained offline (out of scope here). Flows whose reconstruction error clears a calibrated threshold are forwarded, with their anomaly score attached, to a suspicious-flow topic. Jetson~\#2 consumes that topic and classifies each flow with a 200-tree, depth-15 random forest trained in earlier work with a histogram-binning trainer and exported from its saved node table without retraining, so the board serves exactly the model selected offline. Both nodes serve a batch once it reaches a target size or once a linger timeout has elapsed since its first record, whichever comes first, so a thin stream still gets bounded latency instead of waiting to fill a batch.
 
 \begin{figure}[t]
   \centering
@@ -127,20 +128,21 @@ Fig.~\ref{fig:architecture} shows the deployment. A coordinator host runs Kafka 
   ]
     \node[pc]  (pc)  at (0, 0.0)   {\textbf{Coordinator (Kafka)}\\[2pt]
         CICIDS2017-derived replay $\rightarrow$ \texttt{ids-network-flow}};
-    \node[jet] (j1)  at (-4.2,-3.4) {\textbf{Jetson Orin Nano Super \#1}\\[2pt] anomaly gate\\[2pt]
+    \node[jet] (j1)  at (-4.7,-3.4) {\textbf{Jetson Orin Nano Super \#1}\\[2pt] anomaly gate\\[2pt]
         sklearn autoencoder + scaler\\ (joblib artifacts)};
-    \node[jet] (j2)  at ( 4.2,-3.4) {\textbf{Jetson Orin Nano Super \#2}\\[2pt] classifier\\[2pt]
+    \node[jet] (j2)  at ( 4.7,-3.4) {\textbf{Jetson Orin Nano Super \#2}\\[2pt] classifier\\[2pt]
         feature-matrix builder $\rightarrow$\\ inference-engine contract};
-    \node[eng] (onnx)  at (2.9,-5.9) {ONNX Runtime\\ (\texttt{.onnx})};
-    \node[eng] (numpy) at (5.5,-5.9) {NumPy engine\\ (\texttt{.npz})};
+    \node[eng] (onnx)  at (3.4,-5.9) {ONNX Runtime\\ (\texttt{.onnx})};
+    \node[eng] (numpy) at (6.0,-5.9) {NumPy engine\\ (\texttt{.npz})};
     \draw[arr] (j2.south -| onnx)  -- (onnx.north);
     \draw[arr] (j2.south -| numpy) -- (numpy.north);
-    \node[lbl] at (4.2,-6.8) {one flag: \texttt{--engine onnx\,|\,numpy}};
+    \node[lbl] at (4.7,-6.8) {one flag: \texttt{--engine onnx\,|\,numpy}};
 
-    \draw[arr] (pc.south -| j1) -- node[lbl]{ids-network-flow} (j1.north);
-    \draw[arr] (j1.east) -- node[lbl]{ids-suspicious-flow\\ (anomaly score attached)} (j2.west);
+    \draw[arr] (pc.south -| j1) -- node[left=3pt, font=\footnotesize, text=accBlue!75!black]{\texttt{ids-network-flow}} (j1.north);
+    \draw[arr] (j1.east) -- node[above=2pt, font=\footnotesize, text=accBlue!75!black]{\texttt{ids-suspicious-flow}}
+                            node[below=2pt, font=\scriptsize, text=gray!60!black]{(anomaly score attached)} (j2.west);
   \end{tikzpicture}}
-  \caption{Two-stage Kafka pipeline: gate on Jetson~\#1, classifier on Jetson~\#2 with two backends behind one contract, selected by a single flag. This minimal toolkit prints per-batch metrics and an optional CSV; the PostgreSQL/alerting/Grafana stack of the earlier deployment work is out of scope here.}
+  \caption{Two-stage Kafka pipeline architecture: anomaly gate on Jetson~\#1 and swappable classifier on Jetson~\#2.}
   \label{fig:architecture}
 \end{figure}
 
@@ -224,9 +226,9 @@ For each of the forest's 95{,}741 internal nodes, with split feature $f$ and thr
     \node[lbl, anchor=north, draw=accOrange, rounded corners=2pt, fill=accOrange!8, inner sep=4pt, text width=3.1cm]
       at (10.5, 0.35)
       {\textbf{float64 scaler}\\scaled value differs by $\varepsilon$,\\the on-threshold probe can\\cross $t$: \textbf{328 flips}};
-    \draw[arr, accOrange] (9.3, 0.35) to[bend left=10] (8.62, 1.28);
+    \draw[arr, accOrange] (9.6, 0.35) to[out=105, in=-20] (8.72, 1.4);
   \end{tikzpicture}}
-  \caption{Boundary-directed probes. (i)~For every internal node, the constraints along its root path are intersected per feature and satisfying values are written into a real test-split row, so the row is routed to that node. (ii)~The node's split feature is then overwritten with the raw float32 values that the scaler maps onto the threshold and one float32 step either side. A traversal that scales or compares in float64 computes a slightly different scaled value and can place the on-threshold probe on the other side of~$t$.}
+  \caption{Boundary-directed probe generation: (i)~path-satisfying routing to target internal nodes, and (ii)~threshold $\pm\,1$\,ulp float32 evaluation to detect precision-induced label flips.}
   \label{fig:probe}
 \end{figure}
 
@@ -261,7 +263,7 @@ Table~\ref{tab:boundary} compares two NumPy traversals against ONNX Runtime. The
 The probe set is derived from the artifact, so nothing ties it to this forest or this trainer. We trained four more ensembles on a 600{,}000-row sample of the same training split, with the same standardizing front end, and exported them through the standard converters (skl2onnx and onnxmltools\footnote{\url{https://github.com/onnx/sklearn-onnx}, \url{https://github.com/onnx/onnxmltools}}) into the same graph shape, a \texttt{Scaler} feeding a \texttt{TreeEnsembleClassifier}: a scikit-learn \texttt{RandomForest}~\cite{pedregosa2011sklearn} with exact midpoint splits, scikit-learn \texttt{HistGradientBoosting}, LightGBM~\cite{ke2017lightgbm} and XGBoost~\cite{chen2016xgboost} in histogram mode, whose export uses the \texttt{BRANCH\_LT} split mode. For each we compare ONNX Runtime with a float64 traversal of its graph, as above, and with the training framework's own prediction, which is the converter question a replay gate is usually written to answer. Table~\ref{tab:generalize} gives the counts.
 
 \begin{table}[htbp]
-  \caption{Boundary probes vs.\ replay on five forests trained on the same features and exported to ONNX. Flips are label disagreements with ONNX Runtime; miss is the probability that a 2{,}000-row replay gate sees no flip.}
+  \caption{Parity testing across five tree-ensemble models exported to ONNX (boundary probes vs.\ replay).}
   \label{tab:generalize}
   \centering
   \footnotesize
@@ -300,7 +302,7 @@ The testbed is two NVIDIA Jetson Orin Nano Super Developer Kits (6-core Arm Cort
 Table~\ref{tab:engines} reports classifier-node cost at batch size 20 for each backend, with the gate's own cost reported separately since it runs a different model (an autoencoder, not the forest). Over five runs per backend, ONNX Runtime sustains roughly $119\times$ the throughput of the per-tree NumPy backend at this batch size and a fraction of its p95 latency, at the cost of $3.3\times$ the resident memory and at marginally lower measured board power (4.66 vs.\ 4.99\,W; since power is not idle-subtracted, this difference should be read cautiously rather than as a per-inference energy claim). The per-tree row is the traversal of the released version (v0.2.0); the block-lockstep row is the traversal of Sect.~\ref{sec:lockstep} served by the same node, $22\times$ the per-tree row and about a fifth of ONNX Runtime, at the per-tree row's memory.
 
 \begin{table}[htbp]
-  \caption{Classifier-node steady-state cost per backend (batch size 20, mean $\pm$ SD over five runs on Jetson~\#2) and gate-node cost (batch size 100, one run on Jetson~\#2).}
+  \caption{Steady-state inference performance and resource utilization on Jetson~\#2 (mean $\pm$ SD).}
   \label{tab:engines}
   \centering
   \small
@@ -322,7 +324,7 @@ Table~\ref{tab:engines} reports classifier-node cost at batch size 20 for each b
 Table~\ref{tab:coldstart} breaks down the time from process start to the first served verdict. ONNX Runtime pays a larger one-time session-construction cost (373\,ms) than NumPy's artifact load (80\,ms), but performs its own first prediction fast (7\,ms), whereas the per-tree NumPy traversal needs 114\,ms for one row because a single row cannot amortize its per-tree dispatch. NumPy still reaches its first verdict sooner overall (482 vs.\ 670\,ms), since its faster load dominates over the whole warm-up path. The block-lockstep traversal removes the first-call penalty (2.2\,ms) and brings the first verdict to 357\,ms. This favors NumPy specifically for restart-sensitive scenarios (e.g.\ frequent container restarts or fast failover) even though ONNX Runtime is far ahead on steady-state throughput.
 
 \begin{table}[htbp]
-  \caption{Cold-start latency per backend, page cache dropped before every run: mean $\pm$ SD of five runs on each board (lockstep: five runs on Jetson~\#2). Time to first verdict runs from launching the process.}
+  \caption{Cold-start latency and time to first verdict across serving backends on Jetson~\#2 (mean $\pm$ SD).}
   \label{tab:coldstart}
   \centering
   \small
@@ -418,7 +420,7 @@ Our first version did exactly that over all 200 trees, and we benchmarked it on 
         \node[font=\scriptsize, text=accOrange!80!black, anchor=west, xshift=3pt] at (axis cs:2000,18176.8) {$0.9\times$};
     \end{groupplot}
   \end{tikzpicture}
-  \caption{Per-tree loop vs.\ block-lockstep traversal of the same artifact on real test-split flows, best of five runs, log--log axes shared by both panels. Labels give the lockstep speedup at each batch size. On Jetson~\#2 lockstep traverses 1{,}435 rows/s at batch~1 and 7{,}060 at 2{,}000 against 18 and 6{,}020 for the per-tree loop; on the M3 the per-tree loop overtakes it at 2{,}000 (18{,}177 vs.\ 15{,}850 rows/s). Labels match the per-tree loop on 5{,}000/5{,}000 rows and ONNX Runtime on 447{,}275/447{,}275. Source: \texttt{lncs/code/results\_jetson/exp1\_lockstep\_benchmark.json} and \texttt{lncs/code/results/}.}
+  \caption{Throughput comparison between per-tree loop and block-lockstep traversal across batch sizes on Jetson~\#2 and Apple M3 (log--log scale, best of five runs). Labels indicate speedup factors.}
   \label{fig:lockstep}
 \end{figure}
 
@@ -427,7 +429,15 @@ Block-lockstep throughput is nearly flat in batch size, which is the property a 
 \subsection{Exact Early Exit on Gate-Forwarded Traffic}
 \label{sec:earlyexit}
 
-For the binary forest let $m$ be the running margin (attack score minus benign score) after some trees have been evaluated, and let $[\ell_t, u_t]$ be the range of tree $t$'s leaf margins, read once from the artifact. If $m + \sum_{t\,\text{unevaluated}} \ell_t > 0$ the label is attack whatever the remaining trees say. If $m + \sum u_t \le 0$ it is benign. Rows meeting either condition leave the batch. The rest continue with the next block of trees. Labels are identical to the full forest's by construction. With equally weighted trees no row can qualify before more than half have voted, so the saving is capped at $2\times$. We check first after 104 trees and then every 8.
+For a binary forest of $T$ trees, let $v_t \in [\ell_t, u_t]$ denote the margin contribution (attack minus benign score) of tree $t$, with $[\ell_t, u_t]$ precomputed from the artifact. Evaluating a prefix of $K < T$ trees yields running margin $m_K = \sum_{t=1}^K v_t$. The ensemble verdict $\hat{y} \in \{\text{Attack}, \text{Benign}\}$ is mathematically immutable once $m_K$ overcomes the extreme bounds of the remaining trees:
+\begin{equation}
+\label{eq:earlyexit}
+\hat{y} = \begin{cases}
+\text{Attack}, & \text{if } m_K + \displaystyle\sum_{t=K+1}^T \ell_t > 0, \\[4pt]
+\text{Benign}, & \text{if } m_K + \displaystyle\sum_{t=K+1}^T u_t \le 0.
+\end{cases}
+\end{equation}
+Flows satisfying either condition exit early; undecided flows continue with the next block of trees. Labels are identical to the full forest's by construction. With equally weighted trees, no flow qualifies before more than half have voted ($K > T/2$), capping the saving at $2\times$. We check first after $K=104$ trees and then every 8.
 
 \begin{table}[htbp]
   \caption{Exact early exit vs.\ full forest, batch size 2{,}000, on Jetson~\#2.}

@@ -21,7 +21,7 @@ def clean_value(value):
         return 0.0
     try:
         v = float(value)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return 0.0
     if v != v or v == float("inf") or v == float("-inf"):
         return 0.0
@@ -40,11 +40,22 @@ class FeatureMatrixBuilder:
         return len(self.feature_columns)
 
     def build(self, raw_data_list):
-        out = np.empty((len(raw_data_list), len(self.feature_columns)), dtype=self.dtype)
-        for i, raw in enumerate(raw_data_list):
-            for j, name in enumerate(self.feature_columns):
-                out[i, j] = clean_value(raw.get(name, 0.0))
-        return out
+        """Same values as applying ``clean_value`` to every cell, without the per-cell call.
+
+        NumPy parses the whole batch in one go (numbers and numeric strings) in
+        float64, as ``float()`` would; only a batch holding something it cannot
+        parse falls back to ``clean_value`` per cell. Non-finite values become 0
+        before the cast to ``dtype``, as in ``clean_value``.
+        """
+        shape = (len(raw_data_list), len(self.feature_columns))
+        values = [[raw.get(name, 0.0) for name in self.feature_columns] for raw in raw_data_list]
+        try:
+            out = np.array(values, dtype=np.float64).reshape(shape)
+        except (TypeError, ValueError, OverflowError):
+            out = np.array([[clean_value(v) for v in row] for row in values],
+                           dtype=np.float64).reshape(shape)
+        out[~np.isfinite(out)] = 0.0
+        return out.astype(self.dtype, copy=False)
 
     def build_single(self, raw_data):
         return self.build([raw_data])

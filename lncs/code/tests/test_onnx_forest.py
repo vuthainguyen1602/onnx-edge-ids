@@ -7,6 +7,7 @@ import sys
 import numpy as np
 import pytest
 
+pytest.importorskip("onnx")
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS
 from edgeids.onnx_forest import load_onnx_forest, path_rows, predict, reaches, threshold_sharing

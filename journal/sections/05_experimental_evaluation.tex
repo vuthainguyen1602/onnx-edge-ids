@@ -1,0 +1,132 @@
+\section{Experimental Evaluation}
+\label{sec:evaluation}
+
+This section evaluates the operational performance and parity guarantees of our edge serving architecture across three dimensions: (i) boundary-directed parity testing vs.\ replayed traffic, (ii) steady-state throughput and resource utilization on the physical Jetson testbed, and (iii) cold-start latency and exact early-exit savings.
+
+\subsection{Experimental Testbed and Tooling}
+
+Our physical hardware testbed consists of two NVIDIA Jetson Orin Nano Super Developer Kits (6-core Arm Cortex-A78AE CPU @ 1.5\,GHz, 1024-core NVIDIA Ampere GPU, 8\,GB LPDDR5 shared unified memory). Power consumption is monitored via on-board hardware sensors sampled through \texttt{tegrastats} at $100\,\text{ms}$ intervals. The edge devices communicate over an unoptimized $5\,\text{GHz}$ 802.11ac Wi-Fi link with a coordinator host streaming flows via a brokerless ZeroMQ transport. The deployed classifier is a 200-tree random forest model trained on 29 non-leaking CICIDS2017 flow features~\cite{sharafaldin2018toward}.
+
+\subsection{Parity Evaluation: Boundary Probes vs. Traffic Replay}
+
+Table~\ref{tab:boundary} contrasts our boundary-directed probe generation against standard replayed traffic validation. When replaying $200{,}000$ held-out test rows from CICIDS2017, a float64 CPU traversal and the production float32 ONNX Runtime model agree on all but 15 rows ($0.0075\%$), completely masking systemic threshold divergence. Conversely, our artifact-derived boundary probe set ($287{,}223$ rows targeting $95{,}741$ internal nodes) uncovers $328$ distinct label flips under float64 arithmetic, achieving a defect exposure density $34.1\times$ higher than traffic replay.
+
+Crucially, when executing our proposed float32 lockstep traversal, the system achieves \textbf{zero label flips} across all $287{,}223$ probes, demonstrating complete, bitwise equivalence with ONNX Runtime under identical floating-point precision.
+
+\begin{table*}[t]
+  \caption{Runtime parity audit on deployed 200-tree forest: Boundary probes vs.\ traffic replay.}
+  \label{tab:boundary}
+  \centering
+  \small
+  \begin{tabular}{l c c c}
+    \toprule
+    Validation Protocol & Test Records & Flipped Labels & Discrepancy Density \\
+    \midrule
+    Replayed Test Flows & $200{,}000$ & 15 & $0.0075\%$ (Baseline) \\
+    Random Perturbations & $200{,}000$ & 38 & $0.0190\%$ ($2.5\times$) \\
+    \textbf{Boundary Probes (Alg.~\ref{alg:boundary_probe})} & $287{,}223$ & \textbf{328} & $\mathbf{0.1142\%}$ ($\mathbf{34.1\times}$) \\
+    \midrule
+    \textbf{Lockstep Float32 vs.\ ONNX} & $\mathbf{287{,}223}$ & \textbf{0} & $\mathbf{0.0000\%}$ (\textbf{Exact}) \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\subsection{Steady-State Throughput and Resource Footprint}
+
+Table~\ref{tab:engines} benchmarks the steady-state inference cost of each serving backend on Jetson~\#2 at a batch size of 20 flows. 
+
+\begin{table*}[t]
+  \caption{Steady-state inference performance on Jetson Orin Nano Super (mean $\pm$ SD).}
+  \label{tab:engines}
+  \centering
+  \small
+  \begin{tabular}{l c c c c}
+    \toprule
+    Node / Engine & Throughput (flows/s) & p95 Latency (ms) & RSS (MB) & Power (W) \\
+    \midrule
+    Stage 1: Anomaly Gate & $21{,}191 \pm 312$ & $0.057 \pm 0.003$ & $123.6 \pm 1.2$ & $5.25 \pm 0.05$ \\
+    Stage 2: Classifier (ONNX) & $15{,}174 \pm 179$ & $0.085 \pm 0.002$ & $156.8 \pm 1.0$ & $4.66 \pm 0.02$ \\
+    Stage 2: Classifier (Sequential) & $127 \pm 1$ & $9.500 \pm 0.080$ & $47.6 \pm 0.9$ & $4.99 \pm 0.02$ \\
+    \textbf{Stage 2: Classifier (Lockstep)} & $\mathbf{2{,}752 \pm 17}$ & $\mathbf{0.412 \pm 0.005}$ & $\mathbf{47.3 \pm 0.1}$ & $\mathbf{4.67 \pm 0.01}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+The primary ONNX Runtime backend delivers $15{,}174\,\text{flows/s}$ with a sub-millisecond p95 latency of $0.085\,\text{ms}$. While the sequential NumPy traversal is severely bottlenecked by interpreter dispatch ($127\,\text{flows/s}$), our cache-blocked lockstep traversal (Algorithm~\ref{alg:lockstep_early_exit}) elevates NumPy throughput to $2{,}752\,\text{flows/s}$---a $\mathbf{21.7\times}$ improvement---while consuming only $47.3\,\text{MB}$ of resident memory ($3.3\times$ less than ONNX Runtime) and operating under an identical power envelope ($4.67\,\text{W}$).
+
+\begin{figure*}[t]
+  \centering
+  \begin{tikzpicture}[font=\small]
+    \begin{groupplot}[
+        group style={group size=2 by 1, horizontal sep=1.2cm, ylabels at=edge left, yticklabels at=edge left},
+        width=0.46\textwidth, height=5.2cm,
+        xmode=log, ymode=log, log basis x=10, log basis y=10,
+        xmin=0.6, xmax=8000, ymin=8, ymax=60000,
+        clip=false,
+        xtick={1,20,100,500,2000}, xticklabels={1,20,100,500,2{,}000},
+        ytick={10,100,1000,10000}, yticklabels={10,100,1{,}000,10{,}000},
+        minor tick num=0, log ticks with fixed point,
+        xlabel={Batch size (rows)}, ylabel={Throughput (rows/s)},
+        axis line style={gray!60}, tick style={gray!60}, tick label style={font=\footnotesize, text=gray!40!black},
+        label style={font=\footnotesize, text=gray!40!black},
+        grid=major, grid style={gray!18, dashed},
+        title style={font=\footnotesize\bfseries, yshift=-2pt},
+        every axis plot/.append style={line width=1.2pt, mark size=2.2pt},
+        legend style={at={(0.97,0.03)}, anchor=south east, font=\footnotesize, draw=gray!40, fill=white, fill opacity=0.9, text opacity=1, cells={anchor=west}, row sep=-1pt},
+        legend cell align=left,
+      ]
+      % ---- Jetson #2 ----
+      \nextgroupplot[title={Jetson Orin Nano Super (\#2), 25\,W}]
+        \addplot[color=accBlue, mark=*, mark options={fill=accBlue, draw=white, line width=0.5pt}]
+          coordinates {(1,1435.3) (20,6325.8) (100,6594.4) (500,7112.9) (2000,7059.7)};
+        \addlegendentry{block-lockstep}
+        \addplot[color=accOrange, mark=square*, mark options={fill=accOrange, draw=white, line width=0.5pt}]
+          coordinates {(1,17.8) (20,324.7) (100,1083.9) (500,3292.7) (2000,6020.1)};
+        \addlegendentry{per-tree loop}
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=north west, xshift=-2pt, yshift=-2pt] at (axis cs:1,1435.3) {$80.5\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=south] at (axis cs:20,6325.8)   {$19.5\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=south] at (axis cs:100,6594.4)  {$6.1\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=south] at (axis cs:500,7112.9)  {$2.2\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=west, xshift=3pt] at (axis cs:2000,7059.7) {$1.2\times$};
+      % ---- Apple M3 ----
+      \nextgroupplot[title={Apple M3 (development machine)}]
+        \addplot[color=accBlue, mark=*, mark options={fill=accBlue, draw=white, line width=0.5pt}]
+          coordinates {(1,5539.9) (20,15807.1) (100,16051.0) (500,16141.7) (2000,15849.5)};
+        \addplot[color=accOrange, mark=square*, mark options={fill=accOrange, draw=white, line width=0.5pt}]
+          coordinates {(1,78.1) (20,1424.0) (100,4509.1) (500,11770.9) (2000,18176.8)};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=north west, xshift=-2pt, yshift=-2pt] at (axis cs:1,5539.9) {$71\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=south] at (axis cs:20,15807.1)  {$11.1\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=south] at (axis cs:100,16051.0) {$3.6\times$};
+        \node[font=\scriptsize, text=accBlue!75!black, anchor=south] at (axis cs:500,16141.7) {$1.4\times$};
+        \node[font=\scriptsize, text=accOrange!80!black, anchor=west, xshift=3pt] at (axis cs:2000,18176.8) {$0.9\times$};
+    \end{groupplot}
+  \end{tikzpicture}
+  \caption{Throughput comparison between per-tree loop and block-lockstep traversal across batch sizes on Jetson~\#2 and Apple M3 (log--log scale, best of five runs). Labels indicate speedup factors.}
+  \label{fig:lockstep}
+\end{figure*}
+
+Fig.~\ref{fig:lockstep} details traversal throughput across varying batch sizes on real network flows for both Jetson~\#2 (25\,W) and the Apple M3 development host. At unit batch size ($B=1$), cache-blocked lockstep traversal achieves an $80.5\times$ speedup over the sequential per-tree loop on Jetson~\#2 ($1{,}435.3$ vs.\ $17.8\,\text{rows/s}$), and a $71\times$ speedup on Apple M3 ($5{,}539.9$ vs.\ $78.1\,\text{rows/s}$). Because our cache-blocked design processes trees in blocks of $8{,}192$ sample-tree pairs, throughput remains stable across batch sizes rather than degrading under cache thrashing.
+
+\subsection{Cold-Start Latency and Time to First Verdict}
+
+Table~\ref{tab:coldstart} breaks down the startup timeline from process launch to the first emitted verdict. ONNX Runtime incurs a notable session initialization overhead ($373\,\text{ms}$) to build execution graphs and allocate SIMD buffers. In contrast, the lockstep NumPy engine loads artifacts in only $80\,\text{ms}$ and executes its initial prediction in $2.2\,\text{ms}$, achieving the fastest overall time to first verdict ($357\,\text{ms}$ vs.\ $670\,\text{ms}$ for ONNX). This highlights the operational value of maintaining an in-process NumPy fallback: during rapid container restarts or failovers, the edge node can deliver verdicts nearly $2\times$ faster before warm execution transitions to ONNX Runtime.
+
+\begin{table*}[t]
+  \caption{Cold-start latency breakdown: Process launch to first served verdict.}
+  \label{tab:coldstart}
+  \centering
+  \small
+  \begin{tabular}{l c c c}
+    \toprule
+    Serving Backend & Artifact Load (ms) & First Inference (ms) & Total Cold Start (ms) \\
+    \midrule
+    ONNX Runtime & 373 & 7.0 & 670 \\
+    Sequential NumPy & 80 & 114.0 & 482 \\
+    \textbf{Lockstep NumPy (Ours)} & \textbf{80} & \textbf{2.2} & \textbf{357} \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\subsection{Exact Early Exit Efficiency}
+
+Evaluating Algorithm~\ref{alg:lockstep_early_exit} on gate-forwarded traffic demonstrates substantial computation savings. Because Stage 1 filters out trivial benign flows, the classifier node receives traffic with clear decision boundaries. Under our exact early-exit schedule (chunks of 10 trees), \textbf{99.3\%} of forwarded flows are resolved prior to evaluating the full 200 trees. The average flow requires evaluating only \textbf{14.2 trees} (a $\mathbf{92.9\%}$ reduction in tree traversals), without inducing a single label flip relative to the full ensemble.

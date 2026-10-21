@@ -1,0 +1,45 @@
+%% Journal Manuscript Preamble (Elsevier CAS)
+\ExplSyntaxOn
+\bool_gset_true:N \g_stm_nologo_bool
+\ExplSyntaxOff
+
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{microtype}
+
+%% Theorem and Definition Environments
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+%% TikZ and Diagrams
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, fit, backgrounds, calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+
+%% Okabe-Ito colorblind-safe palette
+\definecolor{accBlue}{HTML}{0072B2}
+\definecolor{accGreen}{HTML}{009E73}
+\definecolor{accOrange}{HTML}{D55E00}
+\definecolor{accYellow}{HTML}{F0E442}
+
+%% Algorithm formatting conventions
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\algnewcommand{\LineComment}[1]{\State \(\triangleright\) \textit{#1}}
+
+%% Shorthands
+\newcommand{\eg}{\textit{e.g.},\xspace}
+\newcommand{\ie}{\textit{i.e.},\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+\newcommand{\ulp}{\text{ulp}\xspace}
+\newcommand{\tabnote}[1]{\vspace{0.5ex}\par\raggedright\footnotesize #1}

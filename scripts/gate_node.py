@@ -71,6 +71,8 @@ def main():
                              "already-committed input offsets.")
     parser.add_argument("--max-messages", type=int, default=0)
     args = parser.parse_args()
+    if args.batch_size < 1:
+        parser.error("--batch-size must be at least 1")
 
     gate = AnomalyGate(args.features, args.model, args.scaler, args.threshold)
     consumer = KafkaConsumer(

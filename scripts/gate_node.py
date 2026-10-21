@@ -10,12 +10,11 @@ from pathlib import Path
 
 import joblib
 import numpy as np
-from kafka import KafkaConsumer, KafkaProducer
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from onnx_edge_ids import FeatureMatrixBuilder
+from onnx_edge_ids import FeatureMatrixBuilder, flow_frames
 
 
 @dataclass(frozen=True)
@@ -35,8 +34,10 @@ class AnomalyGate:
         self.threshold = float(payload["threshold"])
 
     def score_batch(self, messages):
+        return self.score_matrix(self.builder.build(messages))
+
+    def score_matrix(self, x):
         start = time.perf_counter()
-        x = self.builder.build(messages)
         x_scaled = self.scaler.transform(x)
         x_hat = self.model.predict(x_scaled)
         if x_hat.ndim == 1:
@@ -50,14 +51,71 @@ class AnomalyGate:
         )
 
 
+def serve_zeromq(gate, args):
+    """Score each incoming flow batch and forward its suspicious rows.
+
+    The producer already batches rows (csv_producer.py --batch-size), so every
+    received batch is scored as it arrives; --batch-size and --linger-ms apply
+    to the Kafka path only. Forwarded batches keep the producer's per-row
+    sent_at and add forwarded_at and the anomaly score.
+    """
+    import zmq
+
+    ctx = zmq.Context()
+    sock_in = ctx.socket(zmq.PULL)
+    sock_in.bind(args.zmq_in)
+    sock_out = ctx.socket(zmq.PUSH)
+    sock_out.connect(args.zmq_out)
+    n_features = gate.builder.n_features
+    print(
+        f"[OK] ZeroMQ gate in={args.zmq_in} out={args.zmq_out} "
+        f"threshold={gate.threshold:.6f}"
+    )
+    total = 0
+    forwarded = 0
+    try:
+        while True:
+            try:
+                batch = flow_frames.unpack(sock_in.recv_multipart(copy=False), cols=n_features)
+            except ValueError as exc:
+                print(f"[WARN] dropped malformed batch: {exc}")
+                continue
+            result = gate.score_matrix(batch["x"])
+            keep = result.is_anomaly
+            if keep.any():
+                sent_at = batch.get("sent_at")
+                sock_out.send_multipart(
+                    flow_frames.pack(
+                        batch["x"][keep],
+                        sent_at=None if sent_at is None else sent_at[keep],
+                        forwarded_at=np.full(int(keep.sum()), time.time()),
+                        score=result.scores[keep],
+                    ),
+                    copy=False,
+                )
+                forwarded += int(keep.sum())
+            total += len(keep)
+            print(
+                f"[{total:,}] gate={result.inference_time_ms:.3f}ms "
+                f"forwarded={forwarded:,}/{total:,} ({forwarded / total:.2%})"
+            )
+            if args.max_messages and total >= args.max_messages:
+                return
+    finally:
+        sock_in.close(linger=0)
+        # Give queued forwards a moment to leave before the context closes.
+        sock_out.close(linger=2000)
+        ctx.term()
+
+
 def main():
     parser = argparse.ArgumentParser(description="ONNX-EdgeIDS anomaly gate node")
-    parser.add_argument("--transport", choices=["zeromq", "kafka"], default="zeromq",
-                        help="Transport protocol: 'zeromq' (zero-copy edge native) or 'kafka'")
+    parser.add_argument("--transport", choices=["zeromq", "kafka"], default=None,
+                        help="Default: kafka when --bootstrap is given, zeromq otherwise.")
     parser.add_argument("--zmq-in", default="tcp://*:5555",
-                        help="ZeroMQ bind endpoint for incoming network traffic")
+                        help="ZeroMQ endpoint the gate binds for incoming flow batches.")
     parser.add_argument("--zmq-out", default="tcp://localhost:5556",
-                        help="ZeroMQ connect endpoint to forward suspicious flows to classifier")
+                        help="ZeroMQ endpoint of the classifier the gate forwards to.")
     parser.add_argument("--bootstrap", default="", help="Kafka bootstrap server, e.g. <mac-ip>:9092")
     parser.add_argument("--input-topic", default="ids-network-flow")
     parser.add_argument("--output-topic", default="ids-suspicious-flow")
@@ -79,57 +137,15 @@ def main():
     args = parser.parse_args()
     if args.batch_size < 1:
         parser.error("--batch-size must be at least 1")
+    transport = args.transport or ("kafka" if args.bootstrap else "zeromq")
+    if transport == "kafka" and not args.bootstrap:
+        parser.error("--bootstrap is required when --transport kafka")
 
     gate = AnomalyGate(args.features, args.model, args.scaler, args.threshold)
 
-    if args.transport == "zeromq":
-        import zmq
-        ctx = zmq.Context()
-        sock_in = ctx.socket(zmq.PULL)
-        sock_in.bind(args.zmq_in)
-
-        sock_out = ctx.socket(zmq.PUSH)
-        sock_out.connect(args.zmq_out)
-
-        print(
-            f"[OK] ZeroMQ Gate Node listening on {args.zmq_in}, forwarding to {args.zmq_out} "
-            f"| threshold={gate.threshold:.6f}"
-        )
-        total = 0
-        forwarded = 0
-        try:
-            while True:
-                msg = sock_in.recv(copy=False)
-                t0 = time.perf_counter()
-                x = np.frombuffer(msg.buffer, dtype=np.float32).reshape(-1, len(gate.builder.feature_columns))
-                x_scaled = gate.scaler.transform(x)
-                x_hat = gate.model.predict(x_scaled)
-                if x_hat.ndim == 1:
-                    x_hat = x_hat.reshape(-1, x_scaled.shape[1])
-                mse = np.mean((x_scaled - x_hat) ** 2, axis=1)
-                is_anomaly = (mse >= gate.threshold)
-                
-                x_suspicious = x[is_anomaly]
-                if len(x_suspicious) > 0:
-                    sock_out.send(x_suspicious, copy=False)
-                    forwarded += len(x_suspicious)
-                
-                total += len(x)
-                gate_ms = (time.perf_counter() - t0) * 1000.0
-                print(
-                    f"[{total:,}] gate={gate_ms:.3f}ms "
-                    f"forwarded={forwarded:,}/{total:,} ({forwarded / total:.2%})"
-                )
-                if args.max_messages and total >= args.max_messages:
-                    return
-        finally:
-            sock_in.close()
-            sock_out.close()
-            ctx.term()
-
-    if not args.bootstrap:
-        print("[ERROR] --bootstrap is required when transport=kafka")
-        sys.exit(1)
+    if transport == "zeromq":
+        serve_zeromq(gate, args)
+        return
 
     from kafka import KafkaConsumer, KafkaProducer
     consumer = KafkaConsumer(

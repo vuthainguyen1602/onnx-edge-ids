@@ -4,8 +4,8 @@
 Minimal Jetson #2 classifier loop for ONNX-EdgeIDS.
 
 This is intentionally smaller than the thesis pipeline: it consumes suspicious
-flow dictionaries from Kafka, builds the feature matrix, and runs ONNX/NumPy
-inference. Database writes and alerting can be wired from the thesis repo after
+flows from the gate, either as JSON records from Kafka or as float32 batches
+over ZeroMQ (onnx_edge_ids.flow_frames), and runs ONNX/NumPy inference. Database writes and alerting can be wired from the thesis repo after
 the serving backend is validated on the boards.
 """
 
@@ -16,20 +16,28 @@ import sys
 import time
 from pathlib import Path
 
+import numpy as np
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from kafka import KafkaConsumer
+from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine, flow_frames
 
-from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine
+
+def _stamp(value):
+    """Format a timestamp for latency.csv; missing values stay empty."""
+    if value is None:
+        return ""
+    value = float(value)
+    return "" if np.isnan(value) else f"{value:.6f}"
 
 
 def main():
     parser = argparse.ArgumentParser(description="ONNX-EdgeIDS Jetson classifier node")
-    parser.add_argument("--transport", choices=["zeromq", "kafka"], default="zeromq",
-                        help="Transport protocol: 'zeromq' (zero-copy edge native) or 'kafka'")
+    parser.add_argument("--transport", choices=["zeromq", "kafka"], default=None,
+                        help="Default: kafka when --bootstrap is given, zeromq otherwise.")
     parser.add_argument("--zmq-endpoint", default="tcp://*:5556",
-                        help="ZeroMQ bind endpoint when transport=zeromq")
+                        help="ZeroMQ endpoint the classifier binds for the gate's batches.")
     parser.add_argument("--bootstrap", default="", help="Kafka bootstrap server, e.g. <mac-ip>:9092")
     parser.add_argument("--topic", default="ids-suspicious-flow")
     parser.add_argument("--group-id", default="onnx-edge-ids-classifier")
@@ -40,15 +48,18 @@ def main():
     parser.add_argument("--linger-ms", type=float, default=1000.0,
                         help="Flush a partial batch after this many ms.")
     parser.add_argument("--max-messages", type=int, default=0,
-                        help="Stop after this many messages; 0 means run forever.")
+                        help="Stop after this many flow records; 0 means run forever.")
     parser.add_argument("--metrics-csv", default="",
                         help="Optional CSV path for per-batch latency metrics.")
     parser.add_argument("--latency-csv", default="",
-                        help="Optional CSV path: per message, the producer's _timestamp, the "
-                             "gate's _forwarded_at and the verdict time (each host's own clock).")
+                        help="Optional CSV path: per record, the producer's send time, the "
+                             "gate's forward time and the verdict time (each host's own clock).")
     args = parser.parse_args()
     if args.batch_size < 1:
         parser.error("--batch-size must be at least 1")
+    transport = args.transport or ("kafka" if args.bootstrap else "zeromq")
+    if transport == "kafka" and not args.bootstrap:
+        parser.error("--bootstrap is required when --transport kafka")
 
     builder = FeatureMatrixBuilder(args.features)
     model_path = args.model
@@ -88,88 +99,19 @@ def main():
         latency_writer = csv.writer(latency_file)
         latency_writer.writerow(["sent_at", "forwarded_at", "verdict_at", "prediction"])
 
-    if args.transport == "zeromq":
-        import zmq
-        ctx = zmq.Context()
-        sock = ctx.socket(zmq.PULL)
-        sock.bind(args.zmq_endpoint)
-        print(
-            f"[OK] ZeroMQ Classifier Node bound to {args.zmq_endpoint} | engine: {args.engine}"
-        )
-        total = 0
-        started_all = time.time()
-        try:
-            while True:
-                msg = sock.recv(copy=False)
-                started = time.time()
-                # Zero-copy view into contiguous float32 buffer
-                x_batch = np.frombuffer(msg.buffer, dtype=np.float32).reshape(-1, len(builder.feature_columns))
-                result = engine.predict_batch(x_batch)
-                verdict_at = time.time()
-                total += result.stats["batch_size"]
-                wall_ms = (time.time() - started) * 1000.0
-                throughput = total / max(time.time() - started_all, 1e-9)
-                print(
-                    f"[{total:,}] engine={result.stats['inference_time_ms']:.3f}ms "
-                    f"wall={wall_ms:.3f}ms rate={throughput:.1f}/s "
-                    f"attacks={result.stats['attacks_found']}/{result.stats['batch_size']}"
-                )
-                if metrics_writer:
-                    metrics_writer.writerow({
-                        "timestamp": time.time(),
-                        "total_messages": total,
-                        "batch_size": result.stats["batch_size"],
-                        "engine_ms": result.stats["inference_time_ms"],
-                        "wall_ms": round(wall_ms, 3),
-                        "avg_ms": result.stats["avg_time_ms"],
-                        "attacks_found": result.stats["attacks_found"],
-                        "throughput_since_start": round(throughput, 3),
-                    })
-                    metrics_file.flush()
-                if args.max_messages and total >= args.max_messages:
-                    return
-        finally:
-            sock.close()
-            ctx.term()
-            if metrics_file:
-                metrics_file.close()
-            if latency_file:
-                latency_file.close()
-
-    if not args.bootstrap:
-        print("[ERROR] --bootstrap is required when transport=kafka")
-        sys.exit(1)
-
-    from kafka import KafkaConsumer
-    consumer = KafkaConsumer(
-        args.topic,
-        bootstrap_servers=args.bootstrap,
-        group_id=args.group_id,
-        auto_offset_reset="latest",
-        enable_auto_commit=True,
-        value_deserializer=lambda m: json.loads(m.decode("utf-8")),
-    )
-
-    print(
-        f"[OK] Kafka Topic: {args.topic} | engine: {args.engine} | "
-        f"batch: {args.batch_size} | linger: {args.linger_ms:.0f}ms"
-    )
     total = 0
-    batch = []
     started_all = time.time()
 
-    def flush_batch():
-        nonlocal total, batch
-        if not batch:
-            return
+    def serve(x, sent_at, forwarded_at):
+        """Classify one batch and record its metrics and per-record latency rows."""
+        nonlocal total
         started = time.time()
-        result = engine.predict_batch(builder.build(batch))
+        result = engine.predict_batch(x)
         verdict_at = time.time()
         total += result.stats["batch_size"]
         if latency_writer:
-            for message, pred in zip(batch, result.predictions.tolist()):
-                latency_writer.writerow([message.get("_timestamp"), message.get("_forwarded_at"),
-                                         f"{verdict_at:.6f}", int(pred)])
+            for s_at, f_at, pred in zip(sent_at, forwarded_at, result.predictions.tolist()):
+                latency_writer.writerow([_stamp(s_at), _stamp(f_at), f"{verdict_at:.6f}", int(pred)])
             latency_file.flush()
         wall_ms = (time.time() - started) * 1000.0
         throughput = total / max(time.time() - started_all, 1e-9)
@@ -190,6 +132,104 @@ def main():
                 "throughput_since_start": round(throughput, 3),
             })
             metrics_file.flush()
+
+    try:
+        if transport == "zeromq":
+            consume_zeromq(args, builder.n_features, serve, lambda: total)
+        else:
+            consume_kafka(args, builder, serve, lambda: total)
+    finally:
+        if metrics_file:
+            metrics_file.close()
+        if latency_file:
+            latency_file.close()
+
+
+def consume_zeromq(args, n_features, serve, served):
+    """Gather the gate's batches until --batch-size rows or --linger-ms, then serve.
+
+    A served batch holds at least --batch-size rows unless the linger window
+    expired first; it can hold more, since gate batches are not split.
+    """
+    import zmq
+
+    ctx = zmq.Context()
+    sock = ctx.socket(zmq.PULL)
+    sock.bind(args.zmq_endpoint)
+    poller = zmq.Poller()
+    poller.register(sock, zmq.POLLIN)
+    print(
+        f"[OK] ZeroMQ classifier on {args.zmq_endpoint} | engine: {args.engine} | "
+        f"batch: {args.batch_size} | linger: {args.linger_ms:.0f}ms"
+    )
+    pending = []
+    rows = 0
+    deadline = None
+
+    def flush():
+        nonlocal pending, rows, deadline
+        if pending:
+            batch = flow_frames.concat(pending)
+            n = len(batch["x"])
+            missing = np.full(n, np.nan)
+            serve(batch["x"], batch.get("sent_at", missing), batch.get("forwarded_at", missing))
+        pending, rows, deadline = [], 0, None
+
+    try:
+        while True:
+            if deadline is None:
+                timeout_ms = int(args.linger_ms)
+            else:
+                timeout_ms = max(0, int((deadline - time.monotonic()) * 1000.0))
+            if poller.poll(timeout_ms):
+                while rows < args.batch_size:
+                    try:
+                        frames = sock.recv_multipart(zmq.NOBLOCK, copy=False)
+                    except zmq.Again:
+                        break
+                    try:
+                        batch = flow_frames.unpack(frames, cols=n_features)
+                    except ValueError as exc:
+                        print(f"[WARN] dropped malformed batch: {exc}")
+                        continue
+                    if not pending:
+                        deadline = time.monotonic() + args.linger_ms / 1000.0
+                    pending.append(batch)
+                    rows += len(batch["x"])
+
+            if rows >= args.batch_size or (deadline is not None and time.monotonic() >= deadline):
+                flush()
+
+            if args.max_messages and served() >= args.max_messages:
+                return
+    finally:
+        flush()
+        sock.close(linger=0)
+        ctx.term()
+
+
+def consume_kafka(args, builder, serve, served):
+    from kafka import KafkaConsumer
+
+    consumer = KafkaConsumer(
+        args.topic,
+        bootstrap_servers=args.bootstrap,
+        group_id=args.group_id,
+        auto_offset_reset="latest",
+        enable_auto_commit=True,
+        value_deserializer=lambda m: json.loads(m.decode("utf-8")),
+    )
+    print(
+        f"[OK] Kafka topic: {args.topic} | engine: {args.engine} | "
+        f"batch: {args.batch_size} | linger: {args.linger_ms:.0f}ms"
+    )
+    batch = []
+
+    def flush():
+        nonlocal batch
+        if batch:
+            serve(builder.build(batch), [m.get("_timestamp") for m in batch],
+                  [m.get("_forwarded_at") for m in batch])
         batch = []
 
     deadline = None
@@ -216,20 +256,15 @@ def main():
             if len(batch) >= args.batch_size or (
                 deadline is not None and time.monotonic() >= deadline
             ):
-                flush_batch()
+                flush()
                 deadline = None
 
-            if args.max_messages and total >= args.max_messages:
-                flush_batch()
+            if args.max_messages and served() >= args.max_messages:
+                flush()
                 return
     finally:
-        flush_batch()
+        flush()
         consumer.close()
-        if metrics_file:
-            metrics_file.close()
-        if latency_file:
-            latency_file.close()
-
 
 if __name__ == "__main__":
     main()

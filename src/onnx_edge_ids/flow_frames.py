@@ -66,10 +66,20 @@ def unpack(frames, cols=None):
     """
     if len(frames) < 2:
         raise ValueError(f"expected a header and a feature frame, got {len(frames)} frame(s)")
-    header = json.loads(bytes(_buffer(frames[0])).decode("utf-8"))
+    try:
+        header = json.loads(bytes(_buffer(frames[0])).decode("utf-8"))
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"header is not UTF-8 JSON: {exc}") from None
+    if not isinstance(header, dict):
+        raise ValueError(f"header must be a JSON object, got {type(header).__name__}")
     if header.get("v") != VERSION:
         raise ValueError(f"unsupported flow-frame version {header.get('v')!r}")
-    rows, width = int(header["rows"]), int(header["cols"])
+    try:
+        rows, width = int(header["rows"]), int(header["cols"])
+    except (KeyError, TypeError, ValueError):
+        raise ValueError("header needs integer 'rows' and 'cols'") from None
+    if rows < 0 or width < 0:
+        raise ValueError(f"header has negative shape ({rows}, {width})")
     if cols is not None and width != cols:
         raise ValueError(f"sender has {width} features, receiver expects {cols}")
     names = header.get("columns", [])

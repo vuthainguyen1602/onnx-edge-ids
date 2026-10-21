@@ -85,6 +85,19 @@ def test_mismatched_frames_are_rejected(mangle, message):
         flow_frames.unpack(mangle(frames))
 
 
+@pytest.mark.parametrize(
+    "header",
+    [b"\xff\xfe", b"not json", b"[1, 2]", b'{"v":1}', b'{"v":1,"rows":"x","cols":29}',
+     b'{"v":1,"rows":-1,"cols":29}'],
+)
+def test_malformed_header_raises_value_error(header):
+    # the nodes drop a batch on ValueError and would crash on anything else
+    x, _ = _batch()
+    frames = _wire(flow_frames.pack(x))
+    with pytest.raises(ValueError):
+        flow_frames.unpack([header, *frames[1:]])
+
+
 def test_feature_width_is_checked():
     x, _ = _batch(cols=28)
     with pytest.raises(ValueError, match="28 features"):

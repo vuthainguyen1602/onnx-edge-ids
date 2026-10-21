@@ -10,10 +10,12 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "numpy>=1.23",
-    "kafka-python>=2.0.2",
 ]
 
 [project.optional-dependencies]
+kafka = [
+    "kafka-python>=2.0.2",
+]
 onnx = [
     "onnx>=1.14",
     "onnxruntime>=1.16",

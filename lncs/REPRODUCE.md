@@ -29,7 +29,7 @@ git clone https://github.com/vuthainguyen1602/onnx-edge-ids.git
 cd onnx-edge-ids
 python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip
-pip install -e .                             # the served package (numpy, kafka-python)
+pip install -e ".[kafka]"                    # the served package (numpy, kafka-python)
 pip install -r lncs/code/requirements.txt    # experiments: onnxruntime, pyarrow, scikit-learn, lightgbm, xgboost, skl2onnx, onnxmltools, pytest
 ```
 

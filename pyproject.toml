@@ -16,6 +16,9 @@ dependencies = [
 kafka = [
     "kafka-python>=2.0.2",
 ]
+zeromq = [
+    "pyzmq>=25",
+]
 onnx = [
     "onnx>=1.14",
     "onnxruntime>=1.16",

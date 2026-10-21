@@ -117,7 +117,7 @@ def benchmark_configuration(endpoint, engine_type, model_path, num_batches, batc
 def main():
     parser = argparse.ArgumentParser(description="ZeroMQ Zero-Copy Streaming Benchmark")
     parser.add_argument("--endpoint", default="ipc:///tmp/zmq_ids_bench.ipc")
-    parser.add_argument("--tcp-endpoint", default="tcp://127.0.0.1:5555")
+    parser.add_argument("--tcp-endpoint", default="tcp://127.0.0.1:5599")
     parser.add_argument("--model", default=str(ROOT / "artifacts" / "ids_rf.onnx"))
     parser.add_argument("--num-batches", type=int, default=1000)
     parser.add_argument("--batch-sizes", nargs="+", type=int, default=[20, 100, 500])

@@ -47,7 +47,7 @@ LABEL_LIKE = {"label", "attack_cat", "attack", "type", "class", "category", "sub
 
 
 def norm(name):
-    return "_".join(name.strip().lower().replace("-", " ").replace(".", " ").replace("/", " ").split())
+    return "_".join(name.replace("\ufeff", "").strip().lower().replace("-", " ").replace(".", " ").replace("/", " ").split())
 
 
 def read_table(spec):
@@ -57,7 +57,7 @@ def read_table(spec):
     paths = [p for p in paths if p.endswith((".csv", ".parquet"))]
     if not paths:
         raise SystemExit(f"[ERR] no .csv/.parquet under {spec}")
-    frames = [pd.read_parquet(p) if p.endswith(".parquet") else pd.read_csv(p, low_memory=False) for p in paths]
+    frames = [pd.read_parquet(p) if p.endswith(".parquet") else pd.read_csv(p, low_memory=False, encoding="utf-8-sig") for p in paths]
     return pd.concat(frames, ignore_index=True)
 
 

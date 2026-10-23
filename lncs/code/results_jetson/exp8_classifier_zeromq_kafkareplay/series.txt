@@ -1,0 +1,41 @@
+tag=20261023_230228 transport=zeromq reps=5 rate=550 passes=3 engines=onnx numpy
+onnx_rep1 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+onnx_rep1 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+onnx_rep1 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[onnx_rep1] 178 batches
+onnx_rep2 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+onnx_rep2 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+onnx_rep2 pass3: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+[onnx_rep2] 178 batches
+onnx_rep3 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+onnx_rep3 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+onnx_rep3 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[onnx_rep3] 178 batches
+onnx_rep4 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+onnx_rep4 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+onnx_rep4 pass3: [OK] Sent 10,000 rows in 18.2s (549.7 rows/s)
+[onnx_rep4] 178 batches
+onnx_rep5 pass1: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+onnx_rep5 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+onnx_rep5 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[onnx_rep5] 178 batches
+numpy_rep1 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+numpy_rep1 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep1 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[numpy_rep1] 178 batches
+numpy_rep2 pass1: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep2 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep2 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[numpy_rep2] 178 batches
+numpy_rep3 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+numpy_rep3 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep3 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[numpy_rep3] 178 batches
+numpy_rep4 pass1: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep4 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep4 pass3: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+[numpy_rep4] 178 batches
+numpy_rep5 pass1: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+numpy_rep5 pass2: [OK] Sent 10,000 rows in 18.2s (550.0 rows/s)
+numpy_rep5 pass3: [OK] Sent 10,000 rows in 18.2s (549.9 rows/s)
+[numpy_rep5] 178 batches

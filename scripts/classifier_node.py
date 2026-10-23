@@ -146,10 +146,11 @@ def main():
 
 
 def consume_zeromq(args, n_features, serve, served):
-    """Gather the gate's batches until --batch-size rows or --linger-ms, then serve.
+    """Gather the gate's batches and serve --batch-size rows at a time.
 
-    A served batch holds at least --batch-size rows unless the linger window
-    expired first; it can hold more, since gate batches are not split.
+    Gate batches are split, so a served batch holds exactly --batch-size rows
+    unless the linger window, counted from its oldest row's arrival, expired
+    first. Leftover rows wait for the next batch, as with the Kafka path.
     """
     import zmq
 
@@ -162,25 +163,36 @@ def consume_zeromq(args, n_features, serve, served):
         f"[OK] ZeroMQ classifier on {args.zmq_endpoint} | engine: {args.engine} | "
         f"batch: {args.batch_size} | linger: {args.linger_ms:.0f}ms"
     )
-    pending = []
+    linger_s = args.linger_ms / 1000.0
+    pending = []  # (batch, arrival) in arrival order
     rows = 0
-    deadline = None
 
-    def flush():
-        nonlocal pending, rows, deadline
-        if pending:
-            batch = flow_frames.concat(pending)
-            n = len(batch["x"])
-            missing = np.full(n, np.nan)
-            serve(batch["x"], batch.get("sent_at", missing), batch.get("forwarded_at", missing))
-        pending, rows, deadline = [], 0, None
+    def flush(limit=None):
+        """Serve the oldest min(limit, rows) pending rows; keep the rest pending."""
+        nonlocal pending, rows
+        if not pending:
+            return
+        batch = flow_frames.concat([b for b, _ in pending])
+        n = len(batch["x"]) if limit is None else min(limit, len(batch["x"]))
+        missing = np.full(n, np.nan)
+        head = {k: v[:n] for k, v in batch.items()}
+        serve(head["x"], head.get("sent_at", missing), head.get("forwarded_at", missing))
+        # The leftover keeps the arrival time of the gate batch its first row came in.
+        seen, rest = 0, []
+        for b, arrival in pending:
+            size = len(b["x"])
+            if seen + size > n:
+                rest.append(({k: v[max(0, n - seen):] for k, v in b.items()}, arrival))
+            seen += size
+        pending = rest
+        rows = sum(len(b["x"]) for b, _ in pending)
 
     try:
         while True:
-            if deadline is None:
+            if not pending:
                 timeout_ms = int(args.linger_ms)
             else:
-                timeout_ms = max(0, int((deadline - time.monotonic()) * 1000.0))
+                timeout_ms = max(0, int((pending[0][1] + linger_s - time.monotonic()) * 1000.0))
             if poller.poll(timeout_ms):
                 while rows < args.batch_size:
                     try:
@@ -192,12 +204,12 @@ def consume_zeromq(args, n_features, serve, served):
                     except ValueError as exc:
                         print(f"[WARN] dropped malformed batch: {exc}")
                         continue
-                    if not pending:
-                        deadline = time.monotonic() + args.linger_ms / 1000.0
-                    pending.append(batch)
+                    pending.append((batch, time.monotonic()))
                     rows += len(batch["x"])
 
-            if rows >= args.batch_size or (deadline is not None and time.monotonic() >= deadline):
+            while rows >= args.batch_size:
+                flush(args.batch_size)
+            if pending and time.monotonic() >= pending[0][1] + linger_s:
                 flush()
 
             if args.max_messages and served() >= args.max_messages:

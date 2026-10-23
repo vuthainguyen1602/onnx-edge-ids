@@ -2,8 +2,8 @@
 
 Each board's timestamps are moved onto the coordinator's clock with the mean of
 its before/after offsets (exp7_clock_offset.py). Per forwarded flow:
-  gate     = forwarded_at - sent_at   (Kafka hop + gate batching + gate inference)
-  classify = verdict_at - forwarded_at (Kafka hop + classifier batching + inference)
+  gate     = forwarded_at - sent_at   (transport hop + gate batching + gate inference)
+  classify = verdict_at - forwarded_at (transport hop + classifier batching + inference)
   e2e      = verdict_at - sent_at
 Only flows the gate forwards reach a verdict, so these are their latencies.
 

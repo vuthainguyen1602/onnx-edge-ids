@@ -7,6 +7,9 @@ the engine table; RSS is the gate process's VmRSS; power is tegrastats VDD_IN
 (total board input), not idle-subtracted.
 
     python lncs/code/experiments/exp6_gate_node_summary.py lncs/code/results_jetson/exp6_gate_node
+    python lncs/code/experiments/exp6_gate_node_summary.py <run-dir> lncs/code/results_jetson/exp6_gate_node_zeromq.json
+
+The JSON goes next to the run directory unless a second argument names it.
 """
 
 import csv
@@ -74,7 +77,8 @@ def main():
         "power_idle_samples": int(idle_w.size),
     }
     print(json.dumps(out, indent=2))
-    with open(os.path.join(os.path.dirname(d.rstrip("/")), "exp6_gate_node.json"), "w") as f:
+    path = sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.path.dirname(d.rstrip("/")), "exp6_gate_node.json")
+    with open(path, "w") as f:
         json.dump(out, f, indent=2)
 
 

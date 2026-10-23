@@ -107,6 +107,8 @@ For Step 6 (the Kafka pipeline) and the replay gate on real flows you also want 
 pd.read_parquet("data/test_data.parquet")[cols].head(20000).to_csv("replay_cicids2017.csv", index=False)
 ```
 
+This CSV exercises the pipeline but does not reproduce the board figures of the paper. The board runs (`exp6`, `exp7`, `exp8` and their `*_kafkareplay` ZeroMQ counterparts in `code/results_jetson/`) replayed `jetson/sender/replay_cicids2017.csv` from the upstream thesis repository (10,000 rows rebuilt from that repository's own test split, 77 columns of which the producer sends the 29 above, sha1 `b4ec528bf3cb…`). The gate forwards 1,181 of its rows (11.81%), against 1,560 of the first 10,000 rows above (15.6%) and 1,694 of the first 20,000 (8.47%), and forwarded flows set the classifier's per-row cost: on the same board and transport, the first 10,000 rows above give ONNX Runtime 1.8x the throughput of the thesis replay (`exp8_summary_zeromq.json` vs `exp8_summary_zeromq_kafkareplay.json`). Use the thesis CSV to compare against the paper's board numbers.
+
 ## Step 4: gate artifacts (only for `exp3`, `exp4` and the pipeline)
 
 The anomaly gate (autoencoder, scaler, threshold) is not redistributed. Copy `anomaly_autoencoder.pkl`, `anomaly_scaler.pkl` and `anomaly_threshold.json` into `artifacts/` from the upstream thesis repository as described in `docs/deploy_2jetson.md`. `exp1`, `exp2`, `exp2b`, `exp5`, `exp5b` and the tests do not need them. The pickles were written with an older scikit-learn and print a version warning on load; that is expected.

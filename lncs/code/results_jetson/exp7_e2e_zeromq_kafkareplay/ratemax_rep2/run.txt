@@ -1,0 +1,5 @@
+rate=0 limit=10000 passes=2 tag=20261023_232551 transport=zeromq
+ 23:26:01 up 14 days, 11:20,  0 users,  load average: 2.77, 1.85, 1.47
+ 23:26:02 up 14 days, 11:20,  0 users,  load average: 0.29, 0.11, 0.08
+[OK] Sent 10,000 rows in 0.2s (54037.7 rows/s)
+[OK] Sent 10,000 rows in 0.2s (46892.0 rows/s)

@@ -1,0 +1,118 @@
+[
+  {
+    "run": "rate64",
+    "offered_rate": 64.0,
+    "producer_rows_s": [
+      64.0
+    ],
+    "gate_consumed": 6000,
+    "verdicts": 685,
+    "gate": {
+      "p50_ms": 765.3,
+      "p95_ms": 1497.3,
+      "max_ms": 1635.0
+    },
+    "classify": {
+      "p50_ms": 1050.4,
+      "p95_ms": 1237.9,
+      "max_ms": 1528.7
+    },
+    "e2e": {
+      "p50_ms": 1838.8,
+      "p95_ms": 2567.5,
+      "max_ms": 3064.7
+    },
+    "clock": {
+      "j1_offset_s": 0.043175,
+      "j1_drift_s": 0.014083,
+      "j1_error_s": 0.002087,
+      "j2_offset_s": 0.041104,
+      "j2_drift_s": 0.015151,
+      "j2_error_s": 0.002712,
+      "rtt_median_ms": [
+        5.36,
+        8.23,
+        5.24,
+        18.88
+      ]
+    }
+  },
+  {
+    "run": "ratemax",
+    "offered_rate": "max",
+    "producer_rows_s": [
+      6515.1,
+      49251.2
+    ],
+    "gate_consumed": 20000,
+    "verdicts": 2362,
+    "gate": {
+      "p50_ms": 564.4,
+      "p95_ms": 1189.5,
+      "max_ms": 1197.3
+    },
+    "classify": {
+      "p50_ms": 18.8,
+      "p95_ms": 83.5,
+      "max_ms": 1019.5
+    },
+    "e2e": {
+      "p50_ms": 1012.0,
+      "p95_ms": 1206.9,
+      "max_ms": 1350.4
+    },
+    "clock": {
+      "j1_offset_s": 0.05119,
+      "j1_drift_s": 4.5e-05,
+      "j1_error_s": 0.00236,
+      "j2_offset_s": 0.048629,
+      "j2_drift_s": 0.000153,
+      "j2_error_s": 0.002522,
+      "rtt_median_ms": [
+        9.32,
+        10.12,
+        16.1,
+        16.58
+      ]
+    }
+  },
+  {
+    "run": "ratemax_rep2",
+    "offered_rate": "max",
+    "producer_rows_s": [
+      54037.7,
+      46892.0
+    ],
+    "gate_consumed": 20000,
+    "verdicts": 2362,
+    "gate": {
+      "p50_ms": 138.5,
+      "p95_ms": 158.5,
+      "max_ms": 165.3
+    },
+    "classify": {
+      "p50_ms": 58.7,
+      "p95_ms": 160.2,
+      "max_ms": 1044.4
+    },
+    "e2e": {
+      "p50_ms": 203.5,
+      "p95_ms": 246.1,
+      "max_ms": 1183.1
+    },
+    "clock": {
+      "j1_offset_s": 0.051028,
+      "j1_drift_s": 0.000842,
+      "j1_error_s": 0.002636,
+      "j2_offset_s": 0.048338,
+      "j2_drift_s": 8.9e-05,
+      "j2_error_s": 0.00233,
+      "rtt_median_ms": [
+        16.59,
+        8.5,
+        16.39,
+        17.9
+      ]
+    }
+  }
+]

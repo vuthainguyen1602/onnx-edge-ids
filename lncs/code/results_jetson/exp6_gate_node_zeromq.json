@@ -1,0 +1,17 @@
+{
+  "records": 20000,
+  "batches": 200,
+  "batch_size": 100,
+  "forward_rate": 0.0847,
+  "active_seconds": 20.5,
+  "consumed_rows_s": 973.5,
+  "inference_throughput_rows_s": 76051.1,
+  "inference_p95_ms_row": 0.0143,
+  "rss_idle_mb": 104.9,
+  "rss_active_max_mb": 106.1,
+  "rss_peak_hwm_mb": 106.1,
+  "power_active_vdd_in_w": 4.612,
+  "power_active_samples": 111,
+  "power_idle_vdd_in_w": 4.698,
+  "power_idle_samples": 60
+}

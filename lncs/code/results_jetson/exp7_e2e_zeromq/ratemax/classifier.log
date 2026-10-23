@@ -1,0 +1,31 @@
+[0;93m2026-10-23 18:24:13.507175326 [W:onnxruntime:Default, device_discovery.cc:164 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:89 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[OK] ZeroMQ classifier on tcp://*:5556 | engine: onnx | batch: 20 | linger: 1000ms
+[26] engine=3.159ms wall=4.156ms rate=2.1/s attacks=18/26
+[57] engine=0.806ms wall=1.556ms rate=4.7/s attacks=31/31
+[92] engine=1.013ms wall=1.867ms rate=7.5/s attacks=35/35
+[124] engine=1.050ms wall=1.819ms rate=10.0/s attacks=32/32
+[177] engine=10.271ms wall=16.471ms rate=14.3/s attacks=53/53
+[219] engine=0.570ms wall=1.108ms rate=17.7/s attacks=42/42
+[273] engine=0.304ms wall=0.923ms rate=22.1/s attacks=54/54
+[349] engine=0.559ms wall=1.418ms rate=28.2/s attacks=76/76
+[422] engine=0.316ms wall=5.295ms rate=34.1/s attacks=73/73
+[459] engine=0.562ms wall=1.071ms rate=37.1/s attacks=37/37
+[485] engine=0.672ms wall=1.033ms rate=39.2/s attacks=26/26
+[505] engine=0.672ms wall=1.027ms rate=40.8/s attacks=17/20
+[608] engine=0.374ms wall=1.473ms rate=49.1/s attacks=103/103
+[707] engine=0.302ms wall=1.536ms rate=57.1/s attacks=99/99
+[806] engine=0.301ms wall=1.375ms rate=65.1/s attacks=99/99
+[905] engine=0.295ms wall=1.384ms rate=73.1/s attacks=99/99
+[995] engine=0.279ms wall=1.257ms rate=80.4/s attacks=90/90
+[1,095] engine=0.291ms wall=1.342ms rate=88.4/s attacks=100/100
+[1,195] engine=0.319ms wall=1.381ms rate=96.5/s attacks=100/100
+[1,295] engine=0.279ms wall=1.324ms rate=104.5/s attacks=100/100
+[1,394] engine=0.313ms wall=1.392ms rate=112.5/s attacks=99/99
+[1,492] engine=0.331ms wall=1.357ms rate=120.4/s attacks=98/98
+[1,536] engine=1.182ms wall=1.810ms rate=123.9/s attacks=43/44
+[1,559] engine=1.769ms wall=2.125ms rate=125.8/s attacks=17/23
+[1,581] engine=1.432ms wall=1.802ms rate=127.5/s attacks=0/22
+[1,601] engine=1.411ms wall=1.760ms rate=129.1/s attacks=0/20
+[1,628] engine=1.358ms wall=1.756ms rate=131.2/s attacks=12/27
+[1,658] engine=0.513ms wall=0.937ms rate=133.6/s attacks=30/30
+[1,694] engine=0.521ms wall=0.982ms rate=136.5/s attacks=36/36

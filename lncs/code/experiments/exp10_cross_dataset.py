@@ -33,7 +33,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 sys.path.insert(0, HERE)
 from edgeids.data import RESULTS
-from exp5_generalization import build_models, export_pipeline, probe_model
+from edgeids.onnx_forest import load_onnx_forest
+from exp5_generalization import build_models, export_pipeline, flips, ort_labels, probe_model
 
 # Lower-cased, with spaces/dashes/dots as underscores. Identifiers of the
 # capture, not properties of the flow.
@@ -104,6 +105,14 @@ def matrix(df, cols):
 
 def sample(rng, n, limit):
     return np.sort(rng.choice(n, size=limit, replace=False)) if limit and n > limit else np.arange(n)
+
+
+def front_end_flips(onnx_path, pipe, x):
+    """Framework vs ORT once the framework gets the graph's float32 Scaler output instead of the
+    float64 scikit-learn scaler: what is left is a disagreement in the trees, not the front end."""
+    forest = load_onnx_forest(onnx_path)
+    z = (x - forest.offset.astype(np.float32)) * forest.scale.astype(np.float32)
+    return flips(pipe.named_steps["model"].predict(z.astype(np.float64)), ort_labels(onnx_path, x))
 
 
 def main():
@@ -198,6 +207,8 @@ def main():
              "test_f1_native": float(f1_score(y_test, native(x_test)))}
         print(f"   trained in {train_s:.0f}s, test F1 {m['test_f1_native']:.3f}, exported: {ops}", flush=True)
         m.update(probe_model(onnx_path, native, x_test, args.max_nodes, args.seed))
+        m["replay"]["native_on_float32_scaled_input_vs_ort_flips"] = front_end_flips(onnx_path, pipe, x_test)
+        print(f"   framework fed the graph's float32 scaling: {m['replay']['native_on_float32_scaled_input_vs_ort_flips']} replay flips", flush=True)
         m["seconds"] = round(time.perf_counter() - t0, 1)
         entry["models"][key] = m
         with open(args.out, "w") as f:

@@ -29,7 +29,7 @@ git clone https://github.com/vuthainguyen1602/onnx-edge-ids.git
 cd onnx-edge-ids
 python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip
-pip install -e ".[kafka]"                    # the served package (numpy, kafka-python)
+pip install -e ".[kafka,zeromq]"             # the served package (numpy, kafka-python, pyzmq)
 pip install -r lncs/code/requirements.txt    # experiments: onnxruntime, pyarrow, scikit-learn, lightgbm, xgboost, skl2onnx, onnxmltools, pytest
 ```
 
@@ -107,7 +107,7 @@ For Step 6 (the Kafka pipeline) and the replay gate on real flows you also want 
 pd.read_parquet("data/test_data.parquet")[cols].head(20000).to_csv("replay_cicids2017.csv", index=False)
 ```
 
-This CSV exercises the pipeline but does not reproduce the board figures of the paper. The board runs (`exp6`, `exp7`, `exp8` and their `*_kafkareplay` ZeroMQ counterparts in `code/results_jetson/`) replayed `jetson/sender/replay_cicids2017.csv` from the upstream thesis repository (10,000 rows rebuilt from that repository's own test split, 77 columns of which the producer sends the 29 above, sha1 `b4ec528bf3cb…`). The gate forwards 1,181 of its rows (11.81%), against 1,560 of the first 10,000 rows above (15.6%) and 1,694 of the first 20,000 (8.47%), and forwarded flows set the classifier's per-row cost: on the same board and transport, the first 10,000 rows above give ONNX Runtime 1.8x the throughput of the thesis replay (`exp8_summary_zeromq.json` vs `exp8_summary_zeromq_kafkareplay.json`). Use the thesis CSV to compare against the paper's board numbers.
+This CSV exercises the pipeline but does not reproduce the board figures of the paper. The board runs (`exp6`, `exp7`, `exp8` and their `*_kafkareplay` ZeroMQ counterparts in `code/results_jetson/`) replayed `jetson/sender/replay_cicids2017.csv` from the upstream thesis repository (10,000 rows rebuilt from that repository's own test split, 77 columns of which the producer sends the 29 above, sha1 `b4ec528bf3cb…`). The gate forwards 1,181 of its rows (11.81%), against 1,560 of the first 10,000 rows above (15.6%) and 1,694 of the first 20,000 (8.47%), and forwarded flows set the classifier's per-row cost: on the same board and transport, the first 10,000 rows above give ONNX Runtime 1.8x the throughput of the thesis replay (`exp8_summary_zeromq_head10k.json` vs `exp8_summary_zeromq_kafkareplay.json`). Use the thesis CSV to compare against the paper's board numbers.
 
 ## Step 4: gate artifacts (only for `exp3`, `exp4` and the pipeline)
 
@@ -159,9 +159,24 @@ Notes:
 - `exp10` uses the whole UNSW-NB15 training and test files (both are under the `--train-rows`/`--test-rows` caps), so with the versions above a re-run reproduces the committed counts. In five full runs one count moved once: LightGBM's framework-vs-ORT flips on the on-threshold probes read 89 instead of 90 (261 instead of 262 in total); the trained model and every other count were identical. A run replaces the whole entry for `--name`, so run a `--models` subset with its own `--out` or it drops the other models from the committed file.
 - `exp1` timings are noisy on a busy machine. Close other work and, on laptops, keep the machine on mains power.
 
-## Step 6 (optional): the two-node Kafka pipeline on two ordinary hosts
+## Step 6 (optional): the two-node pipeline on two ordinary hosts
 
-The on-board table needs the pipeline, not the boards. Any two Linux/macOS hosts plus a third (or one of the two) running Kafka will do; follow `docs/deploy_2jetson.md` and read "Jetson #1" as the gate host and "Jetson #2" as the classifier host. The only board-specific parts are `tegrastats` for the power column and `requirements_jetson_onnx.txt` for the ARM64 ONNX Runtime wheel; on a laptop or server, `pip install -e .[onnx]` installs the runtime instead.
+The on-board table needs the pipeline, not the boards. Any two Linux/macOS hosts plus a third (or one of the two) as producer will do, with a Kafka broker on it for the Kafka transport. ZeroMQ needs no broker (`pip install -e ".[zeromq]"`):
+
+```bash
+# classifier host (binds :5556; serves exactly --batch-size rows unless the linger expires)
+python scripts/classifier_node.py --transport zeromq --zmq-endpoint 'tcp://*:5556' --engine onnx --batch-size 20 --metrics-csv results/onnx_b20.csv
+
+# gate host (binds :5555, scores each producer batch as it arrives)
+python scripts/gate_node.py --transport zeromq --zmq-in 'tcp://*:5555' --zmq-out tcp://<classifier-ip>:5556
+
+# producer host: 100-row batches, standing in for the Kafka gate's batch of 100
+python scripts/csv_producer.py --csv replay_cicids2017.csv --transport zeromq --zmq-endpoint tcp://<gate-ip>:5555 --batch-size 100 --rate 0
+```
+
+The board scripts take `TRANSPORT=zeromq` for the same runs: `exp6_gate_node_run.sh` (with `zmq_sink.py` draining the gate's output on the coordinator), `exp7_e2e_run.sh` and `exp8_classifier_repeat.sh`. The paper's ZeroMQ figures are the `*_kafkareplay` results; the gate needs scikit-learn and joblib in the venv it runs from.
+
+For Kafka, follow `docs/deploy_2jetson.md` and read "Jetson #1" as the gate host and "Jetson #2" as the classifier host. The only board-specific parts are `tegrastats` for the power column and `requirements_jetson_onnx.txt` for the ARM64 ONNX Runtime wheel; on a laptop or server, `pip install -e .[onnx]` installs the runtime instead.
 
 ```bash
 # Kafka host (bring up any Kafka broker on :9092, then)

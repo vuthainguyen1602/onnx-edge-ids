@@ -24,14 +24,14 @@ ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion
 
 ## Software Pitch
 
-ONNX-EdgeIDS serves portable ONNX or transparent NumPy IDS artifacts on Jetson-class edge devices. The package focuses on the serving side of the problem: Kafka flow replay, a first-stage gate, a second-stage classifier node, and scripts for measuring throughput and latency without carrying a heavyweight training runtime into the inference path.
+ONNX-EdgeIDS serves portable ONNX or transparent NumPy IDS artifacts on Jetson-class edge devices. The package focuses on the serving side of the problem: flow replay over ZeroMQ or Kafka, a first-stage gate, a second-stage classifier node, and scripts for measuring throughput and latency without carrying a heavyweight training runtime into the inference path.
 
 ## Why This Fits Software Impacts
 
 The core contribution is reusable software:
 
 - artifact preparation: ONNX artifact to lightweight NumPy fallback;
-- runtime: ONNX/NumPy classifier interface for Kafka-streamed network flows;
+- runtime: ONNX/NumPy classifier interface for network flows streamed over ZeroMQ or Kafka;
 - validation: ONNX-versus-NumPy prediction checks;
 - benchmark scripts: edge inference cost, latency, memory, and energy.
 
@@ -45,9 +45,9 @@ The research context that exposed the software need is that an IDS model can be 
 - `scripts/export_artifacts.sh`: create the NumPy artifact from an ONNX artifact.
 - `scripts/validate_parity.py`: check that the NumPy artifact reproduces the ONNX artifact on replayed rows and on a boundary probe of every split threshold; exits non-zero outside tolerance.
 - `scripts/init_topics.py`: create Kafka input/suspicious topics.
-- `scripts/csv_producer.py`: replay CICIDS2017-derived CSV flow rows to Kafka at a target rate.
-- `scripts/gate_node.py`: Jetson #1 anomaly gate with Kafka forwarding.
-- `scripts/classifier_node.py`: minimal Jetson #2 Kafka classifier loop.
+- `scripts/csv_producer.py`: replay CICIDS2017-derived CSV flow rows over ZeroMQ (float32 batches) or Kafka at a target rate.
+- `scripts/gate_node.py`: Jetson #1 anomaly gate, forwarding suspicious flows over ZeroMQ or Kafka.
+- `scripts/classifier_node.py`: minimal Jetson #2 classifier loop over ZeroMQ or Kafka.
 - `scripts/smoke_predict.py`: local smoke test for exported artifacts.
 - `docs/data.md`: CICIDS2017 dataset note and citation requirement.
 - `docs/deploy_2jetson.md`: two-Jetson test plan using thesis gate + ONNX classifier.
@@ -116,7 +116,7 @@ Copy this repo to Jetson #2, copy `artifacts/ids_rf.onnx` and
 ```bash
 python -m venv venv
 source venv/bin/activate
-pip install -e ".[kafka]"
+pip install -e ".[kafka,zeromq]"
 pip install -r requirements_jetson_onnx.txt
 
 python scripts/classifier_node.py \

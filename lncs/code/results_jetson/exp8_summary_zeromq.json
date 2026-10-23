@@ -10,95 +10,95 @@
         4680
       ],
       "full_batch_share": [
-        0.079,
-        0.079,
-        0.079,
-        0.079,
-        0.079
+        0.975,
+        0.975,
+        0.975,
+        0.975,
+        0.975
       ],
       "mean_ms_row": {
-        "mean": 0.0514,
-        "sd": 0.0131
+        "mean": 0.0381,
+        "sd": 0.0007
       },
       "p95_ms_row": {
-        "mean": 0.1168,
-        "sd": 0.0017
+        "mean": 0.0669,
+        "sd": 0.0019
       },
       "p99_ms_row": {
-        "mean": 0.565,
-        "sd": 0.2463
+        "mean": 0.1671,
+        "sd": 0.0046
       },
       "capacity_rows_s": {
-        "mean": 51189.0,
-        "sd": 5991.0
+        "mean": 27866.0,
+        "sd": 519.0
       },
       "rss_mb": {
-        "mean": 143.6,
-        "sd": 1.4
+        "mean": 143.3,
+        "sd": 1.0
       },
       "power_w": {
-        "mean": 4.65,
-        "sd": 0.01
+        "mean": 4.61,
+        "sd": 0.0
       },
       "runs": [
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.0741,
-          "p95_ms_row": 0.1161,
-          "p99_ms_row": 0.9992,
-          "capacity_rows_s": 52239.1392,
-          "rss_mb": 143.9961,
-          "power_w": 4.6541,
-          "power_samples": 156
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.039,
+          "p95_ms_row": 0.0696,
+          "p99_ms_row": 0.1732,
+          "capacity_rows_s": 27177.8582,
+          "rss_mb": 141.875,
+          "power_w": 4.6101,
+          "power_samples": 155
         },
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.0459,
-          "p95_ms_row": 0.1158,
-          "p99_ms_row": 0.43,
-          "capacity_rows_s": 43904.0865,
-          "rss_mb": 141.2383,
-          "power_w": 4.6378,
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.0372,
+          "p95_ms_row": 0.0659,
+          "p99_ms_row": 0.1611,
+          "capacity_rows_s": 28539.0216,
+          "rss_mb": 143.3945,
+          "power_w": 4.6047,
           "power_samples": 150
         },
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.0434,
-          "p95_ms_row": 0.1168,
-          "p99_ms_row": 0.4181,
-          "capacity_rows_s": 54062.1715,
-          "rss_mb": 144.8125,
-          "power_w": 4.6554,
-          "power_samples": 161
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.0377,
+          "p95_ms_row": 0.0645,
+          "p99_ms_row": 0.1675,
+          "capacity_rows_s": 28134.1301,
+          "rss_mb": 143.0352,
+          "power_w": 4.6095,
+          "power_samples": 155
         },
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.0507,
-          "p95_ms_row": 0.1198,
-          "p99_ms_row": 0.5261,
-          "capacity_rows_s": 46723.8401,
-          "rss_mb": 143.9922,
-          "power_w": 4.6399,
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.0385,
+          "p95_ms_row": 0.0667,
+          "p99_ms_row": 0.1693,
+          "capacity_rows_s": 27589.1341,
+          "rss_mb": 144.1367,
+          "power_w": 4.6132,
           "power_samples": 156
         },
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.0428,
-          "p95_ms_row": 0.1157,
-          "p99_ms_row": 0.4516,
-          "capacity_rows_s": 59013.4167,
-          "rss_mb": 143.8906,
-          "power_w": 4.6563,
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.0381,
+          "p95_ms_row": 0.0677,
+          "p99_ms_row": 0.1646,
+          "capacity_rows_s": 27889.1822,
+          "rss_mb": 144.1992,
+          "power_w": 4.6098,
           "power_samples": 156
         }
       ]
@@ -113,31 +113,31 @@
         4680
       ],
       "full_batch_share": [
-        0.079,
-        0.079,
-        0.079,
-        0.079,
-        0.079
+        0.975,
+        0.975,
+        0.971,
+        0.975,
+        0.975
       ],
       "mean_ms_row": {
-        "mean": 0.2996,
-        "sd": 0.0058
+        "mean": 0.2826,
+        "sd": 0.001
       },
       "p95_ms_row": {
-        "mean": 0.4829,
-        "sd": 0.008
+        "mean": 0.3835,
+        "sd": 0.0157
       },
       "p99_ms_row": {
-        "mean": 1.0631,
-        "sd": 0.0999
+        "mean": 0.6225,
+        "sd": 0.0308
       },
       "capacity_rows_s": {
-        "mean": 4153.0,
-        "sd": 25.0
+        "mean": 3605.0,
+        "sd": 22.0
       },
       "rss_mb": {
-        "mean": 37.2,
-        "sd": 1.2
+        "mean": 36.5,
+        "sd": 0.4
       },
       "power_w": {
         "mean": 4.63,
@@ -145,64 +145,64 @@
       },
       "runs": [
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.2952,
-          "p95_ms_row": 0.4864,
-          "p99_ms_row": 0.9624,
-          "capacity_rows_s": 4149.9221,
-          "rss_mb": 38.3164,
-          "power_w": 4.6261,
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.2816,
+          "p95_ms_row": 0.3622,
+          "p99_ms_row": 0.6388,
+          "capacity_rows_s": 3614.1787,
+          "rss_mb": 36.1016,
+          "power_w": 4.6312,
+          "power_samples": 150
+        },
+        {
+          "batches": 237,
+          "rows": 4680,
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.2819,
+          "p95_ms_row": 0.3808,
+          "p99_ms_row": 0.6286,
+          "capacity_rows_s": 3609.621,
+          "rss_mb": 36.1016,
+          "power_w": 4.6309,
+          "power_samples": 155
+        },
+        {
+          "batches": 238,
+          "rows": 4680,
+          "full_batch_share": 0.971,
+          "mean_ms_row": 0.283,
+          "p95_ms_row": 0.4059,
+          "p99_ms_row": 0.6618,
+          "capacity_rows_s": 3631.6569,
+          "rss_mb": 37.0898,
+          "power_w": 4.6286,
           "power_samples": 156
         },
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.3068,
-          "p95_ms_row": 0.4691,
-          "p99_ms_row": 1.188,
-          "capacity_rows_s": 4128.2911,
-          "rss_mb": 38.5703,
-          "power_w": 4.6247,
-          "power_samples": 155
-        },
-        {
-          "batches": 76,
-          "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.2965,
-          "p95_ms_row": 0.4838,
-          "p99_ms_row": 1.029,
-          "capacity_rows_s": 4155.453,
-          "rss_mb": 36.3203,
-          "power_w": 4.6262,
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.284,
+          "p95_ms_row": 0.3876,
+          "p99_ms_row": 0.5876,
+          "capacity_rows_s": 3572.5273,
+          "rss_mb": 36.8398,
+          "power_w": 4.6352,
           "power_samples": 156
         },
         {
-          "batches": 76,
+          "batches": 237,
           "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.3048,
-          "p95_ms_row": 0.4856,
-          "p99_ms_row": 1.1485,
-          "capacity_rows_s": 4139.1314,
-          "rss_mb": 36.3164,
-          "power_w": 4.6242,
-          "power_samples": 155
-        },
-        {
-          "batches": 76,
-          "rows": 4680,
-          "full_batch_share": 0.079,
-          "mean_ms_row": 0.2945,
-          "p95_ms_row": 0.4897,
-          "p99_ms_row": 0.9875,
-          "capacity_rows_s": 4193.7588,
-          "rss_mb": 36.3164,
-          "power_w": 4.626,
-          "power_samples": 155
+          "full_batch_share": 0.975,
+          "mean_ms_row": 0.2825,
+          "p95_ms_row": 0.3807,
+          "p99_ms_row": 0.5954,
+          "capacity_rows_s": 3595.746,
+          "rss_mb": 36.3594,
+          "power_w": 4.6281,
+          "power_samples": 150
         }
       ]
     }

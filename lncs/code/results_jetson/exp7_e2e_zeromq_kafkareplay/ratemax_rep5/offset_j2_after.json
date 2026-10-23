@@ -1,0 +1,9 @@
+{
+  "host": "bvdung@192.168.1.39",
+  "taken_at": 1792773826.807447,
+  "samples": 50,
+  "offset_s": 0.045885,
+  "error_bound_s": 0.001963,
+  "rtt_min_ms": 3.93,
+  "rtt_median_ms": 5.62
+}

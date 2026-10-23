@@ -114,5 +114,122 @@
         17.9
       ]
     }
+  },
+  {
+    "run": "ratemax_rep3",
+    "offered_rate": "max",
+    "producer_rows_s": [
+      53493.9,
+      60554.3
+    ],
+    "gate_consumed": 20000,
+    "verdicts": 2362,
+    "gate": {
+      "p50_ms": 78.2,
+      "p95_ms": 178.2,
+      "max_ms": 182.6
+    },
+    "classify": {
+      "p50_ms": 74.9,
+      "p95_ms": 91.0,
+      "max_ms": 1091.1
+    },
+    "e2e": {
+      "p50_ms": 156.2,
+      "p95_ms": 254.2,
+      "max_ms": 1144.9
+    },
+    "clock": {
+      "j1_offset_s": 0.049038,
+      "j1_drift_s": 0.000288,
+      "j1_error_s": 0.002105,
+      "j2_offset_s": 0.046211,
+      "j2_drift_s": 6.6e-05,
+      "j2_error_s": 0.001937,
+      "rtt_median_ms": [
+        7.09,
+        7.02,
+        4.86,
+        5.23
+      ]
+    }
+  },
+  {
+    "run": "ratemax_rep4",
+    "offered_rate": "max",
+    "producer_rows_s": [
+      51144.1,
+      51296.5
+    ],
+    "gate_consumed": 20000,
+    "verdicts": 2362,
+    "gate": {
+      "p50_ms": 89.7,
+      "p95_ms": 150.0,
+      "max_ms": 153.6
+    },
+    "classify": {
+      "p50_ms": 89.8,
+      "p95_ms": 168.3,
+      "max_ms": 1003.0
+    },
+    "e2e": {
+      "p50_ms": 154.8,
+      "p95_ms": 291.7,
+      "max_ms": 1106.5
+    },
+    "clock": {
+      "j1_offset_s": 0.048824,
+      "j1_drift_s": 3.9e-05,
+      "j1_error_s": 0.001978,
+      "j2_offset_s": 0.046159,
+      "j2_drift_s": 7.2e-05,
+      "j2_error_s": 0.001934,
+      "rtt_median_ms": [
+        5.76,
+        4.88,
+        5.1,
+        5.35
+      ]
+    }
+  },
+  {
+    "run": "ratemax_rep5",
+    "offered_rate": "max",
+    "producer_rows_s": [
+      49277.1,
+      60626.0
+    ],
+    "gate_consumed": 20000,
+    "verdicts": 2362,
+    "gate": {
+      "p50_ms": 91.9,
+      "p95_ms": 143.7,
+      "max_ms": 146.5
+    },
+    "classify": {
+      "p50_ms": 69.4,
+      "p95_ms": 156.2,
+      "max_ms": 1035.1
+    },
+    "e2e": {
+      "p50_ms": 180.0,
+      "p95_ms": 271.4,
+      "max_ms": 1084.7
+    },
+    "clock": {
+      "j1_offset_s": 0.04873,
+      "j1_drift_s": 9e-06,
+      "j1_error_s": 0.001997,
+      "j2_offset_s": 0.045969,
+      "j2_drift_s": 0.000168,
+      "j2_error_s": 0.001963,
+      "rtt_median_ms": [
+        4.86,
+        5.54,
+        4.91,
+        5.62
+      ]
+    }
   }
 ]

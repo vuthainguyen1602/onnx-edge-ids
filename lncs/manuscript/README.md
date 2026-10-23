@@ -9,7 +9,7 @@ cd lncs/manuscript
 ./compile.sh
 ```
 
-Compiles cleanly as of this draft (19 pages: main text ends on p. 17, references to p. 19; 0 undefined citations/references, no overfull boxes), about one page under the DIMVA main-text limit. The replay-parity table was folded into the prose of Sect. 3.3 to make room.
+Compiles cleanly as of this draft (20 pages: main text ends on p. 18, references to p. 20; 0 undefined citations/references, no overfull boxes), exactly at the DIMVA 18-page main-text limit since the UNSW-NB15 table (`tab:unsw`) went in: anything added now needs a cut elsewhere. The replay-parity table was folded into the prose of Sect. 3.3 to make room earlier.
 
 ## TODO before submission
 
@@ -27,6 +27,7 @@ Done:
 - [x] `exp1` and `exp3` re-run on Jetson #2 (`../code/results_jetson/`); the traversal and early-exit tables quote the board
 - [x] Distribution-shift stress test on CSE-CIC-IDS2018 (`exp4`): detector and gate collapse, serving guarantees hold, undecided rate rises
 - [x] Probes on four more forests and their converters (`exp5`, Table `tab:generalize`): float32 0 flips everywhere, 24 to 169x denser than replay where divergence is rare, trees-moved diagnostic
+- [x] Probes on a second dataset (`exp10`, UNSW-NB15, Table `tab:unsw`): float32 0 flips on all four models; probes alone find LightGBM's divergence, replay is as dense for XGBoost; framework-vs-ORT disagreement traced to the float64 scaler (all of XGBoost's, about half of HGB's)
 - [x] ONNX Runtime release sweep (`exp5b`): 1.26.0/1.27.0 relabel 85% of flows for a stock scikit-learn export (upstream PRs 27536, 28685, issue 28557), cited in Sect. 4.1
 - [x] Gate-node row of Table `tab:engines` from a Kafka replay on Jetson #2 (`exp6`)
 - [x] End-to-end latency measured over Wi-Fi (`exp7`, Table `tab:e2e`); a wired re-run was dropped because the inter-board link carries 3.4% of its bandwidth and the ceiling is the pure-Python Kafka client

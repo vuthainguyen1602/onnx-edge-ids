@@ -68,7 +68,7 @@
       "models": {
         "sklearn_rf": {
           "description": "scikit-learn RandomForest (exact midpoint splits)",
-          "train_seconds": 21.7,
+          "train_seconds": 5.8,
           "onnx_ops": [
             "Scaler",
             "TreeEnsembleClassifier"
@@ -149,13 +149,14 @@
             "numpy_float64_vs_ort_rate": 0.00046154593596657437,
             "numpy_float64_vs_ort_prob_2000_row_replay_misses": 0.3972041248072281,
             "native_vs_ort_rate": 0.0002915026963999417,
-            "native_vs_ort_prob_2000_row_replay_misses": 0.5581707369874445
+            "native_vs_ort_prob_2000_row_replay_misses": 0.5581707369874445,
+            "native_on_float32_scaled_input_vs_ort_flips": 0
           },
-          "seconds": 142.9
+          "seconds": 75.7
         },
         "sklearn_hgb": {
           "description": "scikit-learn HistGradientBoosting (max_bins=255)",
-          "train_seconds": 4.4,
+          "train_seconds": 4.1,
           "onnx_ops": [
             "Scaler",
             "TreeEnsembleClassifier"
@@ -236,13 +237,14 @@
             "numpy_float64_vs_ort_rate": 0.012862556478647428,
             "numpy_float64_vs_ort_prob_2000_row_replay_misses": 5.6918212205894655e-12,
             "native_vs_ort_rate": 0.025300004858378272,
-            "native_vs_ort_prob_2000_row_replay_misses": 5.519856656608236e-23
+            "native_vs_ort_prob_2000_row_replay_misses": 5.519856656608236e-23,
+            "native_on_float32_scaled_input_vs_ort_flips": 1014
           },
-          "seconds": 16.5
+          "seconds": 11.7
         },
         "lightgbm": {
           "description": "LightGBM (max_bin=255)",
-          "train_seconds": 2.0,
+          "train_seconds": 1.2,
           "onnx_ops": [
             "Scaler",
             "TreeEnsembleClassifier",
@@ -323,13 +325,14 @@
             "numpy_float64_vs_ort_rate": 0.0,
             "numpy_float64_vs_ort_prob_2000_row_replay_misses": 1.0,
             "native_vs_ort_rate": 0.0,
-            "native_vs_ort_prob_2000_row_replay_misses": 1.0
+            "native_vs_ort_prob_2000_row_replay_misses": 1.0,
+            "native_on_float32_scaled_input_vs_ort_flips": 1
           },
-          "seconds": 15.8
+          "seconds": 9.8
         },
         "xgboost_hist": {
           "description": "XGBoost tree_method=hist (max_bin=256, BRANCH_LT)",
-          "train_seconds": 4.8,
+          "train_seconds": 1.0,
           "onnx_ops": [
             "Scaler",
             "TreeEnsembleClassifier"
@@ -410,9 +413,10 @@
             "numpy_float64_vs_ort_rate": 0.020089394160229316,
             "numpy_float64_vs_ort_prob_2000_row_replay_misses": 2.3600236869607485e-18,
             "native_vs_ort_rate": 0.11752417043190982,
-            "native_vs_ort_prob_2000_row_replay_misses": 2.5447104057360885e-109
+            "native_vs_ort_prob_2000_row_replay_misses": 2.5447104057360885e-109,
+            "native_on_float32_scaled_input_vs_ort_flips": 0
           },
-          "seconds": 31.3
+          "seconds": 13.6
         }
       }
     }

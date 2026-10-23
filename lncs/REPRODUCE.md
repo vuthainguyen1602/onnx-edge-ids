@@ -132,6 +132,8 @@ python lncs/code/experiments/exp5b_ort_label_regression.py \
 UNSW=/path/to/unsw_nb15     # UNSW_NB15_training-set.csv (175,341 rows) and UNSW_NB15_testing-set.csv (82,332 rows)
 python lncs/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
     --train $UNSW/UNSW_NB15_training-set.csv --test $UNSW/UNSW_NB15_testing-set.csv --label-col label
+TON=/path/to/ton_iot/Train_Test_Network_dataset   # train_test_network.csv (211,043 rows); no test file, so a stratified 70/30 split
+python lncs/code/experiments/exp10_cross_dataset.py --name ToN-IoT --train $TON/train_test_network.csv --label-col label
 python lncs/code/experiments/exp10_table.py                                 # LaTeX rows from exp10's JSON
 ```
 
@@ -145,7 +147,7 @@ What to expect, and which numbers depend on your machine:
 | `exp3` | exact early exit | 104.1 of 200 trees on gate-forwarded rows, labels identical on every row, share of rows decided at the first check | the `*_seconds` and `speedup` fields (2.05x on Apple M3, 1.94x on Jetson #2) |
 | `exp4` | distribution shift | F1 and gate recall on both splits, 0 parity flips, early exit exact, undecided share 4.8% vs 28.2% | none |
 | `exp5` | other forests | float32 flips 0 on every forest; probe-vs-replay density ratios; trees per shared threshold (72 / 4 / 2) | `train_seconds` |
-| `exp10` | UNSW-NB15 (`tab:unsw`) | 39 features; float32 flips 0 on every model; float64 / framework flips on probes and replay; framework fed the graph's float32 scaling: 0 replay flips for RF and XGBoost, 1 for LightGBM, 1,014 for HGB | `train_seconds`, `seconds` |
+| `exp10` | UNSW-NB15 and ToN-IoT (`tab:datasets`) | 39 / 14 features; float32 flips 0 on every model; float64 / framework flips on probes and replay; framework fed the graph's float32 scaling: 0-5 replay flips, except 1,014 for UNSW-NB15 HGB | `train_seconds`, `seconds` |
 | `exp5b` | release sweep | 1.26.0 and 1.27.0 label attack whenever P > 0 (negative first probability column); the other releases agree with scikit-learn | none |
 
 Notes:

@@ -117,7 +117,7 @@ def main():
     deployed_npz = artifacts_dir / "ids_rf_numpy.npz"
 
     print("=" * 70)
-    print(" Running Dataset Generalization Analysis for ISI Q1 Manuscript")
+    print(" Running Dataset Generalization Analysis")
     print("=" * 70)
 
     results = []

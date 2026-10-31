@@ -1,4 +1,4 @@
-# ONNX-EdgeIDS Software Impacts Submission
+# ONNX-EdgeIDS
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22731927.svg)](https://doi.org/10.5281/zenodo.22731927)
 

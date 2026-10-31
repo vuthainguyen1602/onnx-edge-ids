@@ -195,15 +195,9 @@ python scripts/csv_producer.py --csv replay_cicids2017.csv --rate 0
 
 Throughput, p95 latency, RSS and cold start will differ from the Jetson figures and should be reported as measured on your hosts. Label agreement between the two backends and the forward rate of the gate should not differ.
 
-## Step 7 (optional): compile the manuscript
+## Step 7 (optional): compare with the paper
 
-The tables quote `lncs/code/results/*.json`; the LaTeX source is self-contained (class, bibliography style and fonts are vendored):
-
-```bash
-cd lncs/manuscript && ./compile.sh
-```
-
-This writes `lncs/manuscript/main.pdf` and `lncs/output/onnx-edge-ids-lncs.pdf`. Numbers in the tables are typed into `main.tex`, not generated, so after re-running an experiment compare `git diff lncs/code/results/` with the table by hand.
+The manuscript sources are not distributed in this repository. Numbers in the paper are typed in, not generated, so after re-running an experiment compare `git diff lncs/code/results/` with the paper's tables by hand.
 
 ## If something does not match
 
@@ -211,3 +205,21 @@ This writes `lncs/manuscript/main.pdf` and `lncs/output/onnx-edge-ids-lncs.pdf`.
 - **`exp2` flips differ by a handful on replay:** the replay rows are the test split, so a different split gives a different count; the probe counts should match exactly since they come from the forest. `exp2b`'s probes embed test-split rows too (base rows drawn with seed 0), so all of its counts move with the split; the routed-vs-unrouted density ratio should stay near 2.5x.
 - **`exp3`/`exp4` fail to load `anomaly_*.pkl`:** Step 4 was skipped, or a very old scikit-learn is installed; 1.3 or newer loads them with a warning.
 - **`exp5b` fails to install a release:** that release has no wheel for your Python or platform. Drop it from `--versions`; the regression is visible with `1.25.1,1.26.0,1.28.0` alone.
+
+## Where each paper number comes from
+
+Paths are relative to `lncs/code/`.
+
+| Table or figure | Result files |
+|---|---|
+| Boundary parity (`tab:boundary`) | `results/exp2_boundary_parity.json`, `results/exp2b_probe_ablation.json` |
+| Other forests (`tab:generalize`) | `results/exp5_generalization.json` |
+| Other datasets (`tab:datasets`) | `results/exp10_cross_dataset.json` |
+| Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
+| Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` |
+| End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |
+| Gate drain over ZeroMQ, 100,000 records (Discussion) | `results_jetson/exp6_gate_node_zeromq_kafkareplay_max.json` |
+| Lockstep throughput (`fig:lockstep`) | `results_jetson/exp1_lockstep_benchmark.json`, `results/exp1_lockstep_benchmark.json` |
+| Exact early exit (`tab:earlyexit`) | `results_jetson/exp3_exact_early_exit.json` |
+| Distribution shift (`tab:drift`) | `results/exp4_drift.json` |
+| Drift alarm (`tab:alarm`) | `results/exp9_drift_alarm.json` |

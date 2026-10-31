@@ -1,0 +1,85 @@
+{
+  "machine": "arm64 Darwin arm",
+  "numpy": "2.5.3",
+  "trees": 200,
+  "dtype": "float32",
+  "reps": 5,
+  "data_parts": 8,
+  "load_average_start": [
+    4.63671875,
+    5.4150390625,
+    4.41064453125
+  ],
+  "label_agreement_5000_rows": {
+    "per_tree": 5000,
+    "whole_forest": 5000,
+    "block_lockstep": 5000
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "rows": 500,
+      "per_tree_rows_s": 136.1,
+      "per_tree_median_rows_s": 133.5,
+      "whole_forest_rows_s": 6161.8,
+      "whole_forest_median_rows_s": 6090.2,
+      "block_lockstep_rows_s": 9680.9,
+      "block_lockstep_median_rows_s": 9614.8,
+      "whole_forest_vs_per_tree": 45.274,
+      "block_vs_whole_forest": 1.571
+    },
+    {
+      "batch": 20,
+      "rows": 3000,
+      "per_tree_rows_s": 2478.0,
+      "per_tree_median_rows_s": 2421.0,
+      "whole_forest_rows_s": 22095.4,
+      "whole_forest_median_rows_s": 21519.1,
+      "block_lockstep_rows_s": 27531.0,
+      "block_lockstep_median_rows_s": 26497.1,
+      "whole_forest_vs_per_tree": 8.917,
+      "block_vs_whole_forest": 1.246
+    },
+    {
+      "batch": 100,
+      "rows": 10000,
+      "per_tree_rows_s": 7920.5,
+      "per_tree_median_rows_s": 7862.2,
+      "whole_forest_rows_s": 24418.6,
+      "whole_forest_median_rows_s": 23585.8,
+      "block_lockstep_rows_s": 27385.2,
+      "block_lockstep_median_rows_s": 26542.4,
+      "whole_forest_vs_per_tree": 3.083,
+      "block_vs_whole_forest": 1.121
+    },
+    {
+      "batch": 500,
+      "rows": 10000,
+      "per_tree_rows_s": 20516.4,
+      "per_tree_median_rows_s": 20224.0,
+      "whole_forest_rows_s": 23487.0,
+      "whole_forest_median_rows_s": 21227.8,
+      "block_lockstep_rows_s": 27669.9,
+      "block_lockstep_median_rows_s": 26663.2,
+      "whole_forest_vs_per_tree": 1.145,
+      "block_vs_whole_forest": 1.178
+    },
+    {
+      "batch": 2000,
+      "rows": 20000,
+      "per_tree_rows_s": 31335.8,
+      "per_tree_median_rows_s": 30708.6,
+      "whole_forest_rows_s": 21109.4,
+      "whole_forest_median_rows_s": 20439.0,
+      "block_lockstep_rows_s": 26487.8,
+      "block_lockstep_median_rows_s": 25497.7,
+      "whole_forest_vs_per_tree": 0.674,
+      "block_vs_whole_forest": 1.255
+    }
+  ],
+  "load_average_end": [
+    5.419921875,
+    5.49609375,
+    4.501953125
+  ]
+}

@@ -217,7 +217,7 @@ Paths are relative to `lncs/code/`.
 | Other forests (`tab:generalize`) | `results/exp5_generalization.json` |
 | Other datasets (`tab:datasets`) | `results/exp10_cross_dataset.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
-| Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` |
+| Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |
 | Gate drain over ZeroMQ, 100,000 records (Discussion) | `results_jetson/exp6_gate_node_zeromq_kafkareplay_max.json` |
 | Lockstep throughput (`fig:lockstep`) | `results_jetson/exp1_lockstep_benchmark.json`, `results/exp1_lockstep_benchmark.json` |

@@ -123,6 +123,7 @@ TRAIN=/path/to/data/train_data.parquet
 DATA2018=/path/to/data_2018/test_data.parquet
 
 python lncs/code/experiments/exp1_lockstep_benchmark.py --data $DATA
+python lncs/code/experiments/exp1b_whole_forest_lockstep.py --data $DATA
 python lncs/code/experiments/exp2_boundary_parity.py    --data $DATA
 python lncs/code/experiments/exp2b_probe_ablation.py    --data $DATA        # reads exp2's JSON for the density ratios
 python lncs/code/experiments/exp3_exact_early_exit.py   --data $DATA        # needs Step 4
@@ -220,6 +221,7 @@ Paths are relative to `lncs/code/`.
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |
 | Gate drain over ZeroMQ, 100,000 records (Discussion) | `results_jetson/exp6_gate_node_zeromq_kafkareplay_max.json` |
 | Lockstep throughput (`fig:lockstep`) | `results_jetson/exp1_lockstep_benchmark.json`, `results/exp1_lockstep_benchmark.json` |
+| Whole-forest lockstep slower than the per-tree loop at batch 2,000 (lockstep section, Discussion) | `results/exp1b_whole_forest_lockstep.json` |
 | Exact early exit (`tab:earlyexit`) | `results_jetson/exp3_exact_early_exit.json` |
 | Distribution shift (`tab:drift`) | `results/exp4_drift.json` |
 | Drift alarm (`tab:alarm`) | `results/exp9_drift_alarm.json` |

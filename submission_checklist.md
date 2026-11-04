@@ -72,8 +72,9 @@ removed.
       542.3 ms process start to first verdict; NumPy 79.7 ms to load,
       115.1 ms first prediction, 368.4 ms to first verdict.
 - [x] Transport link stated: both boards and the workstation are on one Wi-Fi
-      LAN, 5-8 ms median round trip (setup paragraph of the use case). End-to-end
-      latency over that link: lncs/code/results_jetson/exp7_e2e.json (64 rows/s:
+      LAN, 5-19 ms median round trip (5-8 ms in the Kafka runs, up to 19 ms
+      in the ZeroMQ runs; setup paragraph of the use case). End-to-end latency
+      over that link: lncs/code/results_jetson/exp7_e2e.json (64 rows/s:
       p50 1.58 s, p95 2.11 s; max rate: p50 3.55 s, p95 6.44 s, gate drains ~965
       rows/s). Not re-taken on a wired link: the inter-board link carries 3.4%
       of its bandwidth and the ceiling is the pure-Python Kafka client, which

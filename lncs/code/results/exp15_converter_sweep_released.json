@@ -1,0 +1,118 @@
+{
+  "versions": {
+    "skl2onnx": "1.20.0",
+    "onnxmltools": "1.16.0",
+    "sklearn": "1.9.1"
+  },
+  "test_rows": 447275,
+  "models": {
+    "sklearn_rf": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier"
+      ],
+      "split_modes": [
+        0
+      ],
+      "post_transform": "NONE",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 0,
+      "framework_raw_vs_ort": 2
+    },
+    "sklearn_et": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier"
+      ],
+      "split_modes": [
+        0
+      ],
+      "post_transform": "NONE",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 0,
+      "framework_raw_vs_ort": 0
+    },
+    "sklearn_dt": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier"
+      ],
+      "split_modes": [
+        0
+      ],
+      "post_transform": "NONE",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 0,
+      "framework_raw_vs_ort": 18
+    },
+    "sklearn_gb": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier",
+        "Identity"
+      ],
+      "split_modes": [
+        0
+      ],
+      "post_transform": "LOGISTIC",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 0,
+      "framework_raw_vs_ort": 0
+    },
+    "sklearn_hgb": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier"
+      ],
+      "split_modes": [
+        0
+      ],
+      "post_transform": "LOGISTIC",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 1524,
+      "framework_raw_vs_ort": 231
+    },
+    "lightgbm": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier",
+        "Identity",
+        "Identity"
+      ],
+      "split_modes": [
+        0
+      ],
+      "post_transform": "LOGISTIC",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 16,
+      "framework_raw_vs_ort": 12
+    },
+    "xgboost_hist": {
+      "ops": [
+        "Scaler",
+        "TreeEnsembleClassifier"
+      ],
+      "split_modes": [
+        1
+      ],
+      "post_transform": "LOGISTIC",
+      "n_targets": 1,
+      "faithful_f32_vs_ort": 0,
+      "ort_labelout_vs_probthreshold": 0,
+      "framework_f32scaled_vs_ort": 0,
+      "framework_raw_vs_ort": 69
+    }
+  }
+}

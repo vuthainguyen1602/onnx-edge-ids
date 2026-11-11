@@ -226,6 +226,7 @@ Paths are relative to `lncs/code/`.
 | Other forests (`tab:generalize`) | `results/exp5_generalization.json` (seed 0), `results/exp5_seeds/seed1.json` to `seed4.json`, `results/exp5_seeds_summary.json` (ranges over the five seeds) |
 | Other datasets (`tab:datasets`) | `results/exp10_cross_dataset.json` |
 | skl2onnx 1.20.0 HistGradientBoosting threshold rounding (datasets paragraph) | `results/exp12_hgb_threshold_rounding_skl2onnx_1.20.0.json`, `results/exp12_hgb_threshold_rounding_skl2onnx_main.json`, `results/exp10_unsw_hgb_skl2onnx_main.json` (`exp10 --models sklearn_hgb` with skl2onnx main installed) |
+| GPU providers leave the forest on the CPU kernel (threats to validity) | `results_jetson/exp13_ort_providers.json` (`exp13_ort_providers.py` on Jetson #2 with a GPU build of ONNX Runtime 1.23.0; inputs are the exp2 probes and the test split saved as `.npy`) |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

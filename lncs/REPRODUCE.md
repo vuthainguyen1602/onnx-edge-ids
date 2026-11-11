@@ -1,4 +1,4 @@
-# Reproducing the LNCS paper on your own machine
+# Reproducing the paper on your own machine
 
 Everything in this guide runs on an ordinary laptop or server (x86-64 or ARM64, Linux or macOS). No Jetson board is needed: the disagreement and label-identity counts in the paper's tables are machine-independent, and throughput is labelled by machine wherever it appears. The one exception is the power column of the on-board table, which comes from `tegrastats` on the boards.
 
@@ -131,6 +131,13 @@ python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted $DATA2018  
 python lncs/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA
 python lncs/code/experiments/exp5b_ort_label_regression.py \
     --model lncs/code/results/exp5_models/sklearn_rf.onnx --data $DATA
+python lncs/code/experiments/exp11_probe_seeds_and_faults.py --data $DATA   # ten base-row draws, data-free probes, six injected faults (about 15 minutes)
+for s in 1 2 3 4; do                                                        # four more training seeds (about 9 minutes each)
+  python lncs/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA --seed $s \
+      --models sklearn_rf,sklearn_hgb,lightgbm,xgboost_hist \
+      --model-dir /tmp/exp5_models_seed$s --out lncs/code/results/exp5_seeds/seed$s.json
+done
+python lncs/code/experiments/exp5_seeds_summary.py                          # ranges over seeds 0 to 4
 
 UNSW=/path/to/unsw_nb15     # UNSW_NB15_training-set.csv (175,341 rows) and UNSW_NB15_testing-set.csv (82,332 rows)
 python lncs/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
@@ -214,7 +221,8 @@ Paths are relative to `lncs/code/`.
 | Table or figure | Result files |
 |---|---|
 | Boundary parity (`tab:boundary`) | `results/exp2_boundary_parity.json`, `results/exp2b_probe_ablation.json` |
-| Other forests (`tab:generalize`) | `results/exp5_generalization.json` |
+| Base-row draws, data-free probe set and injected faults (`tab:faults`, boundary section) | `results/exp11_probe_seeds_and_faults.json` |
+| Other forests (`tab:generalize`) | `results/exp5_generalization.json` (seed 0), `results/exp5_seeds/seed1.json` to `seed4.json`, `results/exp5_seeds_summary.json` (ranges over the five seeds) |
 | Other datasets (`tab:datasets`) | `results/exp10_cross_dataset.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |

@@ -1,8 +1,8 @@
-# LNCS systems paper
+# Systems paper: experiment code and results
 
-Full systems-paper (Springer LNCS) treatment of the software in this repository: a framework-agnostic ONNX/NumPy serving toolkit for a two-stage Kafka edge intrusion detection pipeline on Jetson Orin Nano Super.
+Full systems-paper treatment of the software in this repository: a framework-agnostic ONNX/NumPy serving toolkit for a two-stage Kafka edge intrusion detection pipeline on Jetson Orin Nano Super.
 
-**Venue:** DIMVA 2027, Enschede, 30 June–2 July 2027 (LNCS; CFP out, checked 2026-10-13: Cycle 1 paper deadline 10 Dec 2026, Cycle 2 18 Feb 2027, 18 pages main text + 5 bibliography + 2 appendix, a Cycle 1 reject may not go to Cycle 2); backup ACNS 2027 Cycle 2 (deadline 21 Jan 2027 AoE, 20 pages excluding references). **Target changed 2026-10-24: Computers & Security (Elsevier), not a conference.** The journal manuscript in `../journal/` is built from this LNCS text; keep the two in step, and change numbers here first. No double submission. This is a different manuscript from the short **Software Impacts** article about the same software (`../notes/paper_pitch.md`, `../submission_checklist.md`; that manuscript is kept outside the repository). The two are meant to be read independently, not merged.
+The manuscript is a journal submission and is kept outside this repository; the directory keeps its original name (`lncs/`) so that archived releases and paths stay valid. This is a different manuscript from the short Software Impacts article about the same software, and the two are meant to be read independently.
 
 ## Research question
 
@@ -67,14 +67,7 @@ From the coordinator, `code/experiments/exp7_e2e_run.sh` starts the gate on Jets
 
 ## Manuscript
 
-The English draft is in `manuscript/` (Springer LNCS template, XeLaTeX; `llncs.cls`/`splncs04.bst`/font setup vendored under `manuscript/vendor/`). Compile with:
-
-```bash
-cd lncs/manuscript
-./compile.sh
-```
-
-Compiles cleanly (17 pages, 0 undefined citations/references, no overfull boxes). On-board numbers come from the software's own validation run; the boundary-parity, traversal, early-exit and generalization tables come from `code/results/*.json`. The traversal and early-exit tables report Jetson #2 (`code/results_jetson/`); the gate row of the engine table comes from `code/results_jetson/exp6_gate_node.json`; the end-to-end table comes from `code/results_jetson/exp7_e2e.json`; the classifier and cold-start tables are five-run means from `code/results_jetson/exp8_summary.json`. No `\ph{...}` markers remain.
+The manuscript is not in this repository. `REPRODUCE.md` maps each of its tables and figures to the result files under `code/`.
 
 ## Cross-reference
 

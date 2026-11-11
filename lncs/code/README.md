@@ -1,6 +1,6 @@
 # Experiment code
 
-Code for the measurements in the LNCS manuscript. The per-tree baseline, the float64 variant, the early-exit rule and the boundary prober are not part of the served package, so they live here; a test checks that this traversal and the packaged `NumpyInferenceEngine` return the same labels.
+Code for the measurements in the systems paper. The per-tree baseline, the float64 variant, the early-exit rule and the boundary prober are not part of the served package, so they live here; a test checks that this traversal and the packaged `NumpyInferenceEngine` return the same labels.
 
 ```
 lncs/code/

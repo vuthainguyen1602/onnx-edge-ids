@@ -1,0 +1,24 @@
+{
+  "versions": {
+    "sklearn": "1.9.1",
+    "skl2onnx": "1.21.0",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3"
+  },
+  "default_conversion_needed_bool_workaround": false,
+  "split_nodes": 1133,
+  "thresholds_not_float32_representable": 1100,
+  "training_rows_as_float32": {
+    "rows": 569,
+    "label_flips": 0,
+    "rows_with_probability_delta_over_1e-4": 0,
+    "max_probability_delta": 8.838455304270576e-08
+  },
+  "boundary_probes": {
+    "rows": 3399,
+    "label_flips": 0,
+    "rows_with_probability_delta_over_1e-4": 0,
+    "max_probability_delta": 1.079341549470314e-07
+  },
+  "example_flips": []
+}

@@ -1,9 +1,9 @@
 {
   "datasets": {
     "UNSW-NB15": {
-      "train": "/Users/thainguyenvu/Desktop/datasets/unsw_nb15/UNSW_NB15_training-set.csv",
-      "test": "/Users/thainguyenvu/Desktop/datasets/unsw_nb15/UNSW_NB15_testing-set.csv",
-      "split": "given test split /Users/thainguyenvu/Desktop/datasets/unsw_nb15/UNSW_NB15_testing-set.csv",
+      "train": "UNSW_NB15_training-set.csv",
+      "test": "UNSW_NB15_testing-set.csv",
+      "split": "given test split UNSW_NB15_testing-set.csv",
       "label_col": "label",
       "benign_values": [
         "benign",
@@ -421,7 +421,7 @@
       }
     },
     "ToN-IoT": {
-      "train": "/Users/thainguyenvu/Desktop/datasets/ton_iot/Train_Test_Network_dataset/train_test_network.csv",
+      "train": "train_test_network.csv",
       "test": null,
       "split": "stratified 70/30 split of --train",
       "label_col": "label",

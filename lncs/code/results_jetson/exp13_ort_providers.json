@@ -1,0 +1,74 @@
+{
+  "machine": "aarch64 Linux",
+  "numpy": "1.26.4",
+  "onnxruntime": "1.23.0",
+  "available_providers": [
+    "TensorrtExecutionProvider",
+    "CUDAExecutionProvider",
+    "CPUExecutionProvider"
+  ],
+  "model": "ids_rf.onnx",
+  "rows": {
+    "probes": 287223,
+    "replay": 447275
+  },
+  "reference": "Apple M3, ONNX Runtime 1.30.0, CPU provider",
+  "configs": {
+    "cpu": {
+      "requested": [
+        "CPUExecutionProvider"
+      ],
+      "node_placement_at_session_creation": {},
+      "session_providers": [
+        "CPUExecutionProvider"
+      ],
+      "node_assignment": {
+        "Scaler": [
+          "CPUExecutionProvider"
+        ],
+        "TreeEnsembleClassifier": [
+          "CPUExecutionProvider"
+        ],
+        "ArgMax": [
+          "CPUExecutionProvider"
+        ]
+      },
+      "probes": {
+        "label_flips_vs_reference": 0
+      },
+      "replay": {
+        "label_flips_vs_reference": 0
+      }
+    },
+    "cuda": {
+      "requested": [
+        "CUDAExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "node_placement_at_session_creation": {
+        "CUDAExecutionProvider": [
+          "ArgMax",
+          "MemcpyFromHost"
+        ],
+        "CPUExecutionProvider": [
+          "Scaler",
+          "TreeEnsembleClassifier"
+        ]
+      },
+      "error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Non-zero status code returned while running ArgMax node. Name:'probability2prediction' Status Message: CUDNN failure 5003: CUDNN_STATUS_EXECUTION_FAILED_CUDART ; GPU=0 ; hostname=ubuntu ; file=/opt/onnxruntime/onnxruntime/core/providers/cuda/reduction/reduction_ops.cc"
+    },
+    "tensorrt": {
+      "requested": [
+        "TensorrtExecutionProvider",
+        "CUDAExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "node_placement_at_session_creation": {},
+      "tensorrt_cannot_find_plugin": [
+        "Scaler",
+        "TreeEnsembleClassifier"
+      ],
+      "error": "RuntimeException: [ONNXRuntimeError] : 6 : RUNTIME_EXCEPTION : Exception during initialization: /opt/onnxruntime/onnxruntime/core/providers/tensorrt/tensorrt_execution_provider.cc:2315 SubGraphCollection_t onnxruntime::TensorrtExecutionProvider::GetSupportedList(SubGraphCollection_t, int, int, const onnxruntime::Grap"
+    }
+  }
+}

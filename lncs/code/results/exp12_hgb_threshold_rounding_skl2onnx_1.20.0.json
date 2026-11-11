@@ -1,0 +1,43 @@
+{
+  "versions": {
+    "sklearn": "1.9.1",
+    "skl2onnx": "1.20.0",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3"
+  },
+  "default_conversion_needed_bool_workaround": true,
+  "split_nodes": 1133,
+  "thresholds_not_float32_representable": 1100,
+  "training_rows_as_float32": {
+    "rows": 569,
+    "label_flips": 0,
+    "rows_with_probability_delta_over_1e-4": 89,
+    "max_probability_delta": 0.1443825034724161
+  },
+  "boundary_probes": {
+    "rows": 3399,
+    "label_flips": 12,
+    "rows_with_probability_delta_over_1e-4": 151,
+    "max_probability_delta": 0.3028190123673602
+  },
+  "example_flips": [
+    {
+      "feature": 23,
+      "float64_threshold": 873.2,
+      "float32_of_threshold": 873.2000122070312,
+      "input": 873.2000122070312
+    },
+    {
+      "feature": 22,
+      "float64_threshold": 105.9,
+      "float32_of_threshold": 105.9000015258789,
+      "input": 105.9000015258789
+    },
+    {
+      "feature": 22,
+      "float64_threshold": 105.9,
+      "float32_of_threshold": 105.9000015258789,
+      "input": 105.9000015258789
+    }
+  ]
+}

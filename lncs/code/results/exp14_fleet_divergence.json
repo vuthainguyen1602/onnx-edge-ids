@@ -1,0 +1,106 @@
+{
+  "numpy": "2.5.3",
+  "attack_flows_scanned": 3000,
+  "single_feature_variants_examined": 4100724,
+  "controllable_features": [
+    "flow_duration",
+    "total_fwd_packets",
+    "total_length_of_fwd_packets",
+    "fwd_packet_length_max",
+    "fwd_packet_length_min",
+    "fwd_packet_length_mean",
+    "flow_bytes_s",
+    "flow_packets_s",
+    "flow_iat_mean",
+    "flow_iat_std",
+    "flow_iat_max",
+    "flow_iat_min",
+    "fwd_iat_total",
+    "fwd_iat_mean",
+    "fwd_psh_flags",
+    "packet_length_mean",
+    "average_packet_size"
+  ],
+  "attack_flows_with_a_fleet_divergence": 486,
+  "fraction": 0.162,
+  "within_recorded_range": 486,
+  "via_continuous_feature": 459,
+  "via_continuous_feature_within_range": 459,
+  "abs_change_continuous_median": 30378.00390625,
+  "features_used": {
+    "flow_duration": 21,
+    "total_fwd_packets": 27,
+    "flow_iat_mean": 3,
+    "flow_iat_std": 4,
+    "flow_iat_max": 1,
+    "flow_iat_min": 430
+  },
+  "examples": [
+    {
+      "row": 299274,
+      "attack_name": "DoS Hulk",
+      "feature": "flow_duration",
+      "recorded_value": 192.0,
+      "crafted_value": 208.78152465820312,
+      "abs_change": 16.781524658203125,
+      "within_feature_recorded_range": true,
+      "feature_is_integer_valued": false,
+      "crafted_value_is_integer": false
+    },
+    {
+      "row": 201714,
+      "attack_name": "DoS Hulk",
+      "feature": "flow_duration",
+      "recorded_value": 191.0,
+      "crafted_value": 208.78152465820312,
+      "abs_change": 17.781524658203125,
+      "within_feature_recorded_range": true,
+      "feature_is_integer_valued": false,
+      "crafted_value_is_integer": false
+    },
+    {
+      "row": 425092,
+      "attack_name": "DoS Hulk",
+      "feature": "flow_duration",
+      "recorded_value": 16.0,
+      "crafted_value": 63.67269515991211,
+      "abs_change": 47.67269515991211,
+      "within_feature_recorded_range": true,
+      "feature_is_integer_valued": false,
+      "crafted_value_is_integer": false
+    },
+    {
+      "row": 117635,
+      "attack_name": "DoS Hulk",
+      "feature": "flow_iat_mean",
+      "recorded_value": 489.5,
+      "crafted_value": 4660.36328125,
+      "abs_change": 4170.86328125,
+      "within_feature_recorded_range": true,
+      "feature_is_integer_valued": false,
+      "crafted_value_is_integer": false
+    },
+    {
+      "row": 117631,
+      "attack_name": "DoS Hulk",
+      "feature": "flow_iat_mean",
+      "recorded_value": 471.5,
+      "crafted_value": 4660.36328125,
+      "abs_change": 4188.86328125,
+      "within_feature_recorded_range": true,
+      "feature_is_integer_valued": false,
+      "crafted_value_is_integer": false
+    },
+    {
+      "row": 187894,
+      "attack_name": "DoS Hulk",
+      "feature": "flow_iat_mean",
+      "recorded_value": 461.5,
+      "crafted_value": 4660.36328125,
+      "abs_change": 4198.86328125,
+      "within_feature_recorded_range": true,
+      "feature_is_integer_valued": false,
+      "crafted_value_is_integer": false
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "skl2onnx": "1.21.0",
+  "test_rows": 447275,
+  "native_float64_scaler_vs_ort_flips": 2073,
+  "native_float32_scaled_vs_ort_flips": 0
+}

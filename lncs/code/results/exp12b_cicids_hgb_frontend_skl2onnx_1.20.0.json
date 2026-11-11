@@ -1,0 +1,12 @@
+{
+  "note": "CICIDS2017 HistGradientBoosting (200 iterations, max_bins=255, seed 0), framework prediction vs ONNX Runtime, 447,275-row test split. Isolates the skl2onnx threshold-rounding defect (removed by onnx/sklearn-onnx PR 1227, on main) from the float64-vs-float32 front-end scaler.",
+  "released_skl2onnx_1.20.0": {
+    "native_float64_scaler_vs_ort_flips": 1362,
+    "native_float32_scaled_vs_ort_flips": 963
+  },
+  "skl2onnx_main_1.21.0": {
+    "native_float64_scaler_vs_ort_flips": 2073,
+    "native_float32_scaled_vs_ort_flips": 0
+  },
+  "reading": "Of the 1,362 framework-vs-export flips under the released converter, 963 are the threshold rounding (the float32-scaled comparison, which the fix takes to 0); the rest are the front-end float64 scaler, which the fix does not touch and which grows once thresholds are tuned for float32 inputs."
+}

@@ -55,7 +55,34 @@
           "TreeEnsembleClassifier"
         ]
       },
-      "error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Non-zero status code returned while running ArgMax node. Name:'probability2prediction' Status Message: CUDNN failure 5003: CUDNN_STATUS_EXECUTION_FAILED_CUDART ; GPU=0 ; hostname=ubuntu ; file=/opt/onnxruntime/onnxruntime/core/providers/cuda/reduction/reduction_ops.cc"
+      "session_providers": [
+        "CUDAExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "node_assignment": {
+        "Scaler": [
+          "CPUExecutionProvider"
+        ],
+        "TreeEnsembleClassifier": [
+          "CPUExecutionProvider"
+        ],
+        "MemcpyFromHost": [
+          "CUDAExecutionProvider"
+        ],
+        "ArgMax": [
+          "CUDAExecutionProvider"
+        ]
+      },
+      "probes": {
+        "label_flips_vs_cpu_provider": 0,
+        "max_probability_delta_vs_cpu_provider": 0.0,
+        "label_flips_vs_reference": 0
+      },
+      "replay": {
+        "label_flips_vs_cpu_provider": 0,
+        "max_probability_delta_vs_cpu_provider": 0.0,
+        "label_flips_vs_reference": 0
+      }
     },
     "tensorrt": {
       "requested": [

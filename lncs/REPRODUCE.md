@@ -142,6 +142,7 @@ python lncs/code/experiments/exp12_hgb_threshold_rounding.py                # no
 python lncs/code/experiments/exp12b_cicids_hgb_frontend.py --train $TRAIN --test $DATA
 python lncs/code/experiments/exp14_fleet_divergence.py --data $DATA         # fleet divergence on real attack flows
 python lncs/code/experiments/exp15_converter_sweep.py --train $TRAIN --test $DATA --out lncs/code/results/exp15_converter_sweep_released.json
+python lncs/code/experiments/exp11b_fault_confidence_gate.py --data $DATA   # the six faults against a gate that also checks confidences
 
 UNSW=/path/to/unsw_nb15     # UNSW_NB15_training-set.csv (175,341 rows) and UNSW_NB15_testing-set.csv (82,332 rows)
 python lncs/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
@@ -149,6 +150,11 @@ python lncs/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
 TON=/path/to/ton_iot/Train_Test_Network_dataset   # train_test_network.csv (211,043 rows); no test file, so a stratified 70/30 split
 python lncs/code/experiments/exp10_cross_dataset.py --name ToN-IoT --train $TON/train_test_network.csv --label-col label
 python lncs/code/experiments/exp10_table.py                                 # LaTeX rows from exp10's JSON
+# replay with the 1e-5 confidence check on all 13 models (runtime parity), and converter parity
+# with the same check (retrains the 12 models with seed 0; the label-flip counts must match exp5/exp10)
+python lncs/code/experiments/exp16_confidence_replay.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
+python lncs/code/experiments/exp17_converter_confidence.py --cicids-train $TRAIN --cicids-test $DATA \
+    --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # exp13 (GPU providers) runs on Jetson #2 with a GPU build of ONNX Runtime; see results_jetson/exp13_ort_providers.json
 ```
 
@@ -234,6 +240,9 @@ Paths are relative to `lncs/code/`.
 | Converter/runtime sweep, seven families, faithful float32 always matches ORT | `results/exp15_converter_sweep_released.json`, `results/exp15_converter_sweep_skl2onnx_main.json` |
 | GPU providers leave the forest on the CPU kernel (threats) | `results_jetson/exp13_ort_providers.json` |
 | Other datasets (`tab:datasets`) | `results/exp10_cross_dataset.json` |
+| Replay gate with the confidence check: six faults, label-only vs. labels + confidence | `results/exp11b_fault_confidence_gate.json` (and `results/exp2c_confidence_gate.json` for the float64 fault alone) |
+| Replay gate with the confidence check on all 13 models, runtime parity | `results/exp16_confidence_replay.json` |
+| Converter parity (framework vs. export) with the confidence check | `results/exp17_converter_confidence.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

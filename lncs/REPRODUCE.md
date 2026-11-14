@@ -195,6 +195,15 @@ python scripts/csv_producer.py --csv replay_cicids2017.csv --transport zeromq --
 
 The board scripts take `TRANSPORT=zeromq` for the same runs: `exp6_gate_node_run.sh` (with `zmq_sink.py` draining the gate's output on the coordinator), `exp7_e2e_run.sh` and `exp8_classifier_repeat.sh`. The paper's ZeroMQ figures are the `*_kafkareplay` results; the gate needs scikit-learn and joblib in the venv it runs from.
 
+**Repeating the single-run board figures.** `exp18_board_repeats.sh` (run on the coordinator) repeats, `REPS` times each, the four end-to-end rows and the gate-node rows over Kafka and ZeroMQ, with the parameters of the original runs, and `exp18_repeat_summary.py` reports mean, SD, median and range per configuration:
+
+```bash
+J1=bvdung@<jetson1> J2=bvdung@<jetson2> COORD=<coordinator-ip> BOOTSTRAP=<coordinator-ip>:9092 \
+CSV=/path/to/replay_cicids2017.csv REPS=5 ./lncs/code/experiments/exp18_board_repeats.sh results_jetson_repeats/
+```
+
+`STEPS=e2e` or `STEPS=gate` runs one part; `E2E_CONFIGS` and `GATE_TRANSPORTS` narrow it further, e.g. to redo one failed repeat. Kafka must be running on the coordinator for the Kafka runs, and both boards need the venv the earlier board runs used, at `~/onnx-edge-ids-paper/venv` (with scikit-learn and joblib for the gate).
+
 For Kafka, follow `docs/deploy_2jetson.md` and read "Jetson #1" as the gate host and "Jetson #2" as the classifier host. The only board-specific parts are `tegrastats` for the power column and `requirements_jetson_onnx.txt` for the ARM64 ONNX Runtime wheel; on a laptop or server, `pip install -e .[onnx]` installs the runtime instead.
 
 ```bash

@@ -155,6 +155,10 @@ python lncs/code/experiments/exp10_table.py                                 # La
 python lncs/code/experiments/exp16_confidence_replay.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
 python lncs/code/experiments/exp17_converter_confidence.py --cicids-train $TRAIN --cicids-test $DATA \
     --unsw $UNSW --ton-iot $TON/train_test_network.csv
+# the release gate's data-free probes (scaler-offset base rows, all nodes) on all 13 models, with timings;
+# --converter retrains the 12 models as exp17 does and also tests framework vs export (~5 min on an M3)
+python lncs/code/experiments/exp19_datafree_probes.py --converter --cicids-train $TRAIN --cicids-test $DATA \
+    --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # exp13 (GPU providers) runs on Jetson #2 with a GPU build of ONNX Runtime; see results_jetson/exp13_ort_providers.json
 ```
 
@@ -252,6 +256,7 @@ Paths are relative to `lncs/code/`.
 | Replay gate with the confidence check: six faults, label-only vs. labels + confidence | `results/exp11b_fault_confidence_gate.json` (and `results/exp2c_confidence_gate.json` for the float64 fault alone) |
 | Replay gate with the confidence check on all 13 models, runtime parity | `results/exp16_confidence_replay.json` |
 | Converter parity (framework vs. export) with the confidence check | `results/exp17_converter_confidence.json` |
+| Data-free probes on all 13 models: gate verdicts and cost (`tab:datafree`) | `results/exp19_datafree_probes.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

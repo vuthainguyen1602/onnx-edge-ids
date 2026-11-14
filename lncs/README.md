@@ -17,10 +17,6 @@ Findings, all regenerable from `code/`:
 - **Other forests, other converters.** On scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost exported with skl2onnx/onnxmltools, the same probes find float64-traversal and framework-vs-ONNX-Runtime divergence 3 to 169x more densely than replay; the float32 traversal never disagrees. Threshold sharing is a matter of bin count (72 trees per pair at the deployed trainer's 32 bins, 4 at 255, 2 for exact splits). ONNX Runtime 1.26.0 and 1.27.0 relabel 85% of flows for a stock scikit-learn export (P > 0 instead of P > 0.5); replay catches that, probes are not meant to.
 - **Distribution shift.** This work does not make the detector robust to drift. Frozen and run on CSE-CIC-IDS2018, classifier F1 falls 0.98 to 0.24 and gate attack recall 0.72 to 0.01. Runtime parity and early-exit exactness hold on all 477,771 shifted flows, and the share of flows early exit cannot settle rises 4.8% to 28.2% without labels. Calibrated as an alarm on windows of 10,000 flows (threshold = max over calibration windows), it raises 0 false alarms on 22 held-out in-distribution windows and fires on 47 of 47 shifted windows; on 500 gate-forwarded flows, 0/51 and 23/23.
 
-## Title
-
-*Two Runtimes, One Verdict: Boundary-Directed Parity Testing for Tree-Ensemble Intrusion Detection at the Edge*
-
 ## Code
 
 Experiment code is in [`code/`](code/): the traversals, the early-exit rule, the boundary prober, the result files quoted in the paper, and tests that run without the dataset. See [`code/README.md`](code/README.md). It reads the served forests from `../artifacts/` and a test pins its traversal to the packaged `NumpyInferenceEngine`, so the paper and the package cannot drift apart silently. Since v0.4.0 the package's release gate (`../scripts/validate_parity.py`) runs the same probe construction, dataset-free, from `../src/onnx_edge_ids/boundary_probe.py`.

@@ -206,7 +206,7 @@ J1=bvdung@<jetson1> J2=bvdung@<jetson2> COORD=<coordinator-ip> BOOTSTRAP=<coordi
 CSV=/path/to/replay_cicids2017.csv REPS=5 ./lncs/code/experiments/exp18_board_repeats.sh results_jetson_repeats/
 ```
 
-`STEPS=e2e` or `STEPS=gate` runs one part; `E2E_CONFIGS` and `GATE_TRANSPORTS` narrow it further, e.g. to redo one failed repeat. Kafka must be running on the coordinator for the Kafka runs, and both boards need the venv the earlier board runs used, at `~/onnx-edge-ids-paper/venv` (with scikit-learn and joblib for the gate).
+`STEPS=energy` (not in the default) measures idle-subtracted inference energy per backend with `exp20_classifier_energy.py` on a quiet Jetson #2: idle, each backend at saturation, idle again, three times, in one session (about 10 minutes). `STEPS=e2e` or `STEPS=gate` runs one part; `E2E_CONFIGS` and `GATE_TRANSPORTS` narrow it further, e.g. to redo one failed repeat. Kafka must be running on the coordinator for the Kafka runs, and both boards need the venv the earlier board runs used, at `~/onnx-edge-ids-paper/venv` (with scikit-learn and joblib for the gate).
 
 For Kafka, follow `docs/deploy_2jetson.md` and read "Jetson #1" as the gate host and "Jetson #2" as the classifier host. The only board-specific parts are `tegrastats` for the power column and `requirements_jetson_onnx.txt` for the ARM64 ONNX Runtime wheel; on a laptop or server, `pip install -e .[onnx]` installs the runtime instead.
 

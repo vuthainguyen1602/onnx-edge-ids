@@ -19,6 +19,12 @@
 #         the same records at GATE_ZMQ_RATE (default 975 rows/s, the Kafka
 #         rate), and zmq_sink.py drains the gate's output on this host.
 #
+#   energy  exp20_classifier_energy.py on ENERGY_HOST (default J2): idle, then
+#         each classifier backend at saturation, then idle again, ENERGY_REPEATS
+#         times, all in one session, for idle-subtracted energy per inference.
+#         Run it when nothing else is using that board; it is not in the
+#         default STEPS because it needs about 10 minutes of a quiet board.
+#
 # Then exp18_repeat_summary.py writes mean, SD, median and range per
 # configuration. Kafka must be running on the coordinator for the Kafka runs.
 # Every run directory is kept under <out-dir>, so a failed repeat can be redone
@@ -111,6 +117,22 @@ if [[ " $STEPS " == *" gate "* ]]; then
       sleep "$PAUSE"
     done
   done
+fi
+
+if [[ " $STEPS " == *" energy "* ]]; then
+  EH=${ENERGY_HOST:-$J2}
+  log "energy on $EH (batch ${ENERGY_BATCH:-20}, ${ENERGY_SECONDS:-60} s per window, ${ENERGY_REPEATS:-3} repeats)"
+  ssh -o BatchMode=yes "$EH" "mkdir -p ~/$BENCH/$EXP"
+  rsync -a --exclude __pycache__ scripts src artifacts "$EH:$BENCH/"
+  rsync -a "$EXP/exp20_classifier_energy.py" "$EH:$BENCH/$EXP/"
+  rsync -a "$CSV" "$EH:$BENCH/replay.csv"
+  ssh -o BatchMode=yes "$EH" "cd ~/$BENCH && rm -rf out/energy && mkdir -p out && \
+    ~/$REMOTE_ROOT/venv/bin/python $EXP/exp20_classifier_energy.py --csv replay.csv \
+      --batch ${ENERGY_BATCH:-20} --seconds ${ENERGY_SECONDS:-60} --idle ${ENERGY_IDLE:-60} \
+      --repeats ${ENERGY_REPEATS:-3} --workdir out/energy --out out/exp20_classifier_energy.json" \
+    2>&1 | grep -v -i warn | tee -a "$OUT/series.txt"
+  mkdir -p "$OUT/energy"
+  scp -q -r "$EH:$BENCH/out/exp20_classifier_energy.json" "$EH:$BENCH/out/energy" "$OUT/energy/"
 fi
 
 $PY "$EXP/exp18_repeat_summary.py" "$OUT"

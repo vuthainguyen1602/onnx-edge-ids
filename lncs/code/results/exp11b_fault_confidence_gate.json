@@ -1,0 +1,212 @@
+{
+  "numpy": "2.5.3",
+  "onnxruntime": "1.30.0",
+  "tolerance": 1e-05,
+  "replay_rows": 2000,
+  "faults": {
+    "float32 (deployed)": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 0,
+        "rows_over_tolerance": 0,
+        "rows_tripping_gate": 0,
+        "max_confidence_delta": 4.76837158203125e-07,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 1.0
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 0,
+        "rows_over_tolerance": 0,
+        "rows_tripping_gate": 0,
+        "max_confidence_delta": 4.76837158203125e-07,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 1.0
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 0,
+        "rows_over_tolerance": 0,
+        "rows_tripping_gate": 0,
+        "max_confidence_delta": 4.172325134277344e-07,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 1.0
+      }
+    },
+    "float64": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 15,
+        "rows_over_tolerance": 6962,
+        "rows_tripping_gate": 6962,
+        "max_confidence_delta": 0.26481678773416206,
+        "prob_replay_passes_labels_only": 0.935126041878245,
+        "prob_replay_passes_labels_and_confidence": 2.364651488948707e-14
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 328,
+        "rows_over_tolerance": 109218,
+        "rows_tripping_gate": 109218,
+        "max_confidence_delta": 0.4947674982868282,
+        "prob_replay_passes_labels_only": 0.10174915641983705,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 0,
+        "rows_over_tolerance": 98734,
+        "rows_tripping_gate": 98734,
+        "max_confidence_delta": 0.23267499251056734,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      }
+    },
+    "float64_scaler": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 0,
+        "rows_over_tolerance": 1843,
+        "rows_tripping_gate": 1843,
+        "max_confidence_delta": 0.16293752193450928,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 0.00025916635567180165
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 26,
+        "rows_over_tolerance": 19815,
+        "rows_tripping_gate": 19815,
+        "max_confidence_delta": 0.3095184564590454,
+        "prob_replay_passes_labels_only": 0.8343918090656629,
+        "prob_replay_passes_labels_and_confidence": 8.135113443936559e-63
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 0,
+        "rows_over_tolerance": 16672,
+        "rows_tripping_gate": 16672,
+        "max_confidence_delta": 0.23267507553100586,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 1.1477807351669109e-52
+      }
+    },
+    "scaler_reordered": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 14,
+        "rows_over_tolerance": 5476,
+        "rows_tripping_gate": 5476,
+        "max_confidence_delta": 0.2648167014122009,
+        "prob_replay_passes_labels_only": 0.9393169773529552,
+        "prob_replay_passes_labels_and_confidence": 1.9962194221954102e-11
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 73,
+        "rows_over_tolerance": 36285,
+        "rows_tripping_gate": 36285,
+        "max_confidence_delta": 0.3212428689002991,
+        "prob_replay_passes_labels_only": 0.601468902144853,
+        "prob_replay_passes_labels_and_confidence": 4.948078114573823e-118
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 0,
+        "rows_over_tolerance": 27910,
+        "rows_tripping_gate": 27910,
+        "max_confidence_delta": 0.23267507553100586,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 1.6223743815592705e-89
+      }
+    },
+    "raw_thresholds": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 3,
+        "rows_over_tolerance": 30930,
+        "rows_tripping_gate": 30930,
+        "max_confidence_delta": 0.22139638662338257,
+        "prob_replay_passes_labels_only": 0.9866749639381135,
+        "prob_replay_passes_labels_and_confidence": 5.720818401916427e-63
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 342,
+        "rows_over_tolerance": 130597,
+        "rows_tripping_gate": 130597,
+        "max_confidence_delta": 0.4824290871620178,
+        "prob_replay_passes_labels_only": 0.09228775527871919,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 4,
+        "rows_over_tolerance": 105136,
+        "rows_tripping_gate": 105136,
+        "max_confidence_delta": 0.195967435836792,
+        "prob_replay_passes_labels_only": 0.9725312050102428,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      }
+    },
+    "strict_less": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 24,
+        "rows_over_tolerance": 39001,
+        "rows_tripping_gate": 39001,
+        "max_confidence_delta": 0.2648167014122009,
+        "prob_replay_passes_labels_only": 0.8982387232724117,
+        "prob_replay_passes_labels_and_confidence": 5.678043665819078e-80
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 615,
+        "rows_over_tolerance": 182860,
+        "rows_tripping_gate": 182860,
+        "max_confidence_delta": 0.4947674870491028,
+        "prob_replay_passes_labels_only": 0.013746402567853977,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 0,
+        "rows_over_tolerance": 168721,
+        "rows_tripping_gate": 168721,
+        "max_confidence_delta": 0.23267507553100586,
+        "prob_replay_passes_labels_only": 1.0,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      }
+    },
+    "decimal_thresholds": {
+      "replay": {
+        "rows": 447275,
+        "label_flips": 111,
+        "rows_over_tolerance": 114240,
+        "rows_tripping_gate": 114240,
+        "max_confidence_delta": 0.3558548092842102,
+        "prob_replay_passes_labels_only": 0.6087177766354052,
+        "prob_replay_passes_labels_and_confidence": 6.768720493175794e-257
+      },
+      "probes": {
+        "rows": 287223,
+        "label_flips": 674,
+        "rows_over_tolerance": 211970,
+        "rows_tripping_gate": 211970,
+        "max_confidence_delta": 0.4947674870491028,
+        "prob_replay_passes_labels_only": 0.009106811149859853,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      },
+      "offset_probes": {
+        "rows": 287223,
+        "label_flips": 8,
+        "rows_over_tolerance": 123320,
+        "rows_tripping_gate": 123320,
+        "max_confidence_delta": 0.195967435836792,
+        "prob_replay_passes_labels_only": 0.9458165778332963,
+        "prob_replay_passes_labels_and_confidence": 0.0
+      }
+    }
+  },
+  "seconds": 406.5
+}

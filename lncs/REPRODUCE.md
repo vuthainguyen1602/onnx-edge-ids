@@ -261,6 +261,7 @@ Paths are relative to `lncs/code/`.
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |
 | Gate drain over ZeroMQ, 100,000 records (Discussion) | `results_jetson/exp6_gate_node_zeromq_kafkareplay_max.json` |
+| Five-run repeats: end-to-end table, gate rows, energy per row (`tab:e2e`, `tab:engines`, Section 7.1) | `results_jetson/exp18_repeats/exp18_summary.json` (aggregates), `exp18_e2e.json` (per run), `gate/gate_*_rep*.json`, `energy/exp20_classifier_energy.json` |
 | Lockstep throughput (`fig:lockstep`) | `results_jetson/exp1_lockstep_benchmark.json`, `results/exp1_lockstep_benchmark.json` |
 | Whole-forest lockstep slower than the per-tree loop at batch 2,000 (lockstep section, Discussion) | `results/exp1b_whole_forest_lockstep.json` |
 | Exact early exit (`tab:earlyexit`) | `results_jetson/exp3_exact_early_exit.json` |

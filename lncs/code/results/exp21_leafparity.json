@@ -1,0 +1,460 @@
+{
+  "versions": {
+    "leafparity": "0.1.2",
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
+    "xgboost": "3.4.1",
+    "onnxruntime": "1.30.0"
+  },
+  "settings": {
+    "input_dtype": "float32",
+    "allow_missing": false,
+    "background_rows": 2000,
+    "worst_case_seconds": 30.0,
+    "node_limit": 200000
+  },
+  "datasets": {
+    "CICIDS2017": {
+      "sklearn_rf": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 29 distinct problem(s) at 35871 place(s) in the trees. For some inputs the raw outputs differ by 0.181429 (proven upper bound for any input: 1.00001); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 0.18142857926136713,
+          "max_raw_difference_guaranteed": 1.000011980533399,
+          "rounding_allowance": 1.198053339901417e-05,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 29,
+          "problem_kinds": {
+            "precision": 29
+          },
+          "places_in_trees": 35871,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 29,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 29
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 0.18142857926136713,
+          "max_raw_difference_upper_bound": 1.000011980533399,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 29,
+          "joint_regions_examined": 2529548,
+          "run_seconds": 95.1
+        },
+        "seconds": 95.2
+      },
+      "sklearn_hgb": {
+        "error": "UnsupportedModelError: pipeline step 'model' (HistGradientBoostingClassifier) is not supported as the final estimator: use a scikit-learn tree model, XGBoost or LightGBM",
+        "seconds": 0.0
+      },
+      "lightgbm": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 28 distinct problem(s) at 3182 place(s) in the trees. For some inputs the raw outputs differ by 67.9092 (proven upper bound for any input: 206.212); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 67.90924987026894,
+          "max_raw_difference_guaranteed": 206.21182260083944,
+          "rounding_allowance": 0.003131655863789428,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 28,
+          "problem_kinds": {
+            "precision": 28
+          },
+          "places_in_trees": 3182,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 28,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 28
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 67.90924987026894,
+          "max_raw_difference_upper_bound": 206.21182260083944,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 29,
+          "joint_regions_examined": 35119,
+          "run_seconds": 38.5
+        },
+        "seconds": 39.6
+      },
+      "xgboost_hist": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 28 distinct problem(s) at 2441 place(s) in the trees. For some inputs the raw outputs differ by 21.7845 (proven upper bound for any input: 79.0831); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 21.784473988016543,
+          "max_raw_difference_guaranteed": 79.08313323927918,
+          "rounding_allowance": 0.0019242291759024263,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 28,
+          "problem_kinds": {
+            "precision": 28
+          },
+          "places_in_trees": 2441,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 28,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 28
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 21.784473988016543,
+          "max_raw_difference_upper_bound": 79.08313323927918,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 29,
+          "joint_regions_examined": 49020,
+          "run_seconds": 41.3
+        },
+        "seconds": 41.3
+      }
+    },
+    "UNSW-NB15": {
+      "sklearn_rf": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 35 distinct problem(s) at 80944 place(s) in the trees. For some inputs the raw outputs differ by 0.0931861 (proven upper bound for any input: 1.00001).",
+          "max_raw_difference_found": 0.09318612231898815,
+          "max_raw_difference_guaranteed": 1.0000119805333987,
+          "rounding_allowance": 1.198053339901417e-05,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 35,
+          "problem_kinds": {
+            "precision": 35
+          },
+          "places_in_trees": 80944,
+          "label_flip_found": false,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 35,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 35
+            }
+          ],
+          "class_can_change": "not found",
+          "max_raw_difference_found": 0.09318612231898815,
+          "max_raw_difference_upper_bound": 1.0000119805333987,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 39,
+          "joint_regions_examined": 6141269,
+          "run_seconds": 178.3
+        },
+        "seconds": 178.5
+      },
+      "sklearn_hgb": {
+        "error": "UnsupportedModelError: pipeline step 'model' (HistGradientBoostingClassifier) is not supported as the final estimator: use a scikit-learn tree model, XGBoost or LightGBM",
+        "seconds": 0.0
+      },
+      "lightgbm": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 34 distinct problem(s) at 2937 place(s) in the trees. For some inputs the raw outputs differ by 56.6126 (proven upper bound for any input: 138.583); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 56.61255512732879,
+          "max_raw_difference_guaranteed": 138.58321187463986,
+          "rounding_allowance": 0.001969374489906735,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 34,
+          "problem_kinds": {
+            "precision": 34
+          },
+          "places_in_trees": 2937,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 34,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 34
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 56.61255512732879,
+          "max_raw_difference_upper_bound": 138.58321187463986,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 39,
+          "joint_regions_examined": 41598,
+          "run_seconds": 39.8
+        },
+        "seconds": 43.8
+      },
+      "xgboost_hist": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 29 distinct problem(s) at 5420 place(s) in the trees. For some inputs the raw outputs differ by 27.7559 (proven upper bound for any input: 126.402); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 27.755916240785155,
+          "max_raw_difference_guaranteed": 126.40231206686609,
+          "rounding_allowance": 0.002311669043429206,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 29,
+          "problem_kinds": {
+            "precision": 29
+          },
+          "places_in_trees": 5420,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 29,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 29
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 27.755916240785155,
+          "max_raw_difference_upper_bound": 126.40231206686609,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 39,
+          "joint_regions_examined": 157609,
+          "run_seconds": 49.5
+        },
+        "seconds": 49.5
+      }
+    },
+    "ToN-IoT": {
+      "sklearn_rf": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 14 distinct problem(s) at 25240 place(s) in the trees. For some inputs the raw outputs differ by 0.38 (proven upper bound for any input: 1.00001); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 0.3799999831244347,
+          "max_raw_difference_guaranteed": 1.000011980533399,
+          "rounding_allowance": 1.198053339901417e-05,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 14,
+          "problem_kinds": {
+            "precision": 14
+          },
+          "places_in_trees": 25240,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 14,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 14
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 0.3799999831244347,
+          "max_raw_difference_upper_bound": 1.000011980533399,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 14,
+          "joint_regions_examined": 540519,
+          "run_seconds": 61.3
+        },
+        "seconds": 61.4
+      },
+      "sklearn_hgb": {
+        "error": "UnsupportedModelError: pipeline step 'model' (HistGradientBoostingClassifier) is not supported as the final estimator: use a scikit-learn tree model, XGBoost or LightGBM",
+        "seconds": 0.0
+      },
+      "lightgbm": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 12 distinct problem(s) at 2943 place(s) in the trees. For some inputs the raw outputs differ by 25.3651 (proven upper bound for any input: 65.9087); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 25.36513000190117,
+          "max_raw_difference_guaranteed": 65.90865773290314,
+          "rounding_allowance": 0.0013603834397380268,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 12,
+          "problem_kinds": {
+            "precision": 12
+          },
+          "places_in_trees": 2943,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 12,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 12
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 25.36513000190117,
+          "max_raw_difference_upper_bound": 65.90865773290314,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 14,
+          "joint_regions_examined": 31084,
+          "run_seconds": 43.3
+        },
+        "seconds": 43.5
+      },
+      "xgboost_hist": {
+        "verdict": {
+          "status": "NOT EQUIVALENT",
+          "headline": "Not equivalent: 10 distinct problem(s) at 1996 place(s) in the trees. For some inputs the raw outputs differ by 15.2884 (proven upper bound for any input: 28.5866); the predicted class changes for at least one input.",
+          "max_raw_difference_found": 15.288365640146367,
+          "max_raw_difference_guaranteed": 28.58661895654696,
+          "rounding_allowance": 0.0016791027930643434,
+          "max_raw_difference_is_proven_maximum": false,
+          "distinct_problems": 10,
+          "problem_kinds": {
+            "precision": 10
+          },
+          "places_in_trees": 1996,
+          "label_flip_found": true,
+          "worst_case_proven": false
+        },
+        "summary": {
+          "tool": "leafparity",
+          "version": "0.1.2",
+          "report": "summary",
+          "verdict": "NOT EQUIVALENT",
+          "reason": null,
+          "scope": {
+            "input_dtype": "float32",
+            "missing_values": false,
+            "infinity": false,
+            "bounded": false
+          },
+          "distinct_problems": 10,
+          "problem_kinds": [
+            {
+              "kind": "threshold rounding to lower precision",
+              "problems": 10
+            }
+          ],
+          "class_can_change": "yes",
+          "max_raw_difference_found": 15.288365640146367,
+          "max_raw_difference_upper_bound": 28.58661895654696,
+          "max_raw_difference_is_proven_maximum": false,
+          "trees_original": 200,
+          "trees_converted": 200,
+          "features": 14,
+          "joint_regions_examined": 18036,
+          "run_seconds": 37.5
+        },
+        "seconds": 37.6
+      }
+    }
+  }
+}

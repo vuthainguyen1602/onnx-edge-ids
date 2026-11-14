@@ -1,0 +1,5 @@
+rate=0 limit=10000 passes=2 tag=20261114_225340 transport=kafka
+ 22:53:49 up 36 days, 10:48,  0 users,  load average: 0.84, 0.98, 1.23
+ 22:53:49 up 36 days, 10:48,  0 users,  load average: 0.02, 0.09, 0.09
+[OK] Sent 10,000 rows in 3.6s (2797.9 rows/s)
+[OK] Sent 10,000 rows in 3.7s (2739.3 rows/s)

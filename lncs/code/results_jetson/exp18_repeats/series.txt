@@ -1,0 +1,93 @@
+[22:19:42] e2e zeromq_rate64 rep 1 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep1
+[22:22:05] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep1
+[22:22:25] e2e zeromq_rate64 rep 2 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep2
+[22:24:48] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep2
+[22:25:08] e2e zeromq_rate64 rep 3 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep3
+[22:27:31] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep3
+[22:27:51] e2e zeromq_rate64 rep 4 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep4
+[22:30:14] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep4
+[22:30:34] e2e zeromq_rate64 rep 5 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep5
+[22:32:57] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_rate64_rep5
+[22:33:17] e2e zeromq_ratemax rep 1 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep1
+[22:34:07] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep1
+[22:34:27] e2e zeromq_ratemax rep 2 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep2
+[22:35:17] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep2
+[22:35:37] e2e zeromq_ratemax rep 3 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep3
+[22:36:27] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep3
+[22:36:47] e2e zeromq_ratemax rep 4 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep4
+[22:37:38] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep4
+[22:37:58] e2e zeromq_ratemax rep 5 -> lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep5
+[22:38:49] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/zeromq_ratemax_rep5
+[22:39:09] e2e kafka_rate100 rep 1 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep1
+[22:41:12] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep1
+[22:41:32] e2e kafka_rate100 rep 2 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep2
+[22:43:35] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep2
+[22:43:55] e2e kafka_rate100 rep 3 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep3
+[22:45:58] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep3
+[22:46:18] e2e kafka_rate100 rep 4 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep4
+[22:48:25] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep4
+[22:48:45] e2e kafka_rate100 rep 5 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep5
+[22:50:51] [done] 685 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_rate100_rep5
+[22:51:11] e2e kafka_ratemax rep 1 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep1
+[22:52:05] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep1
+[22:52:25] e2e kafka_ratemax rep 2 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep2
+[22:53:20] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep2
+[22:53:40] e2e kafka_ratemax rep 3 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep3
+[22:54:36] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep3
+[22:54:56] e2e kafka_ratemax rep 4 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep4
+[22:55:51] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep4
+[22:56:11] e2e kafka_ratemax rep 5 -> lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep5
+[22:57:07] [done] 2362 verdicts in lncs/code/results_jetson/exp18_repeats/e2e/kafka_ratemax_rep5
+[22:57:28] e2e summary of 20 runs -> lncs/code/results_jetson/exp18_repeats/exp18_e2e.json
+[22:57:29] gate kafka rep 1 on bvdung@192.168.1.39
+gate_kafka_rep1 pass1: [OK] Sent 10,000 rows in 4.3s (2310.6 rows/s)
+gate_kafka_rep1 pass2: [OK] Sent 10,000 rows in 4.3s (2328.8 rows/s)
+[22:58:14] gate_kafka_rep1: "records": 20000
+[22:58:34] gate kafka rep 2 on bvdung@192.168.1.39
+gate_kafka_rep2 pass1: [OK] Sent 10,000 rows in 3.7s (2682.9 rows/s)
+gate_kafka_rep2 pass2: [OK] Sent 10,000 rows in 4.2s (2398.9 rows/s)
+[22:59:17] gate_kafka_rep2: "records": 20000
+[22:59:37] gate kafka rep 3 on bvdung@192.168.1.39
+gate_kafka_rep3 pass1: [OK] Sent 10,000 rows in 4.0s (2498.7 rows/s)
+gate_kafka_rep3 pass2: [OK] Sent 10,000 rows in 3.8s (2661.4 rows/s)
+[23:00:20] gate_kafka_rep3: "records": 20000
+[23:00:40] gate kafka rep 4 on bvdung@192.168.1.39
+gate_kafka_rep4 pass1: [OK] Sent 10,000 rows in 3.7s (2726.4 rows/s)
+gate_kafka_rep4 pass2: [OK] Sent 10,000 rows in 3.6s (2752.1 rows/s)
+[23:01:22] gate_kafka_rep4: "records": 20000
+[23:01:42] gate kafka rep 5 on bvdung@192.168.1.39
+gate_kafka_rep5 pass1: [OK] Sent 10,000 rows in 4.7s (2130.1 rows/s)
+gate_kafka_rep5 pass2: [OK] Sent 10,000 rows in 4.7s (2122.1 rows/s)
+[23:02:28] gate_kafka_rep5: "records": 20000
+[23:02:48] gate zeromq rep 1 on bvdung@192.168.1.39
+gate_zeromq_rep1 pass1: [OK] Sent 10,000 rows in 10.3s (974.8 rows/s)
+gate_zeromq_rep1 pass2: [OK] Sent 10,000 rows in 10.3s (974.8 rows/s)
+[23:03:32] gate_zeromq_rep1: "records": 20000
+[23:03:52] gate zeromq rep 2 on bvdung@192.168.1.39
+gate_zeromq_rep2 pass1: [OK] Sent 10,000 rows in 10.3s (974.5 rows/s)
+gate_zeromq_rep2 pass2: [OK] Sent 10,000 rows in 10.3s (975.0 rows/s)
+[23:04:35] gate_zeromq_rep2: "records": 20000
+[23:04:55] gate zeromq rep 3 on bvdung@192.168.1.39
+gate_zeromq_rep3 pass1: [OK] Sent 10,000 rows in 10.3s (974.9 rows/s)
+gate_zeromq_rep3 pass2: [OK] Sent 10,000 rows in 10.3s (974.9 rows/s)
+[23:05:39] gate_zeromq_rep3: "records": 20000
+[23:05:59] gate zeromq rep 4 on bvdung@192.168.1.39
+gate_zeromq_rep4 pass1: [OK] Sent 10,000 rows in 10.3s (974.8 rows/s)
+gate_zeromq_rep4 pass2: [OK] Sent 10,000 rows in 10.3s (974.9 rows/s)
+[23:06:42] gate_zeromq_rep4: "records": 20000
+[23:07:02] gate zeromq rep 5 on bvdung@192.168.1.39
+gate_zeromq_rep5 pass1: [OK] Sent 10,000 rows in 10.3s (974.8 rows/s)
+gate_zeromq_rep5 pass2: [OK] Sent 10,000 rows in 10.3s (974.8 rows/s)
+[23:07:45] gate_zeromq_rep5: "records": 20000
+[23:08:05] energy on bvdung@192.168.1.39 (batch 20, 60 s per window, 3 repeats)
+[0;93m2026-11-14 23:08:08.874243663 [W:onnxruntime:Default, device_discovery.cc:164 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:89 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+{"kind": "onnx", "repeat": 1, "mean_w": 5.6578, "samples": 293, "rows": 1176780, "calls": 58839, "elapsed_s": 60.0, "rows_s": 19612.9, "idle_w": 4.5848, "delta_w": 1.073, "energy_mj_per_row": 0.05471}
+{"kind": "numpy", "repeat": 1, "mean_w": 5.4092, "samples": 293, "rows": 233460, "calls": 11673, "elapsed_s": 60.0, "rows_s": 3890.8, "idle_w": 4.5888, "delta_w": 0.8204, "energy_mj_per_row": 0.21085}
+{"kind": "onnx", "repeat": 2, "mean_w": 5.6618, "samples": 293, "rows": 1178000, "calls": 58900, "elapsed_s": 60.0, "rows_s": 19633.2, "idle_w": 4.5871, "delta_w": 1.0747, "energy_mj_per_row": 0.05474}
+{"kind": "numpy", "repeat": 2, "mean_w": 5.4079, "samples": 293, "rows": 234640, "calls": 11732, "elapsed_s": 60.0, "rows_s": 3910.7, "idle_w": 4.587, "delta_w": 0.8209, "energy_mj_per_row": 0.2099}
+{"kind": "onnx", "repeat": 3, "mean_w": 5.6597, "samples": 294, "rows": 1159520, "calls": 57976, "elapsed_s": 60.0, "rows_s": 19325.2, "idle_w": 4.5887, "delta_w": 1.071, "energy_mj_per_row": 0.05542}
+{"kind": "numpy", "repeat": 3, "mean_w": 5.4054, "samples": 294, "rows": 231680, "calls": 11584, "elapsed_s": 60.0, "rows_s": 3861.2, "idle_w": 4.5899, "delta_w": 0.8155, "energy_mj_per_row": 0.21121}
+onnx   19524 rows/s  5.66 W (idle 4.59)  +1.07+-0.00 W  0.0550+-0.0004 mJ/row
+numpy  3888 rows/s  5.41 W (idle 4.59)  +0.82+-0.00 W  0.2107+-0.0007 mJ/row
+wrote out/exp20_classifier_energy.json
+[23:21:17] [done] lncs/code/results_jetson/exp18_repeats

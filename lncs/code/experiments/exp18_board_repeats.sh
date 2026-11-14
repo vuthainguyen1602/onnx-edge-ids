@@ -18,6 +18,9 @@
 #         rate (about 950 rows/s through the broker). ZeroMQ: the producer sends
 #         the same records at GATE_ZMQ_RATE (default 975 rows/s, the Kafka
 #         rate), and zmq_sink.py drains the gate's output on this host.
+#         GATE_PY overrides the gate's interpreter on GATE_HOST (default
+#         $HOME/<REMOTE_ROOT>/venv/bin/python), e.g. GATE_PY='$HOME/gate-venv/bin/python'
+#         for a gate-only venv that carries scikit-learn and joblib.
 #
 #   energy  exp20_classifier_energy.py on ENERGY_HOST (default J2): idle, then
 #         each classifier backend at saturation, then idle again, ENERGY_REPEATS
@@ -95,7 +98,7 @@ if [[ " $STEPS " == *" gate "* ]]; then
         producer=(--bootstrap "${BOOTSTRAP:-$COORD:9092}" --rate 0)
       fi
       ssh -o BatchMode=yes "$GATE_HOST" "cd ~/$BENCH && rm -rf out/$run && mkdir -p out/$run && \
-        ($node_env PY=\$HOME/$REMOTE_ROOT/venv/bin/python \
+        ($node_env PY=${GATE_PY:-\$HOME/$REMOTE_ROOT/venv/bin/python} \
          setsid nohup ./$EXP/exp6_gate_node_run.sh out/$run > out/$run.runner.log 2>&1 < /dev/null &)"
       for _ in $(seq 1 90); do
         ssh -o BatchMode=yes "$GATE_HOST" "grep -q '^\[ready\]' ~/$BENCH/out/$run.runner.log" && break; sleep 1

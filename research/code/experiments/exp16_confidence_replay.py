@@ -25,63 +25,16 @@ runtime parity, not converter parity.
 import argparse
 import json
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
-from edgeids.onnx_forest import load_onnx_forest, raw_scores
-from exp10_cross_dataset import binary_labels, choose_features, matrix, read_table
-
-MODELS = ("sklearn_rf", "sklearn_hgb", "lightgbm", "xgboost_hist")
-TOLERANCES = (1e-5, 1e-4, 1e-3, 1e-2)
-
-
-def probabilities(forest, scores):
-    """The probability output ONNX Runtime returns for these scores (binary models)."""
-    s = scores
-    if forest.n_targets == 1:
-        p1 = 1.0 / (1.0 + np.exp(-s[:, 0])) if forest.post_transform == "LOGISTIC" else s[:, 0]
-        return np.stack([1.0 - p1, p1], axis=1)
-    if forest.post_transform == "SOFTMAX":
-        z = np.exp(s - s.max(axis=1, keepdims=True))
-        return z / z.sum(axis=1, keepdims=True)
-    if forest.post_transform == "LOGISTIC":
-        return 1.0 / (1.0 + np.exp(-s))
-    return s
-
-
-def numpy_probs(forest, x, dtype, batch=50000):
-    return np.concatenate([probabilities(forest, raw_scores(forest, x[i:i + batch], dtype))
-                           for i in range(0, len(x), batch)])
-
-
-def ort_probs(path, x, batch=50000):
-    import onnxruntime as ort
-    s = ort.InferenceSession(path, providers=["CPUExecutionProvider"])
-    name = s.get_inputs()[0].name
-    return np.concatenate([np.asarray(s.run(None, {name: x[i:i + batch]})[1], dtype=np.float64)
-                           for i in range(0, len(x), batch)])
-
-
-def label(p):
-    # class 1 iff P(class 1) > 0.5, as exp5 derives ONNX Runtime's label
-    return (p[:, 1] > 0.5).astype(np.int64)
-
-
-def compare(p, ref, replay_rows):
-    delta = np.abs(p - ref).max(axis=1)
-    flips = label(p) != label(ref)
-    out = {"label_flips": int(flips.sum()), "max_delta": float(delta.max()),
-           "prob_replay_passes_labels_only": float((1.0 - flips.mean()) ** replay_rows), "tolerances": {}}
-    for tol in TOLERANCES:
-        trips = flips | (delta > tol)
-        out["tolerances"][f"{tol:g}"] = {"rows_tripping_gate": int(trips.sum()),
-                                         "prob_replay_passes": float((1.0 - trips.mean()) ** replay_rows)}
-    return out
+from edgeids.datasets import ton_iot_test, unsw_test
+from edgeids.gates import replay_gate
+from edgeids.models import MODEL_KEYS
+from edgeids.onnx_forest import load_onnx_forest
+from edgeids.runtime import numpy_probs, ort_probs
 
 
 def run_model(path, x, replay_rows):
@@ -89,24 +42,8 @@ def run_model(path, x, replay_rows):
     ref = ort_probs(path, x)
     rep = {"post_transform": forest.post_transform, "n_targets": int(forest.n_targets), "rows": int(len(x))}
     for dtype in (np.float32, np.float64):
-        rep[np.dtype(dtype).name] = compare(numpy_probs(forest, x, dtype), ref, replay_rows)
+        rep[np.dtype(dtype).name] = replay_gate(numpy_probs(forest, x, dtype), ref, replay_rows)
     return rep
-
-
-def unsw(path_dir):
-    train = read_table(os.path.join(path_dir, "UNSW_NB15_training-set.csv"))
-    test = read_table(os.path.join(path_dir, "UNSW_NB15_testing-set.csv"))
-    cols, _ = choose_features(train, "label", [], [])
-    return matrix(test, cols), cols
-
-
-def ton_iot(csv):
-    from sklearn.model_selection import train_test_split
-    df = read_table(csv)
-    cols, _ = choose_features(df, "label", [], [])
-    x, y = matrix(df, cols), binary_labels(df["label"], ["benign", "normal", "0"])
-    _, x_test, _, _ = train_test_split(x, y, test_size=0.3, stratify=y, random_state=0)
-    return x_test, cols
 
 
 def main():
@@ -125,15 +62,15 @@ def main():
     jobs = []
     x, _, _ = load_test_split(args.cicids)
     jobs.append(("CICIDS2017", x, [("deployed_rf", os.path.join(ARTIFACTS, "ids_rf.onnx"))] +
-                 [(m, os.path.join(RESULTS, "exp5_models", f"{m}.onnx")) for m in MODELS]))
+                 [(m, os.path.join(RESULTS, "exp5_models", f"{m}.onnx")) for m in MODEL_KEYS]))
     if args.unsw:
-        x, cols = unsw(args.unsw)
+        x, cols = unsw_test(args.unsw)
         assert len(cols) == 39 and len(x) == 82332, (len(cols), len(x))
-        jobs.append(("UNSW-NB15", x, [(m, os.path.join(RESULTS, "exp10_models", "unsw_nb15", f"{m}.onnx")) for m in MODELS]))
+        jobs.append(("UNSW-NB15", x, [(m, os.path.join(RESULTS, "exp10_models", "unsw_nb15", f"{m}.onnx")) for m in MODEL_KEYS]))
     if args.ton_iot:
-        x, cols = ton_iot(args.ton_iot)
+        x, cols = ton_iot_test(args.ton_iot)
         assert len(cols) == 14 and len(x) == 63313, (len(cols), len(x))
-        jobs.append(("ToN-IoT", x, [(m, os.path.join(RESULTS, "exp10_models", "ton_iot", f"{m}.onnx")) for m in MODELS]))
+        jobs.append(("ToN-IoT", x, [(m, os.path.join(RESULTS, "exp10_models", "ton_iot", f"{m}.onnx")) for m in MODEL_KEYS]))
 
     for name, x, models in jobs:
         report["datasets"][name] = {"rows": int(len(x)), "models": {}}

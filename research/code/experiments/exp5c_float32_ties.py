@@ -14,11 +14,9 @@ within summation error of 0.5 the flip is a tie broken by the order in which
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import RESULTS, load_test_split
 from edgeids.onnx_forest import labels_from_scores, load_onnx_forest, path_rows, raw_scores
 

@@ -19,20 +19,28 @@ all with float32 inputs:
 Any nonzero faithful_f32_vs_ort, or a nonzero framework_f32scaled_vs_ort under
 the latest converter, is a candidate worth filing.
 """
-import argparse, json, os, sys
-import numpy as np
-sys.path.insert(0, 'research/code'); sys.path.insert(0, 'research/code/experiments')
-from edgeids.data import load_test_split
-from edgeids.onnx_forest import load_onnx_forest, predict as onnx_predict
-from exp5_generalization import export_pipeline, ort_outputs
+import argparse
+import json
+import os
 
-def flips(a,b): return int((np.asarray(a).astype(np.int64)!=np.asarray(b).astype(np.int64)).sum())
+import numpy as np
+
+from edgeids.data import load_test_split
+from edgeids.models import export_pipeline
+from edgeids.onnx_forest import load_onnx_forest
+from edgeids.onnx_forest import predict as onnx_predict
+from edgeids.runtime import flips, ort_outputs
+
 
 def build(seed):
-    from sklearn.ensemble import (RandomForestClassifier, ExtraTreesClassifier,
-        HistGradientBoostingClassifier, GradientBoostingClassifier)
-    from sklearn.tree import DecisionTreeClassifier
     from lightgbm import LGBMClassifier
+    from sklearn.ensemble import (
+        ExtraTreesClassifier,
+        GradientBoostingClassifier,
+        HistGradientBoostingClassifier,
+        RandomForestClassifier,
+    )
+    from sklearn.tree import DecisionTreeClassifier
     from xgboost import XGBClassifier
     return {
       "sklearn_rf":   RandomForestClassifier(n_estimators=200, max_depth=15, n_jobs=-1, random_state=seed),
@@ -49,8 +57,11 @@ def main():
     ap.add_argument("--models",default="sklearn_rf,sklearn_et,sklearn_dt,sklearn_gb,sklearn_hgb,lightgbm,xgboost_hist")
     ap.add_argument("--train-rows",type=int,default=400000); ap.add_argument("--out",required=True)
     a=ap.parse_args()
-    import skl2onnx, onnxmltools, sklearn
-    from sklearn.pipeline import Pipeline; from sklearn.preprocessing import StandardScaler
+    import onnxmltools
+    import skl2onnx
+    import sklearn
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import StandardScaler
     x,_,_=load_test_split(a.test); xtr,ytr,_=load_test_split(a.train)
     rng=np.random.default_rng(0)
     if len(xtr)>a.train_rows:

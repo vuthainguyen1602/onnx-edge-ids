@@ -8,9 +8,7 @@ density relative to replay, and the probability that a 2,000-row replay misses.
 import glob
 import json
 import os
-import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import RESULTS
 
 MODELS = ["sklearn_rf", "sklearn_hgb", "lightgbm", "xgboost_hist"]

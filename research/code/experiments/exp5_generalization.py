@@ -18,180 +18,13 @@ numbers should reproduce exp2 (815 pairs, 0 / 15 replay flips).
 import argparse
 import json
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
-from edgeids.onnx_forest import load_onnx_forest, path_rows, predict, reaches, rows_on_a_threshold, threshold_sharing, trees_moved
-
-N_TREES = 200
-
-
-def build_models(seed):
-    from lightgbm import LGBMClassifier
-    from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
-    from xgboost import XGBClassifier
-
-    return {
-        # exact splits: thresholds are midpoints between observed values
-        "sklearn_rf": ("scikit-learn RandomForest (exact midpoint splits)",
-                       RandomForestClassifier(n_estimators=N_TREES, max_depth=15, n_jobs=-1, random_state=seed)),
-        # binned trainers
-        "sklearn_hgb": ("scikit-learn HistGradientBoosting (max_bins=255)",
-                        HistGradientBoostingClassifier(max_iter=N_TREES, max_bins=255, random_state=seed)),
-        "lightgbm": ("LightGBM (max_bin=255)",
-                     LGBMClassifier(n_estimators=N_TREES, max_bin=255, random_state=seed, n_jobs=8, verbose=-1)),
-        "xgboost_hist": ("XGBoost tree_method=hist (max_bin=256, BRANCH_LT)",
-                         XGBClassifier(n_estimators=N_TREES, max_depth=8, tree_method="hist", max_bin=256,
-                                       random_state=seed, n_jobs=8)),
-    }
-
-
-def export_pipeline(pipe, n_features, out):
-    import onnx
-    from skl2onnx import convert_sklearn, update_registered_converter
-    from skl2onnx.common.data_types import FloatTensorType
-    from skl2onnx.common.shape_calculator import calculate_linear_classifier_output_shapes
-    try:
-        from lightgbm import LGBMClassifier
-        from onnxmltools.convert.lightgbm.operator_converters.LightGbm import convert_lightgbm
-        update_registered_converter(LGBMClassifier, "LightGbmLGBMClassifier", calculate_linear_classifier_output_shapes,
-                                    convert_lightgbm, options={"nocl": [True, False], "zipmap": [True, False, "columns"]})
-    except ImportError:
-        pass
-    try:
-        from onnxmltools.convert.xgboost.operator_converters.XGBoost import convert_xgboost
-        from xgboost import XGBClassifier
-        update_registered_converter(XGBClassifier, "XGBoostXGBClassifier", calculate_linear_classifier_output_shapes,
-                                    convert_xgboost, options={"nocl": [True, False], "zipmap": [True, False, "columns"]})
-    except ImportError:
-        pass
-    # skl2onnx 1.20 hands numpy booleans to an INTS attribute (nodes_missing_value_tracks_true) for
-    # HistGradientBoosting under recent scikit-learn/onnx; protobuf refuses them. Cast at the boundary.
-    from skl2onnx.common import _container
-    if not getattr(_container.ModelComponentContainer.add_node, "_bool_safe", False):
-        _orig = _container.ModelComponentContainer.add_node
-
-        def add_node(self, *args, **attrs):
-            for k, v in list(attrs.items()):
-                if isinstance(v, (list, tuple)) and len(v) and all(isinstance(e, (bool, np.bool_, int, np.integer)) for e in v):
-                    attrs[k] = [int(e) for e in v]
-            return _orig(self, *args, **attrs)
-        add_node._bool_safe = True
-        _container.ModelComponentContainer.add_node = add_node
-    model = convert_sklearn(pipe, initial_types=[("input", FloatTensorType([None, n_features]))],
-                            options={id(pipe.steps[-1][1]): {"zipmap": False}},
-                            target_opset={"": 17, "ai.onnx.ml": 3})
-    onnx.save_model(model, out)
-    return [n.op_type for n in model.graph.node]
-
-
-def ort_outputs(path, x, batch=50000):
-    """(label output, label derived from the probability output) of ONNX Runtime.
-
-    The derived label is class 1 iff P(class 1) > 0.5, read from column 1 of the
-    probability output. For a binary TreeEnsembleClassifier with a single weight
-    column, ONNX Runtime's own label output changed meaning between releases
-    (1.19: P > 0.5; 1.27: P > 0), so the derived label is what the parity tests
-    compare against, and the disagreement between the two is reported separately.
-    """
-    import onnxruntime as ort
-    s = ort.InferenceSession(path, providers=["CPUExecutionProvider"])
-    name = s.get_inputs()[0].name
-    labs, probs = [], []
-    for i in range(0, len(x), batch):
-        out = s.run(None, {name: x[i:i + batch]})
-        labs.append(np.asarray(out[0]).reshape(-1))
-        probs.append(np.asarray(out[1]))
-    lab = np.concatenate(labs).astype(np.int64)
-    prob = np.concatenate(probs)
-    derived = (prob[:, 1] > 0.5).astype(np.int64) if prob.shape[1] == 2 else np.argmax(prob, axis=1).astype(np.int64)
-    return lab, derived
-
-
-def ort_labels(path, x, batch=50000):
-    return ort_outputs(path, x, batch)[1]
-
-
-def flips(a, b):
-    return int((np.asarray(a).astype(np.int64) != np.asarray(b).astype(np.int64)).sum())
-
-
-def probe_model(onnx_path, native, x_test, max_nodes, seed):
-    forest = load_onnx_forest(onnx_path)
-    rep = {"trees": forest.n_trees, "nodes": int(len(forest.left)), "post_transform": forest.post_transform,
-           "split_modes": sorted(set(int(m) for m in forest.mode[~forest.is_leaf]))}
-    rep["sharing"] = threshold_sharing(forest)
-
-    rng = np.random.default_rng(seed)
-    internal = np.flatnonzero(~forest.is_leaf)
-    if len(internal) > max_nodes:
-        internal = np.sort(rng.choice(internal, size=max_nodes, replace=False))
-    feat = forest.feature[internal]
-    base = x_test[rng.choice(len(x_test), size=len(internal), replace=True)]
-    rows = path_rows(forest, internal, base)
-    scale, offset = forest.scale.astype(np.float64), forest.offset.astype(np.float64)
-    raw = np.where(scale[feat] != 0, forest.threshold[internal].astype(np.float64) / np.where(scale[feat] != 0, scale[feat], 1) + offset[feat], offset[feat]).astype(np.float32)
-    variants = {"on_threshold": raw,
-                "one_ulp_below": np.nextafter(raw, np.float32(-np.inf)),
-                "one_ulp_above": np.nextafter(raw, np.float32(np.inf))}
-
-    rep["probes"] = {"nodes_probed": int(len(internal)), "variants": {}}
-    tot = {"probes": 0, "f32": 0, "f64": 0, "native": 0, "reach": 0}
-    for name, values in variants.items():
-        probes = rows.copy()
-        probes[np.arange(len(internal)), feat] = values
-        on_path = reaches(forest, probes, internal)
-        lo = ort_labels(onnx_path, probes)
-        l32 = predict(forest, probes, np.float32)
-        l64 = predict(forest, probes, np.float64)
-        moved = trees_moved(forest, probes)
-        flipped = l64 != lo
-        v = {"probes": int(len(probes)), "probes_reaching_their_node": int(on_path.sum()),
-             "numpy_float32_vs_ort_flips": flips(l32, lo), "numpy_float64_vs_ort_flips": flips(l64, lo),
-             "probes_where_float64_moves_a_tree": int((moved > 0).sum()),
-             "trees_moved_mean_when_any": float(moved[moved > 0].mean()) if (moved > 0).any() else 0.0,
-             "trees_moved_mean_when_label_flips": float(moved[flipped].mean()) if flipped.any() else 0.0,
-             "label_flip_rate_given_a_tree_moved": float(flipped[moved > 0].mean()) if (moved > 0).any() else 0.0}
-        if native is not None:
-            v["native_vs_ort_flips"] = flips(native(probes), lo)
-            tot["native"] += v["native_vs_ort_flips"]
-        tot["probes"] += len(probes); tot["f32"] += v["numpy_float32_vs_ort_flips"]; tot["f64"] += v["numpy_float64_vs_ort_flips"]
-        tot["reach"] += int(on_path.sum())
-        rep["probes"]["variants"][name] = v
-        print("   ", name, v, flush=True)
-    rep["probes"]["total"] = {"probes": tot["probes"], "reaching_their_node": tot["reach"],
-                              "numpy_float32_vs_ort_flips": tot["f32"], "numpy_float64_vs_ort_flips": tot["f64"]}
-    if native is not None:
-        rep["probes"]["total"]["native_vs_ort_flips"] = tot["native"]
-
-    lo_out, lo = ort_outputs(onnx_path, x_test)
-    l32, l64 = predict(forest, x_test, np.float32), predict(forest, x_test, np.float64)
-    moved = trees_moved(forest, x_test)
-    r = {"rows": int(len(x_test)), "ort_label_output_vs_ort_probability_label_flips": flips(lo_out, lo),
-         "rows_with_a_feature_exactly_on_a_threshold_float32": rows_on_a_threshold(forest, x_test),
-         "rows_where_float64_moves_a_tree": int((moved > 0).sum()),
-         "trees_moved_mean_when_any": float(moved[moved > 0].mean()) if (moved > 0).any() else 0.0,
-         "numpy_float32_vs_ort_flips": flips(l32, lo), "numpy_float64_vs_ort_flips": flips(l64, lo)}
-    if native is not None:
-        r["native_vs_ort_flips"] = flips(native(x_test), lo)
-    for k in ("numpy_float64_vs_ort_flips", "native_vs_ort_flips"):
-        if k in r:
-            rate = r[k] / len(x_test)
-            r[k.replace("_flips", "_rate")] = rate
-            r[k.replace("_flips", "_prob_2000_row_replay_misses")] = float((1 - rate) ** 2000)
-    rep["replay"] = r
-    print("    replay", r, flush=True)
-
-    # density: flips per probe vs flips per replayed row
-    for k in ("numpy_float64_vs_ort", "native_vs_ort"):
-        pk = k + "_flips"
-        if pk in rep["probes"]["total"] and rep["replay"].get(pk, 0) > 0:
-            rep["probes"]["total"][k + "_density_vs_replay"] = (rep["probes"]["total"][pk] / tot["probes"]) / (rep["replay"][pk] / len(x_test))
-    return rep
+from edgeids.models import build_models, export_pipeline
+from edgeids.probes import probe_model
 
 
 def main():
@@ -206,9 +39,16 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
 
+    import platform
+
+    import lightgbm
+    import onnxmltools
+    import onnxruntime
+    import skl2onnx
+    import sklearn
+    import xgboost
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import StandardScaler
-    import platform, sklearn, onnxruntime, lightgbm, xgboost, skl2onnx, onnxmltools
 
     os.makedirs(args.model_dir, exist_ok=True)
     x_test, _, _ = load_test_split(args.test)

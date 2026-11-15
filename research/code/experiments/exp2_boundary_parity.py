@@ -10,81 +10,14 @@ value is on.
 import argparse
 import json
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
-from edgeids.forest import load_forest, predict_lockstep, scale_input
-
-
-def parents(forest):
-    parent = np.full(len(forest.left), -1, dtype=np.int64)
-    went_left = np.zeros(len(forest.left), dtype=bool)
-    internal = np.flatnonzero(~forest.is_leaf)
-    parent[forest.left[internal]] = internal
-    went_left[forest.left[internal]] = True
-    parent[forest.right[internal]] = internal
-    return parent, went_left
-
-
-def path_rows(f64, targets, base):
-    """One row per target node whose features satisfy every split on the way to it."""
-    parent, went_left = parents(f64)
-    rows = base.astype(np.float64).copy()
-    for i, node in enumerate(targets):
-        lo, hi = {}, {}
-        cur = node
-        while parent[cur] >= 0:
-            p = parent[cur]
-            g, t = int(f64.feature[p]), float(f64.threshold[p])
-            if went_left[cur]:
-                hi[g] = min(hi.get(g, np.inf), t)
-            else:
-                lo[g] = max(lo.get(g, -np.inf), t)
-            cur = p
-        for g in set(lo) | set(hi):
-            a, b = lo.get(g, -np.inf), hi.get(g, np.inf)
-            if np.isfinite(a) and np.isfinite(b):
-                s = (a + b) / 2.0
-            elif np.isfinite(b):
-                s = b - 1.0
-            else:
-                s = a + 1.0
-            rows[i, g] = s / f64.scale[g] + f64.offset[g]
-    return rows.astype(np.float32)
-
-
-def reaches(forest, rows, targets):
-    """Whether row i passes through node targets[i] under this forest's arithmetic."""
-    scaled = scale_input(forest, rows)
-    tree = np.searchsorted(forest.tree_offsets, targets, side="right") - 1
-    cur = forest.tree_offsets[tree].copy()
-    idx = np.arange(len(targets))
-    hit = cur == targets
-    active = ~forest.is_leaf[cur] & ~hit
-    while active.any():
-        a = np.flatnonzero(active)
-        c = cur[a]
-        go_left = scaled[idx[a], forest.feature[c]] <= forest.threshold[c]
-        cur[a] = np.where(go_left, forest.left[c], forest.right[c])
-        hit[a] = cur[a] == targets[a]
-        active[a] = ~forest.is_leaf[cur[a]] & ~hit[a]
-    return hit
-
-
-def onnx_labels(session, x, batch=20000):
-    name = session.get_inputs()[0].name
-    return np.concatenate([
-        np.asarray(session.run(None, {name: x[i:i + batch]})[0]).reshape(-1)
-        for i in range(0, len(x), batch)
-    ]).astype(np.int64)
-
-
-def numpy_labels(forest, x, batch=2000):
-    return np.concatenate([predict_lockstep(forest, x[i:i + batch])[0] for i in range(0, len(x), batch)])
+from edgeids.forest import load_forest
+from edgeids.probes import artifact_path_rows, artifact_reaches
+from edgeids.runtime import lockstep_labels, session_labels
 
 
 def main():
@@ -107,7 +40,7 @@ def main():
     rng = np.random.default_rng(0)
     base = x[rng.choice(len(x), size=len(internal), replace=True)]
     started = time.perf_counter()
-    rows = path_rows(f64, internal, base)
+    rows = artifact_path_rows(f64, internal, base)
     raw = (f64.threshold[internal] / f64.scale[feat] + f64.offset[feat]).astype(np.float32)
     variants = {
         "on_threshold": raw,
@@ -126,10 +59,10 @@ def main():
     for name, values in variants.items():
         probes = rows.copy()
         probes[np.arange(len(internal)), feat] = values
-        on_path = reaches(f32, probes, internal)
-        lab_onnx = onnx_labels(session, probes)
-        d32 = int((numpy_labels(f32, probes) != lab_onnx).sum())
-        d64 = int((numpy_labels(f64, probes) != lab_onnx).sum())
+        on_path = artifact_reaches(f32, probes, internal)
+        lab_onnx = session_labels(session, probes)
+        d32 = int((lockstep_labels(f32, probes) != lab_onnx).sum())
+        d64 = int((lockstep_labels(f64, probes) != lab_onnx).sum())
         report["variants"][name] = {
             "probes": int(len(probes)),
             "probes_reaching_their_node": int(on_path.sum()),
@@ -139,9 +72,9 @@ def main():
         total["probes"] += len(probes); total["f32"] += d32; total["f64"] += d64
         print(name, report["variants"][name])
 
-    real_onnx = onnx_labels(session, x)
-    r32 = int((numpy_labels(f32, x) != real_onnx).sum())
-    r64 = int((numpy_labels(f64, x) != real_onnx).sum())
+    real_onnx = session_labels(session, x)
+    r32 = int((lockstep_labels(f32, x) != real_onnx).sum())
+    r64 = int((lockstep_labels(f64, x) != real_onnx).sum())
     rate = r64 / len(x)
     report["boundary_total"] = {
         "probes": total["probes"],

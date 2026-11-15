@@ -5,10 +5,8 @@ import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS
-from edgeids.forest import (load_forest, margin_bounds, predict_early_exit,
-                            predict_lockstep, predict_per_tree)
+from edgeids.forest import load_forest, margin_bounds, predict_early_exit, predict_lockstep, predict_per_tree
 
 FOREST = load_forest(os.path.join(ARTIFACTS, "ids_rf_numpy.npz"))
 ROWS = np.random.default_rng(0).lognormal(3.0, 3.0, (300, len(FOREST.offset))).astype(np.float32)

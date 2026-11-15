@@ -30,6 +30,7 @@ cd onnx-edge-ids
 python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip
 pip install -e ".[kafka,zeromq]"             # the served package (numpy, kafka-python, pyzmq)
+pip install -e research/code                  # the experiments' library (edgeids)
 pip install -r research/code/requirements.txt    # experiments: onnxruntime, pyarrow, scikit-learn, lightgbm, xgboost, skl2onnx, onnxmltools, pytest
 ```
 

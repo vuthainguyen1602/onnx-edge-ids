@@ -4,12 +4,10 @@ import argparse
 import json
 import os
 import platform
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
 from edgeids.forest import load_forest, predict_lockstep, predict_per_tree
 

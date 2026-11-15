@@ -9,9 +9,7 @@ run does not appear.
 import argparse
 import json
 import os
-import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import RESULTS
 
 NAMES = {"sklearn_rf": r"\texttt{scikit-learn} RF", "sklearn_hgb": r"\texttt{scikit-learn} HGB",

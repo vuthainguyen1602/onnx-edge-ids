@@ -24,12 +24,9 @@ windows are still not timed traffic, and the calibration covers one shift.
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(HERE))
 from edgeids.data import ARTIFACTS, RESULTS, Gate, load_test_split
 from edgeids.forest import load_forest, margin_bounds, predict_early_exit
 

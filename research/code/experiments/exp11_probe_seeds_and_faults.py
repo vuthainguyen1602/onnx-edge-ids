@@ -25,36 +25,15 @@
 import argparse
 import json
 import os
-import sys
 import time
-from dataclasses import replace
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
-from edgeids.forest import _sum_over_trees, load_forest, predict_lockstep
-from exp2_boundary_parity import numpy_labels, onnx_labels, path_rows
-
-
-def build_probes(f64, internal, feat, base):
-    rows = path_rows(f64, internal, base)
-    raw = (f64.threshold[internal] / f64.scale[feat] + f64.offset[feat]).astype(np.float32)
-    out = []
-    for values in (raw, np.nextafter(raw, np.float32(-np.inf)), np.nextafter(raw, np.float32(np.inf))):
-        p = rows.copy()
-        p[np.arange(len(internal)), feat] = values
-        out.append(p)
-    return np.concatenate(out)
-
-
-def labels_with(forest, scaled, batch=2000):
-    trees = np.arange(forest.n_trees)
-    return np.concatenate([
-        np.argmax(_sum_over_trees(forest, scaled[i:i + batch], trees, forest.leaf_scores), axis=1)
-        for i in range(0, len(scaled), batch)
-    ]).astype(np.int64)
+from edgeids.faults import fault_labels
+from edgeids.forest import load_forest, predict_lockstep
+from edgeids.probes import artifact_probes
+from edgeids.runtime import lockstep_labels, session_labels
 
 
 def confidence_deltas(session, forests, probes, tolerance=1e-5, batch=20000):
@@ -67,28 +46,6 @@ def confidence_deltas(session, forests, probes, tolerance=1e-5, batch=20000):
         delta = np.abs(scores / scores.sum(axis=1, keepdims=True) - ref).max(axis=1)
         out[key] = {"max_delta": float(delta.max()), "rows_over_tolerance": int((delta > tolerance).sum()), "tolerance": tolerance}
     return out
-
-
-def faults(f32, f64):
-    """name -> function(x float32) returning labels."""
-    o32, s32 = f32.offset, f32.scale
-    o64, s64 = f64.offset, f64.scale
-    internal = ~f32.is_leaf
-
-    strict = replace(f32, threshold=np.where(internal, np.nextafter(f32.threshold, np.float32(-np.inf)), f32.threshold))
-    decimal = replace(f32, threshold=np.array([float(f"{t:.6g}") for t in f32.threshold], dtype=np.float32))
-    raw_thr = f32.threshold.copy()
-    raw_thr[internal] = f32.threshold[internal] / s32[f32.feature[internal]] + o32[f32.feature[internal]]
-    raw = replace(f32, threshold=raw_thr.astype(np.float32))
-
-    return {
-        "float64": lambda x: labels_with(f64, (x.astype(np.float64) - o64) * s64),
-        "float64_scaler": lambda x: labels_with(f32, ((x.astype(np.float64) - o64) * s64).astype(np.float32)),
-        "scaler_reordered": lambda x: labels_with(f32, x * s32 - o32 * s32),
-        "raw_thresholds": lambda x: labels_with(raw, np.ascontiguousarray(x, dtype=np.float32)),
-        "strict_less": lambda x: labels_with(strict, (x - o32) * s32),
-        "decimal_thresholds": lambda x: labels_with(decimal, (x - o32) * s32),
-    }
 
 
 def main():
@@ -116,19 +73,19 @@ def main():
     for seed in range(args.seeds):
         rng = np.random.default_rng(seed)
         base = x[rng.choice(len(x), size=len(internal), replace=True)]
-        probes = build_probes(f64, internal, feat, base)
-        lab = onnx_labels(session, probes)
+        probes = artifact_probes(f64, internal, feat, base)
+        lab = session_labels(session, probes)
         r = {"seed": seed, "probes": int(len(probes)),
-             "float32_flips": int((numpy_labels(f32, probes) != lab).sum()),
-             "float64_flips": int((numpy_labels(f64, probes) != lab).sum())}
+             "float32_flips": int((lockstep_labels(f32, probes) != lab).sum()),
+             "float64_flips": int((lockstep_labels(f64, probes) != lab).sum())}
         runs.append(r)
         print("base rows", r, flush=True)
         if seed == 0:
             probes0, ort0 = probes, lab
     c = np.array([r["float64_flips"] for r in runs])
     base = np.repeat(f32.offset.reshape(1, -1), len(internal), axis=0)
-    probes = build_probes(f64, internal, feat, base)
-    lab = onnx_labels(session, probes)
+    probes = artifact_probes(f64, internal, feat, base)
+    lab = session_labels(session, probes)
     conf = confidence_deltas(session, {"float32": f32, "float64": f64}, probes)
     report["base_rows"] = {
         "runs": runs,
@@ -136,16 +93,16 @@ def main():
         "float64_flips_min": int(c.min()), "float64_flips_max": int(c.max()),
         "float32_flips_max": int(max(r["float32_flips"] for r in runs)),
         "scaler_offset_base": {"probes": int(len(probes)),
-                               "float32_flips": int((numpy_labels(f32, probes) != lab).sum()),
-                               "float64_flips": int((numpy_labels(f64, probes) != lab).sum()),
+                               "float32_flips": int((lockstep_labels(f32, probes) != lab).sum()),
+                               "float64_flips": int((lockstep_labels(f64, probes) != lab).sum()),
                                "confidence_vs_onnx": conf},
     }
     print("offset base", report["base_rows"]["scaler_offset_base"], flush=True)
 
     # (b) injected faults, on the seed-0 probes and on replay
-    ort_replay = onnx_labels(session, x)
+    ort_replay = session_labels(session, x)
     report["faults"] = {}
-    for name, fn in faults(f32, f64).items():
+    for name, fn in fault_labels(f32, f64).items():
         p = int((fn(probes0) != ort0).sum())
         r = int((fn(x) != ort_replay).sum())
         rate = r / len(x)

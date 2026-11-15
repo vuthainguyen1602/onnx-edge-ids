@@ -4,12 +4,21 @@ Code for the measurements in the systems paper. The per-tree baseline, the float
 
 ```
 research/code/
-  edgeids/forest.py      per-tree loop, block-lockstep traversal, exact early exit
-  edgeids/onnx_forest.py generic traversal of any ONNX Scaler + TreeEnsembleClassifier graph (all split modes), boundary prober
-  edgeids/data.py        labelled test split loader, deployed anomaly gate
-  experiments/           one script per experiment, each writes results/<name>.json
-  results/               JSON written by the last run (the numbers quoted in the paper)
-  tests/                 run on the shipped artifact alone, no dataset needed
+  edgeids/            library used by every experiment (installed with `pip install -e research/code`)
+    data.py           labelled test split loader, deployed anomaly gate
+    datasets.py       tables, feature choice, CICIDS2017 / UNSW-NB15 / ToN-IoT splits
+    forest.py         deployed artifact: per-tree loop, block-lockstep traversal, exact early exit
+    onnx_forest.py    any ONNX Scaler + TreeEnsembleClassifier graph (all split modes)
+    treelite_forest.py the same graph rebuilt as a Treelite model
+    models.py         the four trained ensemble families and their ONNX export
+    runtime.py        ONNX Runtime and NumPy labels/probabilities, label comparisons
+    gates.py          replay gate (labels, or labels and confidences) and probe gate
+    probes.py         boundary-directed probes, routed and data-free, and the per-model probe study
+    faults.py         the six injected arithmetic faults
+  experiments/        one script per experiment; each imports edgeids only and writes results/<name>.json
+  results/            JSON written by the last run (the numbers quoted in the paper)
+  results_jetson/     the same for the on-board runs
+  tests/              run on the shipped artifact alone, no dataset needed
 ```
 
 ## Setup
@@ -18,7 +27,7 @@ For the full walk-through (data layout, gate artifacts, what each result field m
 
 ```bash
 python -m venv venv && source venv/bin/activate
-pip install -e . && pip install -r research/code/requirements.txt
+pip install -e . -e research/code && pip install -r research/code/requirements.txt
 python -m pytest research/code/tests -q
 ```
 

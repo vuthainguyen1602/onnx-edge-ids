@@ -11,11 +11,9 @@ probability that a 2,000-row replay sees none of them.
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
 from edgeids.forest import load_forest, predict_lockstep
 

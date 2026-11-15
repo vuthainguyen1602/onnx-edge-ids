@@ -1,14 +1,12 @@
 """exp2b helpers, on the shipped artifact alone (no dataset needed)."""
 
 import os
-import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS
 from edgeids.forest import load_forest
-from experiments.exp2b_probe_ablation import pair_table, walk_marking_pair
+from edgeids.probes import pair_table, walk_marking_pair
 
 F32 = load_forest(os.path.join(ARTIFACTS, "ids_rf_numpy.npz"), "float32")
 ROWS = np.random.default_rng(0).lognormal(3.0, 3.0, (50, len(F32.offset))).astype(np.float32)

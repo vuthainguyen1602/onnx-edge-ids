@@ -17,14 +17,13 @@ was built to stress is actually evaluated on the probe's value.
 import argparse
 import json
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
-from edgeids.forest import load_forest, predict_lockstep, scale_input
+from edgeids.forest import load_forest, predict_lockstep
+from edgeids.probes import pair_table, walk_marking_pair
 
 
 def onnx_labels(session, x, batch=20000):
@@ -37,43 +36,6 @@ def onnx_labels(session, x, batch=20000):
 
 def numpy_labels(forest, x, batch=2000):
     return np.concatenate([predict_lockstep(forest, x[i:i + batch])[0] for i in range(0, len(x), batch)])
-
-
-def pair_table(f32):
-    """Distinct (feature, threshold) pairs and a node -> pair-id map (-1 for leaves)."""
-    internal = np.flatnonzero(~f32.is_leaf)
-    bits = f32.threshold[internal].view(np.int32).astype(np.int64) & 0xFFFFFFFF
-    codes, inv = np.unique(f32.feature[internal] * (1 << 32) + bits, return_inverse=True)
-    node_pair = np.full(len(f32.left), -1, dtype=np.int64)
-    node_pair[internal] = inv
-    pair_feat = (codes >> 32).astype(np.int64)
-    pair_thr = (codes & 0xFFFFFFFF).astype(np.uint32).view(np.float32)
-    return pair_feat, pair_thr, node_pair, len(internal)
-
-
-def walk_marking_pair(f32, rows, target_pair, node_pair, exercised):
-    """Walk every tree on every row; mark visited nodes carrying target_pair.
-
-    Returns per-row whether any such node was visited, and sets
-    exercised[node] = True for each one.
-    """
-    scaled = scale_input(f32, rows)
-    n = scaled.shape[0]
-    node = np.repeat(f32.tree_offsets[:-1].reshape(-1, 1), n, axis=1)
-    hit = np.zeros(n, dtype=bool)
-    active = ~f32.is_leaf[node]
-    while active.any():
-        t_idx, r_idx = np.nonzero(active)
-        cur = node[t_idx, r_idx]
-        match = node_pair[cur] == target_pair
-        if match.any():
-            hit[r_idx[match]] = True
-            exercised[np.unique(cur[match])] = True
-        go_left = scaled[r_idx, f32.feature[cur]] <= f32.threshold[cur]
-        nxt = np.where(go_left, f32.left[cur], f32.right[cur])
-        node[t_idx, r_idx] = nxt
-        active[t_idx, r_idx] = ~f32.is_leaf[nxt]
-    return hit
 
 
 def main():

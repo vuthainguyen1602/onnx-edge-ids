@@ -19,18 +19,18 @@ throughput at batch size 2,000 on this machine next to ONNX Runtime's.
 import argparse
 import json
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
+from edgeids.datasets import ton_iot_test, unsw_test
+from edgeids.gates import probe_gate, replay_gate
+from edgeids.models import MODEL_KEYS
 from edgeids.onnx_forest import load_onnx_forest
+from edgeids.probes import datafree_probes
+from edgeids.runtime import ort_probs, probabilities
 from edgeids.treelite_forest import to_treelite, treelite_scores
-from exp16_confidence_replay import MODELS, compare, ort_probs, probabilities, ton_iot, unsw
-from exp19_datafree_probes import build_probes, gate
 
 
 def tl_probs(model, forest, x, dtype, batch=50000):
@@ -60,25 +60,25 @@ def main():
               "datasets": {}}
     x, _, _ = load_test_split(args.cicids)
     jobs = [("CICIDS2017", x, [("deployed_rf", os.path.join(ARTIFACTS, "ids_rf.onnx"))] +
-             [(m, os.path.join(RESULTS, "exp5_models", f"{m}.onnx")) for m in MODELS])]
+             [(m, os.path.join(RESULTS, "exp5_models", f"{m}.onnx")) for m in MODEL_KEYS])]
     if args.unsw:
-        jobs.append(("UNSW-NB15", unsw(args.unsw)[0], [(m, os.path.join(RESULTS, "exp10_models", "unsw_nb15", f"{m}.onnx")) for m in MODELS]))
+        jobs.append(("UNSW-NB15", unsw_test(args.unsw)[0], [(m, os.path.join(RESULTS, "exp10_models", "unsw_nb15", f"{m}.onnx")) for m in MODEL_KEYS]))
     if args.ton_iot:
-        jobs.append(("ToN-IoT", ton_iot(args.ton_iot)[0], [(m, os.path.join(RESULTS, "exp10_models", "ton_iot", f"{m}.onnx")) for m in MODELS]))
+        jobs.append(("ToN-IoT", ton_iot_test(args.ton_iot)[0], [(m, os.path.join(RESULTS, "exp10_models", "ton_iot", f"{m}.onnx")) for m in MODEL_KEYS]))
 
     for name, x, models in jobs:
         report["datasets"][name] = {}
         for key, path in models:
             forest = load_onnx_forest(path)
-            _, probes = build_probes(forest)
+            _, probes = datafree_probes(forest)
             ref_replay, ref_probes = ort_probs(path, x), ort_probs(path, probes)
             rep = {}
             for tt, dtype in (("float32", np.float32), ("float64", np.float64)):
                 t0 = time.perf_counter()
                 model = to_treelite(forest, threshold_type=tt)
                 rep[tt] = {"build_seconds": round(time.perf_counter() - t0, 1),
-                           "replay": compare(tl_probs(model, forest, x, dtype), ref_replay, args.replay_rows),
-                           "datafree_probes": gate(tl_probs(model, forest, probes, dtype), ref_probes)}
+                           "replay": replay_gate(tl_probs(model, forest, x, dtype), ref_replay, args.replay_rows),
+                           "datafree_probes": probe_gate(tl_probs(model, forest, probes, dtype), ref_probes)}
                 if tt == "float32":
                     import treelite.gtil
                     sess = ort.InferenceSession(path, providers=["CPUExecutionProvider"])

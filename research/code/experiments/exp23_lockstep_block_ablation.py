@@ -8,7 +8,7 @@ sizes of exp1, on the same real flows and with the same best-of-five timer, and
 checks that every budget returns the same labels.
 
     python research/code/experiments/exp23_lockstep_block_ablation.py --data test_data.parquet
-    python research/code/experiments/exp23_lockstep_block_ablation.py --npy rows.npy   # e.g. on a board without pandas
+    PYTHONPATH=research/code python research/code/experiments/exp23_lockstep_block_ablation.py --npy rows.npy   # on a board without pandas or the installed library
 
 --export-npy writes the 20,000 rows used here, so a board can run the same rows.
 """
@@ -17,12 +17,10 @@ import argparse
 import json
 import os
 import platform
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import edgeids.forest as F
 from edgeids.data import ARTIFACTS, RESULTS
 

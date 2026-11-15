@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install
-        run: pip install -e ".[onnx,zeromq]" pytest
+        run: pip install -e ".[onnx,zeromq]" -e research/code pytest
       - name: Tests
         run: pytest -q tests research/code/tests
       - name: Parity release gate (synthetic replay + boundary probes)

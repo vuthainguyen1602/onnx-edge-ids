@@ -24,17 +24,13 @@ of exp5 (scikit-learn 1.9.1, LightGBM 4.7.0, XGBoost 3.4.1, ONNX Runtime 1.30):
 import argparse
 import json
 import os
-import sys
 import time
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from edgeids.data import RESULTS
-from exp5_generalization import build_models
-from exp16_confidence_replay import MODELS
-from exp17_converter_confidence import cicids, ton_iot, unsw
+from edgeids.datasets import load_cicids, load_ton_iot, load_unsw
+from edgeids.models import MODEL_KEYS, build_models
 
 
 def main():
@@ -43,7 +39,7 @@ def main():
     ap.add_argument("--cicids-test", required=True)
     ap.add_argument("--unsw", default="")
     ap.add_argument("--ton-iot", default="")
-    ap.add_argument("--models", default=",".join(MODELS))
+    ap.add_argument("--models", default=",".join(MODEL_KEYS))
     ap.add_argument("--background-rows", type=int, default=2000)
     ap.add_argument("--worst-case-seconds", type=float, default=30.0)
     ap.add_argument("--node-limit", type=int, default=200000, help="leafparity's default")
@@ -51,7 +47,10 @@ def main():
     args = ap.parse_args()
 
     import leafparity
-    import lightgbm, onnxruntime, sklearn, xgboost
+    import lightgbm
+    import onnxruntime
+    import sklearn
+    import xgboost
     from leafparity import analyze
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import StandardScaler
@@ -62,11 +61,11 @@ def main():
               "settings": {"input_dtype": "float32", "allow_missing": False, "background_rows": args.background_rows,
                            "worst_case_seconds": args.worst_case_seconds, "node_limit": args.node_limit},
               "datasets": {}}
-    jobs = [("CICIDS2017", lambda: cicids(args.cicids_train, args.cicids_test), os.path.join(RESULTS, "exp5_models"))]
+    jobs = [("CICIDS2017", lambda: load_cicids(args.cicids_train, args.cicids_test), os.path.join(RESULTS, "exp5_models"))]
     if args.unsw:
-        jobs.append(("UNSW-NB15", lambda: unsw(args.unsw), os.path.join(RESULTS, "exp10_models", "unsw_nb15")))
+        jobs.append(("UNSW-NB15", lambda: load_unsw(args.unsw), os.path.join(RESULTS, "exp10_models", "unsw_nb15")))
     if args.ton_iot:
-        jobs.append(("ToN-IoT", lambda: ton_iot(args.ton_iot), os.path.join(RESULTS, "exp10_models", "ton_iot")))
+        jobs.append(("ToN-IoT", lambda: load_ton_iot(args.ton_iot), os.path.join(RESULTS, "exp10_models", "ton_iot")))
 
     for name, load, model_dir in jobs:
         x_train, y_train, x_test = load()

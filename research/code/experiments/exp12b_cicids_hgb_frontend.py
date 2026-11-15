@@ -19,19 +19,13 @@ PR 1227 (on main) takes it to 0. Run once per installed converter version:
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from edgeids.data import RESULTS, load_test_split
+from edgeids.models import export_pipeline
 from edgeids.onnx_forest import load_onnx_forest
-from exp5_generalization import export_pipeline, ort_labels
-
-
-def flips(a, b):
-    return int((np.asarray(a).astype(np.int64) != np.asarray(b).astype(np.int64)).sum())
+from edgeids.runtime import flips, ort_labels
 
 
 def main():

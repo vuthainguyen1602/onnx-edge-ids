@@ -22,6 +22,7 @@ def main():
     args = ap.parse_args()
 
     import zmq
+
     from onnx_edge_ids import flow_frames
 
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))

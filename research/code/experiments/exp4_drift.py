@@ -10,16 +10,13 @@ guarantees (runtime parity, exact early exit) should not.
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(HERE))
-sys.path.insert(0, HERE)
 from edgeids.data import ARTIFACTS, RESULTS, Gate, load_test_split
 from edgeids.forest import load_forest, margin_bounds, predict_early_exit, predict_lockstep
-from exp2_boundary_parity import numpy_labels, onnx_labels, path_rows
+from edgeids.probes import artifact_path_rows
+from edgeids.runtime import lockstep_labels, session_labels
 
 BATCH = 2000
 
@@ -70,9 +67,9 @@ def main():
     report = {}
     for name, path in (("cicids2017_in_distribution", args.in_dist), ("cse_cic_ids2018_shifted", args.shifted)):
         x, y, attack = load_test_split(path)
-        lab_onnx = onnx_labels(session, x)
-        lab32 = numpy_labels(f32, x)
-        lab64 = numpy_labels(f64, x)
+        lab_onnx = session_labels(session, x)
+        lab32 = lockstep_labels(f32, x)
+        lab64 = lockstep_labels(f64, x)
         forwarded = gate.score(x) >= gate.threshold
 
         per_attack = {}
@@ -84,9 +81,9 @@ def main():
 
         # Same split table, base rows drawn from this dataset: does the base distribution matter?
         rng = np.random.default_rng(0)
-        probes = path_rows(f64, internal, x[rng.choice(len(x), size=len(internal), replace=True)])
+        probes = artifact_path_rows(f64, internal, x[rng.choice(len(x), size=len(internal), replace=True)])
         probes[np.arange(len(internal)), feat] = on_threshold
-        probe_onnx = onnx_labels(session, probes)
+        probe_onnx = session_labels(session, probes)
 
         report[name] = {
             "rows": int(len(x)),
@@ -104,8 +101,8 @@ def main():
             },
             "on_threshold_probes_vs_onnx": {
                 "probes": int(len(probes)),
-                "numpy_float32_label_disagreements": int((numpy_labels(f32, probes) != probe_onnx).sum()),
-                "numpy_float64_label_disagreements": int((numpy_labels(f64, probes) != probe_onnx).sum()),
+                "numpy_float32_label_disagreements": int((lockstep_labels(f32, probes) != probe_onnx).sum()),
+                "numpy_float64_label_disagreements": int((lockstep_labels(f64, probes) != probe_onnx).sum()),
             },
             "exact_early_exit_all_traffic": early_exit(f32, bounds, schedule, x),
             "exact_early_exit_gate_forwarded": early_exit(f32, bounds, schedule, x[forwarded]),

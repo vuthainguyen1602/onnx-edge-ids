@@ -21,11 +21,9 @@ how often the change is within the feature's own recorded range.
 import argparse
 import json
 import os
-import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from edgeids.data import RESULTS, feature_columns, load_test_split
 from edgeids.forest import load_forest, predict_lockstep
 

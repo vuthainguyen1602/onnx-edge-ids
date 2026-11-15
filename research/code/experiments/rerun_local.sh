@@ -5,17 +5,17 @@
 #   SHIFTED=/path/to/cse_cic_ids2018/test_data.parquet \
 #   TRAIN=/path/to/cicids2017/train_data.parquet \
 #   REPLAY_CSV=/path/to/replay_cicids2017.csv \
-#   ./lncs/code/experiments/rerun_local.sh
+#   ./research/code/experiments/rerun_local.sh
 #
 # Only DATA is required; steps whose input is unset are skipped. Results are
-# written over lncs/code/results/*.json, so `git diff lncs/code/results` shows
+# written over research/code/results/*.json, so `git diff research/code/results` shows
 # what moved. exp3/exp4/exp9 need the gate artifacts (artifacts/anomaly_*).
 set -uo pipefail
 
 : "${DATA:?set DATA to the CICIDS2017 test_data.parquet directory}"
-EXP=lncs/code/experiments
-LOG=lncs/code/results/rerun_local.log
-mkdir -p lncs/code/results results
+EXP=research/code/experiments
+LOG=research/code/results/rerun_local.log
+mkdir -p research/code/results results
 : > "$LOG"
 
 run() {
@@ -23,7 +23,7 @@ run() {
     if "$@" >> "$LOG" 2>&1; then echo "    ok" | tee -a "$LOG"; else echo "    FAILED (see $LOG)" | tee -a "$LOG"; fi
 }
 
-run python -m pytest -q tests lncs/code/tests
+run python -m pytest -q tests research/code/tests
 if [ -n "${REPLAY_CSV:-}" ]; then
     run python scripts/validate_parity.py --csv "$REPLAY_CSV" --rows 10000 --report-json results/parity_report.json
 else
@@ -47,12 +47,12 @@ fi
 
 if [ -n "${TRAIN:-}" ]; then
     run python $EXP/exp5_generalization.py --train "$TRAIN" --test "$DATA"
-    run python $EXP/exp5b_ort_label_regression.py --model lncs/code/results/exp5_models/sklearn_rf.onnx --data "$DATA"
+    run python $EXP/exp5b_ort_label_regression.py --model research/code/results/exp5_models/sklearn_rf.onnx --data "$DATA"
 fi
 
 if command -v xelatex > /dev/null; then
-    run ./lncs/manuscript/compile.sh
+    run ./research/manuscript/compile.sh
 fi
 
 echo
-git --no-pager diff --stat -- lncs/code/results
+git --no-pager diff --stat -- research/code/results

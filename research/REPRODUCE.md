@@ -14,7 +14,7 @@ The steps go from a bare clone to regenerated result files and a compiled PDF. S
 | Time (Apple M3) | `exp2`: about 2 minutes; `exp5`: training the four forests takes about a minute, probing them longer; `exp5b`: dominated by seven `pip install onnxruntime==...` downloads; the rest: minutes |
 | XeLaTeX | Only for Step 7 (the PDF); TeX Live or MacTeX |
 
-Library versions the paper's result files were produced with (`lncs/code/results/exp5_generalization.json` records them):
+Library versions the paper's result files were produced with (`research/code/results/exp5_generalization.json` records them):
 
 | numpy | onnxruntime | scikit-learn | lightgbm | xgboost | skl2onnx | onnxmltools | pyarrow |
 |-------|-------------|--------------|----------|---------|----------|-------------|---------|
@@ -30,7 +30,7 @@ cd onnx-edge-ids
 python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip
 pip install -e ".[kafka,zeromq]"             # the served package (numpy, kafka-python, pyzmq)
-pip install -r lncs/code/requirements.txt    # experiments: onnxruntime, pyarrow, scikit-learn, lightgbm, xgboost, skl2onnx, onnxmltools, pytest
+pip install -r research/code/requirements.txt    # experiments: onnxruntime, pyarrow, scikit-learn, lightgbm, xgboost, skl2onnx, onnxmltools, pytest
 ```
 
 The served forest is already in the repository: `artifacts/ids_rf.onnx` (ONNX), `artifacts/ids_rf_numpy.npz` (the NumPy export of the same graph) and `artifacts/feature_columns.json` (the 29 input columns in order).
@@ -40,7 +40,7 @@ The served forest is already in the repository: `artifacts/ids_rf.onnx` (ONNX), 
 Run the test suite. It loads the shipped artifact, checks that the per-tree, block-lockstep and early-exit traversals agree, that the generic ONNX traversal reproduces ONNX Runtime, and that the experiment traversal matches the packaged `NumpyInferenceEngine`:
 
 ```bash
-python -m pytest lncs/code/tests -q
+python -m pytest research/code/tests -q
 ```
 
 Then exercise both serving backends on random rows and run the replay parity gate the same way (omit `--csv` and it probes with random flows):
@@ -115,60 +115,60 @@ The anomaly gate (autoencoder, scaler, threshold) is not redistributed. Copy `an
 
 ## Step 5: run the experiments
 
-Each script writes one JSON under `lncs/code/results/`, overwriting the committed file of the same name, so `git diff lncs/code/results/` afterwards shows exactly what changed against the paper. Run them from the repository root:
+Each script writes one JSON under `research/code/results/`, overwriting the committed file of the same name, so `git diff research/code/results/` afterwards shows exactly what changed against the paper. Run them from the repository root:
 
 ```bash
 DATA=/path/to/data/test_data.parquet
 TRAIN=/path/to/data/train_data.parquet
 DATA2018=/path/to/data_2018/test_data.parquet
 
-python lncs/code/experiments/exp1_lockstep_benchmark.py --data $DATA
-python lncs/code/experiments/exp1b_whole_forest_lockstep.py --data $DATA
-python lncs/code/experiments/exp2_boundary_parity.py    --data $DATA
-python lncs/code/experiments/exp2b_probe_ablation.py    --data $DATA        # reads exp2's JSON for the density ratios
-python lncs/code/experiments/exp3_exact_early_exit.py   --data $DATA        # needs Step 4
-python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted $DATA2018   # needs Step 4
-python lncs/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA
-python lncs/code/experiments/exp5b_ort_label_regression.py \
-    --model lncs/code/results/exp5_models/sklearn_rf.onnx --data $DATA
-python lncs/code/experiments/exp11_probe_seeds_and_faults.py --data $DATA   # ten base-row draws, data-free probes, six injected faults (~15 min)
+python research/code/experiments/exp1_lockstep_benchmark.py --data $DATA
+python research/code/experiments/exp1b_whole_forest_lockstep.py --data $DATA
+python research/code/experiments/exp2_boundary_parity.py    --data $DATA
+python research/code/experiments/exp2b_probe_ablation.py    --data $DATA        # reads exp2's JSON for the density ratios
+python research/code/experiments/exp3_exact_early_exit.py   --data $DATA        # needs Step 4
+python research/code/experiments/exp4_drift.py --in-dist $DATA --shifted $DATA2018   # needs Step 4
+python research/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA
+python research/code/experiments/exp5b_ort_label_regression.py \
+    --model research/code/results/exp5_models/sklearn_rf.onnx --data $DATA
+python research/code/experiments/exp11_probe_seeds_and_faults.py --data $DATA   # ten base-row draws, data-free probes, six injected faults (~15 min)
 for s in 1 2 3 4; do                                                        # four more training seeds (~9 min each)
-  python lncs/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA --seed $s \
+  python research/code/experiments/exp5_generalization.py --train $TRAIN --test $DATA --seed $s \
       --models sklearn_rf,sklearn_hgb,lightgbm,xgboost_hist \
-      --model-dir /tmp/exp5_models_seed$s --out lncs/code/results/exp5_seeds/seed$s.json
+      --model-dir /tmp/exp5_models_seed$s --out research/code/results/exp5_seeds/seed$s.json
 done
-python lncs/code/experiments/exp5_seeds_summary.py                          # ranges over seeds 0 to 4
-python lncs/code/experiments/exp12_hgb_threshold_rounding.py                # no dataset; rerun after installing skl2onnx main to see the fix
-python lncs/code/experiments/exp12b_cicids_hgb_frontend.py --train $TRAIN --test $DATA
-python lncs/code/experiments/exp14_fleet_divergence.py --data $DATA         # fleet divergence on real attack flows
-python lncs/code/experiments/exp15_converter_sweep.py --train $TRAIN --test $DATA --out lncs/code/results/exp15_converter_sweep_released.json
-python lncs/code/experiments/exp11b_fault_confidence_gate.py --data $DATA   # the six faults against a gate that also checks confidences
+python research/code/experiments/exp5_seeds_summary.py                          # ranges over seeds 0 to 4
+python research/code/experiments/exp12_hgb_threshold_rounding.py                # no dataset; rerun after installing skl2onnx main to see the fix
+python research/code/experiments/exp12b_cicids_hgb_frontend.py --train $TRAIN --test $DATA
+python research/code/experiments/exp14_fleet_divergence.py --data $DATA         # fleet divergence on real attack flows
+python research/code/experiments/exp15_converter_sweep.py --train $TRAIN --test $DATA --out research/code/results/exp15_converter_sweep_released.json
+python research/code/experiments/exp11b_fault_confidence_gate.py --data $DATA   # the six faults against a gate that also checks confidences
 
 UNSW=/path/to/unsw_nb15     # UNSW_NB15_training-set.csv (175,341 rows) and UNSW_NB15_testing-set.csv (82,332 rows)
-python lncs/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
+python research/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
     --train $UNSW/UNSW_NB15_training-set.csv --test $UNSW/UNSW_NB15_testing-set.csv --label-col label
 TON=/path/to/ton_iot/Train_Test_Network_dataset   # train_test_network.csv (211,043 rows); no test file, so a stratified 70/30 split
-python lncs/code/experiments/exp10_cross_dataset.py --name ToN-IoT --train $TON/train_test_network.csv --label-col label
-python lncs/code/experiments/exp10_table.py                                 # LaTeX rows from exp10's JSON
+python research/code/experiments/exp10_cross_dataset.py --name ToN-IoT --train $TON/train_test_network.csv --label-col label
+python research/code/experiments/exp10_table.py                                 # LaTeX rows from exp10's JSON
 # replay with the 1e-5 confidence check on all 13 models (runtime parity), and converter parity
 # with the same check (retrains the 12 models with seed 0; the label-flip counts must match exp5/exp10)
-python lncs/code/experiments/exp16_confidence_replay.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
-python lncs/code/experiments/exp17_converter_confidence.py --cicids-train $TRAIN --cicids-test $DATA \
+python research/code/experiments/exp16_confidence_replay.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
+python research/code/experiments/exp17_converter_confidence.py --cicids-train $TRAIN --cicids-test $DATA \
     --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # the release gate's data-free probes (scaler-offset base rows, all nodes) on all 13 models, with timings;
 # --converter retrains the 12 models as exp17 does and also tests framework vs export (~5 min on an M3)
-python lncs/code/experiments/exp19_datafree_probes.py --converter --cicids-train $TRAIN --cicids-test $DATA \
+python research/code/experiments/exp19_datafree_probes.py --converter --cicids-train $TRAIN --cicids-test $DATA \
     --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # Leafparity 0.1.2 on the 12 converter pairs; run from a separate venv with leafparity and the exp5 library
 # versions (scikit-learn 1.9.1, LightGBM 4.7.0, XGBoost 3.4.1, ONNX Runtime 1.30), e.g. .lpvenv/
-.lpvenv/bin/python lncs/code/experiments/exp21_leafparity.py --cicids-train $TRAIN --cicids-test $DATA \
+.lpvenv/bin/python research/code/experiments/exp21_leafparity.py --cicids-train $TRAIN --cicids-test $DATA \
     --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # Treelite 4.8 (GTIL) as a third runtime, rebuilt from each ONNX graph's node table; needs Python >= 3.11 and
 # treelite in its own venv, e.g. .tlvenv/ (plus the numpy/onnxruntime/scikit-learn versions above)
-.tlvenv/bin/python lncs/code/experiments/exp22_treelite_runtime.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
+.tlvenv/bin/python research/code/experiments/exp22_treelite_runtime.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # lockstep block-budget ablation; --export-npy writes the 20,000 rows so a board without pandas can run the same rows
-python lncs/code/experiments/exp23_lockstep_block_ablation.py --data $DATA
-python lncs/code/experiments/exp23_lockstep_block_ablation.py --data $DATA --export-npy rows20k.npy   # then on the board: --npy rows20k.npy
+python research/code/experiments/exp23_lockstep_block_ablation.py --data $DATA
+python research/code/experiments/exp23_lockstep_block_ablation.py --data $DATA --export-npy rows20k.npy   # then on the board: --npy rows20k.npy
 # exp13 (GPU providers) runs on Jetson #2 with a GPU build of ONNX Runtime; see results_jetson/exp13_ort_providers.json
 ```
 
@@ -187,7 +187,7 @@ What to expect, and which numbers depend on your machine:
 
 Notes:
 
-- `exp5` trains scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost on a 600,000-row sample (`--train-rows`, seed 0), writes the exported models to `lncs/code/results/exp5_models/` and probes up to 100,000 internal nodes per model (`--max-nodes`). The counts for the four trained forests depend on the training sample; the row for the deployed forest (`deployed_rf`) does not. Use `--models` to run a subset.
+- `exp5` trains scikit-learn RandomForest and HistGradientBoosting, LightGBM and XGBoost on a 600,000-row sample (`--train-rows`, seed 0), writes the exported models to `research/code/results/exp5_models/` and probes up to 100,000 internal nodes per model (`--max-nodes`). The counts for the four trained forests depend on the training sample; the row for the deployed forest (`deployed_rf`) does not. Use `--models` to run a subset.
 - `exp5b` creates one virtualenv per release under `$TMPDIR/exp5b_ort_venvs` (`--venv-dir`) and installs `onnxruntime==<version>` into each, so it needs network access and a Python for which wheels of every listed release exist (the paper's run used Python 3.12; trim `--versions` if a release has no wheel for yours). The committed result was taken on this same export (`exp5` with the default seed and 600,000 training rows), so a re-run with the defaults reproduces the count exactly; a different training sample reproduces the relabelling pattern (0 flips on agreeing releases, hundreds of thousands on 1.26.0 and 1.27.0), not the count.
 - `exp10` uses the whole UNSW-NB15 training and test files (both are under the `--train-rows`/`--test-rows` caps), so with the versions above a re-run reproduces the committed counts. In five full runs one count moved once: LightGBM's framework-vs-ORT flips on the on-threshold probes read 89 instead of 90 (261 instead of 262 in total); the trained model and every other count were identical. A run replaces the whole entry for `--name`, so run a `--models` subset with its own `--out` or it drops the other models from the committed file.
 - `exp1` timings are noisy on a busy machine. Close other work and, on laptops, keep the machine on mains power.
@@ -213,7 +213,7 @@ The board scripts take `TRANSPORT=zeromq` for the same runs: `exp6_gate_node_run
 
 ```bash
 J1=bvdung@<jetson1> J2=bvdung@<jetson2> COORD=<coordinator-ip> BOOTSTRAP=<coordinator-ip>:9092 \
-CSV=/path/to/replay_cicids2017.csv REPS=5 ./lncs/code/experiments/exp18_board_repeats.sh results_jetson_repeats/
+CSV=/path/to/replay_cicids2017.csv REPS=5 ./research/code/experiments/exp18_board_repeats.sh results_jetson_repeats/
 ```
 
 `STEPS=energy` (not in the default) measures idle-subtracted inference energy per backend with `exp20_classifier_energy.py` on a quiet Jetson #2: idle, each backend at saturation, idle again, three times, in one session (about 10 minutes). `STEPS=e2e` or `STEPS=gate` runs one part; `E2E_CONFIGS` and `GATE_TRANSPORTS` narrow it further, e.g. to redo one failed repeat. Kafka must be running on the coordinator for the Kafka runs, and both boards need the venv the earlier board runs used, at `~/onnx-edge-ids-paper/venv` (with scikit-learn and joblib for the gate).
@@ -239,7 +239,7 @@ Throughput, p95 latency, RSS and cold start will differ from the Jetson figures 
 
 ## Step 7 (optional): compare with the paper
 
-The manuscript sources are not distributed in this repository. Numbers in the paper are typed in, not generated, so after re-running an experiment compare `git diff lncs/code/results/` with the paper's tables by hand.
+The manuscript sources are not distributed in this repository. Numbers in the paper are typed in, not generated, so after re-running an experiment compare `git diff research/code/results/` with the paper's tables by hand.
 
 ## If something does not match
 
@@ -250,7 +250,7 @@ The manuscript sources are not distributed in this repository. Numbers in the pa
 
 ## Where each paper number comes from
 
-Paths are relative to `lncs/code/`.
+Paths are relative to `research/code/`.
 
 | Table or figure | Result files |
 |---|---|

@@ -6,8 +6,8 @@ Throughput and p95 are inference-only (the gate's own per-batch timer), as in
 the engine table; RSS is the gate process's VmRSS; power is tegrastats VDD_IN
 (total board input), not idle-subtracted.
 
-    python lncs/code/experiments/exp6_gate_node_summary.py lncs/code/results_jetson/exp6_gate_node
-    python lncs/code/experiments/exp6_gate_node_summary.py <run-dir> lncs/code/results_jetson/exp6_gate_node_zeromq.json
+    python research/code/experiments/exp6_gate_node_summary.py research/code/results_jetson/exp6_gate_node
+    python research/code/experiments/exp6_gate_node_summary.py <run-dir> research/code/results_jetson/exp6_gate_node_zeromq.json
 
 The JSON goes next to the run directory unless a second argument names it.
 """

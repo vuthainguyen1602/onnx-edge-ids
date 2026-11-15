@@ -21,7 +21,7 @@ the latest converter, is a candidate worth filing.
 """
 import argparse, json, os, sys
 import numpy as np
-sys.path.insert(0, 'lncs/code'); sys.path.insert(0, 'lncs/code/experiments')
+sys.path.insert(0, 'research/code'); sys.path.insert(0, 'research/code/experiments')
 from edgeids.data import load_test_split
 from edgeids.onnx_forest import load_onnx_forest, predict as onnx_predict
 from exp5_generalization import export_pipeline, ort_outputs

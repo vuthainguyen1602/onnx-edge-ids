@@ -7,7 +7,7 @@ Per run (one directory from exp8_classifier_repeat.sh):
   power      mean tegrastats VDD_IN over that window (total board, not idle-subtracted)
 Across the repeats of a backend: mean and sample SD of each per-run figure.
 
-    python lncs/code/experiments/exp8_summary.py --series DIR [DIR ...] --cold A.json [B.json ...] --out exp8_summary.json
+    python research/code/experiments/exp8_summary.py --series DIR [DIR ...] --cold A.json [B.json ...] --out exp8_summary.json
 """
 
 import csv

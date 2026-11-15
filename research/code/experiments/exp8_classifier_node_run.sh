@@ -2,9 +2,9 @@
 # One classifier-node run with RSS and board-power sampling (run ON Jetson #2).
 #
 #   ENGINE=onnx|numpy BOOTSTRAP=<coordinator>:9092 PY=<venv python> \
-#   ./lncs/code/experiments/exp8_classifier_node_run.sh <out-dir>
+#   ./research/code/experiments/exp8_classifier_node_run.sh <out-dir>
 #   ENGINE=onnx|numpy TRANSPORT=zeromq PY=<venv python> \
-#   ./lncs/code/experiments/exp8_classifier_node_run.sh <out-dir>
+#   ./research/code/experiments/exp8_classifier_node_run.sh <out-dir>
 #
 # Starts tegrastats and scripts/classifier_node.py (batch 20, linger 1 s,
 # --metrics-csv; Kafka: fresh consumer group, ZeroMQ: binds tcp://*:5556),

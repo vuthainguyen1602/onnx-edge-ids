@@ -23,7 +23,7 @@ import numpy as np
 # Ensure src/ is importable
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "src"))
-sys.path.insert(0, str(REPO_ROOT / "lncs" / "code"))
+sys.path.insert(0, str(REPO_ROOT / "research" / "code"))
 
 from onnx_edge_ids.boundary_probe import (
     VARIANTS,
@@ -130,7 +130,7 @@ def main():
         print(f"    Nodes: {r_cicids['internal_nodes']:,} | Probes: {r_cicids['total_probes']:,} | Flips: {r_cicids['total_flips_f32_vs_f64']:,} ({r_cicids['overall_flip_rate']*100:.2f}%)")
 
     # 2. Add cross-dataset benchmarks (using established telemetry profiles or additional models)
-    exp5_json = REPO_ROOT / "lncs" / "code" / "results" / "exp5_generalization.json"
+    exp5_json = REPO_ROOT / "research" / "code" / "results" / "exp5_generalization.json"
     if exp5_json.exists():
         with open(exp5_json) as f:
             d = json.load(f)

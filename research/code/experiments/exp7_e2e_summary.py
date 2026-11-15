@@ -7,7 +7,7 @@ its before/after offsets (exp7_clock_offset.py). Per forwarded flow:
   e2e      = verdict_at - sent_at
 Only flows the gate forwards reach a verdict, so these are their latencies.
 
-    python lncs/code/experiments/exp7_e2e_summary.py out.json run_dir [run_dir ...]
+    python research/code/experiments/exp7_e2e_summary.py out.json run_dir [run_dir ...]
 """
 
 import csv

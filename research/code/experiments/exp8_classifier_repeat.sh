@@ -2,9 +2,9 @@
 # Repeated classifier-node runs per backend (run on the coordinator).
 #
 #   J1=bvdung@<jetson1> J2=bvdung@<jetson2> BOOTSTRAP=<coordinator-ip>:9092 \
-#   CSV=<replay csv> REPS=5 ./lncs/code/experiments/exp8_classifier_repeat.sh <out-dir>
+#   CSV=<replay csv> REPS=5 ./research/code/experiments/exp8_classifier_repeat.sh <out-dir>
 #   TRANSPORT=zeromq J1=bvdung@<jetson1> J2=bvdung@<jetson2> \
-#   CSV=<replay csv> REPS=5 ./lncs/code/experiments/exp8_classifier_repeat.sh <out-dir>
+#   CSV=<replay csv> REPS=5 ./research/code/experiments/exp8_classifier_repeat.sh <out-dir>
 #
 # The gate runs once on Jetson #1 for the whole series. For each backend and
 # repeat, exp8_classifier_node_run.sh starts a fresh classifier on Jetson #2,
@@ -46,9 +46,9 @@ cd "$HERE"
 
 ssh -o BatchMode=yes "$J2" "mkdir -p ~/$BENCH"
 rsync -a --exclude __pycache__ scripts src artifacts "$J2:$BENCH/"
-rsync -a lncs/code/experiments/exp8_classifier_node_run.sh "$J2:$BENCH/lncs/code/experiments/" 2>/dev/null || {
-  ssh -o BatchMode=yes "$J2" "mkdir -p ~/$BENCH/lncs/code/experiments"
-  rsync -a lncs/code/experiments/exp8_classifier_node_run.sh "$J2:$BENCH/lncs/code/experiments/"; }
+rsync -a research/code/experiments/exp8_classifier_node_run.sh "$J2:$BENCH/research/code/experiments/" 2>/dev/null || {
+  ssh -o BatchMode=yes "$J2" "mkdir -p ~/$BENCH/research/code/experiments"
+  rsync -a research/code/experiments/exp8_classifier_node_run.sh "$J2:$BENCH/research/code/experiments/"; }
 if [ "$TRANSPORT" = zeromq ]; then
   ssh -o BatchMode=yes "$J1" "mkdir -p ~/$BENCH"
   rsync -a --exclude __pycache__ scripts src artifacts "$J1:$BENCH/"
@@ -66,7 +66,7 @@ for engine in $ENGINES; do
     run="${engine}_rep${rep}"
     ssh -o BatchMode=yes "$J2" "cd ~/$BENCH && rm -rf out/$run && mkdir -p out/$run && \
       (ENGINE=$engine $NODE_ENV PY=\$HOME/$REMOTE_ROOT/venv/bin/python \
-       setsid nohup ./lncs/code/experiments/exp8_classifier_node_run.sh out/$run \
+       setsid nohup ./research/code/experiments/exp8_classifier_node_run.sh out/$run \
        > out/$run/runner.log 2>&1 < /dev/null &)"
     for _ in $(seq 1 60); do
       ssh -o BatchMode=yes "$J2" "test -f ~/$BENCH/out/$run/READY" && break; sleep 1

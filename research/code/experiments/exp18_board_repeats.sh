@@ -2,7 +2,7 @@
 # Repeat the board measurements the paper reports from a single run (run on the coordinator).
 #
 #   J1=bvdung@<jetson1> J2=bvdung@<jetson2> COORD=<coordinator-ip> BOOTSTRAP=<coordinator-ip>:9092 \
-#   CSV=/path/to/replay_cicids2017.csv REPS=5 ./lncs/code/experiments/exp18_board_repeats.sh <out-dir>
+#   CSV=/path/to/replay_cicids2017.csv REPS=5 ./research/code/experiments/exp18_board_repeats.sh <out-dir>
 #
 # Two parts, chosen with STEPS (default "e2e gate"):
 #
@@ -48,7 +48,7 @@ REMOTE_ROOT=${REMOTE_ROOT:-onnx-edge-ids-paper}
 BENCH=${BENCH:-exp18-bench}
 HERE="$(cd "$(dirname "$0")/../../.." && pwd)"
 PY=${PY:-$HERE/venv/bin/python}
-EXP=lncs/code/experiments
+EXP=research/code/experiments
 mkdir -p "$OUT"
 OUT="$(cd "$OUT" && pwd)"
 cd "$HERE"

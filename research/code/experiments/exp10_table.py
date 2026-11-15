@@ -3,7 +3,7 @@
 Every number comes from the results file; a dataset or model that has not been
 run does not appear.
 
-    python lncs/code/experiments/exp10_table.py
+    python research/code/experiments/exp10_table.py
 """
 
 import argparse

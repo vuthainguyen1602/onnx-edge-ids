@@ -1,4 +1,4 @@
-"""Runs on the shipped artifact alone (no dataset needed): python -m pytest lncs/code/tests"""
+"""Runs on the shipped artifact alone (no dataset needed): python -m pytest research/code/tests"""
 
 import os
 import sys

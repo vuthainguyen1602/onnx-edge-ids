@@ -27,7 +27,7 @@ confidence difference of 0.0, and the same attack counts (317 of 2,000 and
 traversal of `v0.2.0` (the boards hold a copy of that tree; the workstation
 runs were made from a `v0.2.0` git worktree). The per-row timings inside the
 reports are single runs and are not quoted anywhere; the article's Table 2
-uses `lncs/code/results_jetson/exp8_summary.json`.
+uses `research/code/results_jetson/exp8_summary.json`.
 
 Re-run on any host:
 

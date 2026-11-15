@@ -7,8 +7,8 @@ flows. This sweeps the budget from 1,024 pairs to whole-forest at the batch
 sizes of exp1, on the same real flows and with the same best-of-five timer, and
 checks that every budget returns the same labels.
 
-    python lncs/code/experiments/exp23_lockstep_block_ablation.py --data test_data.parquet
-    python lncs/code/experiments/exp23_lockstep_block_ablation.py --npy rows.npy   # e.g. on a board without pandas
+    python research/code/experiments/exp23_lockstep_block_ablation.py --data test_data.parquet
+    python research/code/experiments/exp23_lockstep_block_ablation.py --npy rows.npy   # e.g. on a board without pandas
 
 --export-npy writes the 20,000 rows used here, so a board can run the same rows.
 """

@@ -4,7 +4,7 @@ Sends N requests through a single SSH channel; the board answers each with its
 time.time(). offset = board - midpoint(send, receive) for the request with the
 smallest round trip, whose half-RTT bounds the error. Run on the coordinator:
 
-    python lncs/code/experiments/exp7_clock_offset.py bvdung@192.168.1.81 > j1_offset.json
+    python research/code/experiments/exp7_clock_offset.py bvdung@192.168.1.81 > j1_offset.json
 """
 
 import json

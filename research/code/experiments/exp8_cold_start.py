@@ -8,7 +8,7 @@ includes interpreter start-up and imports. The row is all zeros in the deployed
 feature order; its value does not change the work a forest traversal does by
 more than path length.
 
-    python lncs/code/experiments/exp8_cold_start.py --reps 5 --out cold_start_<board>.json
+    python research/code/experiments/exp8_cold_start.py --reps 5 --out cold_start_<board>.json
 """
 
 import argparse

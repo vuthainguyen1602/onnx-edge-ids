@@ -3,9 +3,9 @@
 # links. Run on the coordinator host, which also runs the producer (and Kafka).
 #
 #   J1=bvdung@<jetson1> J2=bvdung@<jetson2> BOOTSTRAP=<coordinator-ip>:9092 \
-#   RATE=100 LIMIT=10000 PASSES=1 ./lncs/code/experiments/exp7_e2e_run.sh <out-dir>
+#   RATE=100 LIMIT=10000 PASSES=1 ./research/code/experiments/exp7_e2e_run.sh <out-dir>
 #   TRANSPORT=zeromq J1=bvdung@<jetson1> J2=bvdung@<jetson2> \
-#   RATE=100 LIMIT=10000 PASSES=1 ./lncs/code/experiments/exp7_e2e_run.sh <out-dir>
+#   RATE=100 LIMIT=10000 PASSES=1 ./research/code/experiments/exp7_e2e_run.sh <out-dir>
 #
 # Gate on Jetson #1, ONNX classifier on Jetson #2 with --latency-csv, both at
 # their default batch/linger. Clock offsets of both boards against this host
@@ -46,8 +46,8 @@ mkdir -p "$OUT"
 cd "$HERE"
 
 echo "rate=$RATE limit=$LIMIT passes=$PASSES tag=$TAG transport=$TRANSPORT" > "$OUT/run.txt"
-$PY lncs/code/experiments/exp7_clock_offset.py "$J1" > "$OUT/offset_j1_before.json"
-$PY lncs/code/experiments/exp7_clock_offset.py "$J2" > "$OUT/offset_j2_before.json"
+$PY research/code/experiments/exp7_clock_offset.py "$J1" > "$OUT/offset_j1_before.json"
+$PY research/code/experiments/exp7_clock_offset.py "$J2" > "$OUT/offset_j2_before.json"
 ssh -o BatchMode=yes "$J1" uptime >> "$OUT/run.txt"
 ssh -o BatchMode=yes "$J2" uptime >> "$OUT/run.txt"
 
@@ -79,6 +79,6 @@ ssh -o BatchMode=yes "$J1" "kill \$(cat ~/$BENCH/out/$TAG/gate.pid) 2>/dev/null 
 sleep 2
 scp -q "$J2:$BENCH/out/$TAG/latency.csv" "$J2:$BENCH/out/$TAG/classifier.log" "$OUT/"
 scp -q "$J1:$BENCH/out/$TAG/gate.log" "$OUT/"
-$PY lncs/code/experiments/exp7_clock_offset.py "$J1" > "$OUT/offset_j1_after.json"
-$PY lncs/code/experiments/exp7_clock_offset.py "$J2" > "$OUT/offset_j2_after.json"
+$PY research/code/experiments/exp7_clock_offset.py "$J1" > "$OUT/offset_j1_after.json"
+$PY research/code/experiments/exp7_clock_offset.py "$J2" > "$OUT/offset_j2_after.json"
 echo "[done] $(($(wc -l < "$OUT/latency.csv") - 1)) verdicts in $OUT"

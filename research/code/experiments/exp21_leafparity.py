@@ -17,7 +17,7 @@ passed as background so witnesses look like real flows.
 Run it from a venv that has leafparity and the training libraries at the versions
 of exp5 (scikit-learn 1.9.1, LightGBM 4.7.0, XGBoost 3.4.1, ONNX Runtime 1.30):
 
-    python lncs/code/experiments/exp21_leafparity.py --cicids-train $TRAIN --cicids-test $DATA \\
+    python research/code/experiments/exp21_leafparity.py --cicids-train $TRAIN --cicids-test $DATA \\
         --unsw $UNSW --ton-iot $TON/train_test_network.csv
 """
 

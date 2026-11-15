@@ -4,7 +4,7 @@ exp6 measures the gate alone, but a ZeroMQ PUSH socket with no peer queues and
 then blocks, so something has to drain the gate's output. This binds a PULL
 socket, counts rows and batches, and prints the totals on Ctrl-C or SIGTERM.
 
-    python lncs/code/experiments/zmq_sink.py --bind tcp://*:5556
+    python research/code/experiments/zmq_sink.py --bind tcp://*:5556
 """
 
 import argparse

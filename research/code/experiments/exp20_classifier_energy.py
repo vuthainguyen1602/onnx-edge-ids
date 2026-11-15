@@ -16,7 +16,7 @@ on the replay rows for --seconds, so the CPU is saturated; energy per row is
 with P_idle the mean of the idle windows on either side of that engine window.
 Network, transport and batching are excluded: this is inference energy only.
 
-    python lncs/code/experiments/exp20_classifier_energy.py --csv replay_cicids2017.csv \\
+    python research/code/experiments/exp20_classifier_energy.py --csv replay_cicids2017.csv \\
         --engines onnx,numpy --batch 20 --seconds 60 --idle 60 --out exp20_classifier_energy.json
 """
 

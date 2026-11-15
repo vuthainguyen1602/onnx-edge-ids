@@ -3,7 +3,7 @@
 Code for the measurements in the systems paper. The per-tree baseline, the float64 variant, the early-exit rule and the boundary prober are not part of the served package, so they live here; a test checks that this traversal and the packaged `NumpyInferenceEngine` return the same labels.
 
 ```
-lncs/code/
+research/code/
   edgeids/forest.py      per-tree loop, block-lockstep traversal, exact early exit
   edgeids/onnx_forest.py generic traversal of any ONNX Scaler + TreeEnsembleClassifier graph (all split modes), boundary prober
   edgeids/data.py        labelled test split loader, deployed anomaly gate
@@ -18,8 +18,8 @@ For the full walk-through (data layout, gate artifacts, what each result field m
 
 ```bash
 python -m venv venv && source venv/bin/activate
-pip install -e . && pip install -r lncs/code/requirements.txt
-python -m pytest lncs/code/tests -q
+pip install -e . && pip install -r research/code/requirements.txt
+python -m pytest research/code/tests -q
 ```
 
 ## Artifacts
@@ -34,13 +34,13 @@ The experiments read the labelled CICIDS2017 **test split** as a Parquet directo
 
 ```bash
 DATA=/path/to/test_data.parquet
-python lncs/code/experiments/exp1_lockstep_benchmark.py --data $DATA   # Table: per-tree vs lockstep
-python lncs/code/experiments/exp2_boundary_parity.py    --data $DATA   # Table: boundary-directed parity
-python lncs/code/experiments/exp3_exact_early_exit.py   --data $DATA   # Table: exact early exit
-python lncs/code/experiments/exp4_drift.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: distribution shift
-python lncs/code/experiments/exp9_drift_alarm.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: undecided-rate drift alarm
-python lncs/code/experiments/exp5_generalization.py --train /path/to/train_data.parquet --test $DATA   # Table: other forests, other converters
-python lncs/code/experiments/exp5b_ort_label_regression.py --model lncs/code/results/exp5_models/sklearn_rf.onnx --data $DATA   # ONNX Runtime version sweep
+python research/code/experiments/exp1_lockstep_benchmark.py --data $DATA   # Table: per-tree vs lockstep
+python research/code/experiments/exp2_boundary_parity.py    --data $DATA   # Table: boundary-directed parity
+python research/code/experiments/exp3_exact_early_exit.py   --data $DATA   # Table: exact early exit
+python research/code/experiments/exp4_drift.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: distribution shift
+python research/code/experiments/exp9_drift_alarm.py --in-dist $DATA --shifted /path/to/cse_cic_ids2018/test_data.parquet   # Table: undecided-rate drift alarm
+python research/code/experiments/exp5_generalization.py --train /path/to/train_data.parquet --test $DATA   # Table: other forests, other converters
+python research/code/experiments/exp5b_ort_label_regression.py --model research/code/results/exp5_models/sklearn_rf.onnx --data $DATA   # ONNX Runtime version sweep
 ```
 
 `exp5` trains four more forests (scikit-learn RandomForest and HistGradientBoosting, LightGBM, XGBoost) on a 600,000-row sample of the training split, exports them with skl2onnx/onnxmltools and runs the boundary probe on each; it needs `lightgbm xgboost skl2onnx onnxmltools` (in `requirements.txt`) and writes the exported models to `results/exp5_models/` (not committed). `exp5b` installs each requested ONNX Runtime release into a throwaway venv and replays the test split through one exported model.

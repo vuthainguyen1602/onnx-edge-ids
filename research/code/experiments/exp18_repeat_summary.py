@@ -1,6 +1,6 @@
 """Aggregate exp18_board_repeats.sh output: mean, SD, median and range per configuration.
 
-    python lncs/code/experiments/exp18_repeat_summary.py <out-dir> [summary.json]
+    python research/code/experiments/exp18_repeat_summary.py <out-dir> [summary.json]
 
 Reads <out-dir>/exp18_e2e.json (one entry per end-to-end run, named
 <transport>_rate<r>_rep<n>) and <out-dir>/gate/gate_<transport>_rep<n>.json

@@ -14,9 +14,9 @@ ports, timestamps, row ids), which let a model learn the capture rather than
 the traffic; the columns actually used are written to the report so the
 choice can be audited, and --drop / --keep override it.
 
-    python lncs/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
+    python research/code/experiments/exp10_cross_dataset.py --name UNSW-NB15 \
         --train UNSW_NB15_training-set.csv --test UNSW_NB15_testing-set.csv --label-col label
-    python lncs/code/experiments/exp10_cross_dataset.py --name ToN-IoT \
+    python research/code/experiments/exp10_cross_dataset.py --name ToN-IoT \
         --train train_test_network.csv --label-col label          # no --test: 70/30 split
 """
 

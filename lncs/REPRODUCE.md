@@ -166,6 +166,9 @@ python lncs/code/experiments/exp19_datafree_probes.py --converter --cicids-train
 # Treelite 4.8 (GTIL) as a third runtime, rebuilt from each ONNX graph's node table; needs Python >= 3.11 and
 # treelite in its own venv, e.g. .tlvenv/ (plus the numpy/onnxruntime/scikit-learn versions above)
 .tlvenv/bin/python lncs/code/experiments/exp22_treelite_runtime.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
+# lockstep block-budget ablation; --export-npy writes the 20,000 rows so a board without pandas can run the same rows
+python lncs/code/experiments/exp23_lockstep_block_ablation.py --data $DATA
+python lncs/code/experiments/exp23_lockstep_block_ablation.py --data $DATA --export-npy rows20k.npy   # then on the board: --npy rows20k.npy
 # exp13 (GPU providers) runs on Jetson #2 with a GPU build of ONNX Runtime; see results_jetson/exp13_ort_providers.json
 ```
 
@@ -266,6 +269,7 @@ Paths are relative to `lncs/code/`.
 | Data-free probes on all 13 models: gate verdicts and cost (`tab:datafree`) | `results/exp19_datafree_probes.json` |
 | Leafparity on the converter pairs (`tab:leafparity-run`) | `results/exp21_leafparity.json` |
 | Treelite as a third runtime of the same graphs (`tab:treelite`) | `results/exp22_treelite_runtime.json` |
+| Lockstep block-budget ablation (`tab:blockbudget`) | `results/exp23_lockstep_block_ablation.json` (Apple M3), `results_jetson/exp23_lockstep_block_ablation.json` (Jetson #2) |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

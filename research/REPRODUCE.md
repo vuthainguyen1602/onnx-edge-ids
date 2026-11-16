@@ -286,6 +286,7 @@ Paths are relative to `research/code/`.
 | Treelite as a third runtime of the same graphs (`tab:treelite`) | `results/exp22_treelite_runtime.json` |
 | Lockstep block-budget ablation (`tab:blockbudget`) | `results/exp23_lockstep_block_ablation.json` (Apple M3), `results_jetson/exp23_lockstep_block_ablation.json` (Jetson #2) |
 | Five training seeds on UNSW-NB15 and ToN-IoT (sensitivity, threats) | `results/exp10_seeds_summary.json` (from `results/exp10_seeds/`), `results/exp10c_float32_ties_unsw.json` |
+| Shipped gate's own run: probes in 16 s, 2,000-row replay 0.14 s (per-row means x 2,000, both runtimes) | `validation/parity_boundary_m3_20261013.json` (see `validation/README.md`) |
 | Five-seed appendix table, all twelve trained models (`tab:seeds`) | `results/exp5_seeds_summary.json`, `results/exp10_seeds_summary.json` (rows printed by `experiments/seeds_table.py`) |
 | Probe straddle after float32 scaling, and exact-crossing probes (Section 4, probe construction) | `results/exp24_probe_straddle.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |

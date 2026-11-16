@@ -3,15 +3,21 @@
 """
 Validate that the NumPy serving artifact reproduces the ONNX artifact.
 
-Two checks, both exiting non-zero outside tolerance so the script can gate a
+Three checks, each exiting non-zero on failure so the script can gate a
 release:
+
+0. Structure: the NumPy artifact must hold the ONNX graph's tree layout,
+   split features, thresholds, split modes, leaf weights, scaler and base
+   values, compared at float32. This catches an exporter that mis-reads the
+   graph before any arithmetic is compared.
 
 1. Replay: both backends run over the same flow records (a CSV, or synthetic
    rows) and the script reports label agreement and the largest confidence
    difference.
 2. Boundary probes (default on): one row per internal node of the forest,
    routed to that node and placed on its split threshold and one float32 step
-   either side, built from the NumPy artifact alone. Replayed traffic almost
+   either side, built from the ONNX graph itself (the reference runtime's own
+   thresholds, so an exporter bug cannot move the probes with it). Replayed traffic almost
    never sits on a threshold, which is the only place two tree runtimes can
    disagree, so whether a replay check catches a fallback that scales or
    compares in the wrong precision depends on the rows sampled; the probes
@@ -40,7 +46,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine, load_feature_columns
-from onnx_edge_ids.boundary_probe import VARIANTS, build_probes, probes_reaching_node
+from onnx_edge_ids.boundary_probe import ALL_VARIANTS, CROSSING_VARIANTS, VARIANTS, build_probes, probes_reaching_node
+from onnx_edge_ids.onnx_artifact import check_npz_matches_onnx
 
 
 def load_rows(csv_path, columns, rows, seed):
@@ -98,6 +105,8 @@ def main():
                     help="Also probe every split threshold of the forest (default).")
     ap.add_argument("--no-boundary-probes", dest="boundary", action="store_false",
                     help="Skip the boundary probes and run the replay check only.")
+    ap.add_argument("--crossing-probes", action="store_true",
+                    help="Also probe the exact float32 crossing of every split (two more probes per node).")
     ap.add_argument("--probe-batch", type=int, default=2000,
                     help="Batch size used for the boundary probes.")
     args = ap.parse_args()
@@ -129,6 +138,11 @@ def main():
     print(f"[PARITY] max confidence delta: {max_delta:.3e}")
 
     failures = []
+    structure = check_npz_matches_onnx(args.numpy, args.onnx)
+    print(f"[STRUCTURE] NumPy artifact vs ONNX graph: "
+          f"{'identical' if not structure else '; '.join(structure)}")
+    if structure:
+        failures.append("structure: " + "; ".join(structure))
     if agreement < args.min_agreement:
         failures.append(f"label agreement {agreement:.6f} < {args.min_agreement}")
         for row in np.flatnonzero(onnx_pred != numpy_pred)[:10]:
@@ -140,18 +154,19 @@ def main():
     boundary = None
     if args.boundary:
         t0 = time.perf_counter()
-        probes = build_probes(args.numpy)
-        reach = probes_reaching_node(args.numpy, probes)
+        chosen = VARIANTS + (CROSSING_VARIANTS if args.crossing_probes else ())
+        probes = build_probes(args.onnx, chosen)
+        reach = probes_reaching_node(args.onnx, probes)
         b_onnx_pred, b_onnx_conf, _ = run_engine("onnx", args.onnx, probes.rows, max(args.probe_batch, 20000))
         b_numpy_pred, b_numpy_conf, _ = run_engine("numpy", args.numpy, probes.rows, args.probe_batch)
         b_disagree = int(np.count_nonzero(b_onnx_pred != b_numpy_pred))
         b_delta = float(np.abs(b_onnx_conf - b_numpy_conf).max())
         per_variant = {
             name: int(np.count_nonzero((b_onnx_pred != b_numpy_pred) & (probes.variant == k)))
-            for k, name in enumerate(VARIANTS)
+            for k, name in enumerate(ALL_VARIANTS) if name in chosen
         }
         print(f"\n[BOUNDARY] probes             : {len(probes):,} "
-              f"({probes.internal_nodes:,} internal nodes x {len(VARIANTS)} values, "
+              f"({probes.internal_nodes:,} internal nodes x {len(chosen)} values, "
               f"{probes.distinct_pairs:,} distinct feature/threshold pairs)")
         print(f"[BOUNDARY] reach their node    : {100.0 * reach:.2f}% under float32")
         print(f"[BOUNDARY] label disagreements : {b_disagree} {per_variant}")
@@ -159,7 +174,7 @@ def main():
         if b_disagree:
             failures.append(f"boundary probes: {b_disagree} label disagreements")
             for row in np.flatnonzero(b_onnx_pred != b_numpy_pred)[:10]:
-                print(f"  probe {row} (node {probes.node[row]}, {VARIANTS[probes.variant[row]]}): "
+                print(f"  probe {row} (node {probes.node[row]}, {ALL_VARIANTS[probes.variant[row]]}): "
                       f"onnx={b_onnx_pred[row]} numpy={b_numpy_pred[row]}")
         if b_delta > args.max_confidence_delta:
             failures.append(f"boundary probes: confidence delta {b_delta:.3e} > {args.max_confidence_delta:.3e}")
@@ -185,6 +200,7 @@ def main():
             "onnx_per_row_ms_p95": percentile(onnx_ms, 95),
             "numpy_per_row_ms_mean": float(np.mean(numpy_ms)),
             "numpy_per_row_ms_p95": percentile(numpy_ms, 95),
+            "structure_mismatches": structure,
             "boundary_probes": boundary,
             "passed": not failures,
         }

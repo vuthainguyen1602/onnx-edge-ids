@@ -16,6 +16,9 @@ builds one probe per internal node of the forest, without any dataset:
    successor.
 
 Features the path does not constrain take the scaler offset (scaled value 0).
+The release gate builds the probes from the ONNX graph itself (``.onnx``), the
+reference runtime's own thresholds, so an exporter that mis-reads the graph
+cannot move the probes with it; a ``.npz`` artifact is also accepted.
 The construction runs in float64 so the row lands where intended; whether a
 runtime then agrees with ONNX Runtime at that boundary is what the gate
 measures.
@@ -28,6 +31,13 @@ from pathlib import Path
 import numpy as np
 
 VARIANTS = ("on_threshold", "one_ulp_below", "one_ulp_above")
+# Optional: the exact float32 crossing of each split, the last raw float32 value the
+# float32 scaler still sends to the true branch and its successor. Where the scale
+# is below one, a raw float32 step moves the scaled value by less than a scaled
+# step, so the three VARIANTS can land on one side of the threshold; these two
+# always straddle it and so also catch a threshold moved by a single float32 step.
+CROSSING_VARIANTS = ("crossing_true_side", "crossing_false_side")
+ALL_VARIANTS = VARIANTS + CROSSING_VARIANTS
 
 
 @dataclass(frozen=True)
@@ -41,13 +51,14 @@ class ForestArrays:
     threshold: np.ndarray
     is_leaf: np.ndarray
     n_features: int
+    strict: np.ndarray = None   # True where the split is BRANCH_LT (value < threshold goes left)
 
 
 @dataclass(frozen=True)
 class ProbeSet:
     rows: np.ndarray        # (n_probes, n_features) raw float32, engine input
     node: np.ndarray        # (n_probes,) global node id each probe targets
-    variant: np.ndarray     # (n_probes,) index into VARIANTS
+    variant: np.ndarray     # (n_probes,) index into ALL_VARIANTS
     internal_nodes: int
     distinct_pairs: int     # distinct (feature, threshold) pairs in the forest
 
@@ -55,9 +66,21 @@ class ProbeSet:
         return int(self.rows.shape[0])
 
 
-def load_forest_arrays(npz_path, dtype=np.float64):
-    data = np.load(Path(npz_path), allow_pickle=False)
+def load_forest_arrays(model_path, dtype=np.float64):
+    """Forest arrays from an ONNX graph (``.onnx``) or an exported NumPy artifact (``.npz``)."""
+    path = Path(model_path)
+    if path.suffix == ".onnx":
+        from .onnx_artifact import read_onnx_forest
+        g = read_onnx_forest(path)
+        return ForestArrays(
+            offset=g["offset"].astype(dtype), scale=g["scale"].astype(dtype),
+            tree_offsets=g["tree_offsets"], left=g["left"], right=g["right"], feature=g["feature"],
+            threshold=g["threshold"].astype(dtype), is_leaf=g["is_leaf"], n_features=g["n_features"],
+            strict=g["strict"],
+        )
+    data = np.load(path, allow_pickle=False)
     meta = json.loads(str(data["metadata_json"]))
+    strict = data["strict"].astype(bool) if "strict" in data.files else np.zeros(len(data["left"]), dtype=bool)
     return ForestArrays(
         offset=data["offset"].astype(dtype),
         scale=data["scale"].astype(dtype),
@@ -68,6 +91,7 @@ def load_forest_arrays(npz_path, dtype=np.float64):
         threshold=data["threshold"].astype(dtype),
         is_leaf=data["is_leaf"].astype(bool),
         n_features=int(meta.get("n_features", len(data["offset"]))),
+        strict=strict,
     )
 
 
@@ -92,9 +116,9 @@ def _path_rows(forest, targets):
             p = int(parent[cur])
             g, t = int(forest.feature[p]), float(forest.threshold[p])
             if went_left[cur]:
-                hi[g] = min(hi.get(g, np.inf), t)   # went left: value <= t
+                hi[g] = min(hi.get(g, np.inf), t)   # went left: value <= t (or < t for BRANCH_LT)
             else:
-                lo[g] = max(lo.get(g, -np.inf), t)  # went right: value > t
+                lo[g] = max(lo.get(g, -np.inf), t)  # went right: value > t (or >= t)
             cur = p
         for g in set(lo) | set(hi):
             a, b = lo.get(g, -np.inf), hi.get(g, np.inf)
@@ -109,9 +133,66 @@ def _path_rows(forest, targets):
     return raw.astype(np.float32)
 
 
-def build_probes(npz_path, variants=VARIANTS):
-    """Build the boundary probe set for the NumPy artifact at ``npz_path``."""
-    forest = load_forest_arrays(npz_path, np.float64)
+def _ordered(x):
+    b = np.asarray(x, dtype=np.float32).view(np.int32).astype(np.int64)
+    return np.where(b >= 0, b, -(b & 0x7FFFFFFF))
+
+
+def _unordered(k):
+    k = np.asarray(k, dtype=np.int64)
+    return np.where(k >= 0, k, (-k) | 0x80000000).astype(np.uint32).view(np.float32)
+
+
+def _goes_true(forest, internal, raw):
+    feat = forest.feature[internal]
+    with np.errstate(over="ignore", invalid="ignore"):
+        z = (raw.astype(np.float32) - forest.offset[feat].astype(np.float32)) * forest.scale[feat].astype(np.float32)
+    thr = forest.threshold[internal].astype(np.float32)
+    return np.where(forest.strict[internal], z < thr, z <= thr)
+
+
+def crossing_values(forest, internal, start):
+    """Per node, the largest raw float32 whose float32-scaled value takes the true branch.
+
+    Searches outward from ``start`` (float32(x*)) in float32 steps, doubling, then
+    bisects to adjacent floats. Returns (found, value); nodes with a non-positive
+    scale or no crossing within reach keep ``start``.
+    """
+    feat = forest.feature[internal]
+    ok = forest.scale[feat] > 0
+    k0 = _ordered(start)
+    t0 = _goes_true(forest, internal, start)
+    lo, hi = k0.copy(), k0.copy()
+    found = ~ok
+    step = np.ones(len(internal), dtype=np.int64)
+    for _ in range(40):
+        cand = np.where(t0, k0 + step, k0 - step)
+        g = _goes_true(forest, internal, _unordered(cand))
+        new = ~found & (g != t0)
+        hi = np.where(new & t0, cand, hi)
+        lo = np.where(new & ~t0, cand, lo)
+        lo = np.where(~found & ~new & t0, cand, lo)
+        hi = np.where(~found & ~new & ~t0, cand, hi)
+        found |= new
+        step *= 2
+    ok &= found
+    for _ in range(64):
+        active = ok & (hi - lo > 1)
+        if not active.any():
+            break
+        mid = (lo + hi) // 2
+        g = _goes_true(forest, internal, _unordered(mid))
+        lo = np.where(active & g, mid, lo)
+        hi = np.where(active & ~g, mid, hi)
+    return ok, np.where(ok, _unordered(lo), start)
+
+
+def build_probes(model_path, variants=VARIANTS):
+    """Build the boundary probe set for the forest at ``model_path`` (``.onnx`` graph or ``.npz`` artifact).
+
+    ``variants`` selects from ALL_VARIANTS; the default is the three-probe set.
+    """
+    forest = load_forest_arrays(model_path, np.float64)
     internal = np.flatnonzero(~forest.is_leaf)
     feat = forest.feature[internal]
     thr = forest.threshold[internal]
@@ -124,8 +205,12 @@ def build_probes(npz_path, variants=VARIANTS):
         "one_ulp_below": np.nextafter(on, np.float32(-np.inf)),
         "one_ulp_above": np.nextafter(on, np.float32(np.inf)),
     }
+    if any(v in variants for v in CROSSING_VARIANTS):
+        _, last_true = crossing_values(forest, internal, on)
+        values["crossing_true_side"] = last_true
+        values["crossing_false_side"] = np.nextafter(last_true, np.float32(np.inf))
     rows, node, variant = [], [], []
-    for k, name in enumerate(VARIANTS):
+    for k, name in enumerate(ALL_VARIANTS):
         if name not in variants:
             continue
         block = base.copy()
@@ -142,9 +227,9 @@ def build_probes(npz_path, variants=VARIANTS):
     )
 
 
-def probes_reaching_node(npz_path, probes, dtype=np.float32):
+def probes_reaching_node(model_path, probes, dtype=np.float32):
     """Fraction of probes that pass through their target node under ``dtype`` arithmetic."""
-    forest = load_forest_arrays(npz_path, dtype)
+    forest = load_forest_arrays(model_path, dtype)
     x = probes.rows.astype(dtype)
     scaled = (x - forest.offset) * forest.scale
     targets = probes.node
@@ -156,7 +241,8 @@ def probes_reaching_node(npz_path, probes, dtype=np.float32):
     while active.any():
         a = np.flatnonzero(active)
         c = cur[a]
-        go_left = scaled[idx[a], forest.feature[c]] <= forest.threshold[c]
+        value, thr = scaled[idx[a], forest.feature[c]], forest.threshold[c]
+        go_left = np.where(forest.strict[c], value < thr, value <= thr)
         cur[a] = np.where(go_left, forest.left[c], forest.right[c])
         hit[a] = cur[a] == targets[a]
         active[a] = ~forest.is_leaf[cur[a]] & ~hit[a]

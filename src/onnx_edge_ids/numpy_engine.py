@@ -46,7 +46,20 @@ class NumpyInferenceEngine(InferenceEngine):
         self.threshold = data["threshold"].astype(self.inference_dtype, copy=False)
         self.is_leaf = data["is_leaf"].astype(bool, copy=False)
         self.leaf_scores = data["leaf_scores"].astype(self.inference_dtype, copy=False)
-        self.n_classes = int(self.leaf_scores.shape[1])
+        # Artifacts exported before BRANCH_LT / base-value support carry neither:
+        # all splits are BRANCH_LEQ and the base values are zero.
+        files = set(data.files)
+        self.strict = (data["strict"].astype(bool, copy=False) if "strict" in files
+                       else np.zeros(len(self.left), dtype=bool))
+        self.any_strict = bool(self.strict.any())
+        n_targets = int(self.leaf_scores.shape[1])
+        self.base_values = (data["base_values"].astype(self.inference_dtype, copy=False) if "base_values" in files
+                            else np.zeros(n_targets, dtype=self.inference_dtype))
+        self.post_transform = self.meta.get("post_transform", "NONE")
+        if self.post_transform not in {"NONE", "LOGISTIC", "SOFTMAX"}:
+            raise ValueError(f"Unsupported post_transform: {self.post_transform}")
+        self.n_targets = n_targets
+        self.n_classes = max(n_targets, 2)
 
     # (tree, row) pairs advanced per lockstep block. A whole-forest trees x rows
     # matrix falls out of cache at large batches and ends up slower than the
@@ -72,7 +85,7 @@ class NumpyInferenceEngine(InferenceEngine):
         n_rows = scaled.shape[0]
         n_trees = len(self.tree_offsets) - 1
         block = max(1, self.PAIRS_PER_BLOCK // max(n_rows, 1))
-        scores = np.zeros((n_rows, self.n_classes), dtype=self.inference_dtype)
+        scores = np.zeros((n_rows, self.n_targets), dtype=self.inference_dtype)
 
         for start in range(0, n_trees, block):
             roots = self.tree_offsets[start:min(start + block, n_trees)]
@@ -81,11 +94,36 @@ class NumpyInferenceEngine(InferenceEngine):
             while np.any(active):
                 t_idx, r_idx = np.nonzero(active)
                 cur = node[t_idx, r_idx]
-                go_left = scaled[r_idx, self.feature[cur]] <= self.threshold[cur]
+                value, thr = scaled[r_idx, self.feature[cur]], self.threshold[cur]
+                if self.any_strict:
+                    go_left = np.where(self.strict[cur], value < thr, value <= thr)
+                else:
+                    go_left = value <= thr
                 nxt = np.where(go_left, self.left[cur], self.right[cur])
                 node[t_idx, r_idx] = nxt
                 active[t_idx, r_idx] = ~self.is_leaf[nxt]
             scores += self.leaf_scores[node].sum(axis=0)
 
-        preds = np.argmax(scores, axis=1).astype(np.int64)
-        return preds, scores
+        return self._outputs(scores + self.base_values)
+
+    def _outputs(self, scores):
+        """Labels and per-class probabilities the way ONNX Runtime derives them from the scores."""
+        with np.errstate(over="ignore"):  # exp(-s) overflows to inf for very negative logits: p -> 0, as in ONNX Runtime
+            return self._post_transform(scores)
+
+    def _post_transform(self, scores):
+        dt = self.inference_dtype
+        one, half = dt(1), dt(0.5)
+        if self.n_targets == 1:
+            s = scores[:, 0]
+            p1 = one / (one + np.exp(-s)) if self.post_transform == "LOGISTIC" else s
+            probs = np.stack([one - p1, p1], axis=1)
+            return (p1 > half).astype(np.int64), probs
+        if self.post_transform == "SOFTMAX":
+            z = np.exp(scores - scores.max(axis=1, keepdims=True))
+            probs = z / z.sum(axis=1, keepdims=True)
+        elif self.post_transform == "LOGISTIC":
+            probs = one / (one + np.exp(-scores))
+        else:
+            probs = scores
+        return np.argmax(probs, axis=1).astype(np.int64), probs

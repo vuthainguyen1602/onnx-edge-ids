@@ -1,0 +1,36 @@
+{
+  "dataset": "UNSW-NB15",
+  "model": "sklearn_rf",
+  "onnxruntime": "1.30.0",
+  "numpy": "2.5.3",
+  "runs": [
+    {
+      "seed": 2,
+      "probes": 300000,
+      "float32_flips": 3,
+      "max_distance_from_one_half": 2.384185791015625e-07,
+      "flips": [
+        {
+          "variant": "on_threshold",
+          "ort_p_attack": 0.5000002384185791,
+          "float32_score": 0.4999999701976776,
+          "abs_difference": 2.682209014892578e-07
+        },
+        {
+          "variant": "one_ulp_below",
+          "ort_p_attack": 0.5000002384185791,
+          "float32_score": 0.4999999701976776,
+          "abs_difference": 2.682209014892578e-07
+        },
+        {
+          "variant": "one_ulp_above",
+          "ort_p_attack": 0.5000002384185791,
+          "float32_score": 0.4999999701976776,
+          "abs_difference": 2.682209014892578e-07
+        }
+      ]
+    }
+  ],
+  "float32_flips_total": 3,
+  "max_distance_from_one_half": 2.384185791015625e-07
+}

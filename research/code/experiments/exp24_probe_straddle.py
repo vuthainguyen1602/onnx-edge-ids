@@ -13,6 +13,8 @@ thirteen models (exp19):
     float32 step moves z by less than a scaled float32 step) and how many raw
     float32 steps separate float32(x*) from the exact float32 crossing, i.e. the
     largest raw float32 a with go_true(z(a)) and its successor going false?
+  * cost: seconds to build the shipped three-probe set, and the extra seconds the
+    bisection for the crossing set takes on top of it (it reuses the same rows);
   * does it matter: a "crossing" probe set that places g(v) on that exact pair
     (a, next(a)) instead, with the same routing rows, run through the same gate
     (labels + confidences at 1e-5) for the float32 and float64 traversals
@@ -23,6 +25,7 @@ thirteen models (exp19):
 
 import json
 import os
+import time
 
 import numpy as np
 
@@ -85,7 +88,9 @@ def crossing(forest, internal, raw0):
 
 def run_model(path):
     forest = load_onnx_forest(path)
+    t0 = time.perf_counter()
     internal, probes = datafree_probes(forest)
+    t_three = time.perf_counter() - t0
     n = len(internal)
     feat, thr, mode = forest.feature[internal], forest.threshold[internal], forest.mode[internal]
     vals = np.stack([probes[i * n:(i + 1) * n][np.arange(n), feat] for i in range(3)], axis=1)
@@ -93,7 +98,9 @@ def run_model(path):
     straddle = sides.any(axis=1) & (~sides).any(axis=1)
     small = forest.scale[feat] < 1
 
+    t0 = time.perf_counter()
     ok, a, k0 = crossing(forest, internal, vals[:, 0])
+    t_bisect = time.perf_counter() - t0
     dist = np.where(ok, np.where(sides[:, 0], a + 1 - k0, k0 - a), 0)  # raw float32 steps from float32(x*) to the other side
 
     base = np.repeat(forest.offset.astype(np.float32).reshape(1, -1), n, axis=0)
@@ -110,6 +117,8 @@ def run_model(path):
     pct = lambda q: int(np.percentile(dist[ok & ~straddle], q)) if (ok & ~straddle).any() else 0
     return {
         "internal_nodes": int(n),
+        "seconds": {"build_three_probes": round(t_three, 2),
+                    "bisection_on_top": round(t_bisect, 2)},
         "three_probes_straddle": float(straddle.mean()),
         "scale_below_one": {"share_of_nodes": float(small.mean()),
                             "straddle_if_scale_below_one": float(straddle[small].mean()) if small.any() else None,

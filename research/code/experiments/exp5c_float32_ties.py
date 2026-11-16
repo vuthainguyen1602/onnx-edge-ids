@@ -9,6 +9,8 @@ within summation error of 0.5 the flip is a tie broken by the order in which
 
     python exp5c_float32_ties.py --test $DATA --model sklearn_rf \
         --run 2:/tmp/exp5_models_seed2 --run 3:/tmp/exp5_models_seed3 --run 4:/tmp/exp5_models_seed4
+    python exp5c_float32_ties.py --unsw $UNSW --run 2:/tmp/exp10_models_seed2/unsw_nb15 \
+        --out results/exp10c_float32_ties_unsw.json
 """
 
 import argparse
@@ -23,7 +25,8 @@ from edgeids.onnx_forest import labels_from_scores, load_onnx_forest, path_rows,
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--test", required=True)
+    ap.add_argument("--test", default="", help="CICIDS2017 test_data.parquet directory")
+    ap.add_argument("--unsw", default="", help="UNSW-NB15 directory instead of --test (models from exp10 --seed N)")
     ap.add_argument("--model", default="sklearn_rf")
     ap.add_argument("--run", action="append", required=True, help="seed:model_dir, as passed to exp5")
     ap.add_argument("--max-nodes", type=int, default=100000)
@@ -32,8 +35,12 @@ def main():
 
     import onnxruntime as ort
 
-    x, _, _ = load_test_split(args.test)
-    report = {"model": args.model, "onnxruntime": ort.__version__, "numpy": np.__version__, "runs": []}
+    if args.unsw:
+        from edgeids.datasets import unsw_test
+        x, _ = unsw_test(args.unsw)
+    else:
+        x, _, _ = load_test_split(args.test)
+    report = {"dataset": "UNSW-NB15" if args.unsw else "CICIDS2017", "model": args.model, "onnxruntime": ort.__version__, "numpy": np.__version__, "runs": []}
     for spec in args.run:
         seed, model_dir = spec.split(":", 1)
         seed, path = int(seed), os.path.join(model_dir, f"{args.model}.onnx")

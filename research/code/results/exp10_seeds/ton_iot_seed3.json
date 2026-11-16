@@ -1,0 +1,433 @@
+{
+  "datasets": {
+    "ToN-IoT": {
+      "train": "/Users/thainguyenvu/Desktop/datasets/ton_iot/Train_Test_Network_dataset/train_test_network.csv",
+      "test": null,
+      "split": "stratified 70/30 split of --train",
+      "label_col": "label",
+      "benign_values": [
+        "benign",
+        "normal",
+        "0"
+      ],
+      "features": [
+        "duration",
+        "src_bytes",
+        "dst_bytes",
+        "missed_bytes",
+        "src_pkts",
+        "src_ip_bytes",
+        "dst_pkts",
+        "dst_ip_bytes",
+        "dns_qclass",
+        "dns_qtype",
+        "dns_rcode",
+        "http_request_body_len",
+        "http_response_body_len",
+        "http_status_code"
+      ],
+      "left_out": {
+        "src_ip": "identifier",
+        "src_port": "identifier",
+        "dst_ip": "identifier",
+        "dst_port": "identifier",
+        "proto": "non-numeric (str)",
+        "service": "non-numeric (str)",
+        "conn_state": "non-numeric (str)",
+        "dns_query": "non-numeric (str)",
+        "dns_AA": "non-numeric (str)",
+        "dns_RD": "non-numeric (str)",
+        "dns_RA": "non-numeric (str)",
+        "dns_rejected": "non-numeric (str)",
+        "ssl_version": "non-numeric (str)",
+        "ssl_cipher": "non-numeric (str)",
+        "ssl_resumed": "non-numeric (str)",
+        "ssl_established": "non-numeric (str)",
+        "ssl_subject": "non-numeric (str)",
+        "ssl_issuer": "non-numeric (str)",
+        "http_trans_depth": "non-numeric (str)",
+        "http_method": "non-numeric (str)",
+        "http_uri": "non-numeric (str)",
+        "http_version": "non-numeric (str)",
+        "http_user_agent": "non-numeric (str)",
+        "http_orig_mime_types": "non-numeric (str)",
+        "http_resp_mime_types": "non-numeric (str)",
+        "weird_name": "non-numeric (str)",
+        "weird_addl": "non-numeric (str)",
+        "weird_notice": "non-numeric (str)",
+        "label": "label",
+        "type": "label"
+      },
+      "train_rows": 147730,
+      "test_rows": 63313,
+      "train_attack_share": 0.7630812969606715,
+      "test_attack_share": 0.7630818315353877,
+      "max_nodes_probed": 100000,
+      "seed": 3,
+      "models": {
+        "sklearn_rf": {
+          "description": "scikit-learn RandomForest (exact midpoint splits)",
+          "train_seconds": 2.3,
+          "onnx_ops": [
+            "Scaler",
+            "TreeEnsembleClassifier"
+          ],
+          "onnx_bytes": 5965796,
+          "test_f1_native": 0.997994666225631,
+          "trees": 200,
+          "nodes": 152416,
+          "post_transform": "NONE",
+          "split_modes": [
+            0
+          ],
+          "sharing": {
+            "internal_nodes": 76108,
+            "distinct_feature_threshold_pairs": 18270,
+            "nodes_per_pair_mean": 4.165736179529283,
+            "trees_per_pair_mean": 3.69584017515052,
+            "trees_per_pair_max": 200,
+            "share_of_nodes_whose_pair_is_in_2plus_trees": 0.8567167709045042,
+            "share_of_nodes_whose_pair_is_in_half_the_trees": 0.26449256319966363
+          },
+          "probes": {
+            "nodes_probed": 76108,
+            "variants": {
+              "on_threshold": {
+                "probes": 76108,
+                "probes_reaching_their_node": 76108,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 2184,
+                "probes_where_float64_moves_a_tree": 36862,
+                "trees_moved_mean_when_any": 13.993434973685638,
+                "trees_moved_mean_when_label_flips": 54.74267399267399,
+                "label_flip_rate_given_a_tree_moved": 0.059248006076718575,
+                "native_vs_ort_flips": 433
+              },
+              "one_ulp_below": {
+                "probes": 76108,
+                "probes_reaching_their_node": 76108,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 248,
+                "probes_where_float64_moves_a_tree": 10671,
+                "trees_moved_mean_when_any": 6.779495829819136,
+                "trees_moved_mean_when_label_flips": 30.669354838709676,
+                "label_flip_rate_given_a_tree_moved": 0.023240558523099992,
+                "native_vs_ort_flips": 181
+              },
+              "one_ulp_above": {
+                "probes": 76108,
+                "probes_reaching_their_node": 76108,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 2850,
+                "probes_where_float64_moves_a_tree": 42616,
+                "trees_moved_mean_when_any": 15.300051623803267,
+                "trees_moved_mean_when_label_flips": 60.19122807017544,
+                "label_flip_rate_given_a_tree_moved": 0.06687629059508166,
+                "native_vs_ort_flips": 647
+              }
+            },
+            "total": {
+              "probes": 228324,
+              "reaching_their_node": 228324,
+              "numpy_float32_vs_ort_flips": 0,
+              "numpy_float64_vs_ort_flips": 5282,
+              "native_vs_ort_flips": 1261,
+              "native_vs_ort_density_vs_replay": 174.83421147141783
+            }
+          },
+          "replay": {
+            "rows": 63313,
+            "ort_label_output_vs_ort_probability_label_flips": 0,
+            "rows_with_a_feature_exactly_on_a_threshold_float32": 0.6392526021512169,
+            "rows_where_float64_moves_a_tree": 214,
+            "trees_moved_mean_when_any": 2.3551401869158877,
+            "numpy_float32_vs_ort_flips": 0,
+            "numpy_float64_vs_ort_flips": 0,
+            "native_vs_ort_flips": 2,
+            "numpy_float64_vs_ort_rate": 0.0,
+            "numpy_float64_vs_ort_prob_2000_row_replay_misses": 1.0,
+            "native_vs_ort_rate": 3.1589089128614976e-05,
+            "native_vs_ort_prob_2000_row_replay_misses": 0.9387752524846866,
+            "native_on_float32_scaled_input_vs_ort_flips": 0
+          },
+          "seconds": 35.8
+        },
+        "sklearn_hgb": {
+          "description": "scikit-learn HistGradientBoosting (max_bins=255)",
+          "train_seconds": 1.8,
+          "onnx_ops": [
+            "Scaler",
+            "TreeEnsembleClassifier"
+          ],
+          "onnx_bytes": 453295,
+          "test_f1_native": 0.9978278408738286,
+          "trees": 200,
+          "nodes": 12200,
+          "post_transform": "LOGISTIC",
+          "split_modes": [
+            0
+          ],
+          "sharing": {
+            "internal_nodes": 6000,
+            "distinct_feature_threshold_pairs": 481,
+            "nodes_per_pair_mean": 12.474012474012474,
+            "trees_per_pair_mean": 11.914760914760915,
+            "trees_per_pair_max": 127,
+            "share_of_nodes_whose_pair_is_in_2plus_trees": 0.9895,
+            "share_of_nodes_whose_pair_is_in_half_the_trees": 0.04733333333333333
+          },
+          "probes": {
+            "nodes_probed": 6000,
+            "variants": {
+              "on_threshold": {
+                "probes": 6000,
+                "probes_reaching_their_node": 6000,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 547,
+                "probes_where_float64_moves_a_tree": 4076,
+                "trees_moved_mean_when_any": 16.954612365063788,
+                "trees_moved_mean_when_label_flips": 38.3345521023766,
+                "label_flip_rate_given_a_tree_moved": 0.13420019627085378,
+                "native_vs_ort_flips": 310
+              },
+              "one_ulp_below": {
+                "probes": 6000,
+                "probes_reaching_their_node": 6000,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 210,
+                "probes_where_float64_moves_a_tree": 3126,
+                "trees_moved_mean_when_any": 7.4277031349968015,
+                "trees_moved_mean_when_label_flips": 12.947619047619048,
+                "label_flip_rate_given_a_tree_moved": 0.0671785028790787,
+                "native_vs_ort_flips": 249
+              },
+              "one_ulp_above": {
+                "probes": 6000,
+                "probes_reaching_their_node": 6000,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 587,
+                "probes_where_float64_moves_a_tree": 4532,
+                "trees_moved_mean_when_any": 16.356354810238305,
+                "trees_moved_mean_when_label_flips": 36.345826235093696,
+                "label_flip_rate_given_a_tree_moved": 0.12952338923212708,
+                "native_vs_ort_flips": 352
+              }
+            },
+            "total": {
+              "probes": 18000,
+              "reaching_their_node": 18000,
+              "numpy_float32_vs_ort_flips": 0,
+              "numpy_float64_vs_ort_flips": 1344,
+              "native_vs_ort_flips": 911,
+              "numpy_float64_vs_ort_density_vs_replay": 6.95201568627451,
+              "native_vs_ort_density_vs_replay": 1.8651579032466694
+            }
+          },
+          "replay": {
+            "rows": 63313,
+            "ort_label_output_vs_ort_probability_label_flips": 0,
+            "rows_with_a_feature_exactly_on_a_threshold_float32": 0.9951352802741933,
+            "rows_where_float64_moves_a_tree": 44785,
+            "trees_moved_mean_when_any": 10.599173830523613,
+            "numpy_float32_vs_ort_flips": 0,
+            "numpy_float64_vs_ort_flips": 680,
+            "native_vs_ort_flips": 1718,
+            "numpy_float64_vs_ort_rate": 0.010740290303729092,
+            "numpy_float64_vs_ort_prob_2000_row_replay_misses": 4.174872504314929e-10,
+            "native_vs_ort_rate": 0.027135027561480264,
+            "native_vs_ort_prob_2000_row_replay_misses": 1.2738966545679198e-24,
+            "native_on_float32_scaled_input_vs_ort_flips": 745
+          },
+          "seconds": 9.2
+        },
+        "lightgbm": {
+          "description": "LightGBM (max_bin=255)",
+          "train_seconds": 1.1,
+          "onnx_ops": [
+            "Scaler",
+            "TreeEnsembleClassifier",
+            "Identity",
+            "Identity"
+          ],
+          "onnx_bytes": 453376,
+          "test_f1_native": 0.9981281348570247,
+          "trees": 200,
+          "nodes": 12200,
+          "post_transform": "LOGISTIC",
+          "split_modes": [
+            0
+          ],
+          "sharing": {
+            "internal_nodes": 6000,
+            "distinct_feature_threshold_pairs": 787,
+            "nodes_per_pair_mean": 7.6238881829733165,
+            "trees_per_pair_mean": 7.339263024142313,
+            "trees_per_pair_max": 131,
+            "share_of_nodes_whose_pair_is_in_2plus_trees": 0.9688333333333333,
+            "share_of_nodes_whose_pair_is_in_half_the_trees": 0.029
+          },
+          "probes": {
+            "nodes_probed": 6000,
+            "variants": {
+              "on_threshold": {
+                "probes": 6000,
+                "probes_reaching_their_node": 6000,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 404,
+                "probes_where_float64_moves_a_tree": 2906,
+                "trees_moved_mean_when_any": 15.855127322780454,
+                "trees_moved_mean_when_label_flips": 37.34158415841584,
+                "label_flip_rate_given_a_tree_moved": 0.13902271163110805,
+                "native_vs_ort_flips": 117
+              },
+              "one_ulp_below": {
+                "probes": 6000,
+                "probes_reaching_their_node": 6000,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 22,
+                "probes_where_float64_moves_a_tree": 418,
+                "trees_moved_mean_when_any": 6.421052631578948,
+                "trees_moved_mean_when_label_flips": 8.181818181818182,
+                "label_flip_rate_given_a_tree_moved": 0.05263157894736842,
+                "native_vs_ort_flips": 51
+              },
+              "one_ulp_above": {
+                "probes": 6000,
+                "probes_reaching_their_node": 6000,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 433,
+                "probes_where_float64_moves_a_tree": 3254,
+                "trees_moved_mean_when_any": 15.0079901659496,
+                "trees_moved_mean_when_label_flips": 36.21709006928406,
+                "label_flip_rate_given_a_tree_moved": 0.13306699446834666,
+                "native_vs_ort_flips": 114
+              }
+            },
+            "total": {
+              "probes": 18000,
+              "reaching_their_node": 18000,
+              "numpy_float32_vs_ort_flips": 0,
+              "numpy_float64_vs_ort_flips": 859,
+              "native_vs_ort_flips": 282,
+              "numpy_float64_vs_ort_density_vs_replay": 3021.4370555555556
+            }
+          },
+          "replay": {
+            "rows": 63313,
+            "ort_label_output_vs_ort_probability_label_flips": 0,
+            "rows_with_a_feature_exactly_on_a_threshold_float32": 0.31961840380332635,
+            "rows_where_float64_moves_a_tree": 35,
+            "trees_moved_mean_when_any": 2.0,
+            "numpy_float32_vs_ort_flips": 0,
+            "numpy_float64_vs_ort_flips": 1,
+            "native_vs_ort_flips": 0,
+            "numpy_float64_vs_ort_rate": 1.5794544564307488e-05,
+            "numpy_float64_vs_ort_prob_2000_row_replay_misses": 0.9689043920261076,
+            "native_vs_ort_rate": 0.0,
+            "native_vs_ort_prob_2000_row_replay_misses": 1.0,
+            "native_on_float32_scaled_input_vs_ort_flips": 0
+          },
+          "seconds": 8.6
+        },
+        "xgboost_hist": {
+          "description": "XGBoost tree_method=hist (max_bin=256, BRANCH_LT)",
+          "train_seconds": 0.8,
+          "onnx_ops": [
+            "Scaler",
+            "TreeEnsembleClassifier"
+          ],
+          "onnx_bytes": 451458,
+          "test_f1_native": 0.9980968929709155,
+          "trees": 200,
+          "nodes": 14282,
+          "post_transform": "LOGISTIC",
+          "split_modes": [
+            1
+          ],
+          "sharing": {
+            "internal_nodes": 7041,
+            "distinct_feature_threshold_pairs": 824,
+            "nodes_per_pair_mean": 8.544902912621358,
+            "trees_per_pair_mean": 8.091019417475728,
+            "trees_per_pair_max": 81,
+            "share_of_nodes_whose_pair_is_in_2plus_trees": 0.9755716517540122,
+            "share_of_nodes_whose_pair_is_in_half_the_trees": 0.0
+          },
+          "probes": {
+            "nodes_probed": 7041,
+            "variants": {
+              "on_threshold": {
+                "probes": 7041,
+                "probes_reaching_their_node": 7041,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 542,
+                "probes_where_float64_moves_a_tree": 4186,
+                "trees_moved_mean_when_any": 14.549689440993788,
+                "trees_moved_mean_when_label_flips": 27.80258302583026,
+                "label_flip_rate_given_a_tree_moved": 0.12947921643573818,
+                "native_vs_ort_flips": 153
+              },
+              "one_ulp_below": {
+                "probes": 7041,
+                "probes_reaching_their_node": 7041,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 558,
+                "probes_where_float64_moves_a_tree": 4583,
+                "trees_moved_mean_when_any": 13.463015492035785,
+                "trees_moved_mean_when_label_flips": 26.229390681003583,
+                "label_flip_rate_given_a_tree_moved": 0.12175430940432032,
+                "native_vs_ort_flips": 162
+              },
+              "one_ulp_above": {
+                "probes": 7041,
+                "probes_reaching_their_node": 7041,
+                "numpy_float32_vs_ort_flips": 0,
+                "numpy_float64_vs_ort_flips": 312,
+                "probes_where_float64_moves_a_tree": 2046,
+                "trees_moved_mean_when_any": 16.49706744868035,
+                "trees_moved_mean_when_label_flips": 27.246794871794872,
+                "label_flip_rate_given_a_tree_moved": 0.15249266862170088,
+                "native_vs_ort_flips": 116
+              }
+            },
+            "total": {
+              "probes": 21123,
+              "reaching_their_node": 21123,
+              "numpy_float32_vs_ort_flips": 0,
+              "numpy_float64_vs_ort_flips": 1412,
+              "native_vs_ort_flips": 431,
+              "numpy_float64_vs_ort_density_vs_replay": 2.8908856505055347,
+              "native_vs_ort_density_vs_replay": 215.3095598794363
+            }
+          },
+          "replay": {
+            "rows": 63313,
+            "ort_label_output_vs_ort_probability_label_flips": 0,
+            "rows_with_a_feature_exactly_on_a_threshold_float32": 0.929272029441031,
+            "rows_where_float64_moves_a_tree": 22615,
+            "trees_moved_mean_when_any": 16.44961308865797,
+            "numpy_float32_vs_ort_flips": 0,
+            "numpy_float64_vs_ort_flips": 1464,
+            "native_vs_ort_flips": 6,
+            "numpy_float64_vs_ort_rate": 0.023123213242146164,
+            "numpy_float64_vs_ort_prob_2000_row_replay_misses": 4.7816680316506235e-21,
+            "native_vs_ort_rate": 9.476726738584493e-05,
+            "native_vs_ort_prob_2000_row_replay_misses": 0.8273367135855694,
+            "native_on_float32_scaled_input_vs_ort_flips": 0
+          },
+          "seconds": 7.3
+        }
+      }
+    }
+  },
+  "machine": "arm64 Darwin",
+  "versions": {
+    "numpy": "2.5.3",
+    "onnxruntime": "1.30.0",
+    "sklearn": "1.9.1",
+    "lightgbm": "4.7.0",
+    "xgboost": "3.4.1",
+    "skl2onnx": "1.20.0",
+    "onnxmltools": "1.16.0"
+  }
+}

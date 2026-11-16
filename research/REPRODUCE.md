@@ -159,6 +159,7 @@ for s in 1 2 3 4; do                                                        # fo
       --seed $s --model-dir /tmp/exp10_models_seed$s --out research/code/results/exp10_seeds/ton_iot_seed$s.json
 done
 python research/code/experiments/exp10_seeds_summary.py                         # ranges over seeds 0 to 4
+python research/code/experiments/seeds_table.py                                # LaTeX rows of the five-seed appendix table
 python research/code/experiments/exp5c_float32_ties.py --unsw $UNSW --run 2:/tmp/exp10_models_seed2/unsw_nb15 \
     --out research/code/results/exp10c_float32_ties_unsw.json                   # the 3 float32 flips of seed 2 are ties
 # replay with the 1e-5 confidence check on all 13 models (runtime parity), and converter parity
@@ -285,6 +286,7 @@ Paths are relative to `research/code/`.
 | Treelite as a third runtime of the same graphs (`tab:treelite`) | `results/exp22_treelite_runtime.json` |
 | Lockstep block-budget ablation (`tab:blockbudget`) | `results/exp23_lockstep_block_ablation.json` (Apple M3), `results_jetson/exp23_lockstep_block_ablation.json` (Jetson #2) |
 | Five training seeds on UNSW-NB15 and ToN-IoT (sensitivity, threats) | `results/exp10_seeds_summary.json` (from `results/exp10_seeds/`), `results/exp10c_float32_ties_unsw.json` |
+| Five-seed appendix table, all twelve trained models (`tab:seeds`) | `results/exp5_seeds_summary.json`, `results/exp10_seeds_summary.json` (rows printed by `experiments/seeds_table.py`) |
 | Probe straddle after float32 scaling, and exact-crossing probes (Section 4, probe construction) | `results/exp24_probe_straddle.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |

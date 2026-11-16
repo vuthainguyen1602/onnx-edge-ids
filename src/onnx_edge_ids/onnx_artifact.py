@@ -151,10 +151,17 @@ ARRAY_KEYS = ("offset", "scale", "tree_offsets", "left", "right", "feature", "th
 def check_npz_matches_onnx(npz_path, onnx_path):
     """Differences between an exported NumPy artifact and the ONNX graph it claims to mirror.
 
-    Every float is compared at float32, the precision both artifacts are served
-    in. An empty list means the artifact is structurally the graph: same tree
-    layout, split features, thresholds, split modes, leaf weights, scaler and
-    base values. It does not check arithmetic; that is the probes' job.
+    Floats are compared for exact equality after casting both sides to float32,
+    the precision ONNX Runtime and the NumPy engine serve in. The graph stores
+    float32, so a float64 copy that round-trips to the graph's float32 counts as
+    equal, which is right because the engine casts it the same way before use;
+    any value that rounds to a different float32 is a mismatch. For the same
+    reason the artifact must declare float32 inference: an engine serving the
+    same values in float64 is the precision fault this gate exists to catch.
+    An empty list means the artifact is structurally the graph: same tree
+    layout, split features, thresholds, split modes, leaf weights, scaler, base
+    values and serving precision. It does not check arithmetic; that is the
+    probes' job.
     """
     ref = read_onnx_forest(onnx_path)
     data = np.load(str(npz_path), allow_pickle=False)
@@ -174,6 +181,9 @@ def check_npz_matches_onnx(npz_path, onnx_path):
             diff = int(np.count_nonzero(a != b))
         if diff:
             problems.append(f"{key}: {diff} value(s) differ from the graph")
+    dtype = meta.get("inference_dtype", "float64 (engine default)")
+    if dtype != "float32":
+        problems.append(f"inference_dtype: {dtype}, the graph is served in float32")
     post = meta.get("post_transform", "NONE")
     if post != ref["post_transform"]:
         problems.append(f"post_transform: {post} != graph {ref['post_transform']}")

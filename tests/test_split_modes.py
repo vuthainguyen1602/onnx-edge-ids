@@ -132,3 +132,29 @@ def test_crossing_probes_straddle_and_catch_a_one_step_threshold_shift(tmp_path)
     a = create_inference_engine("onnx", str(graph)).predict_batch(cross.rows)
     b = create_inference_engine("numpy", str(bad)).predict_batch(cross.rows)
     assert float(np.abs(a.confidences - b.confidences).max()) > 1e-5
+
+
+def test_structure_check_requires_float32_serving_and_compares_exactly_at_float32(tmp_path):
+    graph = _graph(tmp_path / "lt.onnx")
+    npz = _export(graph, tmp_path / "lt.npz")
+    data = dict(np.load(npz, allow_pickle=False))
+    meta = json.loads(str(data["metadata_json"]))
+
+    # a float64 value that rounds back to the graph's float32 is the same threshold to a float32 engine
+    near = dict(data)
+    near["threshold"] = data["threshold"] + np.where(data["is_leaf"], 0.0, 1e-12)
+    np.savez(tmp_path / "near.npz", **near)
+    assert check_npz_matches_onnx(tmp_path / "near.npz", graph) == []
+
+    # one float32 step is not
+    step = dict(data)
+    step["threshold"] = np.where(data["is_leaf"], data["threshold"],
+                                 np.nextafter(data["threshold"].astype(np.float32), np.float32(np.inf)))
+    np.savez(tmp_path / "step.npz", **step)
+    assert any(p.startswith("threshold") for p in check_npz_matches_onnx(tmp_path / "step.npz", graph))
+
+    # the same values served in float64
+    f64 = dict(data)
+    f64["metadata_json"] = json.dumps({**meta, "inference_dtype": "float64"})
+    np.savez(tmp_path / "f64.npz", **f64)
+    assert any(p.startswith("inference_dtype") for p in check_npz_matches_onnx(tmp_path / "f64.npz", graph))

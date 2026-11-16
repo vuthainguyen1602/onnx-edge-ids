@@ -1,0 +1,425 @@
+{
+ "replay_rows_scored": 447275,
+ "replay_gate_rows": 2000,
+ "tolerance": 1e-05,
+ "models": {
+  "deployed_rf": {
+   "none": {
+    "structure_mismatches": [],
+    "replay": {
+     "label_flips": 0,
+     "rows_tripping_conf": 0,
+     "prob_passes_labels_only": 1.0,
+     "prob_passes_with_conf": 1.0
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 0,
+     "tripping_conf": 0
+    }
+   },
+   "thr_all_up": {
+    "structure_mismatches": [
+     "threshold: 95741 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 50,
+     "rows_tripping_conf": 85389,
+     "prob_passes_labels_only": 0.7996440424944481,
+     "prob_passes_with_conf": 9.869966466296572e-185
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 4,
+     "tripping_conf": 172821
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 4,
+     "tripping_conf": 33893
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 4,
+     "tripping_conf": 70085
+    }
+   },
+   "thr_one_up": {
+    "structure_mismatches": [
+     "threshold: 1 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 0,
+     "rows_tripping_conf": 0,
+     "prob_passes_labels_only": 1.0,
+     "prob_passes_with_conf": 1.0
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "shift_visible_to_some_float32_input": false
+   },
+   "feature_swap": {
+    "structure_mismatches": [
+     "feature: 11256 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 13407,
+     "rows_tripping_conf": 311378,
+     "prob_passes_labels_only": 3.681212952604037e-27,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 4,
+     "tripping_conf": 142301
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 4,
+     "tripping_conf": 142112
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 2,
+     "tripping_conf": 94842
+    }
+   },
+   "offset_one_up": {
+    "structure_mismatches": [
+     "offset: 1 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 0,
+     "rows_tripping_conf": 0,
+     "prob_passes_labels_only": 1.0,
+     "prob_passes_with_conf": 1.0
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 12755
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 2711
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 0,
+     "tripping_conf": 5134
+    }
+   },
+   "scale_fp16": {
+    "structure_mismatches": [
+     "scale: 29 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 25656,
+     "rows_tripping_conf": 447275,
+     "prob_passes_labels_only": 4.9101973507122105e-52,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 4,
+     "tripping_conf": 236018
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 8,
+     "tripping_conf": 233567
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 4,
+     "tripping_conf": 159046
+    }
+   },
+   "leaf_tree0": {
+    "structure_mismatches": [
+     "leaf_scores: 1050 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 10,
+     "rows_tripping_conf": 447275,
+     "prob_passes_labels_only": 0.9562692916090947,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 287223
+    },
+    "probes_from_onnx": {
+     "probes": 287223,
+     "label_flips": 0,
+     "tripping_conf": 287223
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 191482,
+     "label_flips": 0,
+     "tripping_conf": 191482
+    }
+   }
+  },
+  "xgboost_hist": {
+   "none": {
+    "structure_mismatches": [],
+    "replay": {
+     "label_flips": 0,
+     "rows_tripping_conf": 0,
+     "prob_passes_labels_only": 1.0,
+     "prob_passes_with_conf": 1.0
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 0,
+     "tripping_conf": 0
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 0,
+     "tripping_conf": 0
+    }
+   },
+   "thr_all_up": {
+    "structure_mismatches": [
+     "threshold: 9070 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 1252,
+     "rows_tripping_conf": 119796,
+     "prob_passes_labels_only": 0.0036750242139304357,
+     "prob_passes_with_conf": 1.6506778365658388e-271
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 17,
+     "tripping_conf": 683
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 30,
+     "tripping_conf": 3699
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 26,
+     "tripping_conf": 1593
+    }
+   },
+   "thr_one_up": {
+    "structure_mismatches": [
+     "threshold: 1 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 0,
+     "rows_tripping_conf": 0,
+     "prob_passes_labels_only": 1.0,
+     "prob_passes_with_conf": 1.0
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 0,
+     "tripping_conf": 21
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 0,
+     "tripping_conf": 21
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 0,
+     "tripping_conf": 21
+    },
+    "shift_visible_to_some_float32_input": true
+   },
+   "feature_swap": {
+    "structure_mismatches": [
+     "feature: 1967 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 2101,
+     "rows_tripping_conf": 147457,
+     "prob_passes_labels_only": 8.134574770037991e-05,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 2,
+     "tripping_conf": 3577
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 2,
+     "tripping_conf": 3602
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 1,
+     "tripping_conf": 2374
+    }
+   },
+   "offset_one_up": {
+    "structure_mismatches": [
+     "offset: 1 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 139,
+     "rows_tripping_conf": 31196,
+     "prob_passes_labels_only": 0.5370639222564413,
+     "prob_passes_with_conf": 1.5934748354957475e-63
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 0,
+     "tripping_conf": 143
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 0,
+     "tripping_conf": 451
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 0,
+     "tripping_conf": 204
+    }
+   },
+   "scale_fp16": {
+    "structure_mismatches": [
+     "scale: 29 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 14410,
+     "rows_tripping_conf": 237970,
+     "prob_passes_labels_only": 3.594963873893148e-29,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 7,
+     "tripping_conf": 4204
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 56,
+     "tripping_conf": 6870
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 37,
+     "tripping_conf": 4402
+    }
+   },
+   "leaf_tree0": {
+    "structure_mismatches": [
+     "leaf_scores: 95 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 1023,
+     "rows_tripping_conf": 153099,
+     "prob_passes_labels_only": 0.010258935482880614,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 47,
+     "tripping_conf": 8630
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 47,
+     "tripping_conf": 8630
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 32,
+     "tripping_conf": 5761
+    }
+   },
+   "mode_dropped": {
+    "structure_mismatches": [
+     "strict: 9070 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 1252,
+     "rows_tripping_conf": 119796,
+     "prob_passes_labels_only": 0.0036750242139304357,
+     "prob_passes_with_conf": 1.6506778365658388e-271
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 30,
+     "tripping_conf": 3699
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 30,
+     "tripping_conf": 3699
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 26,
+     "tripping_conf": 1593
+    }
+   },
+   "base_dropped": {
+    "structure_mismatches": [
+     "base_values: 1 value(s) differ from the graph"
+    ],
+    "replay": {
+     "label_flips": 1272,
+     "rows_tripping_conf": 153623,
+     "prob_passes_labels_only": 0.0033597824904357614,
+     "prob_passes_with_conf": 0.0
+    },
+    "probes_from_npz": {
+     "probes": 27210,
+     "label_flips": 105,
+     "tripping_conf": 16517
+    },
+    "probes_from_onnx": {
+     "probes": 27210,
+     "label_flips": 105,
+     "tripping_conf": 16517
+    },
+    "crossing_probes_from_onnx": {
+     "probes": 18140,
+     "label_flips": 67,
+     "tripping_conf": 11040
+    }
+   }
+  }
+ }
+}

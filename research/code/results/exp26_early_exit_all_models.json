@@ -1,0 +1,151 @@
+{
+ "datasets": {
+  "CICIDS2017": {
+   "rows": 447275,
+   "models": {
+    "sklearn_rf": {
+     "trees": 200,
+     "first_check_after": 104,
+     "labels_identical_to_float32_full_forest": 447275,
+     "labels_identical_to_onnxruntime": 447275,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 104.38,
+     "rows_decided_at_first_check": 0.9822033424626907,
+     "seconds_early_exit": 16.16,
+     "seconds_full_forest": 16.87
+    },
+    "sklearn_hgb": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 447275,
+     "labels_identical_to_onnxruntime": 447275,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 182.72,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 13.79,
+     "seconds_full_forest": 25.51
+    },
+    "lightgbm": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 447275,
+     "labels_identical_to_onnxruntime": 447275,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 180.39,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 71.9,
+     "seconds_full_forest": 33.18
+    },
+    "xgboost_hist": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 447275,
+     "labels_identical_to_onnxruntime": 447275,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 136.31,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 17.75,
+     "seconds_full_forest": 13.89
+    }
+   }
+  },
+  "UNSW-NB15": {
+   "rows": 82332,
+   "models": {
+    "sklearn_rf": {
+     "trees": 200,
+     "first_check_after": 104,
+     "labels_identical_to_float32_full_forest": 82332,
+     "labels_identical_to_onnxruntime": 82332,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 117.77,
+     "rows_decided_at_first_check": 0.6763105475392314,
+     "seconds_early_exit": 4.88,
+     "seconds_full_forest": 4.11
+    },
+    "sklearn_hgb": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 82332,
+     "labels_identical_to_onnxruntime": 82332,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 183.54,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 3.45,
+     "seconds_full_forest": 2.48
+    },
+    "lightgbm": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 82332,
+     "labels_identical_to_onnxruntime": 82332,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 179.47,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 3.62,
+     "seconds_full_forest": 4.23
+    },
+    "xgboost_hist": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 82332,
+     "labels_identical_to_onnxruntime": 82332,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 178.11,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 5.66,
+     "seconds_full_forest": 3.03
+    }
+   }
+  },
+  "ToN-IoT": {
+   "rows": 63313,
+   "models": {
+    "sklearn_rf": {
+     "trees": 200,
+     "first_check_after": 104,
+     "labels_identical_to_float32_full_forest": 63313,
+     "labels_identical_to_onnxruntime": 63313,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 104.49,
+     "rows_decided_at_first_check": 0.9727544106265695,
+     "seconds_early_exit": 2.5,
+     "seconds_full_forest": 3.67
+    },
+    "sklearn_hgb": {
+     "trees": 183,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 63313,
+     "labels_identical_to_onnxruntime": 63313,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 148.5,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 1.81,
+     "seconds_full_forest": 2.21
+    },
+    "lightgbm": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 63313,
+     "labels_identical_to_onnxruntime": 63313,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 168.53,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 2.0,
+     "seconds_full_forest": 1.83
+    },
+    "xgboost_hist": {
+     "trees": 200,
+     "first_check_after": 8,
+     "labels_identical_to_float32_full_forest": 63313,
+     "labels_identical_to_onnxruntime": 63313,
+     "float32_full_forest_vs_onnxruntime_flips": 0,
+     "mean_trees_used": 127.45,
+     "rows_decided_at_first_check": 0.0,
+     "seconds_early_exit": 1.27,
+     "seconds_full_forest": 1.88
+    }
+   }
+  }
+ }
+}

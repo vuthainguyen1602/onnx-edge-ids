@@ -41,7 +41,7 @@ The research context that exposed the software need is that an IDS model can be 
 
 - `src/onnx_edge_ids/`: reusable ONNX/NumPy inference package.
 - `artifacts/`: the served ONNX and NumPy artifacts plus the feature-column metadata.
-- `scripts/export_numpy.py`: convert an ONNX tree-ensemble artifact to the NumPy format.
+- `scripts/export_numpy.py`: convert an ONNX tree-ensemble artifact to the NumPy format (`BRANCH_LEQ` and `BRANCH_LT` splits as scikit-learn, LightGBM and XGBoost export them, one or two score columns, base values, NONE/LOGISTIC/SOFTMAX; other split modes are refused).
 - `scripts/export_artifacts.sh`: create the NumPy artifact from an ONNX artifact.
 - `scripts/validate_parity.py`: check that the NumPy artifact reproduces the ONNX artifact on replayed rows and on a boundary probe of every split threshold; exits non-zero outside tolerance.
 - `scripts/init_topics.py`: create Kafka input/suspicious topics.
@@ -74,20 +74,27 @@ python scripts/smoke_predict.py --engine numpy --model artifacts/ids_rf_numpy.np
 ```
 
 Validate that the two backends agree before deploying. The script fails the
-command rather than only printing a warning, and it runs two checks:
+command rather than only printing a warning, and it runs three checks:
 
+- structure: the NumPy artifact must hold the ONNX graph's tree layout,
+  thresholds, split modes, leaf weights, scaler and base values, compared at
+  float32, so an exporter that mis-reads the graph fails before any
+  arithmetic is compared;
 - replay: both backends over the same rows (a replay CSV, or synthetic rows
   when `--csv` is omitted), reporting label agreement and the largest
   confidence difference;
 - boundary probes (on by default, `--no-boundary-probes` to skip): one row
   per internal node of the forest, routed to that node and placed exactly on
   its split threshold and one float32 step either side. The probes are built
-  from the NumPy artifact alone, so this check needs no dataset. For the
+  from the ONNX graph alone (the reference runtime's own thresholds), so this
+  check needs no dataset and an exporter bug cannot move the probes with it.
+  `--crossing-probes` adds two probes per node on the exact float32 crossing
+  of each split, which always straddle the threshold. For the
   shipped forest that is 287,223 probes over 815 distinct feature/threshold
   pairs, 99.9% of which reach their node; it takes a few seconds for ONNX
   Runtime and about half a minute for the NumPy engine on a laptop. Replayed
   traffic almost never sits on a threshold, which is the only place two tree
-  runtimes can disagree, so whether the replay check catches a fallback that
+  runtimes can route a row differently, so whether the replay check catches a fallback that
   scales or compares in the wrong precision depends on which rows happened to
   be sampled; the probes exercise every threshold, so they catch it every time.
 

@@ -1,4 +1,4 @@
-"""Boundary probes are built from the shipped artifact alone; no dataset needed."""
+"""Boundary probes are built from the shipped ONNX graph alone; no dataset needed."""
 
 import sys
 from pathlib import Path
@@ -18,7 +18,13 @@ ONNX = ROOT / "artifacts" / "ids_rf.onnx"
 
 @pytest.fixture(scope="module")
 def probes():
-    return build_probes(NPZ)
+    return build_probes(ONNX)
+
+
+def test_probes_from_graph_and_from_artifact_are_identical(probes):
+    from_npz = build_probes(NPZ)
+    assert np.array_equal(probes.rows, from_npz.rows)
+    assert np.array_equal(probes.node, from_npz.node)
 
 
 def test_one_probe_per_internal_node_and_variant(probes):
@@ -30,8 +36,8 @@ def test_one_probe_per_internal_node_and_variant(probes):
 
 def test_probes_reach_their_node_under_float32(probes):
     # a few paths are narrower than float32 can represent after inverse scaling
-    assert probes_reaching_node(NPZ, probes, np.float32) > 0.99
-    assert probes_reaching_node(NPZ, probes, np.float64) == 1.0
+    assert probes_reaching_node(ONNX, probes, np.float32) > 0.99
+    assert probes_reaching_node(ONNX, probes, np.float64) == 1.0
 
 
 def test_numpy_engine_agrees_with_onnx_on_every_probe(probes):

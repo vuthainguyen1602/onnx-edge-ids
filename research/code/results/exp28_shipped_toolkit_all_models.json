@@ -1,0 +1,160 @@
+{
+ "models": {
+  "CICIDS2017/deployed_rf": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "NONE",
+   "score_columns": 2,
+   "structure_mismatches": [],
+   "probes": 287223,
+   "label_flips": 0,
+   "max_confidence_delta": 9.5367431640625e-07,
+   "probes_reaching_node": 0.9991957468587126,
+   "nodes_no_probe_reaches": 77,
+   "of_those_pair_exercised_elsewhere": 77
+  },
+  "CICIDS2017/sklearn_rf": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "NONE",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 384945,
+   "label_flips": 0,
+   "max_confidence_delta": 3.5762786865234375e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "CICIDS2017/sklearn_hgb": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 18000,
+   "label_flips": 0,
+   "max_confidence_delta": 6.556510925292969e-07,
+   "probes_reaching_node": 0.9996666666666667,
+   "nodes_no_probe_reaches": 2,
+   "of_those_pair_exercised_elsewhere": 2
+  },
+  "CICIDS2017/lightgbm": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 18000,
+   "label_flips": 0,
+   "max_confidence_delta": 1.3709068298339844e-06,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "CICIDS2017/xgboost_hist": {
+   "split_modes": "BRANCH_LT",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 27210,
+   "label_flips": 0,
+   "max_confidence_delta": 4.76837158203125e-07,
+   "probes_reaching_node": 0.9994487320837927,
+   "nodes_no_probe_reaches": 5,
+   "of_those_pair_exercised_elsewhere": 5
+  },
+  "UNSW-NB15/sklearn_rf": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "NONE",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 726261,
+   "label_flips": 0,
+   "max_confidence_delta": 6.556510925292969e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "UNSW-NB15/sklearn_hgb": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 18000,
+   "label_flips": 0,
+   "max_confidence_delta": 3.5762786865234375e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "UNSW-NB15/lightgbm": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 18000,
+   "label_flips": 0,
+   "max_confidence_delta": 3.5762786865234375e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "UNSW-NB15/xgboost_hist": {
+   "split_modes": "BRANCH_LT",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 53916,
+   "label_flips": 0,
+   "max_confidence_delta": 5.364418029785156e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "ToN-IoT/sklearn_rf": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "NONE",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 228057,
+   "label_flips": 0,
+   "max_confidence_delta": 7.152557373046875e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "ToN-IoT/sklearn_hgb": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 16470,
+   "label_flips": 0,
+   "max_confidence_delta": 4.172325134277344e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "ToN-IoT/lightgbm": {
+   "split_modes": "BRANCH_LEQ",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 18000,
+   "label_flips": 0,
+   "max_confidence_delta": 4.76837158203125e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  },
+  "ToN-IoT/xgboost_hist": {
+   "split_modes": "BRANCH_LT",
+   "post_transform": "LOGISTIC",
+   "score_columns": 1,
+   "structure_mismatches": [],
+   "probes": 20805,
+   "label_flips": 0,
+   "max_confidence_delta": 5.960464477539062e-07,
+   "probes_reaching_node": 1.0,
+   "nodes_no_probe_reaches": 0,
+   "of_those_pair_exercised_elsewhere": 0
+  }
+ }
+}

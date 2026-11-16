@@ -90,7 +90,7 @@ def main():
         test_df = read_table(args.test)
         x_train, y_train = x_all, y_all
         x_test, y_test = matrix(test_df, cols), binary_labels(test_df[args.label_col], benign)
-        split = f"given test split {args.test}"
+        split = f"given test split {os.path.basename(args.test)}"
     else:
         x_train, x_test, y_train, y_test = train_test_split(
             x_all, y_all, test_size=0.3, stratify=y_all, random_state=args.seed)
@@ -117,7 +117,7 @@ def main():
                           "lightgbm": lightgbm.__version__, "xgboost": xgboost.__version__,
                           "skl2onnx": skl2onnx.__version__, "onnxmltools": onnxmltools.__version__}
     entry = {
-        "train": args.train, "test": args.test or None, "split": split, "label_col": args.label_col,
+        "train": os.path.basename(args.train), "test": os.path.basename(args.test) or None, "split": split, "label_col": args.label_col,
         "benign_values": benign, "features": cols, "left_out": dropped,
         "train_rows": int(len(x_train)), "test_rows": int(len(x_test)),
         "train_attack_share": float(y_train.mean()), "test_attack_share": float(y_test.mean()),

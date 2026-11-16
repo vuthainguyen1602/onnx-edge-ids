@@ -77,9 +77,10 @@ Validate that the two backends agree before deploying. The script fails the
 command rather than only printing a warning, and it runs three checks:
 
 - structure: the NumPy artifact must hold the ONNX graph's tree layout,
-  thresholds, split modes, leaf weights, scaler and base values, compared at
-  float32, so an exporter that mis-reads the graph fails before any
-  arithmetic is compared;
+  thresholds, split modes, leaf weights, scaler and base values, equal value
+  for value once both are cast to float32 (the precision both runtimes serve),
+  and must declare float32 serving, so an exporter that mis-reads the graph
+  fails before any arithmetic is compared;
 - replay: both backends over the same rows (a replay CSV, or synthetic rows
   when `--csv` is omitted), reporting label agreement and the largest
   confidence difference;

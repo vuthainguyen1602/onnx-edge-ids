@@ -184,6 +184,23 @@ python research/code/experiments/exp23_lockstep_block_ablation.py --data $DATA -
 # do the three probes straddle the threshold after float32 scaling? plus a two-probe set on the exact float32
 # crossing (bisection), both through the data-free gate on all 13 models; needs no data (~6 min on an M3)
 python research/code/experiments/exp24_probe_straddle.py
+# exporter faults injected into the .npz of two models, against every gate (~20 min on an M3)
+python research/code/experiments/exp25_exporter_mutations.py --data $DATA
+python research/code/experiments/exp25_table.py                               # LaTeX rows of the fault table
+# exact early exit on the twelve trained models
+python research/code/experiments/exp26_early_exit_all_models.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
+# shipped exporter, engine and gate on all thirteen models (structure, probes, reach)
+python research/code/experiments/exp28_shipped_toolkit_all_models.py
+# cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
+# the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
+python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
+    --ton-iot $TON/train_test_network.csv --extra CICIDS2017:4:/tmp/exp5_models_seed4/sklearn_rf.onnx \
+    --extra UNSW-NB15:2:/tmp/exp10_models_seed2/unsw_nb15/sklearn_rf.onnx
+for f in research/code/experiments/exp27_run_ort.py research/code/experiments/exp27_run_numpy.py; do
+  python $f --dir $EXP27 --tag m3                                              # repeat with --tag x86 in an x86-64
+done                                                                           # container and --tag jetson on the board
+python research/code/experiments/exp27_compare.py --dir $EXP27 --pair m3:x86 --pair m3:jetson \
+    --pair m3_numpy:x86_numpy --pair m3_numpy:jetson_numpy --pair m3:m3_numpy --pair x86:x86_numpy --pair jetson:jetson_numpy
 # exp13 (GPU providers) runs on Jetson #2 with a GPU build of ONNX Runtime; see results_jetson/exp13_ort_providers.json
 ```
 
@@ -289,6 +306,10 @@ Paths are relative to `research/code/`.
 | Shipped gate's own run: probes in 16 s, 2,000-row replay 0.14 s (per-row means x 2,000, both runtimes) | `validation/parity_boundary_m3_20261013.json` (see `validation/README.md`) |
 | Five-seed appendix table, all twelve trained models (`tab:seeds`) | `results/exp5_seeds_summary.json`, `results/exp10_seeds_summary.json` (rows printed by `experiments/seeds_table.py`) |
 | Probe straddle after float32 scaling, and exact-crossing probes (Section 4, probe construction) | `results/exp24_probe_straddle.json` |
+| Exporter faults vs. structure check, replay and probe sets (`tab:mutants`) | `results/exp25_exporter_mutations.json` |
+| Exact early exit on the twelve trained models | `results/exp26_early_exit_all_models.json` |
+| Cross-architecture ties: both runtimes on M3, x86-64 and Jetson | `results/exp27_cross_arch_ties.json` |
+| Shipped exporter and engine on all thirteen models; reach and pair coverage | `results/exp28_shipped_toolkit_all_models.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

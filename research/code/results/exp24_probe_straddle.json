@@ -5,6 +5,10 @@
   "CICIDS2017": {
    "deployed_rf": {
     "internal_nodes": 95741,
+    "seconds": {
+     "build_three_probes": 5.62,
+     "bisection_on_top": 0.2
+    },
     "three_probes_straddle": 0.35456074200185916,
     "scale_below_one": {
      "share_of_nodes": 0.9938166511734784,
@@ -53,6 +57,10 @@
    },
    "sklearn_rf": {
     "internal_nodes": 128315,
+    "seconds": {
+     "build_three_probes": 3.21,
+     "bisection_on_top": 0.13
+    },
     "three_probes_straddle": 0.36385457662782994,
     "scale_below_one": {
      "share_of_nodes": 0.9964150722830534,
@@ -101,6 +109,10 @@
    },
    "sklearn_hgb": {
     "internal_nodes": 6000,
+    "seconds": {
+     "build_three_probes": 0.06,
+     "bisection_on_top": 0.0
+    },
     "three_probes_straddle": 0.37366666666666665,
     "scale_below_one": {
      "share_of_nodes": 0.9938333333333333,
@@ -149,6 +161,10 @@
    },
    "lightgbm": {
     "internal_nodes": 6000,
+    "seconds": {
+     "build_three_probes": 0.07,
+     "bisection_on_top": 0.0
+    },
     "three_probes_straddle": 0.407,
     "scale_below_one": {
      "share_of_nodes": 0.9935,
@@ -197,6 +213,10 @@
    },
    "xgboost_hist": {
     "internal_nodes": 9070,
+    "seconds": {
+     "build_three_probes": 0.23,
+     "bisection_on_top": 0.02
+    },
     "three_probes_straddle": 0.31477398015435504,
     "scale_below_one": {
      "share_of_nodes": 0.9968026460859978,
@@ -247,6 +267,10 @@
   "UNSW-NB15": {
    "sklearn_rf": {
     "internal_nodes": 242087,
+    "seconds": {
+     "build_three_probes": 5.9,
+     "bisection_on_top": 0.19
+    },
     "three_probes_straddle": 0.6392619182360061,
     "scale_below_one": {
      "share_of_nodes": 0.8984869075993341,
@@ -295,6 +319,10 @@
    },
    "sklearn_hgb": {
     "internal_nodes": 6000,
+    "seconds": {
+     "build_three_probes": 0.08,
+     "bisection_on_top": 0.0
+    },
     "three_probes_straddle": 0.638,
     "scale_below_one": {
      "share_of_nodes": 0.8656666666666667,
@@ -343,6 +371,10 @@
    },
    "lightgbm": {
     "internal_nodes": 6000,
+    "seconds": {
+     "build_three_probes": 0.07,
+     "bisection_on_top": 0.0
+    },
     "three_probes_straddle": 0.6386666666666667,
     "scale_below_one": {
      "share_of_nodes": 0.8741666666666666,
@@ -391,6 +423,10 @@
    },
    "xgboost_hist": {
     "internal_nodes": 17972,
+    "seconds": {
+     "build_three_probes": 0.2,
+     "bisection_on_top": 0.01
+    },
     "three_probes_straddle": 0.6729356777208991,
     "scale_below_one": {
      "share_of_nodes": 0.8341308702425996,
@@ -441,6 +477,10 @@
   "ToN-IoT": {
    "sklearn_rf": {
     "internal_nodes": 76019,
+    "seconds": {
+     "build_three_probes": 1.97,
+     "bisection_on_top": 0.05
+    },
     "three_probes_straddle": 0.41108144016627424,
     "scale_below_one": {
      "share_of_nodes": 0.980846893539773,
@@ -489,6 +529,10 @@
    },
    "sklearn_hgb": {
     "internal_nodes": 5490,
+    "seconds": {
+     "build_three_probes": 0.08,
+     "bisection_on_top": 0.01
+    },
     "three_probes_straddle": 0.41202185792349727,
     "scale_below_one": {
      "share_of_nodes": 0.978688524590164,
@@ -537,6 +581,10 @@
    },
    "lightgbm": {
     "internal_nodes": 6000,
+    "seconds": {
+     "build_three_probes": 0.09,
+     "bisection_on_top": 0.01
+    },
     "three_probes_straddle": 0.4066666666666667,
     "scale_below_one": {
      "share_of_nodes": 0.981,
@@ -585,6 +633,10 @@
    },
    "xgboost_hist": {
     "internal_nodes": 6935,
+    "seconds": {
+     "build_three_probes": 0.08,
+     "bisection_on_top": 0.01
+    },
     "three_probes_straddle": 0.45450612833453496,
     "scale_below_one": {
      "share_of_nodes": 0.9877433309300648,

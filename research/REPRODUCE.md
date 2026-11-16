@@ -170,6 +170,9 @@ python research/code/experiments/exp19_datafree_probes.py --converter --cicids-t
 # lockstep block-budget ablation; --export-npy writes the 20,000 rows so a board without pandas can run the same rows
 python research/code/experiments/exp23_lockstep_block_ablation.py --data $DATA
 python research/code/experiments/exp23_lockstep_block_ablation.py --data $DATA --export-npy rows20k.npy   # then on the board: --npy rows20k.npy
+# do the three probes straddle the threshold after float32 scaling? plus a two-probe set on the exact float32
+# crossing (bisection), both through the data-free gate on all 13 models; needs no data (~6 min on an M3)
+python research/code/experiments/exp24_probe_straddle.py
 # exp13 (GPU providers) runs on Jetson #2 with a GPU build of ONNX Runtime; see results_jetson/exp13_ort_providers.json
 ```
 
@@ -271,6 +274,7 @@ Paths are relative to `research/code/`.
 | Leafparity on the converter pairs (`tab:leafparity-run`) | `results/exp21_leafparity.json` |
 | Treelite as a third runtime of the same graphs (`tab:treelite`) | `results/exp22_treelite_runtime.json` |
 | Lockstep block-budget ablation (`tab:blockbudget`) | `results/exp23_lockstep_block_ablation.json` (Apple M3), `results_jetson/exp23_lockstep_block_ablation.json` (Jetson #2) |
+| Probe straddle after float32 scaling, and exact-crossing probes (Section 4, probe construction) | `results/exp24_probe_straddle.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

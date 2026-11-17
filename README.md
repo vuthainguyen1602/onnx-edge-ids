@@ -84,13 +84,18 @@ command rather than only printing a warning, and it runs three checks:
 - replay: both backends over the same rows (a replay CSV, or synthetic rows
   when `--csv` is omitted), reporting label agreement and the largest
   confidence difference;
-- boundary probes (on by default, `--no-boundary-probes` to skip): one row
-  per internal node of the forest, routed to that node and placed exactly on
-  its split threshold and one float32 step either side. The probes are built
-  from the ONNX graph alone (the reference runtime's own thresholds), so this
-  check needs no dataset and an exporter bug cannot move the probes with it.
-  `--crossing-probes` adds two probes per node on the exact float32 crossing
-  of each split, which always straddle the threshold. `--tie-band 1e-6`
+- boundary probes (on by default, `--no-boundary-probes` to skip): rows
+  routed to every internal node of the forest, by default two per node on the
+  exact float32 crossing of its split (the last raw value ONNX Runtime's
+  float32 scaler sends to the true branch, and its successor). The probes are
+  built from the ONNX graph alone (the reference runtime's own thresholds), so
+  this check needs no dataset and an exporter bug cannot move the probes with
+  it. The crossing pair catches, at every node it reaches, any fault that keeps
+  the node's decision a monotone threshold on its own feature (float64
+  arithmetic, a reordered scaler, rounded thresholds, an exchanged `<` and
+  `<=`); the older placement on the threshold and one float32 step either side
+  (`--probe-set three`, the default up to v0.6) does not guarantee that where
+  the scale is below one. `--probe-set both` runs all five. `--tie-band 1e-6`
   reports a label difference as indeterminate rather than a failure when both
   runtimes put P(class 1) within 1e-6 of 0.5: at such an exact tie the label
   depends on summation order, which ONNX Runtime varies with its thread count.
@@ -100,9 +105,9 @@ command rather than only printing a warning, and it runs three checks:
   names the first node where they part and why (threshold, scaler, split
   feature, split mode, leaf weight or base value). If the artifact matches the
   graph there, the fault is in the engine's arithmetic, not in the export. For the
-  shipped forest that is 287,223 probes over 815 distinct feature/threshold
-  pairs, 99.9% of which reach their node; it takes a few seconds for ONNX
-  Runtime and about half a minute for the NumPy engine on a laptop. Replayed
+  shipped forest that is 191,482 crossing probes over 815 distinct
+  feature/threshold pairs, 99.9% of which reach their node; the whole gate
+  takes about 20 s on a laptop. Replayed
   traffic almost never sits on a threshold, which is the only place two tree
   runtimes can route a row differently, so whether the replay check catches a fallback that
   scales or compares in the wrong precision depends on which rows happened to

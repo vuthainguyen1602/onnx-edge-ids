@@ -14,14 +14,19 @@ release:
 1. Replay: both backends run over the same flow records (a CSV, or synthetic
    rows) and the script reports label agreement and the largest confidence
    difference.
-2. Boundary probes (default on): one row per internal node of the forest,
-   routed to that node and placed on its split threshold and one float32 step
-   either side, built from the ONNX graph itself (the reference runtime's own
-   thresholds, so an exporter bug cannot move the probes with it). Replayed traffic almost
-   never sits on a threshold, which is the only place two tree runtimes can
-   disagree, so whether a replay check catches a fallback that scales or
-   compares in the wrong precision depends on the rows sampled; the probes
-   exercise every threshold and catch it every time.
+2. Boundary probes (default on): rows routed to every internal node of the
+   forest, built from the ONNX graph itself (the reference runtime's own
+   thresholds, so an exporter bug cannot move the probes with it). By default
+   two per node, on the exact float32 crossing of the split: the last raw value
+   ONNX Runtime's float32 scaler sends to the true branch and its successor.
+   That pair catches, at every node it reaches, any fault whose decision at the
+   node is a monotone threshold on the node's own feature (float64 arithmetic,
+   a reordered scaler, rounded thresholds, an exchanged < and <=), which the
+   older three-probe placement (on the threshold and one float32 step either
+   side, --probe-set three) does not guarantee where the scale is below one.
+   Replayed traffic almost never sits on a threshold, which is the only place
+   two tree runtimes can route a row differently, so a replay check catches
+   such a fallback only by luck.
 
 Usage:
     python scripts/validate_parity.py \
@@ -107,8 +112,12 @@ def main():
                     help="Also probe every split threshold of the forest (default).")
     ap.add_argument("--no-boundary-probes", dest="boundary", action="store_false",
                     help="Skip the boundary probes and run the replay check only.")
+    ap.add_argument("--probe-set", choices=("crossing", "three", "both"), default="crossing",
+                    help="crossing (default): two probes per node on the exact float32 crossing, complete for "
+                         "faults that keep each node's decision a monotone threshold on its feature; three: on the "
+                         "threshold and one float32 step either side (the gate up to v0.6); both: all five.")
     ap.add_argument("--crossing-probes", action="store_true",
-                    help="Also probe the exact float32 crossing of every split (two more probes per node).")
+                    help="Deprecated alias for --probe-set both.")
     ap.add_argument("--tie-band", type=float, default=0.0,
                     help="Report a label difference as indeterminate, not as a failure, when both runtimes put "
                          "P(class 1) within this distance of 0.5 (an exact score tie; e.g. 1e-6). Default 0: off.")
@@ -162,7 +171,8 @@ def main():
     boundary = None
     if args.boundary:
         t0 = time.perf_counter()
-        chosen = VARIANTS + (CROSSING_VARIANTS if args.crossing_probes else ())
+        probe_set = "both" if args.crossing_probes else args.probe_set
+        chosen = {"crossing": CROSSING_VARIANTS, "three": VARIANTS, "both": VARIANTS + CROSSING_VARIANTS}[probe_set]
         probes = build_probes(args.onnx, chosen)
         reach = probes_reaching_node(args.onnx, probes)
         b_onnx_pred, b_onnx_conf, _ = run_engine("onnx", args.onnx, probes.rows, max(args.probe_batch, 20000))
@@ -212,6 +222,7 @@ def main():
             else:
                 print(f"[LOCALIZE] {l2.get('reason')}")
         boundary = {
+            "probe_set": probe_set,
             "probes": int(len(probes)),
             "internal_nodes": probes.internal_nodes,
             "distinct_feature_threshold_pairs": probes.distinct_pairs,

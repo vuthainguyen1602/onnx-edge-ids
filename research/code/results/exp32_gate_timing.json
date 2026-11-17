@@ -1,0 +1,320 @@
+{
+ "machine": "arm64 Darwin",
+ "numpy": "2.5.3",
+ "onnxruntime": "1.30.0",
+ "repeats": 3,
+ "models": {
+  "CICIDS2017/deployed_rf": {
+   "crossing": {
+    "probes": 191482,
+    "seconds": {
+     "build": 2.62,
+     "onnxruntime": 0.65,
+     "numpy_engine": 17.42,
+     "total": 20.69
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.172325134277344e-07
+   },
+   "three": {
+    "probes": 287223,
+    "seconds": {
+     "build": 2.21,
+     "onnxruntime": 0.89,
+     "numpy_engine": 20.62,
+     "total": 23.72
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.172325134277344e-07
+   }
+  },
+  "CICIDS2017/sklearn_rf": {
+   "crossing": {
+    "probes": 256630,
+    "seconds": {
+     "build": 4.01,
+     "onnxruntime": 0.87,
+     "numpy_engine": 20.65,
+     "total": 25.53
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.384185791015625e-07
+   },
+   "three": {
+    "probes": 384945,
+    "seconds": {
+     "build": 4.03,
+     "onnxruntime": 2.65,
+     "numpy_engine": 39.89,
+     "total": 46.57
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.384185791015625e-07
+   }
+  },
+  "CICIDS2017/sklearn_hgb": {
+   "crossing": {
+    "probes": 12000,
+    "seconds": {
+     "build": 0.11,
+     "onnxruntime": 0.1,
+     "numpy_engine": 0.99,
+     "total": 1.2
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 3.5762786865234375e-07
+   },
+   "three": {
+    "probes": 18000,
+    "seconds": {
+     "build": 0.13,
+     "onnxruntime": 0.06,
+     "numpy_engine": 1.21,
+     "total": 1.4
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.980232238769531e-07
+   }
+  },
+  "CICIDS2017/lightgbm": {
+   "crossing": {
+    "probes": 12000,
+    "seconds": {
+     "build": 0.09,
+     "onnxruntime": 0.03,
+     "numpy_engine": 0.75,
+     "total": 0.87
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 6.556510925292969e-07
+   },
+   "three": {
+    "probes": 18000,
+    "seconds": {
+     "build": 0.11,
+     "onnxruntime": 0.12,
+     "numpy_engine": 1.16,
+     "total": 1.39
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 6.556510925292969e-07
+   }
+  },
+  "CICIDS2017/xgboost_hist": {
+   "crossing": {
+    "probes": 18140,
+    "seconds": {
+     "build": 0.17,
+     "onnxruntime": 0.05,
+     "numpy_engine": 1.19,
+     "total": 1.41
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   },
+   "three": {
+    "probes": 27210,
+    "seconds": {
+     "build": 0.17,
+     "onnxruntime": 0.09,
+     "numpy_engine": 1.86,
+     "total": 2.12
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   }
+  },
+  "UNSW-NB15/sklearn_rf": {
+   "crossing": {
+    "probes": 484174,
+    "seconds": {
+     "build": 10.05,
+     "onnxruntime": 4.35,
+     "numpy_engine": 44.48,
+     "total": 58.88
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   },
+   "three": {
+    "probes": 726261,
+    "seconds": {
+     "build": 8.26,
+     "onnxruntime": 5.44,
+     "numpy_engine": 70.48,
+     "total": 84.18
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   }
+  },
+  "UNSW-NB15/sklearn_hgb": {
+   "crossing": {
+    "probes": 12000,
+    "seconds": {
+     "build": 0.1,
+     "onnxruntime": 0.06,
+     "numpy_engine": 0.69,
+     "total": 0.85
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.384185791015625e-07
+   },
+   "three": {
+    "probes": 18000,
+    "seconds": {
+     "build": 0.12,
+     "onnxruntime": 0.04,
+     "numpy_engine": 1.06,
+     "total": 1.22
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.384185791015625e-07
+   }
+  },
+  "UNSW-NB15/lightgbm": {
+   "crossing": {
+    "probes": 12000,
+    "seconds": {
+     "build": 0.1,
+     "onnxruntime": 0.02,
+     "numpy_engine": 0.73,
+     "total": 0.85
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.980232238769531e-07
+   },
+   "three": {
+    "probes": 18000,
+    "seconds": {
+     "build": 0.11,
+     "onnxruntime": 0.04,
+     "numpy_engine": 1.11,
+     "total": 1.26
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.980232238769531e-07
+   }
+  },
+  "UNSW-NB15/xgboost_hist": {
+   "crossing": {
+    "probes": 35944,
+    "seconds": {
+     "build": 0.28,
+     "onnxruntime": 0.11,
+     "numpy_engine": 2.57,
+     "total": 2.96
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   },
+   "three": {
+    "probes": 53916,
+    "seconds": {
+     "build": 0.33,
+     "onnxruntime": 0.16,
+     "numpy_engine": 3.72,
+     "total": 4.21
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   }
+  },
+  "ToN-IoT/sklearn_rf": {
+   "crossing": {
+    "probes": 152038,
+    "seconds": {
+     "build": 2.0,
+     "onnxruntime": 1.12,
+     "numpy_engine": 13.95,
+     "total": 17.07
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   },
+   "three": {
+    "probes": 228057,
+    "seconds": {
+     "build": 1.94,
+     "onnxruntime": 1.96,
+     "numpy_engine": 20.04,
+     "total": 23.94
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 4.76837158203125e-07
+   }
+  },
+  "ToN-IoT/sklearn_hgb": {
+   "crossing": {
+    "probes": 10980,
+    "seconds": {
+     "build": 0.09,
+     "onnxruntime": 0.02,
+     "numpy_engine": 0.56,
+     "total": 0.67
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.980232238769531e-07
+   },
+   "three": {
+    "probes": 16470,
+    "seconds": {
+     "build": 0.09,
+     "onnxruntime": 0.04,
+     "numpy_engine": 0.89,
+     "total": 1.02
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 2.980232238769531e-07
+   }
+  },
+  "ToN-IoT/lightgbm": {
+   "crossing": {
+    "probes": 12000,
+    "seconds": {
+     "build": 0.08,
+     "onnxruntime": 0.03,
+     "numpy_engine": 0.78,
+     "total": 0.89
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 3.5762786865234375e-07
+   },
+   "three": {
+    "probes": 18000,
+    "seconds": {
+     "build": 0.09,
+     "onnxruntime": 0.08,
+     "numpy_engine": 1.12,
+     "total": 1.29
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 3.5762786865234375e-07
+   }
+  },
+  "ToN-IoT/xgboost_hist": {
+   "crossing": {
+    "probes": 13870,
+    "seconds": {
+     "build": 0.09,
+     "onnxruntime": 0.04,
+     "numpy_engine": 0.91,
+     "total": 1.04
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 3.5762786865234375e-07
+   },
+   "three": {
+    "probes": 20805,
+    "seconds": {
+     "build": 0.12,
+     "onnxruntime": 0.08,
+     "numpy_engine": 1.24,
+     "total": 1.44
+    },
+    "label_flips": 0,
+    "max_confidence_delta": 3.5762786865234375e-07
+   }
+  }
+ }
+}

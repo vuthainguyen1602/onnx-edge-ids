@@ -40,6 +40,9 @@ removed.
       .zenodo.json. The Software Impacts article still describes v0.2.0.
       v0.4.0 (2026-10-13, boundary probes in the parity release gate, tests/):
       10.5281/zenodo.23339298.
+      v0.5.0 (2026-11-16, probes from the ONNX graph, structure check,
+      BRANCH_LT and single-column export, crossing probes):
+      10.5281/zenodo.24286032.
 
 ## Validation Data Measured
 

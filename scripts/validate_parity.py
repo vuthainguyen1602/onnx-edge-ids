@@ -48,6 +48,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine, load_feature_columns
 from onnx_edge_ids.boundary_probe import ALL_VARIANTS, CROSSING_VARIANTS, VARIANTS, build_probes, probes_reaching_node
 from onnx_edge_ids.onnx_artifact import check_npz_matches_onnx
+from onnx_edge_ids.parity import split_label_disagreements
 
 
 def load_rows(csv_path, columns, rows, seed):
@@ -107,6 +108,9 @@ def main():
                     help="Skip the boundary probes and run the replay check only.")
     ap.add_argument("--crossing-probes", action="store_true",
                     help="Also probe the exact float32 crossing of every split (two more probes per node).")
+    ap.add_argument("--tie-band", type=float, default=0.0,
+                    help="Report a label difference as indeterminate, not as a failure, when both runtimes put "
+                         "P(class 1) within this distance of 0.5 (an exact score tie; e.g. 1e-6). Default 0: off.")
     ap.add_argument("--probe-batch", type=int, default=2000,
                     help="Batch size used for the boundary probes.")
     args = ap.parse_args()
@@ -124,7 +128,9 @@ def main():
 
     total = int(onnx_pred.shape[0])
     agree = int(np.count_nonzero(onnx_pred == numpy_pred))
-    agreement = agree / total
+    fail_rows, tie_rows = split_label_disagreements(onnx_pred, onnx_conf, numpy_pred, numpy_conf, args.tie_band)
+    replay_ties = int(tie_rows.sum())
+    agreement = (agree + replay_ties) / total
     max_delta = float(np.abs(onnx_conf - numpy_conf).max())
 
     for label, preds, per_row in (("onnx", onnx_pred, onnx_ms),
@@ -134,7 +140,8 @@ def main():
               f"p50={percentile(per_row, 50):.4f} p95={percentile(per_row, 95):.4f}")
         print(f"  capacity  : {1000.0 / np.mean(per_row):,.0f} rows/s")
 
-    print(f"\n[PARITY] label agreement    : {agree}/{total} ({100.0 * agreement:.4f}%)")
+    print(f"\n[PARITY] label agreement    : {agree}/{total} ({100.0 * agree / total:.4f}%)"
+          + (f", {replay_ties} differing at a tie (indeterminate)" if replay_ties else ""))
     print(f"[PARITY] max confidence delta: {max_delta:.3e}")
 
     failures = []
@@ -145,7 +152,7 @@ def main():
         failures.append("structure: " + "; ".join(structure))
     if agreement < args.min_agreement:
         failures.append(f"label agreement {agreement:.6f} < {args.min_agreement}")
-        for row in np.flatnonzero(onnx_pred != numpy_pred)[:10]:
+        for row in np.flatnonzero(fail_rows)[:10]:
             print(f"  row {row}: onnx={onnx_pred[row]} ({onnx_conf[row]:.6f}) "
                   f"numpy={numpy_pred[row]} ({numpy_conf[row]:.6f})")
     if max_delta > args.max_confidence_delta:
@@ -159,21 +166,25 @@ def main():
         reach = probes_reaching_node(args.onnx, probes)
         b_onnx_pred, b_onnx_conf, _ = run_engine("onnx", args.onnx, probes.rows, max(args.probe_batch, 20000))
         b_numpy_pred, b_numpy_conf, _ = run_engine("numpy", args.numpy, probes.rows, args.probe_batch)
-        b_disagree = int(np.count_nonzero(b_onnx_pred != b_numpy_pred))
+        b_fail, b_tie = split_label_disagreements(b_onnx_pred, b_onnx_conf, b_numpy_pred, b_numpy_conf,
+                                                  args.tie_band)
+        b_disagree = int(b_fail.sum())
+        b_ties = int(b_tie.sum())
         b_delta = float(np.abs(b_onnx_conf - b_numpy_conf).max())
         per_variant = {
-            name: int(np.count_nonzero((b_onnx_pred != b_numpy_pred) & (probes.variant == k)))
+            name: int(np.count_nonzero(b_fail & (probes.variant == k)))
             for k, name in enumerate(ALL_VARIANTS) if name in chosen
         }
         print(f"\n[BOUNDARY] probes             : {len(probes):,} "
               f"({probes.internal_nodes:,} internal nodes x {len(chosen)} values, "
               f"{probes.distinct_pairs:,} distinct feature/threshold pairs)")
         print(f"[BOUNDARY] reach their node    : {100.0 * reach:.2f}% under float32")
-        print(f"[BOUNDARY] label disagreements : {b_disagree} {per_variant}")
+        print(f"[BOUNDARY] label disagreements : {b_disagree} {per_variant}"
+              + (f", {b_ties} more at a tie (indeterminate)" if b_ties else ""))
         print(f"[BOUNDARY] max confidence delta: {b_delta:.3e}  ({time.perf_counter() - t0:.1f} s)")
         if b_disagree:
             failures.append(f"boundary probes: {b_disagree} label disagreements")
-            for row in np.flatnonzero(b_onnx_pred != b_numpy_pred)[:10]:
+            for row in np.flatnonzero(b_fail)[:10]:
                 print(f"  probe {row} (node {probes.node[row]}, {ALL_VARIANTS[probes.variant[row]]}): "
                       f"onnx={b_onnx_pred[row]} numpy={b_numpy_pred[row]}")
         if b_delta > args.max_confidence_delta:
@@ -185,6 +196,7 @@ def main():
             "fraction_reaching_node_float32": reach,
             "label_disagreements": b_disagree,
             "label_disagreements_by_variant": per_variant,
+            "label_differences_at_a_tie": b_ties,
             "max_confidence_delta": b_delta,
         }
 
@@ -194,7 +206,9 @@ def main():
             "source": source,
             "rows": total,
             "batch_size": args.batch,
-            "label_agreement": agreement,
+            "label_agreement": agree / total,
+            "tie_band": args.tie_band,
+            "label_differences_at_a_tie": replay_ties,
             "max_confidence_delta": max_delta,
             "onnx_per_row_ms_mean": float(np.mean(onnx_ms)),
             "onnx_per_row_ms_p95": percentile(onnx_ms, 95),

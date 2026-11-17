@@ -71,3 +71,30 @@ def exporter_mutants(d):
     if np.any(d["base_values"] != 0):
         m = dict(d); m["base_values"] = np.zeros_like(d["base_values"]); out["base_dropped"] = m
     return out
+
+
+# Single-node faults: one node's threshold moved just past ONNX Runtime's float32 crossing (exp30, exp33).
+
+def single_node_mutants(base, onnx_path, seed=0, count=20):
+    """name -> artifact arrays with one node's threshold moved so that the raw value just past
+    ONNX Runtime's float32 crossing now takes the true branch (visible at that node by construction)."""
+    from onnx_edge_ids.boundary_probe import crossing_values, load_forest_arrays
+    f = load_forest_arrays(onnx_path, np.float64)
+    internal = np.flatnonzero(~f.is_leaf)
+    internal = internal[f.scale[f.feature[internal]] > 0]
+    nodes = np.sort(np.random.default_rng(seed).choice(internal, count, replace=False))
+    g = f.feature[nodes]
+    start = (f.threshold[nodes] / f.scale[g] + f.offset[g]).astype(np.float32)
+    ok, last_true = crossing_values(f, nodes, start)
+    first_false = np.nextafter(last_true, np.float32(np.inf))
+    z = ((first_false - f.offset[g].astype(np.float32)) * f.scale[g].astype(np.float32)).astype(np.float32)
+    out = {}
+    for v, zv, good in zip(nodes, z, ok):
+        if not good:
+            continue
+        m = dict(base)
+        t = base["threshold"].copy()
+        t[v] = float(np.nextafter(zv, np.float32(np.inf))) if base["strict"][v] else float(zv)
+        m["threshold"] = t
+        out[f"node_{int(v)}"] = m
+    return out

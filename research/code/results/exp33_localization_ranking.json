@@ -1,0 +1,383 @@
+{
+ "tolerance": 1e-05,
+ "probe_set": "crossing",
+ "faults": {
+  "deployed_rf/exporter/thr_one_up": {
+   "family": "exporter",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "deployed_rf/exporter/feature_swap": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 94842,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "global"
+  },
+  "deployed_rf/exporter/offset_one_up": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 5134,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "feature"
+  },
+  "deployed_rf/exporter/leaf_tree0": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 191482,
+   "l2_rank": 1,
+   "l1_rank": null,
+   "l1_scope": "global"
+  },
+  "deployed_rf/single_node/node_3161": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "deployed_rf/single_node/node_7846": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_14418": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 2,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_33585": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "deployed_rf/single_node/node_51699": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 3,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_58993": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 87,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "global"
+  },
+  "deployed_rf/single_node/node_96520": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_97951": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_104196": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_107318": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_116265": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_121185": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 16,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_122064": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_124461": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_139821": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_155871": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 6,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_163011": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_174939": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_179228": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "deployed_rf/single_node/node_186056": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "xgboost_hist/exporter/thr_one_up": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 21,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "xgboost_hist/exporter/feature_swap": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 2374,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "global"
+  },
+  "xgboost_hist/exporter/offset_one_up": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 204,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "feature"
+  },
+  "xgboost_hist/exporter/leaf_tree0": {
+   "family": "exporter",
+   "detected": true,
+   "failing_probes": 5761,
+   "l2_rank": 1,
+   "l1_rank": null,
+   "l1_scope": "global"
+  },
+  "xgboost_hist/single_node/node_296": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "xgboost_hist/single_node/node_742": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 4,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "xgboost_hist/single_node/node_1365": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_3187": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_4916": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_5611": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_9199": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_9325": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_9937": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 2,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "xgboost_hist/single_node/node_10236": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_11090": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_11563": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_11627": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_11871": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_13353": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_14883": {
+   "family": "single_node",
+   "detected": true,
+   "failing_probes": 1,
+   "l2_rank": 1,
+   "l1_rank": 1,
+   "l1_scope": "threshold"
+  },
+  "xgboost_hist/single_node/node_15554": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_16715": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_17143": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  },
+  "xgboost_hist/single_node/node_17785": {
+   "family": "single_node",
+   "detected": false,
+   "failing_probes": 0
+  }
+ },
+ "summary": {
+  "exporter": {
+   "faults": 8,
+   "detected": 7,
+   "L2": {
+    "faults": 7,
+    "top1": 1.0,
+    "top3": 1.0,
+    "mrr": 1.0
+   },
+   "L1": {
+    "faults": 5,
+    "top1": 1.0,
+    "top3": 1.0,
+    "mrr": 1.0
+   }
+  },
+  "single_node": {
+   "faults": 40,
+   "detected": 22,
+   "L2": {
+    "faults": 22,
+    "top1": 1.0,
+    "top3": 1.0,
+    "mrr": 1.0
+   },
+   "L1": {
+    "faults": 22,
+    "top1": 1.0,
+    "top3": 1.0,
+    "mrr": 1.0
+   }
+  },
+  "all": {
+   "faults": 48,
+   "detected": 29,
+   "L2": {
+    "faults": 29,
+    "top1": 1.0,
+    "top3": 1.0,
+    "mrr": 1.0
+   },
+   "L1": {
+    "faults": 27,
+    "top1": 1.0,
+    "top3": 1.0,
+    "mrr": 1.0
+   }
+  }
+ }
+}

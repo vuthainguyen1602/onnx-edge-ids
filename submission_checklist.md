@@ -43,6 +43,8 @@ removed.
       v0.5.0 (2026-11-16, probes from the ONNX graph, structure check,
       BRANCH_LT and single-column export, crossing probes):
       10.5281/zenodo.24286032.
+      v0.6.0 (2026-11-17, fault localization in the gate, --tie-band):
+      10.5281/zenodo.24297343.
 
 ## Validation Data Measured
 

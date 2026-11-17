@@ -48,7 +48,7 @@ import time
 import numpy as np
 
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
-from edgeids.faults import exporter_mutants, fault_scorers
+from edgeids.faults import exporter_mutants, fault_scorers, single_node_mutants
 from edgeids.forest import load_forest
 from edgeids.onnx_forest import load_onnx_forest
 from edgeids.runtime import numpy_probs
@@ -56,7 +56,7 @@ from edgeids.runtime import numpy_probs
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 sys.path.insert(0, os.path.join(REPO, "src"))
 from onnx_edge_ids import create_inference_engine  # noqa: E402
-from onnx_edge_ids.boundary_probe import CROSSING_VARIANTS, build_probes, crossing_values, load_forest_arrays  # noqa: E402
+from onnx_edge_ids.boundary_probe import CROSSING_VARIANTS, build_probes, load_forest_arrays  # noqa: E402
 
 TOL = 1e-5
 MARGIN_TOL = 1e-4   # margins sum ~200 leaves of magnitude ~10: float32 noise reaches ~1e-5 on correct runtimes
@@ -204,30 +204,6 @@ GENERATORS = {"replay": gen_replay, "uniform": gen_uniform, "boundary": gen_boun
               "coverage": gen_coverage, "probes": gen_probes, "crossing": gen_crossing}
 
 
-def single_node_mutants(base, onnx_path, count=20):
-    """name -> artifact arrays with one node's threshold moved so that the raw value just past
-    ONNX Runtime's float32 crossing now takes the true branch (visible at that node by construction)."""
-    f = load_forest_arrays(onnx_path, np.float64)
-    internal = np.flatnonzero(~f.is_leaf)
-    internal = internal[f.scale[f.feature[internal]] > 0]
-    nodes = np.sort(np.random.default_rng(SEED).choice(internal, count, replace=False))
-    g = f.feature[nodes]
-    start = (f.threshold[nodes] / f.scale[g] + f.offset[g]).astype(np.float32)
-    ok, last_true = crossing_values(f, nodes, start)
-    first_false = np.nextafter(last_true, np.float32(np.inf))
-    z = ((first_false - f.offset[g].astype(np.float32)) * f.scale[g].astype(np.float32)).astype(np.float32)
-    out = {}
-    for v, zv, good in zip(nodes, z, ok):
-        if not good:
-            continue
-        m = dict(base)
-        t = base["threshold"].copy()
-        t[v] = float(np.nextafter(zv, np.float32(np.inf))) if base["strict"][v] else float(zv)
-        m["threshold"] = t
-        out[f"node_{int(v)}"] = m
-    return out
-
-
 # ----------------------------------------------------------------------------- faults
 
 def none_graph(onnx_path, out_path):
@@ -297,7 +273,7 @@ def faults_for(model, onnx_path, tmp):
         np.savez(path, **arrays)
         eng = create_inference_engine("numpy", path)
         out[f"exporter/{name}"] = ("exporter", ort_ref, lambda x, e=eng: probs_of(e, x), margin_ref, margin_of(path))
-    for name, arrays in single_node_mutants(base, onnx_path).items():
+    for name, arrays in single_node_mutants(base, onnx_path, SEED).items():
         path = os.path.join(tmp, f"{model}_{name}.npz")
         np.savez(path, **arrays)
         eng = create_inference_engine("numpy", path)

@@ -160,8 +160,9 @@ python scripts/classifier_node.py \
 - [x] Software release archived (Zenodo DOIs in `CITATION.cff` and the article).
 - [x] Export validation on replay flows on four hosts/runtimes: `validation/`.
 - [x] Workflow figure (train / export / release gate / serve) in the article.
-- [ ] Fill the Software Impacts submission form (repository URL, tag, license,
-      archive DOI, contact e-mail) from `submission_checklist.md`.
+- [x] Fill the Software Impacts submission form (repository URL, tag, license,
+      archive DOI, contact e-mail) from `submission_checklist.md`; submitted
+      2026-10-13.
 
 ## Citation And License
 

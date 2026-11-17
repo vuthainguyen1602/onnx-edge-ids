@@ -165,6 +165,6 @@ python scripts/classifier_node.py \
 
 ## Citation And License
 
-The current release is `v0.5.0`, under the MIT license, archived on Zenodo
+The current release is `v0.6.0`, under the MIT license, archived on Zenodo
 (concept DOI [10.5281/zenodo.22731927](https://doi.org/10.5281/zenodo.22731927);
 per-version DOIs in `CITATION.cff`).

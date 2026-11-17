@@ -204,6 +204,10 @@ python research/code/experiments/exp30_table.py                               # 
 python research/code/experiments/exp32_gate_timing.py
 # ranked localization (top-1, top-3, MRR) over exporter and single-node faults, crossing pair (~5 min)
 python research/code/experiments/exp33_localization_ranking.py
+# gradual shift: windows mixing CICIDS2017 and CSE-CIC-IDS2018 in steps from 0 to 100% (~5 min)
+python research/code/experiments/exp34_gradual_drift.py --in-dist $DATA --shifted $DATA2018
+# Treelite compiled to C (TL2cgen, needs a C compiler) against ONNX Runtime on the data-free probes; in .tlvenv/ plus `pip install tl2cgen`
+.tlvenv/bin/python research/code/experiments/exp35_treelite_compiled.py
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -328,6 +332,8 @@ Paths are relative to `research/code/`.
 | Probes against testing baselines, including engine-code mutants and single-node faults (`tab:baselines`) | `results/exp30_testing_baselines.json` (rows printed by `experiments/exp30_table.py`) |
 | Shipped gate's probe-check cost on the 13 models, crossing pair vs. three-probe set (operational recommendation) | `results/exp32_gate_timing.json` |
 | Ranked localization: top-1, top-3 and MRR over 48 single-element faults | `results/exp33_localization_ranking.json` |
+| Gradual shift: detection, serving parity and undecided-rate alarm on mixtures of the two splits | `results/exp34_gradual_drift.json` |
+| Compiled Treelite (TL2cgen) as a further runtime, on the data-free probes | `results/exp35_treelite_compiled.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

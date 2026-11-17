@@ -48,6 +48,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from onnx_edge_ids import FeatureMatrixBuilder, create_inference_engine, load_feature_columns
 from onnx_edge_ids.boundary_probe import ALL_VARIANTS, CROSSING_VARIANTS, VARIANTS, build_probes, probes_reaching_node
 from onnx_edge_ids.onnx_artifact import check_npz_matches_onnx
+from onnx_edge_ids.localize import first_divergences, summarize_failures
 from onnx_edge_ids.parity import split_label_disagreements
 
 
@@ -189,6 +190,27 @@ def main():
                       f"onnx={b_onnx_pred[row]} numpy={b_numpy_pred[row]}")
         if b_delta > args.max_confidence_delta:
             failures.append(f"boundary probes: confidence delta {b_delta:.3e} > {args.max_confidence_delta:.3e}")
+        localization = None
+        tripped = b_fail | (np.abs(b_onnx_conf - b_numpy_conf) > args.max_confidence_delta)
+        if tripped.any():
+            l1 = summarize_failures(args.onnx, probes, tripped)
+            sample = np.flatnonzero(tripped)[:5000]
+            l2 = first_divergences(args.onnx, args.numpy, probes.rows[sample])
+            localization = {"from_probe_targets": l1, "artifact_vs_graph_on_failing_probes": l2}
+            print(f"\n[LOCALIZE] {l1['failing_probes']:,} failing probes point to scope '{l1['scope']}'"
+                  + (f": {l1['suspects']}" if l1["suspects"] else
+                     f" ({l1['features_implicated']} of {l1['features_probed']} features, "
+                     f"{l1['trees_implicated']} trees)"))
+            if l2.get("comparable"):
+                print(f"[LOCALIZE] artifact vs graph, first divergences on {l2['rows']:,} failing probes: "
+                      f"{l2['by_kind'] or 'none'}" + ("; base value differs" if l2["base_value_differs"] else ""))
+                for d in l2["top_nodes"][:5]:
+                    print(f"  {d['kind']:13s} tree {d['tree']} node {d['node']} feature {d['feature']}: {d['rows']} probes")
+                if not l2["by_kind"] and not l2["base_value_differs"]:
+                    print("  none: the artifact matches the graph on these probes, so the difference is in the "
+                          "engine's arithmetic, not in the exported arrays")
+            else:
+                print(f"[LOCALIZE] {l2.get('reason')}")
         boundary = {
             "probes": int(len(probes)),
             "internal_nodes": probes.internal_nodes,
@@ -197,6 +219,7 @@ def main():
             "label_disagreements": b_disagree,
             "label_disagreements_by_variant": per_variant,
             "label_differences_at_a_tie": b_ties,
+            "localization": localization,
             "max_confidence_delta": b_delta,
         }
 

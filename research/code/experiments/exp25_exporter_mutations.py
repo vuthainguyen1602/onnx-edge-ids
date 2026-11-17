@@ -38,6 +38,7 @@ import tempfile
 import numpy as np
 
 from edgeids.data import ARTIFACTS, RESULTS, load_test_split
+from edgeids.faults import exporter_mutants
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 sys.path.insert(0, os.path.join(REPO, "src"))
@@ -49,32 +50,6 @@ TOL = 1e-5
 REPLAY_ROWS = 2000
 MODELS = {"deployed_rf": os.path.join(ARTIFACTS, "ids_rf.onnx"),
           "xgboost_hist": os.path.join(RESULTS, "exp5_models", "xgboost_hist.onnx")}
-
-
-def up(a):
-    return np.nextafter(a.astype(np.float32), np.float32(np.inf)).astype(np.float64)
-
-
-def mutants(d):
-    internal = np.flatnonzero(~d["is_leaf"])
-    out = {}
-    m = dict(d); m["threshold"] = np.where(d["is_leaf"], d["threshold"], up(d["threshold"])); out["thr_all_up"] = m
-    m = dict(d); t = d["threshold"].copy(); t[internal[0]] = up(t[internal[0]:internal[0] + 1])[0]
-    m["threshold"] = t; out["thr_one_up"] = m
-    used = np.bincount(d["feature"][internal]).argsort()[::-1]
-    fa, fb = int(used[0]), int(used[1])
-    f = d["feature"].copy(); f[d["feature"] == fa], f[d["feature"] == fb] = fb, fa
-    m = dict(d); m["feature"] = f; out["feature_swap"] = m
-    m = dict(d); o = d["offset"].copy(); o[fa] = up(o[fa:fa + 1])[0]; m["offset"] = o; out["offset_one_up"] = m
-    m = dict(d); m["scale"] = d["scale"].astype(np.float16).astype(np.float64); out["scale_fp16"] = m
-    m = dict(d); ls = d["leaf_scores"].copy(); t0 = slice(int(d["tree_offsets"][0]), int(d["tree_offsets"][1]))
-    ls[t0] = ls[t0, ::-1] if ls.shape[1] == 2 else -ls[t0]
-    m["leaf_scores"] = ls; out["leaf_tree0"] = m
-    if d["strict"].any():
-        m = dict(d); m["strict"] = np.zeros_like(d["strict"]); out["mode_dropped"] = m
-    if np.any(d["base_values"] != 0):
-        m = dict(d); m["base_values"] = np.zeros_like(d["base_values"]); out["base_dropped"] = m
-    return out
 
 
 def one_step_visible(onnx_path, node):
@@ -130,7 +105,7 @@ def main():
         cross_probes = build_probes(onnx_path, CROSSING_VARIANTS).rows
         ref_cross = outputs(ort, cross_probes)
         entry = {}
-        for mname, arrays in [("none", base)] + list(mutants(base).items()):
+        for mname, arrays in [("none", base)] + list(exporter_mutants(base).items()):
             path = os.path.join(tmp, f"{name}_{mname}.npz")
             np.savez(path, **arrays)
             eng = create_inference_engine("numpy", path)

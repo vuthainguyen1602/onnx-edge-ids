@@ -93,7 +93,13 @@ command rather than only printing a warning, and it runs three checks:
   of each split, which always straddle the threshold. `--tie-band 1e-6`
   reports a label difference as indeterminate rather than a failure when both
   runtimes put P(class 1) within 1e-6 of 0.5: at such an exact tie the label
-  depends on summation order, which ONNX Runtime varies with its thread count. For the
+  depends on summation order, which ONNX Runtime varies with its thread count.
+  When the probes fail, the gate also says where: the failing probes' own
+  target nodes give a scope (one threshold, one or two features, or global),
+  and walking the NumPy artifact and the graph side by side on those probes
+  names the first node where they part and why (threshold, scaler, split
+  feature, split mode, leaf weight or base value). If the artifact matches the
+  graph there, the fault is in the engine's arithmetic, not in the export. For the
   shipped forest that is 287,223 probes over 815 distinct feature/threshold
   pairs, 99.9% of which reach their node; it takes a few seconds for ONNX
   Runtime and about half a minute for the NumPy engine on a laptop. Replayed

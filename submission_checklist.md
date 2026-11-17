@@ -45,6 +45,8 @@ removed.
       10.5281/zenodo.24286032.
       v0.6.0 (2026-11-17, fault localization in the gate, --tie-band):
       10.5281/zenodo.24297343.
+      v0.7.0 (2026-11-17, crossing pair as the gate's default probe set):
+      10.5281/zenodo.24303545.
 
 ## Validation Data Measured
 

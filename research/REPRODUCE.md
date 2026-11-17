@@ -200,6 +200,8 @@ python research/code/experiments/exp31_table.py                               # 
 # probes vs. replay, uniform, boundary and coverage-guided fuzzing on the same faults and budgets (~4 h on an M3)
 python research/code/experiments/exp30_testing_baselines.py --data $DATA
 python research/code/experiments/exp30_table.py                               # LaTeX rows of the baselines table
+# cost of the shipped gate's probe check on the 13 models, crossing pair vs. three-probe set (~10 min)
+python research/code/experiments/exp32_gate_timing.py
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -322,6 +324,7 @@ Paths are relative to `research/code/`.
 | Fault localization from failing probes (probe targets; first divergence artifact vs. graph; `tab:localize`) | `results/exp29_fault_localization.json` (rows printed by `experiments/exp29_table.py`) |
 | Probe completeness: per-node disagreement sets, three-probe set vs. crossing pair (`tab:completeness`) | `results/exp31_probe_completeness.json` (rows printed by `experiments/exp31_table.py`) |
 | Probes against testing baselines, including engine-code mutants and single-node faults (`tab:baselines`) | `results/exp30_testing_baselines.json` (rows printed by `experiments/exp30_table.py`) |
+| Shipped gate's probe-check cost on the 13 models, crossing pair vs. three-probe set (operational recommendation) | `results/exp32_gate_timing.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

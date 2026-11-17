@@ -28,3 +28,6 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.24286032"
     description: "DOI for version 0.5.0"
+  - type: doi
+    value: "10.5281/zenodo.24297343"
+    description: "DOI for version 0.6.0"

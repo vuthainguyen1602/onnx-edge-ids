@@ -90,7 +90,10 @@ command rather than only printing a warning, and it runs three checks:
   from the ONNX graph alone (the reference runtime's own thresholds), so this
   check needs no dataset and an exporter bug cannot move the probes with it.
   `--crossing-probes` adds two probes per node on the exact float32 crossing
-  of each split, which always straddle the threshold. For the
+  of each split, which always straddle the threshold. `--tie-band 1e-6`
+  reports a label difference as indeterminate rather than a failure when both
+  runtimes put P(class 1) within 1e-6 of 0.5: at such an exact tie the label
+  depends on summation order, which ONNX Runtime varies with its thread count. For the
   shipped forest that is 287,223 probes over 815 distinct feature/threshold
   pairs, 99.9% of which reach their node; it takes a few seconds for ONNX
   Runtime and about half a minute for the NumPy engine on a laptop. Replayed

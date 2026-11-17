@@ -1,0 +1,428 @@
+{
+ "versions": {
+  "treelite": "4.8.1",
+  "tl2cgen": "1.0.0",
+  "numpy": "2.5.3"
+ },
+ "machine": "arm64 Darwin",
+ "tolerance": 1e-05,
+ "tie_band": 1e-06,
+ "models": {
+  "CICIDS2017/deployed_rf": {
+   "crossing": {
+    "probes": 191482,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 9.5367431640625e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.7881393432617188e-07
+    }
+   },
+   "three": {
+    "probes": 287223,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 8.940696716308594e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.7881393432617188e-07
+    }
+   }
+  },
+  "CICIDS2017/sklearn_rf": {
+   "crossing": {
+    "probes": 256630,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.5762786865234375e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 5.960464477539063e-08
+    }
+   },
+   "three": {
+    "probes": 384945,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.5762786865234375e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 5.960464477539063e-08
+    }
+   }
+  },
+  "CICIDS2017/sklearn_hgb": {
+   "crossing": {
+    "probes": 12000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 8.941467548595483e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.564111022980043e-07
+    }
+   },
+   "three": {
+    "probes": 18000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 6.958730364159393e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.681426704009837e-07
+    }
+   }
+  },
+  "CICIDS2017/lightgbm": {
+   "crossing": {
+    "probes": 12000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.395974763007679e-06
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.905442989531437e-07
+    }
+   },
+   "three": {
+    "probes": 18000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.395974763007679e-06
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.905442989531437e-07
+    }
+   }
+  },
+  "CICIDS2017/xgboost_hist": {
+   "crossing": {
+    "probes": 18140,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.8615991632129365e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.8743449598245263e-07
+    }
+   },
+   "three": {
+    "probes": 27210,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.8615991632129365e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.8743449598245263e-07
+    }
+   }
+  },
+  "UNSW-NB15/sklearn_rf": {
+   "crossing": {
+    "probes": 484174,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 7.152557373046875e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.1920928955078125e-07
+    }
+   },
+   "three": {
+    "probes": 726261,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 6.556510925292969e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.1920928955078125e-07
+    }
+   }
+  },
+  "UNSW-NB15/sklearn_hgb": {
+   "crossing": {
+    "probes": 12000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.1418939755732964e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.7561839193991347e-07
+    }
+   },
+   "three": {
+    "probes": 18000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.1418939755732964e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.7561839193991347e-07
+    }
+   }
+  },
+  "UNSW-NB15/lightgbm": {
+   "crossing": {
+    "probes": 12000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.0600220330144765e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.6243841804985948e-07
+    }
+   },
+   "three": {
+    "probes": 18000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.0600220330144765e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.6243841804985948e-07
+    }
+   }
+  },
+  "UNSW-NB15/xgboost_hist": {
+   "crossing": {
+    "probes": 35944,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 5.943408066255707e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.174854138476846e-07
+    }
+   },
+   "three": {
+    "probes": 53916,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 5.270872361906598e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 3.174854138476846e-07
+    }
+   }
+  },
+  "ToN-IoT/sklearn_rf": {
+   "crossing": {
+    "probes": 152038,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 7.152557373046875e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.1920928955078125e-07
+    }
+   },
+   "three": {
+    "probes": 228057,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 7.152557373046875e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 1.1920928955078125e-07
+    }
+   }
+  },
+  "ToN-IoT/sklearn_hgb": {
+   "crossing": {
+    "probes": 10980,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.310567167653545e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.0720328020029655e-07
+    }
+   },
+   "three": {
+    "probes": 16470,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.310567167653545e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.0720328020029655e-07
+    }
+   }
+  },
+  "ToN-IoT/lightgbm": {
+   "crossing": {
+    "probes": 12000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.722948034885377e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.2930838661228137e-07
+    }
+   },
+   "three": {
+    "probes": 18000,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 4.577698513585915e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.2930838661228137e-07
+    }
+   }
+  },
+  "ToN-IoT/xgboost_hist": {
+   "crossing": {
+    "probes": 13870,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 5.776351513220312e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.5076214860142443e-07
+    }
+   },
+   "three": {
+    "probes": 20805,
+    "compiled_vs_onnxruntime": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 5.658681390685594e-07
+    },
+    "compiled_vs_interpreter": {
+     "label_differences": 0,
+     "at_a_tie": 0,
+     "over_tolerance": 0,
+     "max_probability_difference": 2.5076214860142443e-07
+    }
+   }
+  }
+ }
+}

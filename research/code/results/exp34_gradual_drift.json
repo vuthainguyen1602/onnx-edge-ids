@@ -1,0 +1,551 @@
+{
+ "window": 10000,
+ "repeats": 5,
+ "alarm_threshold_from_exp9": 0.0692,
+ "shares": {
+  "0": {
+   "windows": [
+    {
+     "attack_rate": 0.0678,
+     "classifier_f1": 0.9775524981897176,
+     "classifier_recall": 0.995575221238938,
+     "gate_attack_recall": 0.8628318584070797,
+     "two_stage_f1": 0.9255150554675119,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0343,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.0706,
+     "classifier_f1": 0.9783368273934312,
+     "classifier_recall": 0.9915014164305949,
+     "gate_attack_recall": 0.8526912181303116,
+     "two_stage_f1": 0.9196633511859219,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0342,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.117,
+     "classifier_f1": 0.9734960033655868,
+     "classifier_recall": 0.9888888888888889,
+     "gate_attack_recall": 0.5102564102564102,
+     "two_stage_f1": 0.6757215619694398,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0519,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.1353,
+     "classifier_f1": 0.9846827133479212,
+     "classifier_recall": 0.9977827050997783,
+     "gate_attack_recall": 0.7738359201773836,
+     "two_stage_f1": 0.8725,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0429,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.2038,
+     "classifier_f1": 0.9825412221144519,
+     "classifier_recall": 0.9941118743866536,
+     "gate_attack_recall": 0.7129538763493621,
+     "two_stage_f1": 0.8324262389000286,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.069,
+     "alarm": false
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.9793218528822217,
+    "classifier_recall": 0.9935720212089707,
+    "two_stage_f1": 0.8451652415045805,
+    "undecided_at_first_check": 0.04646
+   },
+   "alarms": 0,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "0.05": {
+   "windows": [
+    {
+     "attack_rate": 0.2086,
+     "classifier_f1": 0.9712011238585812,
+     "classifier_recall": 0.9942473633748802,
+     "gate_attack_recall": 0.7214765100671141,
+     "two_stage_f1": 0.8379732739420935,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0837,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.1701,
+     "classifier_f1": 0.9677790563866513,
+     "classifier_recall": 0.9888300999412111,
+     "gate_attack_recall": 0.7184009406231628,
+     "two_stage_f1": 0.8357289527720739,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0706,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.0814,
+     "classifier_f1": 0.940130409010077,
+     "classifier_recall": 0.9742014742014742,
+     "gate_attack_recall": 0.542997542997543,
+     "two_stage_f1": 0.7038216560509554,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0711,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.2045,
+     "classifier_f1": 0.9785076068582468,
+     "classifier_recall": 0.9907090464547678,
+     "gate_attack_recall": 0.7178484107579463,
+     "two_stage_f1": 0.8357529177341304,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0681,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.0081,
+     "classifier_f1": 0.9294117647058824,
+     "classifier_recall": 0.9753086419753086,
+     "gate_attack_recall": 0.0,
+     "two_stage_f1": 0.0,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0242,
+     "alarm": false
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.9574059921638878,
+    "classifier_recall": 0.9846593251895284,
+    "two_stage_f1": 0.6426553600998506,
+    "undecided_at_first_check": 0.06354
+   },
+   "alarms": 3,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "0.1": {
+   "windows": [
+    {
+     "attack_rate": 0.1543,
+     "classifier_f1": 0.9811441355065517,
+     "classifier_recall": 0.9948152948801037,
+     "gate_attack_recall": 0.6953985742060921,
+     "two_stage_f1": 0.8203363914373089,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0549,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.2332,
+     "classifier_f1": 0.8940411700975082,
+     "classifier_recall": 0.8846483704974271,
+     "gate_attack_recall": 0.6783876500857633,
+     "two_stage_f1": 0.7818136891524586,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.096,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.0218,
+     "classifier_f1": 0.9111111111111111,
+     "classifier_recall": 0.9403669724770642,
+     "gate_attack_recall": 0.518348623853211,
+     "two_stage_f1": 0.6807228915662651,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0545,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.1342,
+     "classifier_f1": 0.774622892635315,
+     "classifier_recall": 0.650521609538003,
+     "gate_attack_recall": 0.29284649776453053,
+     "two_stage_f1": 0.45302593659942364,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1255,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.197,
+     "classifier_f1": 0.9827284105131414,
+     "classifier_recall": 0.9964467005076142,
+     "gate_attack_recall": 0.7456852791878172,
+     "two_stage_f1": 0.8540697674418605,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0706,
+     "alarm": true
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.9087295439727254,
+    "classifier_recall": 0.8933597895800425,
+    "two_stage_f1": 0.7179937352394633,
+    "undecided_at_first_check": 0.0803
+   },
+   "alarms": 3,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "0.2": {
+   "windows": [
+    {
+     "attack_rate": 0.1783,
+     "classifier_f1": 0.985797827903091,
+     "classifier_recall": 0.9927089175546832,
+     "gate_attack_recall": 0.7055524397083567,
+     "two_stage_f1": 0.8273594212430122,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0429,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.0088,
+     "classifier_f1": 0.865979381443299,
+     "classifier_recall": 0.9545454545454546,
+     "gate_attack_recall": 0.0,
+     "two_stage_f1": 0.0,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0369,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.3551,
+     "classifier_f1": 0.7920661157024793,
+     "classifier_recall": 0.6747395099971839,
+     "gate_attack_recall": 0.4184736693889045,
+     "two_stage_f1": 0.5900337502481636,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.2089,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.2073,
+     "classifier_f1": 0.9783178460805337,
+     "classifier_recall": 0.9903521466473709,
+     "gate_attack_recall": 0.7409551374819102,
+     "two_stage_f1": 0.8508869179600886,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0893,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.3545,
+     "classifier_f1": 0.7889182058047494,
+     "classifier_recall": 0.6747531734837799,
+     "gate_attack_recall": 0.4279266572637518,
+     "two_stage_f1": 0.5993678387988938,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.2206,
+     "alarm": true
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.8822158753868304,
+    "classifier_recall": 0.8574198404456945,
+    "two_stage_f1": 0.5735295856500316,
+    "undecided_at_first_check": 0.11972000000000001
+   },
+   "alarms": 3,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "0.3": {
+   "windows": [
+    {
+     "attack_rate": 0.0504,
+     "classifier_f1": 0.11785714285714285,
+     "classifier_recall": 0.13095238095238096,
+     "gate_attack_recall": 0.003968253968253968,
+     "two_stage_f1": 0.007905138339920948,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1251,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.2181,
+     "classifier_f1": 0.7220737573490112,
+     "classifier_recall": 0.619440623567171,
+     "gate_attack_recall": 0.20128381476386978,
+     "two_stage_f1": 0.3351145038167939,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.25,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.1892,
+     "classifier_f1": 0.8092903225806451,
+     "classifier_recall": 0.828752642706131,
+     "gate_attack_recall": 0.6231501057082452,
+     "two_stage_f1": 0.7674267100977199,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1345,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.2265,
+     "classifier_f1": 0.8498374864572048,
+     "classifier_recall": 0.8657836644591611,
+     "gate_attack_recall": 0.6688741721854304,
+     "two_stage_f1": 0.7471009129040217,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1163,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.2002,
+     "classifier_f1": 0.9856506679861454,
+     "classifier_recall": 0.995004995004995,
+     "gate_attack_recall": 0.7507492507492507,
+     "two_stage_f1": 0.8576319543509272,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0488,
+     "alarm": false
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.6969418754460299,
+    "classifier_recall": 0.6879868613379678,
+    "two_stage_f1": 0.5430358439018768,
+    "undecided_at_first_check": 0.13494
+   },
+   "alarms": 4,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "0.5": {
+   "windows": [
+    {
+     "attack_rate": 0.0146,
+     "classifier_f1": 0.4720496894409938,
+     "classifier_recall": 0.5205479452054794,
+     "gate_attack_recall": 0.04794520547945205,
+     "two_stage_f1": 0.013605442176870748,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0674,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.2103,
+     "classifier_f1": 0.9554502369668246,
+     "classifier_recall": 0.9586305278174037,
+     "gate_attack_recall": 0.698525915359011,
+     "two_stage_f1": 0.8191964285714286,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1376,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.3375,
+     "classifier_f1": 0.7447698744769874,
+     "classifier_recall": 0.6592592592592592,
+     "gate_attack_recall": 0.4322962962962963,
+     "two_stage_f1": 0.6033519553072626,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.258,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.008,
+     "classifier_f1": 0.8993288590604027,
+     "classifier_recall": 0.8375,
+     "gate_attack_recall": 0.0,
+     "two_stage_f1": 0.0,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.0054,
+     "alarm": false
+    },
+    {
+     "attack_rate": 0.1482,
+     "classifier_f1": 0.3622988505747126,
+     "classifier_recall": 0.2658569500674764,
+     "gate_attack_recall": 0.012145748987854251,
+     "two_stage_f1": 0.024,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.2221,
+     "alarm": true
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.6867795021039842,
+    "classifier_recall": 0.6483589364699237,
+    "two_stage_f1": 0.2920307652111124,
+    "undecided_at_first_check": 0.1381
+   },
+   "alarms": 3,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "0.7": {
+   "windows": [
+    {
+     "attack_rate": 0.0282,
+     "classifier_f1": 0.004993757802746567,
+     "classifier_recall": 0.0070921985815602835,
+     "gate_attack_recall": 0.02127659574468085,
+     "two_stage_f1": 0.0037105751391465678,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1945,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.0879,
+     "classifier_f1": 0.18862042088854247,
+     "classifier_recall": 0.13765642775881684,
+     "gate_attack_recall": 0.015927189988623434,
+     "two_stage_f1": 0.03135498320268757,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1498,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.4024,
+     "classifier_f1": 0.5784595717481623,
+     "classifier_recall": 0.44980119284294234,
+     "gate_attack_recall": 0.15382703777335985,
+     "two_stage_f1": 0.2643950830278197,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.4201,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.0839,
+     "classifier_f1": 0.1314935064935065,
+     "classifier_recall": 0.09654350417163289,
+     "gate_attack_recall": 0.058402860548271755,
+     "two_stage_f1": 0.10822998872604284,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1652,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.0443,
+     "classifier_f1": 0.0,
+     "classifier_recall": 0.0,
+     "gate_attack_recall": 0.0,
+     "two_stage_f1": 0.0,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.2126,
+     "alarm": true
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.18071345138659156,
+    "classifier_recall": 0.13821866467099048,
+    "two_stage_f1": 0.08153812601913935,
+    "undecided_at_first_check": 0.22843999999999998
+   },
+   "alarms": 5,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  },
+  "1": {
+   "windows": [
+    {
+     "attack_rate": 0.3012,
+     "classifier_f1": 0.34238488783943327,
+     "classifier_recall": 0.2407038512616202,
+     "gate_attack_recall": 0.010956175298804782,
+     "two_stage_f1": 0.017116524028966424,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.4311,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.015,
+     "classifier_f1": 0.0,
+     "classifier_recall": 0.0,
+     "gate_attack_recall": 0.07333333333333333,
+     "two_stage_f1": 0.0,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.1165,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.1071,
+     "classifier_f1": 0.05555555555555555,
+     "classifier_recall": 0.04481792717086835,
+     "gate_attack_recall": 0.01680672268907563,
+     "two_stage_f1": 0.025738077214231644,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.2124,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.1052,
+     "classifier_f1": 0.06775700934579439,
+     "classifier_recall": 0.055133079847908745,
+     "gate_attack_recall": 0.027566539923954372,
+     "two_stage_f1": 0.037509377344336084,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.2117,
+     "alarm": true
+    },
+    {
+     "attack_rate": 0.2848,
+     "classifier_f1": 0.3435391800726518,
+     "classifier_recall": 0.2324438202247191,
+     "gate_attack_recall": 0.0017556179775280898,
+     "two_stage_f1": 0.0,
+     "float32_vs_onnxruntime_label_differences": 0,
+     "early_exit_vs_full_forest_label_differences": 0,
+     "undecided_at_first_check": 0.399,
+     "alarm": true
+    }
+   ],
+   "mean": {
+    "classifier_f1": 0.161847326562687,
+    "classifier_recall": 0.11461973570102328,
+    "two_stage_f1": 0.01607279571750683,
+    "undecided_at_first_check": 0.27414
+   },
+   "alarms": 5,
+   "float32_vs_onnxruntime_label_differences": 0,
+   "early_exit_vs_full_forest_label_differences": 0
+  }
+ }
+}

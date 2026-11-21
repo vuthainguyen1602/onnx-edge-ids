@@ -171,6 +171,9 @@ python research/code/experiments/exp17_converter_confidence.py --cicids-train $T
 # --converter retrains the 12 models as exp17 does and also tests framework vs export (~5 min on an M3)
 python research/code/experiments/exp19_datafree_probes.py --converter --cicids-train $TRAIN --cicids-test $DATA \
     --unsw $UNSW --ton-iot $TON/train_test_network.csv
+# the same with the gate's default probe set, the crossing pair (writes exp19_datafree_probes_crossing.json)
+python research/code/experiments/exp19_datafree_probes.py --probe-set crossing --converter --cicids-train $TRAIN --cicids-test $DATA \
+    --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # Leafparity 0.1.2 on the 12 converter pairs; run from a separate venv with leafparity and the exp5 library
 # versions (scikit-learn 1.9.1, LightGBM 4.7.0, XGBoost 3.4.1, ONNX Runtime 1.30), e.g. .lpvenv/
 .lpvenv/bin/python research/code/experiments/exp21_leafparity.py --cicids-train $TRAIN --cicids-test $DATA \
@@ -321,6 +324,7 @@ Paths are relative to `research/code/`.
 | Replay gate with the confidence check on all 13 models, runtime parity | `results/exp16_confidence_replay.json` |
 | Converter parity (framework vs. export) with the confidence check | `results/exp17_converter_confidence.json` |
 | Data-free probes on all 13 models: gate verdicts and cost (`tab:datafree`) | `results/exp19_datafree_probes.json` |
+| Data-free gate with the default crossing pair on all 13 models, runtime and converter parity | `results/exp19_datafree_probes_crossing.json` |
 | Leafparity on the converter pairs (`tab:leafparity-run`) | `results/exp21_leafparity.json` |
 | Treelite as a third runtime of the same graphs (`tab:treelite`) | `results/exp22_treelite_runtime.json` |
 | Lockstep block-budget ablation (`tab:blockbudget`) | `results/exp23_lockstep_block_ablation.json` (Apple M3), `results_jetson/exp23_lockstep_block_ablation.json` (Jetson #2) |

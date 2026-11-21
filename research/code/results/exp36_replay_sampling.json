@@ -1,0 +1,1715 @@
+{
+  "numpy": "2.5.3",
+  "onnxruntime": "1.30.0",
+  "replay_rows": 2000,
+  "repeats": 1000,
+  "seed": 0,
+  "datasets": {
+    "CICIDS2017": {
+      "rows": 447275,
+      "models": {
+        "deployed_rf": {
+          "rows": 447275,
+          "classes": {
+            "0": 378706,
+            "1": 68569
+          },
+          "float32_max_delta": 1.1324882507324219e-06,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 410848,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 76941,
+              "float64_prob_replay_passes": 1.0912475675133188e-164
+            },
+            "3e-07": {
+              "float32_rows_tripping": 313556,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 23630,
+              "float64_prob_replay_passes": 7.160138119202491e-48
+            },
+            "1e-06": {
+              "float32_rows_tripping": 1703,
+              "float32_prob_false_failure": 0.9995141137056998,
+              "float64_rows_tripping": 13672,
+              "float64_prob_replay_passes": 1.0846956063031631e-27
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 8008,
+              "float64_prob_replay_passes": 2.0319234154502466e-16
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 6966,
+              "float64_prob_replay_passes": 2.3220761392180735e-14
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 5217,
+              "float64_prob_replay_passes": 6.445553078507337e-11
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 2797,
+              "float64_prob_replay_passes": 3.5586968975635335e-06
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 1268,
+              "float64_prob_replay_passes": 0.0034205907002580562
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 934,
+                "rate": 0.934,
+                "wilson95": [
+                  0.9168903772338006,
+                  0.9477878747932127
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 935,
+                "rate": 0.935,
+                "wilson95": [
+                  0.9179941456177196,
+                  0.9486764526121207
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 939,
+                "rate": 0.939,
+                "wilson95": [
+                  0.922419543452788,
+                  0.9522204395883611
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.935126041878245,
+              "labels+conf@1e-05": 2.3220761392180735e-14
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 13,
+              "1": 2
+            },
+            "labels+conf@1e-05": {
+              "0": 6465,
+              "1": 501
+            }
+          },
+          "seconds": 45.9
+        },
+        "sklearn_rf": {
+          "rows": 447275,
+          "classes": {
+            "0": 380867,
+            "1": 66408
+          },
+          "float32_max_delta": 7.748603820800781e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 66421,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 2523,
+              "float64_prob_replay_passes": 1.220592506133219e-05
+            },
+            "3e-07": {
+              "float32_rows_tripping": 64487,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 1233,
+              "float64_prob_replay_passes": 0.004001844208543523
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 1233,
+              "float64_prob_replay_passes": 0.004001844208543523
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 1225,
+              "float64_prob_replay_passes": 0.004147998989658784
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 1208,
+              "float64_prob_replay_passes": 0.004476534655780397
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 1097,
+              "float64_prob_replay_passes": 0.007363021691649207
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 825,
+              "float64_prob_replay_passes": 0.024911841524519394
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 120,
+              "float64_prob_replay_passes": 0.5847010240301487
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 975,
+                "rate": 0.975,
+                "wilson95": [
+                  0.9633544581334902,
+                  0.9830099882094389
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 8,
+                "rate": 0.008,
+                "wilson95": [
+                  0.004059147003819634,
+                  0.01570652120518864
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 966,
+                "rate": 0.966,
+                "wilson95": [
+                  0.952864531539886,
+                  0.9755687989775981
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 9,
+                "rate": 0.009,
+                "wilson95": [
+                  0.004742006589011481,
+                  0.017016007822824013
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 872,
+                "rate": 0.872,
+                "wilson95": [
+                  0.8498599807293441,
+                  0.8912928067223815
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 1,
+                "rate": 0.001,
+                "wilson95": [
+                  0.0001765418290572713,
+                  0.0056427029601604705
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.9648597780994915,
+              "labels+conf@1e-05": 0.004476534655780397
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 0,
+              "1": 8
+            },
+            "labels+conf@1e-05": {
+              "0": 965,
+              "1": 243
+            }
+          },
+          "seconds": 60.0
+        },
+        "sklearn_hgb": {
+          "rows": 447275,
+          "classes": {
+            "0": 381963,
+            "1": 65312
+          },
+          "float32_max_delta": 6.143129801516878e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 1801,
+              "float32_prob_false_failure": 0.999687050373983,
+              "float64_rows_tripping": 257094,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-07": {
+              "float32_rows_tripping": 80,
+              "float32_prob_false_failure": 0.30075476024932224,
+              "float64_rows_tripping": 211773,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 159048,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 139111,
+              "float64_prob_replay_passes": 5e-324
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 118456,
+              "float64_prob_replay_passes": 5.815133663879758e-268
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 83790,
+              "float64_prob_replay_passes": 6.664048450393579e-181
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 66588,
+              "float64_prob_replay_passes": 9.701616543605173e-141
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 24382,
+              "float64_prob_replay_passes": 2.0499543711770687e-49
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 14,
+                "rate": 0.014,
+                "wilson95": [
+                  0.008357497449441328,
+                  0.023362247976530262
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 21,
+                "rate": 0.021,
+                "wilson95": [
+                  0.013775634089646441,
+                  0.03189053475611568
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.01820568156536312,
+              "labels+conf@1e-05": 5.815133663879758e-268
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 139,
+              "1": 756
+            },
+            "labels+conf@1e-05": {
+              "0": 94899,
+              "1": 23557
+            }
+          },
+          "seconds": 38.9
+        },
+        "lightgbm": {
+          "rows": 447275,
+          "classes": {
+            "0": 380602,
+            "1": 66673
+          },
+          "float32_max_delta": 1.2243234321918095e-06,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 1759,
+              "float32_prob_false_failure": 0.9996221124958536,
+              "float64_rows_tripping": 35095,
+              "float64_prob_replay_passes": 1.0582323666437822e-71
+            },
+            "3e-07": {
+              "float32_rows_tripping": 24,
+              "float32_prob_false_failure": 0.10176127672758828,
+              "float64_rows_tripping": 31559,
+              "float64_prob_replay_passes": 2.7811920366808317e-64
+            },
+            "1e-06": {
+              "float32_rows_tripping": 2,
+              "float32_prob_false_failure": 0.008903193729150938,
+              "float64_rows_tripping": 30369,
+              "float64_prob_replay_passes": 8.453607397885212e-62
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 29207,
+              "float64_prob_replay_passes": 2.2110819687323465e-59
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 27785,
+              "float64_prob_replay_passes": 1.967777429821726e-56
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 17740,
+              "float64_prob_replay_passes": 7.044758139098191e-36
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 7420,
+              "float64_prob_replay_passes": 2.949969214660062e-15
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 208,
+              "float64_prob_replay_passes": 0.39443816152946715
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 876,
+                "rate": 0.876,
+                "wilson95": [
+                  0.8541218223197016,
+                  0.8950003499433328
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 870,
+                "rate": 0.87,
+                "wilson95": [
+                  0.8477315380448507,
+                  0.8894365570012204
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 720,
+                "rate": 0.72,
+                "wilson95": [
+                  0.6913693871201185,
+                  0.7469467775018697
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.8705570492580761,
+              "labels+conf@1e-05": 1.967777429821726e-56
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 14,
+              "1": 17
+            },
+            "labels+conf@1e-05": {
+              "0": 27415,
+              "1": 370
+            }
+          },
+          "seconds": 31.0
+        },
+        "xgboost_hist": {
+          "rows": 447275,
+          "classes": {
+            "0": 381108,
+            "1": 66167
+          },
+          "float32_max_delta": 4.919000817782404e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 943,
+              "float32_prob_false_failure": 0.9853174640560238,
+              "float64_rows_tripping": 167369,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-07": {
+              "float32_rows_tripping": 30,
+              "float32_prob_false_failure": 0.1255412529270742,
+              "float64_rows_tripping": 143897,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 124833,
+              "float64_prob_replay_passes": 5.674972699045334e-285
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 109854,
+              "float64_prob_replay_passes": 1.5666342205801365e-245
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 96043,
+              "float64_prob_replay_passes": 1.0937160776498341e-210
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 71084,
+              "float64_prob_replay_passes": 4.651079586981498e-151
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 50879,
+              "float64_prob_replay_passes": 1.2861097801076045e-105
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 24273,
+              "float64_prob_replay_passes": 3.43235954926916e-49
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 14,
+                "rate": 0.014,
+                "wilson95": [
+                  0.008357497449441328,
+                  0.023362247976530262
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 11,
+                "rate": 0.011,
+                "wilson95": [
+                  0.006153110089114165,
+                  0.01958959672837577
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.00846062943077937,
+              "labels+conf@1e-05": 1.0937160776498341e-210
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 27,
+              "1": 1039
+            },
+            "labels+conf@1e-05": {
+              "0": 50691,
+              "1": 45352
+            }
+          },
+          "seconds": 45.3
+        }
+      }
+    },
+    "UNSW-NB15": {
+      "rows": 82332,
+      "models": {
+        "sklearn_rf": {
+          "rows": 82332,
+          "classes": {
+            "0": 26703,
+            "1": 55629
+          },
+          "float32_max_delta": 9.5367431640625e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 51227,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 13230,
+              "float64_prob_replay_passes": 6.980775852367957e-153
+            },
+            "3e-07": {
+              "float32_rows_tripping": 36965,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 3778,
+              "float64_prob_replay_passes": 1.5822606054798661e-41
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 3778,
+              "float64_prob_replay_passes": 1.5822606054798661e-41
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 3777,
+              "float64_prob_replay_passes": 1.6230622105169914e-41
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 3771,
+              "float64_prob_replay_passes": 1.8909285375017743e-41
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 3704,
+              "float64_prob_replay_passes": 1.0402248766816333e-40
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 3332,
+              "float64_prob_replay_passes": 1.3087353487798679e-36
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 249,
+              "float64_prob_replay_passes": 0.0023394344444429742
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 390,
+                "rate": 0.39,
+                "wilson95": [
+                  0.36024486930243227,
+                  0.42059704838657375
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 381,
+                "rate": 0.381,
+                "wilson95": [
+                  0.351409780190574,
+                  0.4115010216729871
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 352,
+                "rate": 0.352,
+                "wilson95": [
+                  0.3230160671618591,
+                  0.3821166948197125
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.3972041248072281,
+              "labels+conf@1e-05": 1.8909285375017743e-41
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 16,
+              "1": 22
+            },
+            "labels+conf@1e-05": {
+              "0": 607,
+              "1": 3164
+            }
+          },
+          "seconds": 17.9
+        },
+        "sklearn_hgb": {
+          "rows": 82332,
+          "classes": {
+            "0": 30071,
+            "1": 52261
+          },
+          "float32_max_delta": 3.9305431598357643e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 2027,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 37068,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-07": {
+              "float32_rows_tripping": 11,
+              "float32_prob_false_failure": 0.23450198504801545,
+              "float64_rows_tripping": 36153,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 35422,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 32010,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 26576,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 21239,
+              "float64_prob_replay_passes": 7.007660053070704e-260
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 14888,
+              "float64_prob_replay_passes": 5.614469018677247e-174
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 9347,
+              "float64_prob_replay_passes": 2.1374401810198514e-105
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 5.6918212205894655e-12,
+              "labels+conf@1e-05": 0.0
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 763,
+              "1": 296
+            },
+            "labels+conf@1e-05": {
+              "0": 7784,
+              "1": 18792
+            }
+          },
+          "seconds": 7.6
+        },
+        "lightgbm": {
+          "rows": 82332,
+          "classes": {
+            "0": 28199,
+            "1": 54133
+          },
+          "float32_max_delta": 3.534177794861648e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 2611,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 119,
+              "float64_prob_replay_passes": 0.05541936624352808
+            },
+            "3e-07": {
+              "float32_rows_tripping": 8,
+              "float32_prob_false_failure": 0.1766258571818412,
+              "float64_rows_tripping": 51,
+              "float64_prob_replay_passes": 0.2895954505137182
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 50,
+              "float64_prob_replay_passes": 0.2967208361848838
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 49,
+              "float64_prob_replay_passes": 0.3040214494444346
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 47,
+              "float64_prob_replay_passes": 0.3191656925011292
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 41,
+              "float64_prob_replay_passes": 0.36927427578747796
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 24,
+              "float64_prob_replay_passes": 0.5581707369874445
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 17,
+              "float64_prob_replay_passes": 0.6616591111322353
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 1000,
+                "rate": 1.0,
+                "wilson95": [
+                  0.9961731014136095,
+                  1.0
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 327,
+                "rate": 0.327,
+                "wilson95": [
+                  0.2986340029941519,
+                  0.3566901039167394
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 1000,
+                "rate": 1.0,
+                "wilson95": [
+                  0.9961731014136095,
+                  1.0
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 298,
+                "rate": 0.298,
+                "wilson95": [
+                  0.27046809653354564,
+                  0.32707797049535614
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 1000,
+                "rate": 1.0,
+                "wilson95": [
+                  0.9961731014136095,
+                  1.0
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 307,
+                "rate": 0.307,
+                "wilson95": [
+                  0.2791952556296626,
+                  0.33628192722468425
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 1.0,
+              "labels+conf@1e-05": 0.3191656925011292
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 0,
+              "1": 0
+            },
+            "labels+conf@1e-05": {
+              "0": 18,
+              "1": 29
+            }
+          },
+          "seconds": 7.4
+        },
+        "xgboost_hist": {
+          "rows": 82332,
+          "classes": {
+            "0": 36492,
+            "1": 45840
+          },
+          "float32_max_delta": 6.157643736015572e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 2912,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 50157,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-07": {
+              "float32_rows_tripping": 68,
+              "float32_prob_false_failure": 0.8084355818516564,
+              "float64_rows_tripping": 47138,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 42820,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 38218,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 34575,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 29924,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 21618,
+              "float64_prob_replay_passes": 2.7565243736933643e-265
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 14466,
+              "float64_prob_replay_passes": 1.469517600619531e-168
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 2.3600236869607485e-18,
+              "labels+conf@1e-05": 0.0
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 1342,
+              "1": 312
+            },
+            "labels+conf@1e-05": {
+              "0": 10862,
+              "1": 23713
+            }
+          },
+          "seconds": 10.4
+        }
+      }
+    },
+    "ToN-IoT": {
+      "rows": 63313,
+      "models": {
+        "sklearn_rf": {
+          "rows": 63313,
+          "classes": {
+            "0": 14895,
+            "1": 48418
+          },
+          "float32_max_delta": 8.940696716308594e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 47548,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 5971,
+              "float64_prob_replay_passes": 9.117753891634873e-87
+            },
+            "3e-07": {
+              "float32_rows_tripping": 41935,
+              "float32_prob_false_failure": 1.0,
+              "float64_rows_tripping": 214,
+              "float64_prob_replay_passes": 0.0011459566339501422
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 213,
+              "float64_prob_replay_passes": 0.0011828606077338589
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 210,
+              "float64_prob_replay_passes": 0.0013008535832438565
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 210,
+              "float64_prob_replay_passes": 0.0013008535832438565
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 197,
+              "float64_prob_replay_passes": 0.001964038870221176
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 189,
+              "float64_prob_replay_passes": 0.0025306809735257544
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 36,
+              "float64_prob_replay_passes": 0.32060974558935
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 1000,
+                "rate": 1.0,
+                "wilson95": [
+                  0.9961731014136095,
+                  1.0
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 2,
+                "rate": 0.002,
+                "wilson95": [
+                  0.000548632102457155,
+                  0.007262958889587807
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 1000,
+                "rate": 1.0,
+                "wilson95": [
+                  0.9961731014136095,
+                  1.0
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 1000,
+                "rate": 1.0,
+                "wilson95": [
+                  0.9961731014136095,
+                  1.0
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 1.0,
+              "labels+conf@1e-05": 0.0013008535832438565
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 0,
+              "1": 0
+            },
+            "labels+conf@1e-05": {
+              "0": 76,
+              "1": 134
+            }
+          },
+          "seconds": 12.0
+        },
+        "sklearn_hgb": {
+          "rows": 63313,
+          "classes": {
+            "0": 14888,
+            "1": 48425
+          },
+          "float32_max_delta": 3.213227498521931e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 237,
+              "float32_prob_false_failure": 0.9994472813952134,
+              "float64_rows_tripping": 26486,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-07": {
+              "float32_rows_tripping": 3,
+              "float32_prob_false_failure": 0.09041744243128014,
+              "float64_rows_tripping": 26483,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 26457,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 26110,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 22494,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 12419,
+              "float64_prob_replay_passes": 2.2252869545910072e-190
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 5236,
+              "float64_prob_replay_passes": 1.0533293209108553e-75
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 380,
+              "float64_prob_replay_passes": 5.90316572998454e-06
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 769,
+                "rate": 0.769,
+                "wilson95": [
+                  0.7418771517803808,
+                  0.7940639767801412
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 752,
+                "rate": 0.752,
+                "wilson95": [
+                  0.7243030327449996,
+                  0.7777682103674596
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 794,
+                "rate": 0.794,
+                "wilson95": [
+                  0.7678307565977307,
+                  0.8179190270334717
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.7525242846262437,
+              "labels+conf@1e-05": 0.0
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 1,
+              "1": 8
+            },
+            "labels+conf@1e-05": {
+              "0": 3809,
+              "1": 18685
+            }
+          },
+          "seconds": 5.8
+        },
+        "lightgbm": {
+          "rows": 63313,
+          "classes": {
+            "0": 14932,
+            "1": 48381
+          },
+          "float32_max_delta": 3.7521299534049035e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 173,
+              "float32_prob_false_failure": 0.9957988306049116,
+              "float64_rows_tripping": 18042,
+              "float64_prob_replay_passes": 4.512224664174065e-292
+            },
+            "3e-07": {
+              "float32_rows_tripping": 3,
+              "float32_prob_false_failure": 0.09041744243128014,
+              "float64_rows_tripping": 18035,
+              "float64_prob_replay_passes": 6.1473134301728425e-292
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 18035,
+              "float64_prob_replay_passes": 6.1473134301728425e-292
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 18003,
+              "float64_prob_replay_passes": 2.5254538638277033e-291
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 17985,
+              "float64_prob_replay_passes": 5.588939821132278e-291
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 14146,
+              "float64_prob_replay_passes": 2.2995083369820688e-220
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 4509,
+              "float64_prob_replay_passes": 6.729036869036909e-65
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 1300,
+              "float64_prob_replay_passes": 9.543297852491605e-19
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 517,
+                "rate": 0.517,
+                "wilson95": [
+                  0.48602179171422133,
+                  0.5478480937338415
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 536,
+                "rate": 0.536,
+                "wilson95": [
+                  0.5050112354571252,
+                  0.5667132278446547
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 230,
+                "rate": 0.23,
+                "wilson95": [
+                  0.20497925388093172,
+                  0.25708727135571924
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.548656470960571,
+              "labels+conf@1e-05": 5.588939821132278e-291
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 19,
+              "1": 0
+            },
+            "labels+conf@1e-05": {
+              "0": 3747,
+              "1": 14238
+            }
+          },
+          "seconds": 5.8
+        },
+        "xgboost_hist": {
+          "rows": 63313,
+          "classes": {
+            "0": 15010,
+            "1": 48303
+          },
+          "float32_max_delta": 3.554507440606258e-07,
+          "float32_label_flips": 0,
+          "tolerance": {
+            "1e-07": {
+              "float32_rows_tripping": 126,
+              "float32_prob_false_failure": 0.9813925090651286,
+              "float64_rows_tripping": 49763,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-07": {
+              "float32_rows_tripping": 9,
+              "float32_prob_false_failure": 0.24747571537375634,
+              "float64_rows_tripping": 48245,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 44987,
+              "float64_prob_replay_passes": 0.0
+            },
+            "3e-06": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 42662,
+              "float64_prob_replay_passes": 0.0
+            },
+            "1e-05": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 37498,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.0001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 35327,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.001": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 33935,
+              "float64_prob_replay_passes": 0.0
+            },
+            "0.01": {
+              "float32_rows_tripping": 0,
+              "float32_prob_false_failure": 0.0,
+              "float64_rows_tripping": 31782,
+              "float64_prob_replay_passes": 0.0
+            }
+          },
+          "sampling": {
+            "uniform": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "proportional": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "balanced": {
+              "labels": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              },
+              "labels+conf@1e-05": {
+                "passes": 0,
+                "rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.003826898586390522
+                ]
+              }
+            },
+            "analytic_uniform": {
+              "labels": 0.0,
+              "labels+conf@1e-05": 0.0
+            }
+          },
+          "tripping_rows_by_class": {
+            "labels": {
+              "0": 1894,
+              "1": 22786
+            },
+            "labels+conf@1e-05": {
+              "0": 8036,
+              "1": 29462
+            }
+          },
+          "seconds": 4.2
+        }
+      }
+    }
+  },
+  "seconds": 298.1
+}

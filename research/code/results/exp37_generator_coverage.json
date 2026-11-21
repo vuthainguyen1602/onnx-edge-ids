@@ -1,0 +1,176 @@
+{
+  "tolerance": 1e-05,
+  "seed": 0,
+  "models": {
+    "deployed_rf": {
+      "internal_nodes": 95741,
+      "crossing_found": 95741,
+      "budget": 287223,
+      "generators": {
+        "replay": {
+          "inputs": 287223,
+          "generation_seconds": 0.02,
+          "node_coverage": 0.9648530932411402,
+          "branch_coverage": 0.8294461098171108,
+          "crossing_coverage": 0.0,
+          "float64_label_flips": 10,
+          "float64_over_tolerance": 4458,
+          "float32_max_delta": 1.1324882507324219e-06,
+          "single_node_detected_probabilities": 0,
+          "single_node_detected_margins": 0,
+          "single_node_faults": 20
+        },
+        "uniform": {
+          "inputs": 287223,
+          "generation_seconds": 0.12,
+          "node_coverage": 0.1552417459604558,
+          "branch_coverage": 0.07614292727253737,
+          "crossing_coverage": 0.0,
+          "float64_label_flips": 0,
+          "float64_over_tolerance": 0,
+          "float32_max_delta": 7.748603820800781e-07,
+          "single_node_detected_probabilities": 0,
+          "single_node_detected_margins": 0,
+          "single_node_faults": 20
+        },
+        "boundary": {
+          "inputs": 287223,
+          "generation_seconds": 0.06,
+          "node_coverage": 0.9870901703554381,
+          "branch_coverage": 0.9468984029830481,
+          "crossing_coverage": 0.08661910780125547,
+          "float64_label_flips": 218,
+          "float64_over_tolerance": 49583,
+          "float32_max_delta": 1.1324882507324219e-06,
+          "single_node_detected_probabilities": 5,
+          "single_node_detected_margins": 5,
+          "single_node_faults": 20
+        },
+        "coverage": {
+          "inputs": 287223,
+          "generation_seconds": 25.34,
+          "node_coverage": 0.9594426630179338,
+          "branch_coverage": 0.8741082712735401,
+          "crossing_coverage": 0.11729562047607608,
+          "float64_label_flips": 1821,
+          "float64_over_tolerance": 197733,
+          "float32_max_delta": 1.0728836059570312e-06,
+          "single_node_detected_probabilities": 4,
+          "single_node_detected_margins": 3,
+          "single_node_faults": 20
+        },
+        "probes": {
+          "inputs": 287223,
+          "generation_seconds": 0.0,
+          "node_coverage": 0.9995613164683886,
+          "branch_coverage": 0.9444960884051765,
+          "crossing_coverage": 0.35452940746388695,
+          "float64_label_flips": 0,
+          "float64_over_tolerance": 98736,
+          "float32_max_delta": 9.5367431640625e-07,
+          "single_node_detected_probabilities": 9,
+          "single_node_detected_margins": 8,
+          "single_node_faults": 20
+        },
+        "crossing": {
+          "inputs": 191482,
+          "generation_seconds": 0.0,
+          "node_coverage": 0.9996657649282962,
+          "branch_coverage": 0.9991017432447958,
+          "crossing_coverage": 0.9990808535528144,
+          "float64_label_flips": 0,
+          "float64_over_tolerance": 65742,
+          "float32_max_delta": 9.5367431640625e-07,
+          "single_node_detected_probabilities": 18,
+          "single_node_detected_margins": 15,
+          "single_node_faults": 20
+        }
+      }
+    },
+    "xgboost_hist": {
+      "internal_nodes": 9070,
+      "crossing_found": 9070,
+      "budget": 27210,
+      "generators": {
+        "replay": {
+          "inputs": 27210,
+          "generation_seconds": 0.0,
+          "node_coverage": 0.9954796030871004,
+          "branch_coverage": 0.9335170893054024,
+          "crossing_coverage": 0.0,
+          "float64_label_flips": 69,
+          "float64_over_tolerance": 5876,
+          "float32_max_delta": 3.642208393772606e-07,
+          "single_node_detected_probabilities": 8,
+          "single_node_detected_margins": 9,
+          "single_node_faults": 20
+        },
+        "uniform": {
+          "inputs": 27210,
+          "generation_seconds": 0.01,
+          "node_coverage": 0.3512679162072767,
+          "branch_coverage": 0.1730981256890849,
+          "crossing_coverage": 0.0,
+          "float64_label_flips": 0,
+          "float64_over_tolerance": 0,
+          "float32_max_delta": 2.0960760960253566e-07,
+          "single_node_detected_probabilities": 0,
+          "single_node_detected_margins": 0,
+          "single_node_faults": 20
+        },
+        "boundary": {
+          "inputs": 27210,
+          "generation_seconds": 0.0,
+          "node_coverage": 0.9971334068357222,
+          "branch_coverage": 0.9713340683572216,
+          "crossing_coverage": 0.11609702315325247,
+          "float64_label_flips": 149,
+          "float64_over_tolerance": 6601,
+          "float32_max_delta": 4.764021220293735e-07,
+          "single_node_detected_probabilities": 11,
+          "single_node_detected_margins": 15,
+          "single_node_faults": 20
+        },
+        "coverage": {
+          "inputs": 27210,
+          "generation_seconds": 6.08,
+          "node_coverage": 0.9724366041896362,
+          "branch_coverage": 0.8762954796030871,
+          "crossing_coverage": 0.08820286659316427,
+          "float64_label_flips": 509,
+          "float64_over_tolerance": 12552,
+          "float32_max_delta": 5.80657067206225e-07,
+          "single_node_detected_probabilities": 7,
+          "single_node_detected_margins": 9,
+          "single_node_faults": 20
+        },
+        "probes": {
+          "inputs": 27210,
+          "generation_seconds": 0.0,
+          "node_coverage": 0.9998897464167585,
+          "branch_coverage": 0.8560088202866594,
+          "crossing_coverage": 0.31477398015435504,
+          "float64_label_flips": 8,
+          "float64_over_tolerance": 2060,
+          "float32_max_delta": 4.698477031883641e-07,
+          "single_node_detected_probabilities": 4,
+          "single_node_detected_margins": 20,
+          "single_node_faults": 20
+        },
+        "crossing": {
+          "inputs": 18140,
+          "generation_seconds": 0.0,
+          "node_coverage": 0.9998897464167585,
+          "branch_coverage": 0.9990077177508269,
+          "crossing_coverage": 0.9990077177508269,
+          "float64_label_flips": 8,
+          "float64_over_tolerance": 1486,
+          "float32_max_delta": 4.698477031883641e-07,
+          "single_node_detected_probabilities": 4,
+          "single_node_detected_margins": 20,
+          "single_node_faults": 20
+        }
+      }
+    }
+  }
+}

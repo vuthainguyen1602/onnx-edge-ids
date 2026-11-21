@@ -16,9 +16,14 @@ the gate does), and reports per model:
 
 each as label flips, rows whose probability deviates by more than 1e-5, and
 whether the gate (labels + confidences) fails.
+
+--probe-set crossing builds the gate's default set instead: two probes per node
+on the exact float32 crossing (the construction of exp24), on the same
+data-free rows; results go to exp19_datafree_probes_crossing.json by default.
 """
 
 import argparse
+import importlib.util
 import json
 import os
 import time
@@ -34,16 +39,39 @@ from edgeids.probes import datafree_probes
 from edgeids.runtime import numpy_probs, ort_probs
 
 
+def crossing_probes(forest):
+    """The data-free crossing pair of exp24: rows routed to each node, g(v) on c_A and its successor."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    spec = importlib.util.spec_from_file_location("exp24", os.path.join(here, "exp24_probe_straddle.py"))
+    exp24 = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(exp24)
+    from edgeids.onnx_forest import path_rows
+    internal, three = datafree_probes(forest)
+    n = len(internal)
+    feat = forest.feature[internal]
+    r0 = three[:n][np.arange(n), feat]
+    ok, a, _ = exp24.crossing(forest, internal, r0)
+    base = np.repeat(forest.offset.astype(np.float32).reshape(1, -1), n, axis=0)
+    rows = path_rows(forest, internal, base)
+    out = []
+    for k in (a, a + 1):
+        p = rows.copy()
+        p[np.arange(n), feat] = np.where(ok, exp24.unordered(k), r0)
+        out.append(p)
+    return internal, np.concatenate(out)
+
+
 def timed(fn):
     t0 = time.perf_counter()
     out = fn()
     return out, round(time.perf_counter() - t0, 2)
 
 
-def run_model(path, pipe=None):
+def run_model(path, pipe=None, probe_set="three"):
     forest = load_onnx_forest(path)
-    (internal, probes), t_build = timed(lambda: datafree_probes(forest))
-    reach = reaches(forest, probes, np.tile(internal, 3))
+    build = crossing_probes if probe_set == "crossing" else datafree_probes
+    (internal, probes), t_build = timed(lambda: build(forest))
+    reach = reaches(forest, probes, np.tile(internal, len(probes) // len(internal)))
     ref, t_ort = timed(lambda: ort_probs(path, probes))
     p32, t_32 = timed(lambda: numpy_probs(forest, probes, np.float32))
     rep = {"internal_nodes": int(len(internal)), "probes": int(len(probes)),
@@ -62,12 +90,17 @@ def main():
     ap.add_argument("--cicids-test", default="")
     ap.add_argument("--unsw", default="")
     ap.add_argument("--ton-iot", default="")
-    ap.add_argument("--out", default=os.path.join(RESULTS, "exp19_datafree_probes.json"))
+    ap.add_argument("--probe-set", choices=("three", "crossing"), default="three")
+    ap.add_argument("--out", default="")
     args = ap.parse_args()
+    if not args.out:
+        suffix = "_crossing" if args.probe_set == "crossing" else ""
+        args.out = os.path.join(RESULTS, f"exp19_datafree_probes{suffix}.json")
 
     import onnxruntime
     started = time.perf_counter()
-    report = {"numpy": np.__version__, "onnxruntime": onnxruntime.__version__, "tolerance": TOL, "datasets": {}}
+    report = {"numpy": np.__version__, "onnxruntime": onnxruntime.__version__, "tolerance": TOL,
+              "probe_set": args.probe_set, "datasets": {}}
 
     jobs = [("CICIDS2017", os.path.join(RESULTS, "exp5_models"), ["deployed_rf"] + list(MODEL_KEYS))]
     loaders = {}
@@ -92,7 +125,7 @@ def main():
                 x_train, y_train, _ = train
                 pipe = Pipeline([("scaler", StandardScaler()), ("model", build_models(0)[key][1])])
                 pipe.fit(x_train.astype(np.float64), y_train)
-            rep = run_model(path, pipe)
+            rep = run_model(path, pipe, args.probe_set)
             report["datasets"][name][key] = rep
             line = {k: (rep[k]["label_flips"], rep[k]["rows_over_tolerance"], rep[k]["gate_fails"])
                     for k in ("float32", "float64", "framework") if k in rep}

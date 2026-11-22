@@ -27,6 +27,23 @@ def build_models(seed):
     }
 
 
+def patch_skl2onnx_bools():
+    """skl2onnx 1.20 hands numpy booleans to an INTS attribute (nodes_missing_value_tracks_true) for
+    HistGradientBoosting under recent scikit-learn/onnx; protobuf refuses them. Cast at the boundary."""
+    from skl2onnx.common import _container
+    if getattr(_container.ModelComponentContainer.add_node, "_bool_safe", False):
+        return
+    _orig = _container.ModelComponentContainer.add_node
+
+    def add_node(self, *args, **attrs):
+        for k, v in list(attrs.items()):
+            if isinstance(v, (list, tuple)) and len(v) and all(isinstance(e, (bool, np.bool_, int, np.integer)) for e in v):
+                attrs[k] = [int(e) for e in v]
+        return _orig(self, *args, **attrs)
+    add_node._bool_safe = True
+    _container.ModelComponentContainer.add_node = add_node
+
+
 def export_pipeline(pipe, n_features, out):
     import onnx
     from skl2onnx import convert_sklearn, update_registered_converter
@@ -46,19 +63,7 @@ def export_pipeline(pipe, n_features, out):
                                     convert_xgboost, options={"nocl": [True, False], "zipmap": [True, False, "columns"]})
     except ImportError:
         pass
-    # skl2onnx 1.20 hands numpy booleans to an INTS attribute (nodes_missing_value_tracks_true) for
-    # HistGradientBoosting under recent scikit-learn/onnx; protobuf refuses them. Cast at the boundary.
-    from skl2onnx.common import _container
-    if not getattr(_container.ModelComponentContainer.add_node, "_bool_safe", False):
-        _orig = _container.ModelComponentContainer.add_node
-
-        def add_node(self, *args, **attrs):
-            for k, v in list(attrs.items()):
-                if isinstance(v, (list, tuple)) and len(v) and all(isinstance(e, (bool, np.bool_, int, np.integer)) for e in v):
-                    attrs[k] = [int(e) for e in v]
-            return _orig(self, *args, **attrs)
-        add_node._bool_safe = True
-        _container.ModelComponentContainer.add_node = add_node
+    patch_skl2onnx_bools()
     model = convert_sklearn(pipe, initial_types=[("input", FloatTensorType([None, n_features]))],
                             options={id(pipe.steps[-1][1]): {"zipmap": False}},
                             target_opset={"": 17, "ai.onnx.ml": 3})

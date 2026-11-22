@@ -1,0 +1,298 @@
+{
+  "onnxruntime": "1.30.0",
+  "numpy": "2.5.3",
+  "datasets": {
+    "CICIDS2017": {
+      "deployed_rf": {
+        "n_targets": 2,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 9.5367431640625e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 9.5367431640625e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 1.1324882507324219e-06,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "sklearn_rf": {
+        "n_targets": 1,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.5762786865234375e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.5762786865234375e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 7.748603820800781e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "sklearn_hgb": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 6.059923183254767e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 7.800936462354358e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 6.143129801516878e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "lightgbm": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 1.395974763007679e-06,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 1.395974763007679e-06,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 1.2243234321918095e-06,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "xgboost_hist": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.698477031883641e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.698477031883641e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 4.919000817782404e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      }
+    },
+    "UNSW-NB15": {
+      "sklearn_rf": {
+        "n_targets": 1,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 6.556510925292969e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 7.152557373046875e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 9.5367431640625e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "sklearn_hgb": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.624632408660844e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.624632408660844e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.9305431598357643e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "lightgbm": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.287870018464645e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.3672148991303885e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.534177794861648e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "xgboost_hist": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.959977786822556e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.959977786822556e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 6.157643736015572e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      }
+    },
+    "ToN-IoT": {
+      "sklearn_rf": {
+        "n_targets": 1,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 7.152557373046875e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 7.152557373046875e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 8.940696716308594e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "sklearn_hgb": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.310567167653545e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.556182400805575e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.213227498521931e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "lightgbm": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.5763647529839524e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.5763647529839524e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.7521299534049035e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "xgboost_hist": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 5.658681390685594e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 6.372003132359971e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.554507440606258e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      }
+    }
+  }
+}

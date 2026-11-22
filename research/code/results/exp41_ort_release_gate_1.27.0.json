@@ -1,0 +1,298 @@
+{
+  "onnxruntime": "1.27.0",
+  "numpy": "2.2.6",
+  "datasets": {
+    "CICIDS2017": {
+      "deployed_rf": {
+        "n_targets": 2,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 8.344650268554688e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 8.344650268554688e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 9.5367431640625e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "sklearn_rf": {
+        "n_targets": 1,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 384945,
+          "max_delta": 1.0000004172325134,
+          "gate_fails": true
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 256630,
+          "max_delta": 1.0000004172325134,
+          "gate_fails": true
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 1.0000005960464478,
+          "pass_labels": 1.0,
+          "pass_conf": 0.0
+        }
+      },
+      "sklearn_hgb": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 7.849261559056409e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 7.849261559056409e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 7.005886740740763e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "lightgbm": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 1.1575561839061166e-06,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 1.1575561839061166e-06,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 8.666955635394658e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "xgboost_hist": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 2.314291240868016e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.0208200296755194e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 4.322954370028498e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      }
+    },
+    "UNSW-NB15": {
+      "sklearn_rf": {
+        "n_targets": 1,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 2,
+          "rows_over_tolerance": 726261,
+          "max_delta": 1.0000006556510925,
+          "gate_fails": true
+        },
+        "crossing": {
+          "label_flips": 1,
+          "rows_over_tolerance": 484174,
+          "max_delta": 1.0000006556510925,
+          "gate_fails": true
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 1.000000774860382,
+          "pass_labels": 1.0,
+          "pass_conf": 0.0
+        }
+      },
+      "sklearn_hgb": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.624632408660844e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.2518137965963376e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.899078290237057e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "lightgbm": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.287870018464645e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 3.3511467745217516e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.0342178214404214e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "xgboost_hist": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 6.040841535881469e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 6.040841535881469e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 4.5313253194123604e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      }
+    },
+    "ToN-IoT": {
+      "sklearn_rf": {
+        "n_targets": 1,
+        "post_transform": "NONE",
+        "three": {
+          "label_flips": 411,
+          "rows_over_tolerance": 228057,
+          "max_delta": 1.000000536441803,
+          "gate_fails": true
+        },
+        "crossing": {
+          "label_flips": 270,
+          "rows_over_tolerance": 152038,
+          "max_delta": 1.0000005960464478,
+          "gate_fails": true
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 1.0000007152557373,
+          "pass_labels": 1.0,
+          "pass_conf": 0.0
+        }
+      },
+      "sklearn_hgb": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.540934586683143e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.540934586683143e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 2.8977638244498394e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "lightgbm": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.5261722159128936e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 4.5261722159128936e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.131756084462367e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      },
+      "xgboost_hist": {
+        "n_targets": 1,
+        "post_transform": "LOGISTIC",
+        "three": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 5.131928635937477e-07,
+          "gate_fails": false
+        },
+        "crossing": {
+          "label_flips": 0,
+          "rows_over_tolerance": 0,
+          "max_delta": 5.179910236852159e-07,
+          "gate_fails": false
+        },
+        "replay": {
+          "label_flips": 0,
+          "max_delta": 3.554507440606258e-07,
+          "pass_labels": 1.0,
+          "pass_conf": 1.0
+        }
+      }
+    }
+  }
+}

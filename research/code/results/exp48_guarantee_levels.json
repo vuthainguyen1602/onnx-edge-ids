@@ -1,0 +1,790 @@
+{
+ "tolerance": 1e-05,
+ "margin_tolerance": 0.0001,
+ "probe_set": "crossing",
+ "models": {
+  "deployed_rf": {
+   "logistic": false,
+   "probes": 191482,
+   "faults": {
+    "single_node/node_516": {
+     "node": 516,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.00264933705329895
+    },
+    "single_node/node_3159": {
+     "node": 3159,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 2.9087066650390625e-05
+    },
+    "single_node/node_4224": {
+     "node": 4224,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0007761716842651367
+    },
+    "single_node/node_6433": {
+     "node": 6433,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004908323287963867
+    },
+    "single_node/node_7845": {
+     "node": 7845,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.005000010132789612
+    },
+    "single_node/node_14415": {
+     "node": 14415,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004787623882293701
+    },
+    "single_node/node_15403": {
+     "node": 15403,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0001125335693359375
+    },
+    "single_node/node_17103": {
+     "node": 17103,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004178285598754883
+    },
+    "single_node/node_33576": {
+     "node": 33576,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004669547080993652
+    },
+    "single_node/node_33660": {
+     "node": 33660,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_51685": {
+     "node": 51685,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0044710636138916016
+    },
+    "single_node/node_53145": {
+     "node": 53145,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004894979298114777
+    },
+    "single_node/node_57440": {
+     "node": 57440,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0036903023719787598
+    },
+    "single_node/node_58979": {
+     "node": 58979,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0
+    },
+    "single_node/node_75532": {
+     "node": 75532,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.005000054836273193
+    },
+    "single_node/node_81011": {
+     "node": 81011,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0034252405166625977
+    },
+    "single_node/node_92203": {
+     "node": 92203,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.00424647331237793
+    },
+    "single_node/node_96503": {
+     "node": 96503,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.003171473741531372
+    },
+    "single_node/node_97932": {
+     "node": 97932,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_103776": {
+     "node": 103776,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    }
+   },
+   "summary": {
+    "reached": 20,
+    "routing": 20,
+    "output_probability": 19,
+    "label": 0,
+    "faults": 20
+   }
+  },
+  "xgboost_hist (Scaler)": {
+   "logistic": true,
+   "probes": 18140,
+   "faults": {
+    "single_node/node_44": {
+     "node": 44,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 5.774028593419356e-05,
+     "output_margin": true,
+     "max_margin_change": 2.0316505432128906
+    },
+    "single_node/node_296": {
+     "node": 296,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 3.696823790158087e-05,
+     "output_margin": true,
+     "max_margin_change": 0.7971763610839844
+    },
+    "single_node/node_398": {
+     "node": 398,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 6.020356363162169e-06,
+     "output_margin": true,
+     "max_margin_change": 1.161142349243164
+    },
+    "single_node/node_607": {
+     "node": 607,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 3.4187329581120414e-05,
+     "output_margin": true,
+     "max_margin_change": 0.7545843124389648
+    },
+    "single_node/node_740": {
+     "node": 740,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 1.272227216020654e-06,
+     "output_margin": true,
+     "max_margin_change": 0.0047245025634765625
+    },
+    "single_node/node_1363": {
+     "node": 1363,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0004686176790516898,
+     "output_margin": true,
+     "max_margin_change": 0.31334686279296875
+    },
+    "single_node/node_1459": {
+     "node": 1459,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 1.1847108001283857e-06,
+     "output_margin": true,
+     "max_margin_change": 0.3464221954345703
+    },
+    "single_node/node_1621": {
+     "node": 1621,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 2.7073979128267034e-05,
+     "output_margin": true,
+     "max_margin_change": 0.6934413909912109
+    },
+    "single_node/node_3180": {
+     "node": 3180,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 1.3098895376439308e-05,
+     "output_margin": true,
+     "max_margin_change": 0.2580986022949219
+    },
+    "single_node/node_3197": {
+     "node": 3197,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 5.197858275385325e-05,
+     "output_margin": true,
+     "max_margin_change": 0.4727611541748047
+    },
+    "single_node/node_4905": {
+     "node": 4905,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 5.6785815161219944e-08,
+     "output_margin": true,
+     "max_margin_change": 0.10138511657714844
+    },
+    "single_node/node_5053": {
+     "node": 5053,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 1.1998228971576765e-07,
+     "output_margin": true,
+     "max_margin_change": 0.1513214111328125
+    },
+    "single_node/node_5470": {
+     "node": 5470,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 9.816460173839303e-06,
+     "output_margin": true,
+     "max_margin_change": 0.15125179290771484
+    },
+    "single_node/node_5598": {
+     "node": 5598,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 8.535754117966476e-07,
+     "output_margin": true,
+     "max_margin_change": 0.12839317321777344
+    },
+    "single_node/node_7186": {
+     "node": 7186,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 4.224492522582916e-08,
+     "output_margin": true,
+     "max_margin_change": 0.1534137725830078
+    },
+    "single_node/node_7717": {
+     "node": 7717,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 1.5242234445761286e-06,
+     "output_margin": true,
+     "max_margin_change": 0.31047630310058594
+    },
+    "single_node/node_8787": {
+     "node": 8787,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 3.2187914877912505e-07,
+     "output_margin": true,
+     "max_margin_change": 0.27815818786621094
+    },
+    "single_node/node_9181": {
+     "node": 9181,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 2.2554793477347346e-08,
+     "output_margin": true,
+     "max_margin_change": 0.0177154541015625
+    },
+    "single_node/node_9306": {
+     "node": 9306,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 5.7206979268030256e-08,
+     "output_margin": true,
+     "max_margin_change": 0.145660400390625
+    },
+    "single_node/node_9896": {
+     "node": 9896,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 8.808299423179733e-09,
+     "output_margin": true,
+     "max_margin_change": 0.3983802795410156
+    }
+   },
+   "summary": {
+    "reached": 20,
+    "routing": 20,
+    "output_probability": 7,
+    "label": 0,
+    "output_margin": 20,
+    "faults": 20
+   }
+  },
+  "sklearn_rf (no Scaler)": {
+   "logistic": false,
+   "probes": 271016,
+   "faults": {
+    "single_node/node_736": {
+     "node": 736,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0007350742816925049
+    },
+    "single_node/node_4472": {
+     "node": 4472,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.005000025033950806
+    },
+    "single_node/node_5985": {
+     "node": 5985,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0
+    },
+    "single_node/node_9099": {
+     "node": 9099,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0
+    },
+    "single_node/node_11100": {
+     "node": 11100,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_20393": {
+     "node": 20393,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_21792": {
+     "node": 21792,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.001988649368286133
+    },
+    "single_node/node_24205": {
+     "node": 24205,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.00499996542930603
+    },
+    "single_node/node_47521": {
+     "node": 47521,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.005000025033950806
+    },
+    "single_node/node_47631": {
+     "node": 47631,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0
+    },
+    "single_node/node_73138": {
+     "node": 73138,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 2.9385089874267578e-05
+    },
+    "single_node/node_75205": {
+     "node": 75205,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_81280": {
+     "node": 81280,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_83460": {
+     "node": 83460,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    },
+    "single_node/node_106879": {
+     "node": 106879,
+     "reached": true,
+     "routing": true,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0
+    },
+    "single_node/node_114634": {
+     "node": 114634,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.00020407140254974365
+    },
+    "single_node/node_130459": {
+     "node": 130459,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0014285445213317871
+    },
+    "single_node/node_136554": {
+     "node": 136554,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 1.3589859008789062e-05
+    },
+    "single_node/node_138579": {
+     "node": 138579,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.000384598970413208
+    },
+    "single_node/node_146838": {
+     "node": 146838,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004999995231628418
+    }
+   },
+   "summary": {
+    "reached": 20,
+    "routing": 20,
+    "output_probability": 16,
+    "label": 0,
+    "faults": 20
+   }
+  },
+  "xgboost_hist (no Scaler)": {
+   "logistic": true,
+   "probes": 18122,
+   "faults": {
+    "single_node/node_44": {
+     "node": 44,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": true,
+     "max_probability_change": 0.33404660949439013,
+     "output_margin": true,
+     "max_margin_change": 1.7634814977645874
+    },
+    "single_node/node_296": {
+     "node": 296,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.023952200107268395,
+     "output_margin": true,
+     "max_margin_change": 0.5111112594604492
+    },
+    "single_node/node_396": {
+     "node": 396,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.06524626533300304,
+     "output_margin": true,
+     "max_margin_change": 0.7867555618286133
+    },
+    "single_node/node_606": {
+     "node": 606,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0019079300728788162,
+     "output_margin": true,
+     "max_margin_change": 0.34024524688720703
+    },
+    "single_node/node_739": {
+     "node": 739,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 6.506159430408331e-05,
+     "output_margin": true,
+     "max_margin_change": 0.3881969451904297
+    },
+    "single_node/node_1361": {
+     "node": 1361,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 6.710314897573344e-05,
+     "output_margin": true,
+     "max_margin_change": 0.47843360900878906
+    },
+    "single_node/node_1457": {
+     "node": 1457,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0011432320273329077,
+     "output_margin": true,
+     "max_margin_change": 0.4871025085449219
+    },
+    "single_node/node_1619": {
+     "node": 1619,
+     "reached": false,
+     "routing": false,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0,
+     "output_margin": false,
+     "max_margin_change": 0.0
+    },
+    "single_node/node_3177": {
+     "node": 3177,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0034528583646261657,
+     "output_margin": true,
+     "max_margin_change": 0.6357007026672363
+    },
+    "single_node/node_3193": {
+     "node": 3193,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.04031927694723492,
+     "output_margin": true,
+     "max_margin_change": 0.575373649597168
+    },
+    "single_node/node_4898": {
+     "node": 4898,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.004656540249060044,
+     "output_margin": true,
+     "max_margin_change": 0.2654147148132324
+    },
+    "single_node/node_5045": {
+     "node": 5045,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.00144321305792805,
+     "output_margin": true,
+     "max_margin_change": 0.34715890884399414
+    },
+    "single_node/node_5467": {
+     "node": 5467,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 1.400281043274183e-05,
+     "output_margin": true,
+     "max_margin_change": 0.2494335174560547
+    },
+    "single_node/node_5592": {
+     "node": 5592,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.007214008700347545,
+     "output_margin": true,
+     "max_margin_change": 0.1835017204284668
+    },
+    "single_node/node_7180": {
+     "node": 7180,
+     "reached": false,
+     "routing": false,
+     "output_probability": false,
+     "label": false,
+     "max_probability_change": 0.0,
+     "output_margin": false,
+     "max_margin_change": 0.0
+    },
+    "single_node/node_7715": {
+     "node": 7715,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0003037580596705336,
+     "output_margin": true,
+     "max_margin_change": 0.06278753280639648
+    },
+    "single_node/node_8785": {
+     "node": 8785,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 2.771294166969973e-05,
+     "output_margin": true,
+     "max_margin_change": 0.14368629455566406
+    },
+    "single_node/node_9171": {
+     "node": 9171,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.07065123145963825,
+     "output_margin": true,
+     "max_margin_change": 0.32646656036376953
+    },
+    "single_node/node_9296": {
+     "node": 9296,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": true,
+     "max_probability_change": 0.10251423268182092,
+     "output_margin": true,
+     "max_margin_change": 0.4611988067626953
+    },
+    "single_node/node_9882": {
+     "node": 9882,
+     "reached": true,
+     "routing": true,
+     "output_probability": true,
+     "label": false,
+     "max_probability_change": 0.0006569625603358937,
+     "output_margin": true,
+     "max_margin_change": 0.17569541931152344
+    }
+   },
+   "summary": {
+    "reached": 18,
+    "routing": 18,
+    "output_probability": 18,
+    "label": 2,
+    "output_margin": 18,
+    "faults": 20
+   }
+  }
+ },
+ "summary": {
+  "faults": 80,
+  "reached": 78,
+  "routing": 78,
+  "output_probability": 60,
+  "label": 2,
+  "logistic_faults": 40,
+  "output_margin": 38
+ }
+}

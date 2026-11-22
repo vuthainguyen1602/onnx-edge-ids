@@ -258,6 +258,13 @@ PYTHONPATH=research/code .e3venv/bin/python research/code/experiments/exp47_conv
 PYTHONPATH=research/code .e3venv/bin/python research/code/experiments/exp47_converter_releases.py convert --tag fixed
 PYTHONPATH=research/code .lpvenv/bin/python research/code/experiments/exp47_converter_releases.py evaluate --cicids-test $DATA   # ~15 min
 python research/code/experiments/exp44_fault_benchmark.py   # rerun to fold exp47 into the benchmark
+# three levels of the crossing pair's guarantee (routing, output, label) on 80 single-node faults (needs the exp5 and exp43 models)
+python research/code/experiments/exp48_guarantee_levels.py
+# localization of complex faults, ranked (top-1/top-3/MRR, entries inspected), probes vs Leafparity on the exp43 faults (~2 h)
+PYTHONPATH=research/code .lpvenv/bin/python research/code/experiments/exp49_localization_ranks.py --cicids-train $TRAIN --cicids-test $DATA
+# extended probes for equality, categorical and missing-value splits (edgeids/probes_ext.py); --fixed-python is exp47's .e3venv
+PYTHONPATH=research/code .lpvenv/bin/python research/code/experiments/exp50_split_modes.py --cicids-train $TRAIN --cicids-test $DATA \
+    --unsw $UNSW --fixed-python .e3venv/bin/python
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -397,6 +404,9 @@ Paths are relative to `research/code/`.
 | Temporal evaluation on CSE-CIC-IDS2018, day by day: parity vs detection | `results/exp45_temporal_drift.json` |
 | Batch-size sweep on Jetson #2: latency, throughput, CPU, memory and energy per row of each backend (`tab:batchsweep`) | `results_jetson/exp46_board_batch_sweep.json`, `results_jetson/exp46_tegrastats/` |
 | Four real converter defects in the latest releases vs their fixes: replay, data-free probes, Leafparity (`tab:releases`) | `results/exp47_converter_releases.json` |
+| Routing, output and label levels of the guarantee on single-node faults (`tab:levels`) | `results/exp48_guarantee_levels.json` |
+| Ranked localization of complex faults, probes vs Leafparity (`tab:locrank`) | `results/exp49_localization_ranks.json` |
+| Extended probes on equality, categorical and missing-value splits (`tab:splitmodes`) | `results/exp50_split_modes.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

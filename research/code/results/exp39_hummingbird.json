@@ -1,0 +1,1659 @@
+{
+  "versions": {
+    "hummingbird": "0.4.12",
+    "torch": "2.15.0",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.2.6"
+  },
+  "replay_rows": 2000,
+  "datasets": {
+    "CICIDS2017": {
+      "deployed_rf": {
+        "probes": {
+          "three": 287223,
+          "crossing": 191482
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 26.2
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 27.9
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 40.1
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 7.748603820800781e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 8.344650268554688e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 8.344650268554688e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 27.3
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 16671,
+              "max_delta": 0.23267501801019463,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 56390,
+              "max_delta": 0.23267501801019463,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 0.16293760688131442,
+              "pass_labels": 1.0,
+              "pass_conf": 0.00025916635567180165
+            },
+            "seconds": 42.4
+          }
+        }
+      },
+      "sklearn_rf": {
+        "probes": {
+          "three": 384945,
+          "crossing": 256630
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 43.6
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 76.8
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 54.2
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 7.152557373046875e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 30.8
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 14830,
+              "max_delta": 0.05480362288858487,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 61905,
+              "max_delta": 0.05499997929462097,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 4,
+              "max_delta": 0.021869874093681574,
+              "pass_labels": 0.9822728401200168,
+              "pass_conf": 0.14870718962078674
+            },
+            "seconds": 47.7
+          }
+        }
+      },
+      "sklearn_hgb": {
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 204,
+              "rows_over_tolerance": 17452,
+              "max_delta": 0.4088059067726135,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 140,
+              "rows_over_tolerance": 11643,
+              "max_delta": 0.4088059663772583,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1490,
+              "max_delta": 0.4088062047958374,
+              "pass_labels": 0.0012637270709969107,
+              "pass_conf": 0.0
+            },
+            "seconds": 17.0
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 204,
+              "rows_over_tolerance": 17452,
+              "max_delta": 0.4088059067726135,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 140,
+              "rows_over_tolerance": 11643,
+              "max_delta": 0.4088059663772583,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1490,
+              "max_delta": 0.4088062047958374,
+              "pass_labels": 0.0012637270709969107,
+              "pass_conf": 0.0
+            },
+            "seconds": 17.3
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 204,
+              "rows_over_tolerance": 17452,
+              "max_delta": 0.4088059067726135,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 140,
+              "rows_over_tolerance": 11643,
+              "max_delta": 0.4088059663772583,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1490,
+              "max_delta": 0.4088062047958374,
+              "pass_labels": 0.0012637270709969107,
+              "pass_conf": 0.0
+            },
+            "seconds": 17.1
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 204,
+              "rows_over_tolerance": 17452,
+              "max_delta": 0.4088059663772583,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 140,
+              "rows_over_tolerance": 11643,
+              "max_delta": 0.4088059663772583,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1490,
+              "max_delta": 0.4088062047958374,
+              "pass_labels": 0.0012637270709969107,
+              "pass_conf": 0.0
+            },
+            "seconds": 10.6
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 208,
+              "rows_over_tolerance": 17445,
+              "max_delta": 0.6145837188072045,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 150,
+              "rows_over_tolerance": 11614,
+              "max_delta": 0.9660188169511837,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1488,
+              "max_delta": 0.8879903968807435,
+              "pass_labels": 0.0012751174127740308,
+              "pass_conf": 0.0
+            },
+            "seconds": 19.8
+          }
+        },
+        "base_values_zeroed": {
+          "three": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 5.364418029785156e-07,
+            "gate_fails": false
+          },
+          "crossing": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 5.364418029785156e-07,
+            "gate_fails": false
+          },
+          "replay": {
+            "label_flips": 0,
+            "max_delta": 5.960464477539062e-07
+          }
+        }
+      },
+      "lightgbm": {
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 23.9
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 19.2
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 21.0
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.960464477539062e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 11.7
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 4,
+              "rows_over_tolerance": 420,
+              "max_delta": 0.8466268919464172,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 3,
+              "rows_over_tolerance": 1456,
+              "max_delta": 0.8466268919464172,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 8,
+              "max_delta": 0.520370023636612,
+              "pass_labels": 0.9648597780994915,
+              "pass_conf": 0.0005081924703185879
+            },
+            "seconds": 22.3
+          }
+        }
+      },
+      "xgboost_hist": {
+        "probes": {
+          "three": 27210,
+          "crossing": 18140
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 105,
+              "rows_over_tolerance": 16517,
+              "max_delta": 0.40880584716796875,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 67,
+              "rows_over_tolerance": 11040,
+              "max_delta": 0.40880584716796875,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1272,
+              "max_delta": 0.40880608558654785,
+              "pass_labels": 0.0033597824904357614,
+              "pass_conf": 0.0
+            },
+            "seconds": 7.3
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 105,
+              "rows_over_tolerance": 16517,
+              "max_delta": 0.40880584716796875,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 67,
+              "rows_over_tolerance": 11040,
+              "max_delta": 0.40880584716796875,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1272,
+              "max_delta": 0.40880608558654785,
+              "pass_labels": 0.0033597824904357614,
+              "pass_conf": 0.0
+            },
+            "seconds": 10.0
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 105,
+              "rows_over_tolerance": 16517,
+              "max_delta": 0.40880584716796875,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 67,
+              "rows_over_tolerance": 11040,
+              "max_delta": 0.40880584716796875,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1272,
+              "max_delta": 0.40880608558654785,
+              "pass_labels": 0.0033597824904357614,
+              "pass_conf": 0.0
+            },
+            "seconds": 7.6
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 105,
+              "rows_over_tolerance": 16517,
+              "max_delta": 0.408805787563324,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 67,
+              "rows_over_tolerance": 11040,
+              "max_delta": 0.408805787563324,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1272,
+              "max_delta": 0.4088060259819031,
+              "pass_labels": 0.0033597824904357614,
+              "pass_conf": 0.0
+            },
+            "seconds": 4.5
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 119,
+              "rows_over_tolerance": 16485,
+              "max_delta": 0.5617214830530449,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 77,
+              "rows_over_tolerance": 10924,
+              "max_delta": 0.7303726936295293,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1292,
+              "max_delta": 0.7804786907134837,
+              "pass_labels": 0.0030715696898923543,
+              "pass_conf": 0.0
+            },
+            "seconds": 8.3
+          }
+        },
+        "base_values_zeroed": {
+          "three": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 1.7881393432617188e-07,
+            "gate_fails": false
+          },
+          "crossing": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 2.384185791015625e-07,
+            "gate_fails": false
+          },
+          "replay": {
+            "label_flips": 0,
+            "max_delta": 2.384185791015625e-07
+          }
+        }
+      }
+    },
+    "UNSW-NB15": {
+      "sklearn_rf": {
+        "probes": {
+          "three": 726261,
+          "crossing": 484174
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.682209014892578e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.682209014892578e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 106.7
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.682209014892578e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.682209014892578e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 72.2
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.682209014892578e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.682209014892578e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 74.1
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 7.152557373046875e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 57.1
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 190,
+              "rows_over_tolerance": 43931,
+              "max_delta": 0.07424110817111829,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 347,
+              "rows_over_tolerance": 85593,
+              "max_delta": 0.09114382544601568,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 8,
+              "max_delta": 0.029857123212423176,
+              "pass_labels": 0.8233741428181588,
+              "pass_conf": 7.597848729835391e-07
+            },
+            "seconds": 82.9
+          }
+        }
+      },
+      "sklearn_hgb": {
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 3522,
+              "rows_over_tolerance": 17976,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 2428,
+              "rows_over_tolerance": 11985,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 4213,
+              "max_delta": 0.18693208694458008,
+              "pass_labels": 2.376948444448613e-46,
+              "pass_conf": 0.0
+            },
+            "seconds": 4.3
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 3522,
+              "rows_over_tolerance": 17976,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 2428,
+              "rows_over_tolerance": 11985,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 4213,
+              "max_delta": 0.18693208694458008,
+              "pass_labels": 2.376948444448613e-46,
+              "pass_conf": 0.0
+            },
+            "seconds": 4.7
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 3522,
+              "rows_over_tolerance": 17976,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 2428,
+              "rows_over_tolerance": 11985,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 4213,
+              "max_delta": 0.18693208694458008,
+              "pass_labels": 2.376948444448613e-46,
+              "pass_conf": 0.0
+            },
+            "seconds": 4.4
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 3522,
+              "rows_over_tolerance": 17976,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 2428,
+              "rows_over_tolerance": 11985,
+              "max_delta": 0.1869320273399353,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 4213,
+              "max_delta": 0.18693208694458008,
+              "pass_labels": 2.376948444448613e-46,
+              "pass_conf": 0.0
+            },
+            "seconds": 2.5
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 3518,
+              "rows_over_tolerance": 17978,
+              "max_delta": 0.7525423507609356,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 2556,
+              "rows_over_tolerance": 11987,
+              "max_delta": 0.9580675036130364,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 4240,
+              "max_delta": 0.41315733562050966,
+              "pass_labels": 1.1905851694935594e-46,
+              "pass_conf": 0.0
+            },
+            "seconds": 6.6
+          }
+        },
+        "base_values_zeroed": {
+          "three": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 1.7881393432617188e-07,
+            "gate_fails": false
+          },
+          "crossing": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 1.7881393432617188e-07,
+            "gate_fails": false
+          },
+          "replay": {
+            "label_flips": 0,
+            "max_delta": 3.5762786865234375e-07
+          }
+        }
+      },
+      "lightgbm": {
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.7
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.9
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.8
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.7
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 36,
+              "rows_over_tolerance": 758,
+              "max_delta": 0.491726017382042,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 94,
+              "rows_over_tolerance": 2191,
+              "max_delta": 0.8639193448067954,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 1,
+              "max_delta": 0.04924560110575571,
+              "pass_labels": 0.9760006379891525,
+              "pass_conf": 0.7116881912599455
+            },
+            "seconds": 5.0
+          }
+        }
+      },
+      "xgboost_hist": {
+        "probes": {
+          "three": 53916,
+          "crossing": 35944
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1181,
+              "rows_over_tolerance": 53646,
+              "max_delta": 0.18693411350250244,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 775,
+              "rows_over_tolerance": 35763,
+              "max_delta": 0.18693411350250244,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 2741,
+              "max_delta": 0.18693417310714722,
+              "pass_labels": 3.895757182391339e-30,
+              "pass_conf": 0.0
+            },
+            "seconds": 2.7
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1181,
+              "rows_over_tolerance": 53646,
+              "max_delta": 0.18693411350250244,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 775,
+              "rows_over_tolerance": 35763,
+              "max_delta": 0.18693411350250244,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 2741,
+              "max_delta": 0.18693417310714722,
+              "pass_labels": 3.895757182391339e-30,
+              "pass_conf": 0.0
+            },
+            "seconds": 2.5
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1181,
+              "rows_over_tolerance": 53646,
+              "max_delta": 0.18693411350250244,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 775,
+              "rows_over_tolerance": 35763,
+              "max_delta": 0.18693411350250244,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 2741,
+              "max_delta": 0.18693417310714722,
+              "pass_labels": 3.895757182391339e-30,
+              "pass_conf": 0.0
+            },
+            "seconds": 2.7
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 1181,
+              "rows_over_tolerance": 53646,
+              "max_delta": 0.18693402409553528,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 775,
+              "rows_over_tolerance": 35763,
+              "max_delta": 0.18693402409553528,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 2741,
+              "max_delta": 0.18693417310714722,
+              "pass_labels": 3.895757182391339e-30,
+              "pass_conf": 0.0
+            },
+            "seconds": 1.2
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1238,
+              "rows_over_tolerance": 53633,
+              "max_delta": 0.9724187722931162,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 874,
+              "rows_over_tolerance": 35743,
+              "max_delta": 0.9724187722931162,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 2695,
+              "max_delta": 0.5641649207152439,
+              "pass_labels": 1.2372345045519948e-29,
+              "pass_conf": 0.0
+            },
+            "seconds": 3.7
+          }
+        },
+        "base_values_zeroed": {
+          "three": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 2.682209014892578e-07,
+            "gate_fails": false
+          },
+          "crossing": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 2.682209014892578e-07,
+            "gate_fails": false
+          },
+          "replay": {
+            "label_flips": 0,
+            "max_delta": 1.7881393432617188e-07
+          }
+        }
+      }
+    },
+    "ToN-IoT": {
+      "sklearn_rf": {
+        "probes": {
+          "three": 228057,
+          "crossing": 152038
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 15.9
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 17.0
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 13.4
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.556510925292969e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 7.152557373046875e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 8.6
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1041,
+              "rows_over_tolerance": 16130,
+              "max_delta": 0.3695468075420649,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 2635,
+              "rows_over_tolerance": 40670,
+              "max_delta": 0.4166708888951689,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 0.015000035166267689,
+              "pass_labels": 1.0,
+              "pass_conf": 0.5662699068869015
+            },
+            "seconds": 18.3
+          }
+        }
+      },
+      "sklearn_hgb": {
+        "probes": {
+          "three": 16470,
+          "crossing": 10980
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1440,
+              "rows_over_tolerance": 16448,
+              "max_delta": 0.2843528389930725,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 957,
+              "rows_over_tolerance": 10967,
+              "max_delta": 0.28435301780700684,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 75,
+              "max_delta": 0.28425610065460205,
+              "pass_labels": 0.09342595801534358,
+              "pass_conf": 0.0
+            },
+            "seconds": 3.6
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1440,
+              "rows_over_tolerance": 16448,
+              "max_delta": 0.2843528389930725,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 957,
+              "rows_over_tolerance": 10967,
+              "max_delta": 0.28435301780700684,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 75,
+              "max_delta": 0.28425610065460205,
+              "pass_labels": 0.09342595801534358,
+              "pass_conf": 0.0
+            },
+            "seconds": 2.9
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1440,
+              "rows_over_tolerance": 16448,
+              "max_delta": 0.2843528389930725,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 957,
+              "rows_over_tolerance": 10967,
+              "max_delta": 0.28435301780700684,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 75,
+              "max_delta": 0.28425610065460205,
+              "pass_labels": 0.09342595801534358,
+              "pass_conf": 0.0
+            },
+            "seconds": 3.1
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 1440,
+              "rows_over_tolerance": 16448,
+              "max_delta": 0.2843528389930725,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 957,
+              "rows_over_tolerance": 10967,
+              "max_delta": 0.2843530476093292,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 75,
+              "max_delta": 0.28425610065460205,
+              "pass_labels": 0.09342595801534358,
+              "pass_conf": 0.0
+            },
+            "seconds": 1.2
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 1482,
+              "rows_over_tolerance": 16447,
+              "max_delta": 0.9303023393200445,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 1016,
+              "rows_over_tolerance": 10963,
+              "max_delta": 0.9303023393200445,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 75,
+              "max_delta": 0.2842561189594881,
+              "pass_labels": 0.09342595801534358,
+              "pass_conf": 0.0
+            },
+            "seconds": 5.1
+          }
+        },
+        "base_values_zeroed": {
+          "three": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 1.7881393432617188e-07,
+            "gate_fails": false
+          },
+          "crossing": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 1.7881393432617188e-07,
+            "gate_fails": false
+          },
+          "replay": {
+            "label_flips": 0,
+            "max_delta": 1.7881393432617188e-07
+          }
+        }
+      },
+      "lightgbm": {
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 4.2
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 5.5
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 4.8
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 2.6
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 175,
+              "rows_over_tolerance": 1474,
+              "max_delta": 0.7827837167601418,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 442,
+              "rows_over_tolerance": 3890,
+              "max_delta": 0.9276449068164475,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 9.416253968308927e-05,
+              "pass_labels": 1.0,
+              "pass_conf": 0.9689043920261076
+            },
+            "seconds": 7.4
+          }
+        }
+      },
+      "xgboost_hist": {
+        "probes": {
+          "three": 20805,
+          "crossing": 13870
+        },
+        "variants": {
+          "cpu_gemm": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 929,
+              "rows_over_tolerance": 20324,
+              "max_delta": 0.28435325622558594,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 602,
+              "rows_over_tolerance": 13556,
+              "max_delta": 0.28435325622558594,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 182,
+              "max_delta": 0.28435319662094116,
+              "pass_labels": 0.0031590199003068984,
+              "pass_conf": 0.0
+            },
+            "seconds": 1.3
+          },
+          "cpu_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 929,
+              "rows_over_tolerance": 20324,
+              "max_delta": 0.28435325622558594,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 602,
+              "rows_over_tolerance": 13556,
+              "max_delta": 0.28435325622558594,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 182,
+              "max_delta": 0.28435319662094116,
+              "pass_labels": 0.0031590199003068984,
+              "pass_conf": 0.0
+            },
+            "seconds": 1.3
+          },
+          "cpu_perf_tree_trav": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 929,
+              "rows_over_tolerance": 20324,
+              "max_delta": 0.28435325622558594,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 602,
+              "rows_over_tolerance": 13556,
+              "max_delta": 0.28435325622558594,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 182,
+              "max_delta": 0.28435319662094116,
+              "pass_labels": 0.0031590199003068984,
+              "pass_conf": 0.0
+            },
+            "seconds": 1.3
+          },
+          "gpu_mps_gemm": {
+            "device": "mps:0",
+            "three": {
+              "label_flips": 929,
+              "rows_over_tolerance": 20324,
+              "max_delta": 0.28435319662094116,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 602,
+              "rows_over_tolerance": 13556,
+              "max_delta": 0.28435319662094116,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 182,
+              "max_delta": 0.28435319662094116,
+              "pass_labels": 0.0031590199003068984,
+              "pass_conf": 0.0
+            },
+            "seconds": 0.8
+          },
+          "cpu_gemm_float64": {
+            "device": "cpu",
+            "three": {
+              "label_flips": 959,
+              "rows_over_tolerance": 20334,
+              "max_delta": 0.9572649963008284,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 664,
+              "rows_over_tolerance": 13550,
+              "max_delta": 0.9572649963008284,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 181,
+              "max_delta": 0.408173153387015,
+              "pass_labels": 0.0032606994500250347,
+              "pass_conf": 0.0
+            },
+            "seconds": 1.7
+          }
+        },
+        "base_values_zeroed": {
+          "three": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 2.384185791015625e-07,
+            "gate_fails": false
+          },
+          "crossing": {
+            "label_flips": 0,
+            "rows_over_tolerance": 0,
+            "max_delta": 2.384185791015625e-07,
+            "gate_fails": false
+          },
+          "replay": {
+            "label_flips": 0,
+            "max_delta": 1.1920928955078125e-07
+          }
+        }
+      }
+    }
+  }
+}

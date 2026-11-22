@@ -1,0 +1,5237 @@
+{
+ "entries": [
+  {
+   "id": "exp30/deployed_rf/arithmetic/float64",
+   "model": "deployed_rf",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic (mirrors a real defect)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/arithmetic/float64_scaler",
+   "model": "deployed_rf",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/arithmetic/scaler_reordered",
+   "model": "deployed_rf",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/arithmetic/raw_thresholds",
+   "model": "deployed_rf",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/arithmetic/strict_less",
+   "model": "deployed_rf",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/arithmetic/decimal_thresholds",
+   "model": "deployed_rf",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/exporter/thr_all_up",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/exporter/thr_one_up",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/exporter/feature_swap",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, many nodes",
+   "theorem": "structure",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/exporter/offset_one_up",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, nodes on one feature",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/exporter/scale_fp16",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/exporter/leaf_tree0",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weights, one tree",
+   "theorem": "structure",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_3161",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_7846",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_14418",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_33585",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_51699",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_58993",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_96520",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_97951",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_104196",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_107318",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_116265",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_121185",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_122064",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_124461",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_139821",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_155871",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_163011",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_174939",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_179228",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/single_node/node_186056",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/leq_to_lt",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/lt_to_leq",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/strict_ignored",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/children_swapped",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/offset_sign",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/scaler_reordered",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/input_float64",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/scores_float64",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "score accumulation",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/first_tree_skipped",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "tree dropped",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/last_block_short",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "tree dropped",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/base_dropped",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/tie_to_class1",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "label rule",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/logistic_sign",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "post-transform",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/argmax_to_argmin",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "label rule",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/deployed_rf/engine/block_size_halved",
+   "model": "deployed_rf",
+   "injected_into": "NumPy engine code",
+   "fault_model": "batching",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/arithmetic/float64",
+   "model": "xgboost_hist",
+   "injected_into": "runtime arithmetic",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic (mirrors a real defect)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/thr_all_up",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/thr_one_up",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/feature_swap",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, many nodes",
+   "theorem": "structure",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/offset_one_up",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, nodes on one feature",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/scale_fp16",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/leaf_tree0",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weights, one tree",
+   "theorem": "structure",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/mode_dropped",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/exporter/base_dropped",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "base value",
+   "theorem": "structure",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_296",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_742",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_1365",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_3187",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_4916",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_5611",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_9199",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_9325",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_9937",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_10236",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_11090",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_11563",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_11627",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_11871",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_13353",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_14883",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_15554",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_16715",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_17143",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/single_node/node_17785",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/leq_to_lt",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/lt_to_leq",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/strict_ignored",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/children_swapped",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/offset_sign",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/scaler_reordered",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/input_float64",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/scores_float64",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "score accumulation",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/first_tree_skipped",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "tree dropped",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/last_block_short",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "tree dropped",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/base_dropped",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/tie_to_class1",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "label rule",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/logistic_sign",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "post-transform",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/argmax_to_argmin",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "label rule",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp30/xgboost_hist/engine/block_size_halved",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy engine code",
+   "fault_model": "batching",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": false,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_3174",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_7858",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_14425",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_33599",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_51717",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_59001",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_96532",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_97967",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_104205",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_107329",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_116281",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_121197",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_122076",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_124474",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_139829",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_155878",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_163022",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_174948",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_179242",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_leaf/leaf_186070",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_1022",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_1583",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_5420",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_23811",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_49306",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_72740",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_73530",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_77272",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_81002",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_88334",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_100731",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_117939",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_124032",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_128522",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_131395",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_146435",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_154287",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_182110",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_187996",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/deployed_rf/coupled_feature/feature_191131",
+   "model": "deployed_rf",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_309",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_758",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_1387",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_3231",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_4964",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_5661",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_9261",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_9390",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_10000",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_10293",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_11148",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_11622",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_11689",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_11927",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_13393",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_14915",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_15581",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_16734",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_17158",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_leaf/leaf_17802",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_91",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_148",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_509",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_2258",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_4694",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_6932",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_7002",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_7351",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_7705",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_8416",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_9598",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_11248",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_11823",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_12254",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_12546",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": false,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_13981",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_14739",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_17415",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_17977",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp40/xgboost_hist/coupled_feature/feature_18276",
+   "model": "xgboost_hist",
+   "injected_into": "NumPy artifact",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "structure": true,
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/thr_all_up",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/thr_one_up",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/feature_swap",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, many nodes",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": false,
+    "leafparity_error": "UnsupportedModelError: could not match original and converted trees one-to-one"
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/leaf_tree0",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weights, one tree",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/mode_flipped",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/base_dropped",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": false,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_44",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_296",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_396",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_606",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_739",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_1361",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_1457",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_1619",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": false,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_3177",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_3193",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_4898",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_5045",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_5467",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_5592",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_7180",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": false,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_7715",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_8785",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_9171",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_9296",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/single_node/node_9882",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_898",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_1084",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_1466",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_1551",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_4177",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_4406",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_4674",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_4851",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_5819",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/leaf_5906",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": false,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_1917",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_7480",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_8037",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_8655",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_9309",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_11492",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_11622",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_13971",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_16968",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/coupled/feature_17482",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_0",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_1",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_2",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: threshold",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_3",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_4",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_5",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_6",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_7",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_8",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_2/draw_9",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_0",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_1",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_2",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_3",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_4",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_5",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_6",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_7",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_8",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_5/draw_9",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_0",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_1",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_2",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_3",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_4",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_5",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_6",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_7",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_8",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/xgboost_hist/multi_10/draw_9",
+   "model": "xgboost_hist (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/thr_all_up",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/thr_one_up",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/feature_swap",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, many nodes",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/leaf_tree0",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weights, one tree",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/mode_flipped",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, every node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_736",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_4472",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_5985",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_9099",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_11100",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_20393",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_21792",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_24205",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_47521",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_47631",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_73138",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_75205",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_81280",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_83460",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_106879",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": false,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_114634",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_130459",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_136554",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_138579",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/single_node/node_146838",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "single-switch, one node",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_71580",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_91637",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_97028",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_154984",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_195116",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_206285",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_213474",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_214723",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/leaf_225821",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "leaf weight, one leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_28600",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_111138",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_119428",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_128607",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_138320",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_170607",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_172605",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_207190",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_251446",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/coupled/feature_258896",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "feature mapping, one node",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_0",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_1",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: threshold",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_2",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_3",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: threshold",
+   "theorem": "proved",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_4",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_5",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_6",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_7",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_8",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_2/draw_9",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_0",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_1",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_2",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_3",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_4",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_5",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_6",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_7",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_8",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_5/draw_9",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_0",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_1",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_2",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_3",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_4",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_5",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_6",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_7",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_8",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp43/sklearn_rf/multi_10/draw_9",
+   "model": "sklearn_rf (no scaler)",
+   "injected_into": "ONNX graph (converter)",
+   "fault_model": "multi-node: feature,leaf,threshold",
+   "theorem": "empirical",
+   "provenance": "synthetic",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": null,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp41/1.26.0/CICIDS2017/sklearn_rf",
+   "model": "CICIDS2017 sklearn_rf",
+   "injected_into": "runtime release",
+   "fault_model": "label rule / probability row",
+   "theorem": "empirical",
+   "provenance": "real: ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp41/1.26.0/UNSW-NB15/sklearn_rf",
+   "model": "UNSW-NB15 sklearn_rf",
+   "injected_into": "runtime release",
+   "fault_model": "label rule / probability row",
+   "theorem": "empirical",
+   "provenance": "real: ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp41/1.26.0/ToN-IoT/sklearn_rf",
+   "model": "ToN-IoT sklearn_rf",
+   "injected_into": "runtime release",
+   "fault_model": "label rule / probability row",
+   "theorem": "empirical",
+   "provenance": "real: ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp41/1.27.0/CICIDS2017/sklearn_rf",
+   "model": "CICIDS2017 sklearn_rf",
+   "injected_into": "runtime release",
+   "fault_model": "label rule / probability row",
+   "theorem": "empirical",
+   "provenance": "real: ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp41/1.27.0/UNSW-NB15/sklearn_rf",
+   "model": "UNSW-NB15 sklearn_rf",
+   "injected_into": "runtime release",
+   "fault_model": "label rule / probability row",
+   "theorem": "empirical",
+   "provenance": "real: ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp41/1.27.0/ToN-IoT/sklearn_rf",
+   "model": "ToN-IoT sklearn_rf",
+   "injected_into": "runtime release",
+   "fault_model": "label rule / probability row",
+   "theorem": "empirical",
+   "provenance": "real: ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp39/CICIDS2017/sklearn_hgb",
+   "model": "CICIDS2017 sklearn_hgb",
+   "injected_into": "third-party runtime",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "real: Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+   "changes_output": true,
+   "variants_failing": [
+    "cpu_gemm",
+    "cpu_perf_tree_trav",
+    "cpu_tree_trav",
+    "gpu_mps_gemm"
+   ],
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp39/CICIDS2017/xgboost_hist",
+   "model": "CICIDS2017 xgboost_hist",
+   "injected_into": "third-party runtime",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "real: Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+   "changes_output": true,
+   "variants_failing": [
+    "cpu_gemm",
+    "cpu_perf_tree_trav",
+    "cpu_tree_trav",
+    "gpu_mps_gemm"
+   ],
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp39/UNSW-NB15/sklearn_hgb",
+   "model": "UNSW-NB15 sklearn_hgb",
+   "injected_into": "third-party runtime",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "real: Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+   "changes_output": true,
+   "variants_failing": [
+    "cpu_gemm",
+    "cpu_perf_tree_trav",
+    "cpu_tree_trav",
+    "gpu_mps_gemm"
+   ],
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp39/UNSW-NB15/xgboost_hist",
+   "model": "UNSW-NB15 xgboost_hist",
+   "injected_into": "third-party runtime",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "real: Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+   "changes_output": true,
+   "variants_failing": [
+    "cpu_gemm",
+    "cpu_perf_tree_trav",
+    "cpu_tree_trav",
+    "gpu_mps_gemm"
+   ],
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp39/ToN-IoT/sklearn_hgb",
+   "model": "ToN-IoT sklearn_hgb",
+   "injected_into": "third-party runtime",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "real: Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+   "changes_output": true,
+   "variants_failing": [
+    "cpu_gemm",
+    "cpu_perf_tree_trav",
+    "cpu_tree_trav",
+    "gpu_mps_gemm"
+   ],
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp39/ToN-IoT/xgboost_hist",
+   "model": "ToN-IoT xgboost_hist",
+   "injected_into": "third-party runtime",
+   "fault_model": "base value",
+   "theorem": "empirical",
+   "provenance": "real: Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+   "changes_output": true,
+   "variants_failing": [
+    "cpu_gemm",
+    "cpu_perf_tree_trav",
+    "cpu_tree_trav",
+    "gpu_mps_gemm"
+   ],
+   "checks": {
+    "replay_2000": true,
+    "crossing": true
+   }
+  },
+  {
+   "id": "exp12/skl2onnx_1.20/CICIDS2017/sklearn_hgb",
+   "model": "CICIDS2017 sklearn_hgb",
+   "injected_into": "converter release",
+   "fault_model": "single-switch, every node (rounded thresholds)",
+   "theorem": "proved",
+   "provenance": "real: skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 (fixed by sklearn-onnx PR 1227)",
+   "changes_output": true,
+   "checks": {},
+   "note": "measured as converter divergence in exp12/exp12b/exp19"
+  }
+ ],
+ "by_fault_model": {
+  "single-switch, many nodes": {
+   "faults": 30,
+   "replay_2000": "27/29",
+   "crossing": "29/29",
+   "crossing_margin": "6/6",
+   "leafparity": "4/4"
+  },
+  "feature mapping": {
+   "faults": 64,
+   "replay_2000": "27/64",
+   "crossing": "60/64",
+   "crossing_margin": "32/32",
+   "structure": "40/40",
+   "leafparity": "21/22"
+  },
+  "leaf weights": {
+   "faults": 63,
+   "replay_2000": "28/63",
+   "crossing": "51/63",
+   "crossing_margin": "31/32",
+   "structure": "40/40",
+   "leafparity": "21/21"
+  },
+  "single-switch, one node": {
+   "faults": 81,
+   "replay_2000": "4/81",
+   "crossing": "58/81",
+   "crossing_margin": "40/42",
+   "leafparity": "42/42"
+  },
+  "aggregation, label rule, post-transform": {
+   "faults": 6,
+   "replay_2000": "6/6",
+   "crossing": "6/6"
+  },
+  "base value": {
+   "faults": 9,
+   "replay_2000": "9/9",
+   "crossing": "9/9",
+   "crossing_margin": "2/2",
+   "leafparity": "0/1"
+  },
+  "multi-node, mixed kinds": {
+   "faults": 57,
+   "replay_2000": "53/57",
+   "crossing": "57/57",
+   "crossing_margin": "29/29",
+   "leafparity": "57/57"
+  },
+  "multi-node, single-switch only": {
+   "faults": 3,
+   "replay_2000": "0/3",
+   "crossing": "3/3",
+   "crossing_margin": "1/1",
+   "leafparity": "3/3"
+  },
+  "runtime release: decision rule": {
+   "faults": 6,
+   "replay_2000": "6/6",
+   "crossing": "6/6"
+  }
+ },
+ "counts": {
+  "faults": 334,
+  "changing_output": 319,
+  "real": 13,
+  "by_theorem": {
+   "proved": 120,
+   "structure": 5,
+   "empirical": 209
+  }
+ },
+ "summary_detected_over_total": {
+  "empirical | base value": {
+   "replay_2000": "8/8",
+   "crossing": "8/8",
+   "crossing_margin": "1/1",
+   "leafparity": "0/1"
+  },
+  "empirical | feature mapping": {
+   "structure": "40/40",
+   "replay_2000": "25/62",
+   "crossing": "58/62",
+   "crossing_margin": "31/31",
+   "leafparity": "21/22"
+  },
+  "empirical | label rule": {
+   "replay_2000": "1/1",
+   "crossing": "1/1"
+  },
+  "empirical | label rule / probability row": {
+   "replay_2000": "6/6",
+   "crossing": "6/6"
+  },
+  "empirical | leaf weight": {
+   "structure": "40/40",
+   "replay_2000": "24/59",
+   "crossing": "47/59",
+   "crossing_margin": "29/30",
+   "leafparity": "19/19"
+  },
+  "empirical | leaf weights": {
+   "replay_2000": "2/2",
+   "crossing": "2/2",
+   "crossing_margin": "1/1",
+   "leafparity": "2/2"
+  },
+  "empirical | multi-node": {
+   "replay_2000": "53/57",
+   "crossing": "57/57",
+   "crossing_margin": "29/29",
+   "leafparity": "57/57"
+  },
+  "empirical | post-transform": {
+   "replay_2000": "1/1",
+   "crossing": "1/1"
+  },
+  "empirical | tree dropped": {
+   "replay_2000": "4/4",
+   "crossing": "4/4"
+  },
+  "proved | multi-node": {
+   "replay_2000": "0/3",
+   "crossing": "3/3",
+   "crossing_margin": "1/1",
+   "leafparity": "3/3"
+  },
+  "proved | single-switch": {
+   "replay_2000": "31/110",
+   "crossing": "87/110",
+   "crossing_margin": "46/48",
+   "leafparity": "46/46"
+  },
+  "structure | base value": {
+   "replay_2000": "1/1",
+   "crossing": "1/1",
+   "crossing_margin": "1/1"
+  },
+  "structure | feature mapping": {
+   "replay_2000": "2/2",
+   "crossing": "2/2",
+   "crossing_margin": "1/1"
+  },
+  "structure | leaf weights": {
+   "replay_2000": "2/2",
+   "crossing": "2/2",
+   "crossing_margin": "1/1"
+  }
+ },
+ "real_defects": {
+  "ort_1.26_1.27": "ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
+  "skl2onnx_1.20_hgb": "skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 (fixed by sklearn-onnx PR 1227)",
+  "hummingbird_base": "Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
+  "own_float64": "the project's own early exporter traversed in float64 (mirrored by arithmetic/float64)"
+ }
+}

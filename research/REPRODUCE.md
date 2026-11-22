@@ -234,6 +234,12 @@ done
 # PyTorch wheel (torch-2.5.0a0+872d972e41.nv24.08), numpy<2, hummingbird-ml, onnxruntime==1.23.2; cusparseLt 0.6.2.3 from
 # NVIDIA's redistributable archive on LD_LIBRARY_PATH (~25 min on the board)
 PYTHONPATH=research/code ~/hbvenv2/bin/python research/code/experiments/exp42_hummingbird_cuda.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
+# Leafparity and the data-free probes on the same converter faults written into the graph (whole-graph, single-node,
+# coupled and multi-node), XGBoost and scikit-learn RF trained without a scaler so the unmutated pairs are EQUIVALENT;
+# the .lpvenv of exp21 (~45 min)
+PYTHONPATH=research/code .lpvenv/bin/python research/code/experiments/exp43_converter_faults_leafparity.py --cicids-train $TRAIN --cicids-test $DATA
+# the fault benchmark: every fault of exp30/40/43 and the real defects of exp12/39/41, with class, provenance and outcomes (no new runs)
+python research/code/experiments/exp44_fault_benchmark.py
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -368,6 +374,8 @@ Paths are relative to `research/code/`.
 | Fault-class ablation, coupled one-element faults (`tab:faultsummary`, EASE version) | `results/exp40_fault_class_ablation.json` |
 | The gate (probes and replay) under ONNX Runtime 1.26.0, 1.27.0 and 1.30.0 | `results/exp41_ort_release_gate_<version>.json` |
 | Hummingbird on the Jetson's CUDA GPU at float32, TF32 and bf16 matmul precision | `results/exp42_hummingbird_cuda.json` |
+| Leafparity vs the data-free probes on the same converter faults, incl. multi-node faults | `results/exp43_converter_faults_leafparity.json` |
+| Fault benchmark: class, provenance, Theorem 1 coverage and outcomes of every fault | `results/exp44_fault_benchmark.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

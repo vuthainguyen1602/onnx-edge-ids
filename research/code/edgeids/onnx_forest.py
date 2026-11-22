@@ -33,6 +33,7 @@ class OnnxForest:
     post_transform: str
     class_labels: np.ndarray
     n_features: int
+    missing_true: np.ndarray = None  # nodes_missing_value_tracks_true: NaN takes the true branch
 
     @property
     def n_trees(self):
@@ -133,11 +134,14 @@ def load_onnx_forest(path):
         offset = np.zeros(n_features, dtype=np.float32)
         scale = np.ones(n_features, dtype=np.float32)
 
+    mt = a.get("nodes_missing_value_tracks_true")
+    missing_true = (np.asarray(mt, dtype=bool)[order] if mt is not None and len(mt) == len(order)
+                    else np.zeros(n, dtype=bool))
     return OnnxForest(
         offset=offset, scale=scale, tree_offsets=tree_offsets, left=left, right=right,
         feature=feature, threshold=threshold, mode=mode, leaf_scores=leaf_scores,
         base_values=base, post_transform=a.get("post_transform", "NONE"),
-        class_labels=labels, n_features=int(n_features),
+        class_labels=labels, n_features=int(n_features), missing_true=missing_true,
     )
 
 
@@ -147,12 +151,16 @@ def scale_input(forest, matrix, dtype):
     return (x - forest.offset.astype(dtype)) * forest.scale.astype(dtype)
 
 
-def _go_true(mode, x, t):
+def _go_true(mode, x, t, missing=None):
+    """Branch decision as ONNX Runtime takes it: the comparison, or, for a NaN input, the node's
+    missing-value flag (``missing``: nodes_missing_value_tracks_true of these nodes)."""
     out = np.empty(len(x), dtype=bool)
     for code, op in ((0, np.less_equal), (1, np.less), (2, np.greater_equal), (3, np.greater), (4, np.equal), (5, np.not_equal)):
         m = mode == code
         if m.any():
             out[m] = op(x[m], t[m])
+    if missing is not None:
+        out |= missing & np.isnan(x)
     return out
 
 
@@ -171,7 +179,7 @@ def raw_scores(forest, matrix, dtype):
         while active.any():
             rows = np.flatnonzero(active)
             cur = node[rows]
-            go = _go_true(forest.mode[cur], scaled[rows, forest.feature[cur]], thr[cur])
+            go = _go_true(forest.mode[cur], scaled[rows, forest.feature[cur]], thr[cur], forest.missing_true[cur])
             nxt = np.where(go, forest.left[cur], forest.right[cur])
             node[rows] = nxt
             active[rows] = ~is_leaf[nxt]
@@ -206,12 +214,21 @@ def predict(forest, matrix, dtype, batch=50000):
 
 
 def parents(forest):
+    """One parent per node and whether the node is its true child.
+
+    A converter can share a child between two parents (onnxmltools writes a BRANCH_EQ node in
+    front of a zero-as-missing split whose true branch is that split's default child), so the
+    tree is a DAG. Any one parent gives a valid path; a monotone parent is preferred, so that
+    routed rows take ordinary values rather than the equality's pinned one."""
     parent = np.full(len(forest.left), -1, dtype=np.int64)
     went_true = np.zeros(len(forest.left), dtype=bool)
     internal = np.flatnonzero(~forest.is_leaf)
-    parent[forest.left[internal]] = internal
-    went_true[forest.left[internal]] = True
-    parent[forest.right[internal]] = internal
+    eq = np.isin(forest.mode[internal], (4, 5))
+    for group in (internal[eq], internal[~eq]):        # later assignments win: monotone parents last
+        parent[forest.right[group]] = group
+        went_true[forest.right[group]] = False
+        parent[forest.left[group]] = group
+        went_true[forest.left[group]] = True
     return parent, went_true
 
 
@@ -227,11 +244,18 @@ def path_rows(forest, targets, base):
     offset = forest.offset.astype(np.float64)
     rows = base.astype(np.float64).copy()
     for i, node in enumerate(targets):
-        lo, hi = {}, {}
+        lo, hi, pin, avoid = {}, {}, {}, {}
         cur = node
         while parent[cur] >= 0:
             p = parent[cur]
             g, t, m = int(forest.feature[p]), float(forest.threshold[p]), int(forest.mode[p])
+            if m in (4, 5):             # EQ / NEQ: the branch where x == t pins it, the other avoids it
+                if went_true[cur] == (m == 4):
+                    pin[g] = t
+                else:
+                    avoid.setdefault(g, set()).add(t)
+                cur = p
+                continue
             true_is_low = m in (0, 1)   # LEQ / LT: the true branch is x below t
             below = went_true[cur] == true_is_low
             if below:
@@ -239,14 +263,20 @@ def path_rows(forest, targets, base):
             else:
                 lo[g] = max(lo.get(g, -np.inf), t)
             cur = p
-        for g in set(lo) | set(hi):
+        for g in set(lo) | set(hi) | set(pin) | set(avoid):
             a, b = lo.get(g, -np.inf), hi.get(g, np.inf)
-            if np.isfinite(a) and np.isfinite(b):
+            if g in pin:
+                s = pin[g]
+            elif np.isfinite(a) and np.isfinite(b):
                 s = (a + b) / 2.0
             elif np.isfinite(b):
                 s = b - 1.0
-            else:
+            elif np.isfinite(a):
                 s = a + 1.0
+            else:
+                s = 0.0
+            while g not in pin and s in avoid.get(g, ()):
+                s = np.nextafter(np.float32(s), np.float32(np.inf)).astype(np.float64)
             rows[i, g] = s / scale[g] + offset[g] if scale[g] != 0 else offset[g]
     return rows.astype(np.float32)
 
@@ -263,7 +293,7 @@ def reaches(forest, rows, targets, dtype=np.float32):
     while active.any():
         a = np.flatnonzero(active)
         c = cur[a]
-        go = _go_true(forest.mode[c], scaled[idx[a], forest.feature[c]], thr[c])
+        go = _go_true(forest.mode[c], scaled[idx[a], forest.feature[c]], thr[c], forest.missing_true[c])
         cur[a] = np.where(go, forest.left[c], forest.right[c])
         hit[a] = cur[a] == targets[a]
         active[a] = ~forest.is_leaf[cur[a]] & ~hit[a]
@@ -298,7 +328,7 @@ def _leaf_of_tree(forest, scaled, thr, t):
     while active.any():
         rows = np.flatnonzero(active)
         cur = node[rows]
-        go = _go_true(forest.mode[cur], scaled[rows, forest.feature[cur]], thr[cur])
+        go = _go_true(forest.mode[cur], scaled[rows, forest.feature[cur]], thr[cur], forest.missing_true[cur])
         nxt = np.where(go, forest.left[cur], forest.right[cur])
         node[rows] = nxt
         active[rows] = ~is_leaf[nxt]

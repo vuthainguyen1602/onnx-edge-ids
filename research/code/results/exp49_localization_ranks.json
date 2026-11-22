@@ -1,0 +1,6843 @@
+{
+ "tolerance": 1e-05,
+ "margin_tolerance": 0.0001,
+ "models": {
+  "xgboost_hist": {
+   "single_node/node_44": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 6,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 6,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.1
+    }
+   },
+   "single_node/node_296": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "single_node/node_396": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.3
+    }
+   },
+   "single_node/node_606": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "single_node/node_739": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.1
+    }
+   },
+   "single_node/node_1361": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.3
+    }
+   },
+   "single_node/node_1457": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.0
+    }
+   },
+   "single_node/node_1619": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.5
+    }
+   },
+   "single_node/node_3177": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "single_node/node_3193": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.7
+    }
+   },
+   "single_node/node_4898": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "single_node/node_5045": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.0
+    }
+   },
+   "single_node/node_5467": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 3,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.8
+    }
+   },
+   "single_node/node_5592": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.6
+    }
+   },
+   "single_node/node_7180": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "single_node/node_7715": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.6
+    }
+   },
+   "single_node/node_8785": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.2
+    }
+   },
+   "single_node/node_9171": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.8
+    }
+   },
+   "single_node/node_9296": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 7,
+      "top1": false,
+      "top3": false,
+      "rr": 0.14285714285714285,
+      "inspected_before": 6,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 9,
+      "first_rank": 7,
+      "top1": false,
+      "top3": false,
+      "rr": 0.14285714285714285,
+      "inspected_before": 6,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "single_node/node_9882": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 4,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 4,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.5
+    }
+   },
+   "coupled/leaf_898": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 7,
+      "first_rank": 7,
+      "top1": false,
+      "top3": false,
+      "rr": 0.14285714285714285,
+      "inspected_before": 6,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.0
+    }
+   },
+   "coupled/leaf_1084": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 9,
+      "first_rank": 7,
+      "top1": false,
+      "top3": false,
+      "rr": 0.14285714285714285,
+      "inspected_before": 6,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.1
+    }
+   },
+   "coupled/leaf_1466": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 11,
+      "first_rank": 6,
+      "top1": false,
+      "top3": false,
+      "rr": 0.16666666666666666,
+      "inspected_before": 5,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.8
+    }
+   },
+   "coupled/leaf_1551": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 4,
+      "first_rank": 4,
+      "top1": false,
+      "top3": false,
+      "rr": 0.25,
+      "inspected_before": 3,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.6
+    }
+   },
+   "coupled/leaf_4177": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 4,
+      "first_rank": 4,
+      "top1": false,
+      "top3": false,
+      "rr": 0.25,
+      "inspected_before": 3,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.1
+    }
+   },
+   "coupled/leaf_4406": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 4,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 4,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.1
+    }
+   },
+   "coupled/leaf_4674": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 41,
+      "first_rank": 30,
+      "top1": false,
+      "top3": false,
+      "rr": 0.03333333333333333,
+      "inspected_before": 29,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.1
+    }
+   },
+   "coupled/leaf_4851": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 24,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 24,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.0
+    }
+   },
+   "coupled/leaf_5819": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.9
+    }
+   },
+   "coupled/leaf_5906": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.5
+    }
+   },
+   "coupled/feature_1917": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 11,
+      "first_rank": 11,
+      "top1": false,
+      "top3": false,
+      "rr": 0.09090909090909091,
+      "inspected_before": 10,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 6,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.1
+    }
+   },
+   "coupled/feature_7480": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "coupled/feature_8037": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 11,
+      "first_rank": 8,
+      "top1": false,
+      "top3": false,
+      "rr": 0.125,
+      "inspected_before": 7,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.6
+    }
+   },
+   "coupled/feature_8655": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 77,
+      "first_rank": 73,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0136986301369863,
+      "inspected_before": 72,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 18,
+      "first_rank": 17,
+      "top1": false,
+      "top3": false,
+      "rr": 0.058823529411764705,
+      "inspected_before": 16,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "coupled/feature_9309": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 5,
+      "first_rank": 4,
+      "top1": false,
+      "top3": false,
+      "rr": 0.25,
+      "inspected_before": 3,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.2
+    }
+   },
+   "coupled/feature_11492": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.2
+    }
+   },
+   "coupled/feature_11622": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 11,
+      "first_rank": 8,
+      "top1": false,
+      "top3": false,
+      "rr": 0.125,
+      "inspected_before": 7,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 8,
+      "first_rank": 6,
+      "top1": false,
+      "top3": false,
+      "rr": 0.16666666666666666,
+      "inspected_before": 5,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.1
+    }
+   },
+   "coupled/feature_13971": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 816,
+      "first_rank": 812,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0012315270935960591,
+      "inspected_before": 811,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 88,
+      "first_rank": 41,
+      "top1": false,
+      "top3": false,
+      "rr": 0.024390243902439025,
+      "inspected_before": 40,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.4
+    }
+   },
+   "coupled/feature_16968": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 13,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 13,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 5,
+      "top1": false,
+      "top3": false,
+      "rr": 0.2,
+      "inspected_before": 4,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.8
+    }
+   },
+   "coupled/feature_17482": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 6,
+      "first_rank": 6,
+      "top1": false,
+      "top3": false,
+      "rr": 0.16666666666666666,
+      "inspected_before": 5,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 3,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.9
+    }
+   },
+   "multi_2/draw_0": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 26,
+      "first_rank": 21,
+      "top1": false,
+      "top3": false,
+      "rr": 0.047619047619047616,
+      "inspected_before": 20,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 15,
+      "first_rank": 6,
+      "top1": false,
+      "top3": false,
+      "rr": 0.16666666666666666,
+      "inspected_before": 5,
+      "found_in_top10": 0.5
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "multi_2/draw_1": {
+    "class": "multi-node: leaf",
+    "elements": 2,
+    "internal_elements": 0,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 22,
+      "first_rank": 10,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1,
+      "inspected_before": 9,
+      "found_in_top10": 0.5
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.2
+    }
+   },
+   "multi_2/draw_2": {
+    "class": "multi-node: threshold",
+    "elements": 2,
+    "internal_elements": 2,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 53,
+      "first_rank": 47,
+      "top1": false,
+      "top3": false,
+      "rr": 0.02127659574468085,
+      "inspected_before": 46,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 17,
+      "first_rank": 12,
+      "top1": false,
+      "top3": false,
+      "rr": 0.08333333333333333,
+      "inspected_before": 11,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.3
+    }
+   },
+   "multi_2/draw_3": {
+    "class": "multi-node: leaf",
+    "elements": 2,
+    "internal_elements": 0,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 6,
+      "first_rank": 4,
+      "top1": false,
+      "top3": false,
+      "rr": 0.25,
+      "inspected_before": 3,
+      "found_in_top10": 0.5
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.5
+    }
+   },
+   "multi_2/draw_4": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 14,
+      "first_rank": 13,
+      "top1": false,
+      "top3": false,
+      "rr": 0.07692307692307693,
+      "inspected_before": 12,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 6,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "multi_2/draw_5": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 18,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 18,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 11,
+      "first_rank": 10,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1,
+      "inspected_before": 9,
+      "found_in_top10": 0.5
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.9
+    }
+   },
+   "multi_2/draw_6": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 15,
+      "top1": false,
+      "top3": false,
+      "rr": 0.06666666666666667,
+      "inspected_before": 14,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 4,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.9
+    }
+   },
+   "multi_2/draw_7": {
+    "class": "multi-node: leaf",
+    "elements": 2,
+    "internal_elements": 0,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 31,
+      "first_rank": 28,
+      "top1": false,
+      "top3": false,
+      "rr": 0.03571428571428571,
+      "inspected_before": 27,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.5
+    }
+   },
+   "multi_2/draw_8": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 35,
+      "first_rank": 32,
+      "top1": false,
+      "top3": false,
+      "rr": 0.03125,
+      "inspected_before": 31,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 17,
+      "first_rank": 4,
+      "top1": false,
+      "top3": false,
+      "rr": 0.25,
+      "inspected_before": 3,
+      "found_in_top10": 0.5
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.7
+    }
+   },
+   "multi_2/draw_9": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 5,
+      "first_rank": 5,
+      "top1": false,
+      "top3": false,
+      "rr": 0.2,
+      "inspected_before": 4,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.9
+    }
+   },
+   "multi_5/draw_0": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 35,
+      "first_rank": 25,
+      "top1": false,
+      "top3": false,
+      "rr": 0.04,
+      "inspected_before": 24,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 13,
+      "first_rank": 7,
+      "top1": false,
+      "top3": false,
+      "rr": 0.14285714285714285,
+      "inspected_before": 6,
+      "found_in_top10": 0.4
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.3
+    }
+   },
+   "multi_5/draw_1": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 299,
+      "first_rank": 286,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0034965034965034965,
+      "inspected_before": 285,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 56,
+      "first_rank": 9,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1111111111111111,
+      "inspected_before": 8,
+      "found_in_top10": 0.2
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "multi_5/draw_2": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2039,
+      "first_rank": 1308,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0007645259938837921,
+      "inspected_before": 1307,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 155,
+      "first_rank": 25,
+      "top1": false,
+      "top3": false,
+      "rr": 0.04,
+      "inspected_before": 24,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "multi_5/draw_3": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 14,
+      "first_rank": 12,
+      "top1": false,
+      "top3": false,
+      "rr": 0.08333333333333333,
+      "inspected_before": 11,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 7,
+      "first_rank": 5,
+      "top1": false,
+      "top3": false,
+      "rr": 0.2,
+      "inspected_before": 4,
+      "found_in_top10": 0.4
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.4
+    }
+   },
+   "multi_5/draw_4": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 5,
+    "internal_elements": 1,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2013,
+      "first_rank": 1995,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0005012531328320802,
+      "inspected_before": 1994,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 162,
+      "first_rank": 49,
+      "top1": false,
+      "top3": false,
+      "rr": 0.02040816326530612,
+      "inspected_before": 48,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 6,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "multi_5/draw_5": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 53,
+      "first_rank": 30,
+      "top1": false,
+      "top3": false,
+      "rr": 0.03333333333333333,
+      "inspected_before": 29,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 26,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.6
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 9.5
+    }
+   },
+   "multi_5/draw_6": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 13,
+      "first_rank": 9,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1111111111111111,
+      "inspected_before": 8,
+      "found_in_top10": 0.3333333333333333
+     },
+     "tree": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 9.6
+    }
+   },
+   "multi_5/draw_7": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1372,
+      "first_rank": 1305,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0007662835249042146,
+      "inspected_before": 1304,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 131,
+      "first_rank": 13,
+      "top1": false,
+      "top3": false,
+      "rr": 0.07692307692307693,
+      "inspected_before": 12,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.3
+    }
+   },
+   "multi_5/draw_8": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 8,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.8
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.0
+    }
+   },
+   "multi_5/draw_9": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 44,
+      "first_rank": 37,
+      "top1": false,
+      "top3": false,
+      "rr": 0.02702702702702703,
+      "inspected_before": 36,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 19,
+      "first_rank": 5,
+      "top1": false,
+      "top3": false,
+      "rr": 0.2,
+      "inspected_before": 4,
+      "found_in_top10": 0.2
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.8
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 9.6
+    }
+   },
+   "multi_10/draw_0": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 55,
+      "first_rank": 45,
+      "top1": false,
+      "top3": false,
+      "rr": 0.022222222222222223,
+      "inspected_before": 44,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 23,
+      "first_rank": 11,
+      "top1": false,
+      "top3": false,
+      "rr": 0.09090909090909091,
+      "inspected_before": 10,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "multi_10/draw_1": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 10,
+    "internal_elements": 3,
+    "trees": 8,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 295,
+      "first_rank": 262,
+      "top1": false,
+      "top3": false,
+      "rr": 0.003816793893129771,
+      "inspected_before": 261,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 75,
+      "first_rank": 9,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1111111111111111,
+      "inspected_before": 8,
+      "found_in_top10": 0.125
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 13,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.9
+     },
+     "tree": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.6
+    }
+   },
+   "multi_10/draw_2": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 6,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 44,
+      "first_rank": 23,
+      "top1": false,
+      "top3": false,
+      "rr": 0.043478260869565216,
+      "inspected_before": 22,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 24,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.2
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 16,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.9
+    }
+   },
+   "multi_10/draw_3": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 9,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1312,
+      "first_rank": 981,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0010193679918450561,
+      "inspected_before": 980,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 123,
+      "first_rank": 8,
+      "top1": false,
+      "top3": false,
+      "rr": 0.125,
+      "inspected_before": 7,
+      "found_in_top10": 0.1111111111111111
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.2
+     },
+     "tree": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 6.7
+    }
+   },
+   "multi_10/draw_4": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 510,
+      "first_rank": 450,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0022222222222222222,
+      "inspected_before": 449,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 70,
+      "first_rank": 14,
+      "top1": false,
+      "top3": false,
+      "rr": 0.07142857142857142,
+      "inspected_before": 13,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.7
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 7.0
+    }
+   },
+   "multi_10/draw_5": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 782,
+      "first_rank": 747,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0013386880856760374,
+      "inspected_before": 746,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 112,
+      "first_rank": 29,
+      "top1": false,
+      "top3": false,
+      "rr": 0.034482758620689655,
+      "inspected_before": 28,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 8.9
+    }
+   },
+   "multi_10/draw_6": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 6,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2449,
+      "first_rank": 2405,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0004158004158004158,
+      "inspected_before": 2404,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 143,
+      "first_rank": 21,
+      "top1": false,
+      "top3": false,
+      "rr": 0.047619047619047616,
+      "inspected_before": 20,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 16,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.7
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 9.4
+    }
+   },
+   "multi_10/draw_7": {
+    "class": "multi-node: feature,leaf",
+    "elements": 10,
+    "internal_elements": 6,
+    "trees": 9,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2034,
+      "first_rank": 1723,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0005803830528148578,
+      "inspected_before": 1722,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 164,
+      "first_rank": 10,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1,
+      "inspected_before": 9,
+      "found_in_top10": 0.1111111111111111
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 16,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.4
+     },
+     "tree": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 9.7
+    }
+   },
+   "multi_10/draw_8": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 6,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1020,
+      "first_rank": 990,
+      "top1": false,
+      "top3": false,
+      "rr": 0.00101010101010101,
+      "inspected_before": 989,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 118,
+      "first_rank": 21,
+      "top1": false,
+      "top3": false,
+      "rr": 0.047619047619047616,
+      "inspected_before": 20,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 16,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 9.0
+    }
+   },
+   "multi_10/draw_9": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 5,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1708,
+      "first_rank": 1672,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0005980861244019139,
+      "inspected_before": 1671,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 100,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 0.3
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 15,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 10.5
+    }
+   }
+  },
+  "sklearn_rf": {
+   "single_node/node_736": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 24.7
+    }
+   },
+   "single_node/node_4472": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.1
+    }
+   },
+   "single_node/node_5985": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 21.9
+    }
+   },
+   "single_node/node_9099": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 27.5
+    }
+   },
+   "single_node/node_11100": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 23.6
+    }
+   },
+   "single_node/node_20393": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 25.5
+    }
+   },
+   "single_node/node_21792": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 28.5
+    }
+   },
+   "single_node/node_24205": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.8
+    }
+   },
+   "single_node/node_47521": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.5
+    }
+   },
+   "single_node/node_47631": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.6
+    }
+   },
+   "single_node/node_73138": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 23.3
+    }
+   },
+   "single_node/node_75205": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.2
+    }
+   },
+   "single_node/node_81280": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 21.6
+    }
+   },
+   "single_node/node_83460": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.0
+    }
+   },
+   "single_node/node_106879": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": false
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 21.9
+    }
+   },
+   "single_node/node_114634": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 25.5
+    }
+   },
+   "single_node/node_130459": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 23.3
+    }
+   },
+   "single_node/node_136554": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.1
+    }
+   },
+   "single_node/node_138579": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 22.0
+    }
+   },
+   "single_node/node_146838": {
+    "class": "single-switch, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 23.7
+    }
+   },
+   "coupled/leaf_71580": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 85,
+      "top1": false,
+      "top3": false,
+      "rr": 0.011764705882352941,
+      "inspected_before": 84,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 29.4
+    }
+   },
+   "coupled/leaf_91637": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 7,
+      "top1": false,
+      "top3": false,
+      "rr": 0.14285714285714285,
+      "inspected_before": 6,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 40.1
+    }
+   },
+   "coupled/leaf_97028": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 157,
+      "top1": false,
+      "top3": false,
+      "rr": 0.006369426751592357,
+      "inspected_before": 156,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 33.9
+    }
+   },
+   "coupled/leaf_154984": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 4,
+      "top1": false,
+      "top3": false,
+      "rr": 0.25,
+      "inspected_before": 3,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 32.1
+    }
+   },
+   "coupled/leaf_195116": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 172,
+      "top1": false,
+      "top3": false,
+      "rr": 0.005813953488372093,
+      "inspected_before": 171,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 33.7
+    }
+   },
+   "coupled/leaf_206285": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 111,
+      "top1": false,
+      "top3": false,
+      "rr": 0.009009009009009009,
+      "inspected_before": 110,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 30.7
+    }
+   },
+   "coupled/leaf_213474": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 181,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0055248618784530384,
+      "inspected_before": 180,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 30.1
+    }
+   },
+   "coupled/leaf_214723": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 148,
+      "top1": false,
+      "top3": false,
+      "rr": 0.006756756756756757,
+      "inspected_before": 147,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 30.3
+    }
+   },
+   "coupled/leaf_225821": {
+    "class": "leaf weight, one leaf",
+    "elements": 1,
+    "internal_elements": 0,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 194,
+      "top1": false,
+      "top3": false,
+      "rr": 0.005154639175257732,
+      "inspected_before": 193,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 35.7
+    }
+   },
+   "coupled/feature_28600": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 1,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.3
+    }
+   },
+   "coupled/feature_111138": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 96,
+      "first_rank": 94,
+      "top1": false,
+      "top3": false,
+      "rr": 0.010638297872340425,
+      "inspected_before": 93,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 34,
+      "first_rank": 16,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0625,
+      "inspected_before": 15,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 35.4
+    }
+   },
+   "coupled/feature_119428": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 44.8
+    }
+   },
+   "coupled/feature_128607": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 21,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 21,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 36.2
+    }
+   },
+   "coupled/feature_138320": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 3225,
+      "first_rank": 3114,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0003211303789338471,
+      "inspected_before": 3113,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 164,
+      "first_rank": 136,
+      "top1": false,
+      "top3": false,
+      "rr": 0.007352941176470588,
+      "inspected_before": 135,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 36.3
+    }
+   },
+   "coupled/feature_170607": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 132,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 132,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 40,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 40,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.4
+    }
+   },
+   "coupled/feature_172605": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 208,
+      "first_rank": 207,
+      "top1": false,
+      "top3": false,
+      "rr": 0.004830917874396135,
+      "inspected_before": 206,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 37,
+      "first_rank": 24,
+      "top1": false,
+      "top3": false,
+      "rr": 0.041666666666666664,
+      "inspected_before": 23,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 33.0
+    }
+   },
+   "coupled/feature_207190": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 426,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 426,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 46,
+      "first_rank": 46,
+      "top1": false,
+      "top3": false,
+      "rr": 0.021739130434782608,
+      "inspected_before": 45,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 32.0
+    }
+   },
+   "coupled/feature_251446": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 1,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 1,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 1,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 32.7
+    }
+   },
+   "coupled/feature_258896": {
+    "class": "feature mapping, one node",
+    "elements": 1,
+    "internal_elements": 1,
+    "trees": 1,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 26,
+      "first_rank": 26,
+      "top1": false,
+      "top3": false,
+      "rr": 0.038461538461538464,
+      "inspected_before": 25,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 11,
+      "first_rank": 11,
+      "top1": false,
+      "top3": false,
+      "rr": 0.09090909090909091,
+      "inspected_before": 10,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": null,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0,
+      "inspected_before": 2,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 1,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 33.5
+    }
+   },
+   "multi_2/draw_0": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 38195,
+      "top1": false,
+      "top3": false,
+      "rr": 2.6181437360911114e-05,
+      "inspected_before": 38194,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 127,
+      "top1": false,
+      "top3": false,
+      "rr": 0.007874015748031496,
+      "inspected_before": 126,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.9
+    }
+   },
+   "multi_2/draw_1": {
+    "class": "multi-node: threshold",
+    "elements": 2,
+    "internal_elements": 2,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.6
+    }
+   },
+   "multi_2/draw_2": {
+    "class": "multi-node: leaf",
+    "elements": 2,
+    "internal_elements": 0,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": null,
+     "tree": {
+      "listed": 200,
+      "first_rank": 82,
+      "top1": false,
+      "top3": false,
+      "rr": 0.012195121951219513,
+      "inspected_before": 81,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.7
+    }
+   },
+   "multi_2/draw_3": {
+    "class": "multi-node: threshold",
+    "elements": 2,
+    "internal_elements": 2,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 49,
+      "first_rank": 46,
+      "top1": false,
+      "top3": false,
+      "rr": 0.021739130434782608,
+      "inspected_before": 45,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 44,
+      "first_rank": 41,
+      "top1": false,
+      "top3": false,
+      "rr": 0.024390243902439025,
+      "inspected_before": 40,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 30.5
+    }
+   },
+   "multi_2/draw_4": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 20159,
+      "top1": false,
+      "top3": false,
+      "rr": 4.960563520015874e-05,
+      "inspected_before": 20158,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 46,
+      "top1": false,
+      "top3": false,
+      "rr": 0.021739130434782608,
+      "inspected_before": 45,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 29.6
+    }
+   },
+   "multi_2/draw_5": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 44291,
+      "top1": false,
+      "top3": false,
+      "rr": 2.2577950373665078e-05,
+      "inspected_before": 44290,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 14,
+      "top1": false,
+      "top3": false,
+      "rr": 0.07142857142857142,
+      "inspected_before": 13,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.1
+    }
+   },
+   "multi_2/draw_6": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 125146,
+      "top1": false,
+      "top3": false,
+      "rr": 7.990666901059563e-06,
+      "inspected_before": 125145,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 73,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0136986301369863,
+      "inspected_before": 72,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 30.7
+    }
+   },
+   "multi_2/draw_7": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 73030,
+      "top1": false,
+      "top3": false,
+      "rr": 1.3693002875530605e-05,
+      "inspected_before": 73029,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 80,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0125,
+      "inspected_before": 79,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.5
+    }
+   },
+   "multi_2/draw_8": {
+    "class": "multi-node: feature,leaf",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 20159,
+      "top1": false,
+      "top3": false,
+      "rr": 4.960563520015874e-05,
+      "inspected_before": 20158,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 133,
+      "top1": false,
+      "top3": false,
+      "rr": 0.007518796992481203,
+      "inspected_before": 132,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 36.5
+    }
+   },
+   "multi_2/draw_9": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 2,
+    "internal_elements": 1,
+    "trees": 2,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 83253,
+      "top1": false,
+      "top3": false,
+      "rr": 1.201157916231247e-05,
+      "inspected_before": 83252,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 51,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0196078431372549,
+      "inspected_before": 50,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 3,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 2,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.8
+    }
+   },
+   "multi_5/draw_0": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 3844,
+      "top1": false,
+      "top3": false,
+      "rr": 0.00026014568158168577,
+      "inspected_before": 3843,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 54,
+      "top1": false,
+      "top3": false,
+      "rr": 0.018518518518518517,
+      "inspected_before": 53,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.5
+    }
+   },
+   "multi_5/draw_1": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 30654,
+      "top1": false,
+      "top3": false,
+      "rr": 3.262217002675018e-05,
+      "inspected_before": 30653,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 30,
+      "top1": false,
+      "top3": false,
+      "rr": 0.03333333333333333,
+      "inspected_before": 29,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 34.0
+    }
+   },
+   "multi_5/draw_2": {
+    "class": "multi-node: leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 16879,
+      "top1": false,
+      "top3": false,
+      "rr": 5.9245215948812136e-05,
+      "inspected_before": 16878,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 5,
+      "top1": false,
+      "top3": false,
+      "rr": 0.2,
+      "inspected_before": 4,
+      "found_in_top10": 0.2
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.9
+    }
+   },
+   "multi_5/draw_3": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 39084,
+      "top1": false,
+      "top3": false,
+      "rr": 2.5585917511001945e-05,
+      "inspected_before": 39083,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 59,
+      "top1": false,
+      "top3": false,
+      "rr": 0.01694915254237288,
+      "inspected_before": 58,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.4
+    }
+   },
+   "multi_5/draw_4": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 31366,
+      "top1": false,
+      "top3": false,
+      "rr": 3.188165529554294e-05,
+      "inspected_before": 31365,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 14,
+      "top1": false,
+      "top3": false,
+      "rr": 0.07142857142857142,
+      "inspected_before": 13,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 36.1
+    }
+   },
+   "multi_5/draw_5": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 1349,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0007412898443291327,
+      "inspected_before": 1348,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 16,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0625,
+      "inspected_before": 15,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 31.6
+    }
+   },
+   "multi_5/draw_6": {
+    "class": "multi-node: feature,threshold",
+    "elements": 5,
+    "internal_elements": 5,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 34,
+      "first_rank": 26,
+      "top1": false,
+      "top3": false,
+      "rr": 0.038461538461538464,
+      "inspected_before": 25,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 16,
+      "first_rank": 3,
+      "top1": false,
+      "top3": true,
+      "rr": 0.3333333333333333,
+      "inspected_before": 2,
+      "found_in_top10": 0.4
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.8
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 18.1
+    }
+   },
+   "multi_5/draw_7": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 4,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 58417,
+      "top1": false,
+      "top3": false,
+      "rr": 1.7118304603112106e-05,
+      "inspected_before": 58416,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 26,
+      "top1": false,
+      "top3": false,
+      "rr": 0.038461538461538464,
+      "inspected_before": 25,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 18.2
+    }
+   },
+   "multi_5/draw_8": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 4,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 69104,
+      "top1": false,
+      "top3": false,
+      "rr": 1.4470942347765686e-05,
+      "inspected_before": 69103,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 16,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0625,
+      "inspected_before": 15,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.8
+     },
+     "tree": {
+      "listed": 4,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 20.6
+    }
+   },
+   "multi_5/draw_9": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 5,
+    "internal_elements": 3,
+    "trees": 5,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 8666,
+      "top1": false,
+      "top3": false,
+      "rr": 0.00011539349180706209,
+      "inspected_before": 8665,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 48,
+      "top1": false,
+      "top3": false,
+      "rr": 0.020833333333333332,
+      "inspected_before": 47,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 8,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.8
+     },
+     "tree": {
+      "listed": 5,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.6
+    }
+   },
+   "multi_10/draw_0": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 5,
+    "trees": 9,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 14219,
+      "top1": false,
+      "top3": false,
+      "rr": 7.032843378577959e-05,
+      "inspected_before": 14218,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 10,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1,
+      "inspected_before": 9,
+      "found_in_top10": 0.1111111111111111
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 15,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.6
+     },
+     "tree": {
+      "listed": 9,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.8
+    }
+   },
+   "multi_10/draw_1": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 8,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 12052,
+      "top1": false,
+      "top3": false,
+      "rr": 8.297378028542981e-05,
+      "inspected_before": 12051,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.2
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 18,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.2
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 18.8
+    }
+   },
+   "multi_10/draw_2": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 9,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 9793,
+      "top1": false,
+      "top3": false,
+      "rr": 0.00010211375472276115,
+      "inspected_before": 9792,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 10,
+      "top1": false,
+      "top3": false,
+      "rr": 0.1,
+      "inspected_before": 9,
+      "found_in_top10": 0.1
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 19,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.6
+    }
+   },
+   "multi_10/draw_3": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 9,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 12568,
+      "top1": false,
+      "top3": false,
+      "rr": 7.956715467854869e-05,
+      "inspected_before": 12567,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.1
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 19,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.4
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.7
+    }
+   },
+   "multi_10/draw_4": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 26727,
+      "top1": false,
+      "top3": false,
+      "rr": 3.7415347775657576e-05,
+      "inspected_before": 26726,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 40,
+      "top1": false,
+      "top3": false,
+      "rr": 0.025,
+      "inspected_before": 39,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.4
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.9
+    }
+   },
+   "multi_10/draw_5": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 727,
+      "top1": false,
+      "top3": false,
+      "rr": 0.001375515818431912,
+      "inspected_before": 726,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 16,
+      "top1": false,
+      "top3": false,
+      "rr": 0.0625,
+      "inspected_before": 15,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.8
+    }
+   },
+   "multi_10/draw_6": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 23777,
+      "top1": false,
+      "top3": false,
+      "rr": 4.205745047735206e-05,
+      "inspected_before": 23776,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 8,
+      "top1": false,
+      "top3": false,
+      "rr": 0.125,
+      "inspected_before": 7,
+      "found_in_top10": 0.1
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.9
+    }
+   },
+   "multi_10/draw_7": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 7,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 33437,
+      "top1": false,
+      "top3": false,
+      "rr": 2.9906989263390855e-05,
+      "inspected_before": 33436,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 2,
+      "top1": false,
+      "top3": true,
+      "rr": 0.5,
+      "inspected_before": 1,
+      "found_in_top10": 0.1
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 17,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.5
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 17.9
+    }
+   },
+   "multi_10/draw_8": {
+    "class": "multi-node: feature,threshold",
+    "elements": 10,
+    "internal_elements": 10,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 111,
+      "first_rank": 81,
+      "top1": false,
+      "top3": false,
+      "rr": 0.012345679012345678,
+      "inspected_before": 80,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 42,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.1
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 20,
+      "first_rank": 11,
+      "top1": false,
+      "top3": false,
+      "rr": 0.09090909090909091,
+      "inspected_before": 10,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 47.3
+    }
+   },
+   "multi_10/draw_9": {
+    "class": "multi-node: feature,leaf,threshold",
+    "elements": 10,
+    "internal_elements": 8,
+    "trees": 10,
+    "probes": {
+     "detected": true,
+     "element": {
+      "listed": 135508,
+      "first_rank": 34462,
+      "top1": false,
+      "top3": false,
+      "rr": 2.901746851604666e-05,
+      "inspected_before": 34461,
+      "found_in_top10": 0.0
+     },
+     "tree": {
+      "listed": 200,
+      "first_rank": 37,
+      "top1": false,
+      "top3": false,
+      "rr": 0.02702702702702703,
+      "inspected_before": 36,
+      "found_in_top10": 0.0
+     }
+    },
+    "leafparity": {
+     "detected": true,
+     "element": {
+      "listed": 18,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 0.4
+     },
+     "tree": {
+      "listed": 10,
+      "first_rank": 1,
+      "top1": true,
+      "top3": true,
+      "rr": 1.0,
+      "inspected_before": 0,
+      "found_in_top10": 1.0
+     },
+     "seconds": 18.1
+    }
+   }
+  }
+ },
+ "summary": {
+  "xgboost_hist|single_node|probes|element": {
+   "faults": 20,
+   "detected": 18,
+   "scored": 18,
+   "top1": 13,
+   "top3": 17,
+   "mrr": 0.841,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|single_node|probes|tree": {
+   "faults": 20,
+   "detected": 18,
+   "scored": 18,
+   "top1": 13,
+   "top3": 17,
+   "mrr": 0.841,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|single_node|leafparity|element": {
+   "faults": 20,
+   "detected": 20,
+   "scored": 20,
+   "top1": 20,
+   "top3": 20,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|single_node|leafparity|tree": {
+   "faults": 20,
+   "detected": 20,
+   "scored": 20,
+   "top1": 20,
+   "top3": 20,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|coupled leaf|probes|element": {
+   "faults": 10,
+   "detected": 9,
+   "scored": 0,
+   "top1": 0,
+   "top3": 0,
+   "rr": 0.0,
+   "mrr": null,
+   "inspected_before_median": null,
+   "found_in_top10_mean": null
+  },
+  "xgboost_hist|coupled leaf|probes|tree": {
+   "faults": 10,
+   "detected": 9,
+   "scored": 9,
+   "top1": 1,
+   "top3": 1,
+   "mrr": 0.221,
+   "inspected_before_median": 5.0,
+   "found_in_top10_mean": 0.667
+  },
+  "xgboost_hist|coupled leaf|leafparity|element": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 10,
+   "top3": 10,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|coupled leaf|leafparity|tree": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 10,
+   "top3": 10,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|coupled feature|probes|element": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 1,
+   "top3": 2,
+   "mrr": 0.211,
+   "inspected_before_median": 7.0,
+   "found_in_top10_mean": 0.6
+  },
+  "xgboost_hist|coupled feature|probes|tree": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 4,
+   "top3": 6,
+   "mrr": 0.512,
+   "inspected_before_median": 2.0,
+   "found_in_top10_mean": 0.8
+  },
+  "xgboost_hist|coupled feature|leafparity|element": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 0,
+   "top3": 0,
+   "mrr": 0.0,
+   "inspected_before_median": 2.0,
+   "found_in_top10_mean": 0.0
+  },
+  "xgboost_hist|coupled feature|leafparity|tree": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 10,
+   "top3": 10,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "xgboost_hist|multi|probes|element": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 27,
+   "top1": 0,
+   "top3": 1,
+   "mrr": 0.049,
+   "inspected_before_median": 44.0,
+   "found_in_top10_mean": 0.086
+  },
+  "xgboost_hist|multi|probes|tree": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 30,
+   "top1": 3,
+   "top3": 8,
+   "mrr": 0.247,
+   "inspected_before_median": 7.5,
+   "found_in_top10_mean": 0.338
+  },
+  "xgboost_hist|multi|leafparity|element": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 30,
+   "top1": 26,
+   "top3": 30,
+   "mrr": 0.911,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 0.707
+  },
+  "xgboost_hist|multi|leafparity|tree": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 30,
+   "top1": 30,
+   "top3": 30,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|single_node|probes|element": {
+   "faults": 20,
+   "detected": 16,
+   "scored": 16,
+   "top1": 16,
+   "top3": 16,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|single_node|probes|tree": {
+   "faults": 20,
+   "detected": 16,
+   "scored": 16,
+   "top1": 16,
+   "top3": 16,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|single_node|leafparity|element": {
+   "faults": 20,
+   "detected": 20,
+   "scored": 20,
+   "top1": 20,
+   "top3": 20,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|single_node|leafparity|tree": {
+   "faults": 20,
+   "detected": 20,
+   "scored": 20,
+   "top1": 20,
+   "top3": 20,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|coupled leaf|probes|element": {
+   "faults": 9,
+   "detected": 9,
+   "scored": 0,
+   "top1": 0,
+   "top3": 0,
+   "rr": 0.0,
+   "mrr": null,
+   "inspected_before_median": null,
+   "found_in_top10_mean": null
+  },
+  "sklearn_rf|coupled leaf|probes|tree": {
+   "faults": 9,
+   "detected": 9,
+   "scored": 9,
+   "top1": 0,
+   "top3": 0,
+   "mrr": 0.049,
+   "inspected_before_median": 147.0,
+   "found_in_top10_mean": 0.222
+  },
+  "sklearn_rf|coupled leaf|leafparity|element": {
+   "faults": 9,
+   "detected": 9,
+   "scored": 9,
+   "top1": 9,
+   "top3": 9,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|coupled leaf|leafparity|tree": {
+   "faults": 9,
+   "detected": 9,
+   "scored": 9,
+   "top1": 9,
+   "top3": 9,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|coupled feature|probes|element": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 1,
+   "top3": 1,
+   "mrr": 0.105,
+   "inspected_before_median": 59.0,
+   "found_in_top10_mean": 0.1
+  },
+  "sklearn_rf|coupled feature|probes|tree": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 2,
+   "top3": 2,
+   "mrr": 0.222,
+   "inspected_before_median": 12.5,
+   "found_in_top10_mean": 0.2
+  },
+  "sklearn_rf|coupled feature|leafparity|element": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 0,
+   "top3": 0,
+   "mrr": 0.0,
+   "inspected_before_median": 2.0,
+   "found_in_top10_mean": 0.0
+  },
+  "sklearn_rf|coupled feature|leafparity|tree": {
+   "faults": 10,
+   "detected": 10,
+   "scored": 10,
+   "top1": 10,
+   "top3": 10,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  },
+  "sklearn_rf|multi|probes|element": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 29,
+   "top1": 1,
+   "top3": 1,
+   "mrr": 0.037,
+   "inspected_before_median": 20158.0,
+   "found_in_top10_mean": 0.034
+  },
+  "sklearn_rf|multi|probes|tree": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 30,
+   "top1": 4,
+   "top3": 6,
+   "mrr": 0.2,
+   "inspected_before_median": 20.0,
+   "found_in_top10_mean": 0.08
+  },
+  "sklearn_rf|multi|leafparity|element": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 30,
+   "top1": 28,
+   "top3": 29,
+   "mrr": 0.947,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 0.617
+  },
+  "sklearn_rf|multi|leafparity|tree": {
+   "faults": 30,
+   "detected": 30,
+   "scored": 30,
+   "top1": 30,
+   "top3": 30,
+   "mrr": 1.0,
+   "inspected_before_median": 0.0,
+   "found_in_top10_mean": 1.0
+  }
+ }
+}

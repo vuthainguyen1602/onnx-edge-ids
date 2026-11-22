@@ -1,0 +1,342 @@
+{
+ "versions": {
+  "onnxmltools": "1.16.0",
+  "lightgbm": "4.7.0",
+  "xgboost": "3.4.1",
+  "onnxruntime": "1.30.0"
+ },
+ "tolerance": 1e-05,
+ "graphs": {
+  "zero_as_missing/released": {
+   "split_modes": {
+    "0": 6000
+   },
+   "nodes_with_missing_true": 3632,
+   "internal_nodes": 6000,
+   "shared_children": 0,
+   "gate_builder": "ok",
+   "probes": {
+    "total": 18000,
+    "by_kind": {
+     "monotone_crossing": 12000,
+     "missing": 6000
+    },
+    "reach_non_nan": 1.0
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    },
+    "max_deviation": 5.001896163925323e-07
+   },
+   "framework_vs_ort": {
+    "failing": 13299,
+    "by_kind": {
+     "monotone_crossing": 8845,
+     "missing": 4454
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "ok",
+    "failing": 4067,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 4067
+    }
+   }
+  },
+  "zero_as_missing/fixed": {
+   "split_modes": {
+    "4": 5971,
+    "0": 6000
+   },
+   "nodes_with_missing_true": 9603,
+   "internal_nodes": 11971,
+   "shared_children": 5971,
+   "gate_builder": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']",
+   "probes": {
+    "total": 47855,
+    "by_kind": {
+     "monotone_crossing": 12000,
+     "equality_on": 11942,
+     "equality_neighbour": 11942,
+     "missing": 11971
+    },
+    "reach_non_nan": 0.9217
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "equality_on": 0,
+     "equality_neighbour": 0,
+     "missing": 0
+    },
+    "max_deviation": 6.53574394493539e-07
+   },
+   "framework_vs_ort": {
+    "failing": 8774,
+    "by_kind": {
+     "monotone_crossing": 24,
+     "equality_on": 0,
+     "equality_neighbour": 8750,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']"
+   }
+  },
+  "categorical/lightgbm": {
+   "split_modes": {
+    "0": 5735,
+    "4": 797
+   },
+   "nodes_with_missing_true": 5735,
+   "internal_nodes": 6532,
+   "shared_children": 245,
+   "gate_builder": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']",
+   "probes": {
+    "total": 21190,
+    "by_kind": {
+     "monotone_crossing": 11470,
+     "equality_on": 1594,
+     "equality_neighbour": 1594,
+     "missing": 6532
+    },
+    "reach_non_nan": 0.9992
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "equality_on": 0,
+     "equality_neighbour": 0,
+     "missing": 0
+    },
+    "max_deviation": 3.903415161377044e-07
+   },
+   "framework_vs_ort": {
+    "failing": 3111,
+    "by_kind": {
+     "monotone_crossing": 1722,
+     "equality_on": 0,
+     "equality_neighbour": 1020,
+     "missing": 369
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']"
+   },
+   "categorical_features": [
+    "proto",
+    "service",
+    "state"
+   ]
+  },
+  "categorical/lightgbm (fixed converter)": {
+   "split_modes": {
+    "0": 5735,
+    "4": 797
+   },
+   "nodes_with_missing_true": 5735,
+   "internal_nodes": 6532,
+   "shared_children": 245,
+   "gate_builder": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']",
+   "probes": {
+    "total": 21190,
+    "by_kind": {
+     "monotone_crossing": 11470,
+     "equality_on": 1594,
+     "equality_neighbour": 1594,
+     "missing": 6532
+    },
+    "reach_non_nan": 0.9992
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "equality_on": 0,
+     "equality_neighbour": 0,
+     "missing": 0
+    },
+    "max_deviation": 3.903415161377044e-07
+   },
+   "framework_vs_ort": {
+    "failing": 1324,
+    "by_kind": {
+     "monotone_crossing": 204,
+     "equality_on": 0,
+     "equality_neighbour": 1020,
+     "missing": 100
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']"
+   }
+  },
+  "missing/xgboost": {
+   "split_modes": {
+    "1": 9387
+   },
+   "nodes_with_missing_true": 1036,
+   "internal_nodes": 9387,
+   "shared_children": 0,
+   "gate_builder": "ok",
+   "probes": {
+    "total": 28161,
+    "by_kind": {
+     "monotone_crossing": 18774,
+     "missing": 9387
+    },
+    "reach_non_nan": 0.9999
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    },
+    "max_deviation": 8.908976498744892e-07
+   },
+   "framework_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "ok",
+    "failing": 2234,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 2234
+    }
+   }
+  },
+  "missing/xgboost (fixed converter)": {
+   "split_modes": {
+    "1": 9387
+   },
+   "nodes_with_missing_true": 1036,
+   "internal_nodes": 9387,
+   "shared_children": 0,
+   "gate_builder": "ok",
+   "probes": {
+    "total": 28161,
+    "by_kind": {
+     "monotone_crossing": 18774,
+     "missing": 9387
+    },
+    "reach_non_nan": 0.9999
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    },
+    "max_deviation": 8.908976498744892e-07
+   },
+   "framework_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "ok",
+    "failing": 2234,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 2234
+    }
+   }
+  },
+  "missing/lightgbm": {
+   "split_modes": {
+    "0": 6000
+   },
+   "nodes_with_missing_true": 5582,
+   "internal_nodes": 6000,
+   "shared_children": 0,
+   "gate_builder": "ok",
+   "probes": {
+    "total": 18000,
+    "by_kind": {
+     "monotone_crossing": 12000,
+     "missing": 6000
+    },
+    "reach_non_nan": 0.9999
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    },
+    "max_deviation": 7.488203330741072e-07
+   },
+   "framework_vs_ort": {
+    "failing": 3301,
+    "by_kind": {
+     "monotone_crossing": 2635,
+     "missing": 666
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "ok",
+    "failing": 5983,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 5983
+    }
+   }
+  },
+  "missing/lightgbm (fixed converter)": {
+   "split_modes": {
+    "0": 6000
+   },
+   "nodes_with_missing_true": 5582,
+   "internal_nodes": 6000,
+   "shared_children": 0,
+   "gate_builder": "ok",
+   "probes": {
+    "total": 18000,
+    "by_kind": {
+     "monotone_crossing": 12000,
+     "missing": 6000
+    },
+    "reach_non_nan": 0.9999
+   },
+   "numpy_float32_vs_ort": {
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    },
+    "max_deviation": 7.488203330741072e-07
+   },
+   "framework_vs_ort": {
+    "failing": 8,
+    "by_kind": {
+     "monotone_crossing": 8,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine": {
+    "export": "ok",
+    "failing": 5983,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 5983
+    }
+   }
+  }
+ }
+}

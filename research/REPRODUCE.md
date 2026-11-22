@@ -243,6 +243,11 @@ python research/code/experiments/exp44_fault_benchmark.py
 # temporal evaluation on CSE-CIC-IDS2018: pooled thesis splits re-split by day; frozen (train 14-16 Feb) and expanding-window
 # RF and XGBoost plus the deployed forest; runtime parity, data-free gate, replay power, detection and feature drift per day (~1 h)
 python research/code/experiments/exp45_temporal_drift.py --data2018 "$(dirname $DATA2018)"   # the directory holding train_data.parquet and test_data.parquet
+# batch-size sweep ON a Jetson board (Jetson #2, 25 W): latency p50/p99, rows/s, CPU cores, backend memory and idle-subtracted
+# energy per row for ONNX Runtime, the lockstep and the per-tree NumPy engines at batches 1-2,000, plus the gate's cost on the
+# board (~40 min). Copy src/, artifacts/, research/code/edgeids/ and this script to the board, and a venv with numpy 2.2.6,
+# onnxruntime 1.23.2 and onnx (the gate reads the graph); results go to code/results_jetson/
+python research/code/experiments/exp46_board_batch_sweep.py --csv replay.csv --out exp46_board_batch_sweep.json
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -380,6 +385,7 @@ Paths are relative to `research/code/`.
 | Leafparity vs the data-free probes on the same converter faults, incl. multi-node faults | `results/exp43_converter_faults_leafparity.json` |
 | Fault benchmark: class, provenance, Theorem 1 coverage and outcomes of every fault | `results/exp44_fault_benchmark.json` |
 | Temporal evaluation on CSE-CIC-IDS2018, day by day: parity vs detection | `results/exp45_temporal_drift.json` |
+| Batch-size sweep on Jetson #2: latency, throughput, CPU, memory and energy per row of each backend (`tab:batchsweep`) | `results_jetson/exp46_board_batch_sweep.json`, `results_jetson/exp46_tegrastats/` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

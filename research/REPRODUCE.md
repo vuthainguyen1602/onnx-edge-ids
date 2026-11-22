@@ -248,6 +248,16 @@ python research/code/experiments/exp45_temporal_drift.py --data2018 "$(dirname $
 # board (~40 min). Copy src/, artifacts/, research/code/edgeids/ and this script to the board, and a venv with numpy 2.2.6,
 # onnxruntime 1.23.2 and onnx (the gate reads the graph); results go to code/results_jetson/
 python research/code/experiments/exp46_board_batch_sweep.py --csv replay.csv --out exp46_board_batch_sweep.json
+# real converter defects open in the latest releases (onnxmltools 1.16.0, skl2onnx 1.20.0) vs their fixes on main:
+# train in .lpvenv, convert in a separate venv (.e3venv, same library pins as .lpvenv) once per converter build, evaluate in .lpvenv
+PYTHONPATH=research/code .lpvenv/bin/python research/code/experiments/exp47_converter_releases.py train --cicids-train $TRAIN --cicids-test $DATA
+PYTHONPATH=research/code .e3venv/bin/python research/code/experiments/exp47_converter_releases.py convert --tag released
+.e3venv/bin/pip install --no-deps --force-reinstall git+https://github.com/onnx/onnxmltools@edef44c56a
+PYTHONPATH=research/code .e3venv/bin/python research/code/experiments/exp47_converter_releases.py convert --tag after810 --models lgbm_zero
+.e3venv/bin/pip install --no-deps --force-reinstall git+https://github.com/onnx/onnxmltools@b9f9169bfb git+https://github.com/onnx/sklearn-onnx@360404cc56
+PYTHONPATH=research/code .e3venv/bin/python research/code/experiments/exp47_converter_releases.py convert --tag fixed
+PYTHONPATH=research/code .lpvenv/bin/python research/code/experiments/exp47_converter_releases.py evaluate --cicids-test $DATA   # ~15 min
+python research/code/experiments/exp44_fault_benchmark.py   # rerun to fold exp47 into the benchmark
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -386,6 +396,7 @@ Paths are relative to `research/code/`.
 | Fault benchmark: class, provenance, Theorem 1 coverage and outcomes of every fault | `results/exp44_fault_benchmark.json` |
 | Temporal evaluation on CSE-CIC-IDS2018, day by day: parity vs detection | `results/exp45_temporal_drift.json` |
 | Batch-size sweep on Jetson #2: latency, throughput, CPU, memory and energy per row of each backend (`tab:batchsweep`) | `results_jetson/exp46_board_batch_sweep.json`, `results_jetson/exp46_tegrastats/` |
+| Four real converter defects in the latest releases vs their fixes: replay, data-free probes, Leafparity (`tab:releases`) | `results/exp47_converter_releases.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

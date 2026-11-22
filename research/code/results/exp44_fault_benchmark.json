@@ -5067,24 +5067,77 @@
    }
   },
   {
-   "id": "exp12/skl2onnx_1.20/CICIDS2017/sklearn_hgb",
-   "model": "CICIDS2017 sklearn_hgb",
+   "id": "exp47/lgbm_threshold/released",
+   "model": "CICIDS2017 lgbm (no scaler)",
    "injected_into": "converter release",
    "fault_model": "single-switch, every node (rounded thresholds)",
    "theorem": "proved",
-   "provenance": "real: skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 (fixed by sklearn-onnx PR 1227)",
+   "provenance": "real: onnxmltools 1.16.0 rounds LightGBM thresholds to the nearest float32 (PR 810, issue 806; unreleased fix)",
    "changes_output": true,
-   "checks": {},
-   "note": "measured as converter divergence in exp12/exp12b/exp19"
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp47/lgbm_zero/after810",
+   "model": "CICIDS2017 lgbm (no scaler)",
+   "injected_into": "converter release",
+   "fault_model": "missing-value routing (zero as missing)",
+   "theorem": "empirical",
+   "provenance": "real: onnxmltools ignores LightGBM zero_as_missing default children (PR 814; unreleased fix)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": true,
+    "leafparity_error": null
+   }
+  },
+  {
+   "id": "exp47/xgb_dart/released",
+   "model": "CICIDS2017 xgb (no scaler)",
+   "injected_into": "converter release",
+   "fault_model": "leaf weights (DART tree weights)",
+   "theorem": "empirical",
+   "provenance": "real: onnxmltools ignores XGBoost DART tree weights (PR 813; unreleased fix)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": true,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": false,
+    "leafparity_error": "SelfCheckError: self-check failed for the original model: leaf values reproduced by leafparity differ from the real runtime's raw output by 21.2, more than the proven floating-point allowance (0.00127). The analysis was stopped."
+   }
+  },
+  {
+   "id": "exp47/hgb_threshold/released",
+   "model": "CICIDS2017 hgb (no scaler)",
+   "injected_into": "converter release",
+   "fault_model": "single-switch, every node (rounded thresholds)",
+   "theorem": "proved",
+   "provenance": "real: skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 (fixed by sklearn-onnx PR 1227, in no release as of Nov 2026)",
+   "changes_output": true,
+   "checks": {
+    "replay_2000": false,
+    "crossing": true,
+    "crossing_margin": true,
+    "leafparity": null,
+    "leafparity_error": null
+   }
   }
  ],
  "by_fault_model": {
   "single-switch, many nodes": {
-   "faults": 30,
-   "replay_2000": "27/29",
-   "crossing": "29/29",
-   "crossing_margin": "6/6",
-   "leafparity": "4/4"
+   "faults": 31,
+   "replay_2000": "27/31",
+   "crossing": "31/31",
+   "crossing_margin": "8/8",
+   "leafparity": "5/5"
   },
   "feature mapping": {
    "faults": 64,
@@ -5095,12 +5148,12 @@
    "leafparity": "21/22"
   },
   "leaf weights": {
-   "faults": 63,
-   "replay_2000": "28/63",
-   "crossing": "51/63",
-   "crossing_margin": "31/32",
+   "faults": 64,
+   "replay_2000": "29/64",
+   "crossing": "52/64",
+   "crossing_margin": "32/33",
    "structure": "40/40",
-   "leafparity": "21/21"
+   "leafparity": "21/22"
   },
   "single-switch, one node": {
    "faults": 81,
@@ -5139,16 +5192,23 @@
    "faults": 6,
    "replay_2000": "6/6",
    "crossing": "6/6"
+  },
+  "missing-value routing": {
+   "faults": 1,
+   "replay_2000": "1/1",
+   "crossing": "1/1",
+   "crossing_margin": "1/1",
+   "leafparity": "1/1"
   }
  },
  "counts": {
-  "faults": 334,
-  "changing_output": 319,
-  "real": 13,
+  "faults": 337,
+  "changing_output": 322,
+  "real": 16,
   "by_theorem": {
-   "proved": 120,
+   "proved": 121,
    "structure": 5,
-   "empirical": 209
+   "empirical": 211
   }
  },
  "summary_detected_over_total": {
@@ -5186,6 +5246,18 @@
    "crossing_margin": "1/1",
    "leafparity": "2/2"
   },
+  "empirical | leaf weights (DART tree weights)": {
+   "replay_2000": "1/1",
+   "crossing": "1/1",
+   "crossing_margin": "1/1",
+   "leafparity": "0/1"
+  },
+  "empirical | missing-value routing (zero as missing)": {
+   "replay_2000": "1/1",
+   "crossing": "1/1",
+   "crossing_margin": "1/1",
+   "leafparity": "1/1"
+  },
   "empirical | multi-node": {
    "replay_2000": "53/57",
    "crossing": "57/57",
@@ -5207,10 +5279,10 @@
    "leafparity": "3/3"
   },
   "proved | single-switch": {
-   "replay_2000": "31/110",
-   "crossing": "87/110",
-   "crossing_margin": "46/48",
-   "leafparity": "46/46"
+   "replay_2000": "31/112",
+   "crossing": "89/112",
+   "crossing_margin": "48/50",
+   "leafparity": "47/47"
   },
   "structure | base value": {
    "replay_2000": "1/1",
@@ -5230,7 +5302,10 @@
  },
  "real_defects": {
   "ort_1.26_1.27": "ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive (onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
-  "skl2onnx_1.20_hgb": "skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 (fixed by sklearn-onnx PR 1227)",
+  "skl2onnx_1.20_hgb": "skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 (fixed by sklearn-onnx PR 1227, in no release as of Nov 2026)",
+  "onnxmltools_810": "onnxmltools 1.16.0 rounds LightGBM thresholds to the nearest float32 (PR 810, issue 806; unreleased fix)",
+  "onnxmltools_814": "onnxmltools ignores LightGBM zero_as_missing default children (PR 814; unreleased fix)",
+  "onnxmltools_813": "onnxmltools ignores XGBoost DART tree weights (PR 813; unreleased fix)",
   "hummingbird_base": "Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
   "own_float64": "the project's own early exporter traversed in float64 (mirrored by arithmetic/float64)"
  }

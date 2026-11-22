@@ -1,0 +1,288 @@
+{
+ "converters": {
+  "released": {
+   "onnxmltools": "1.16.0",
+   "skl2onnx": "1.20.0"
+  },
+  "after810": {
+   "onnxmltools": "1.17.0 @edef44c56a",
+   "skl2onnx": "1.20.0"
+  },
+  "fixed": {
+   "onnxmltools": "1.17.0 @b9f9169bfb",
+   "skl2onnx": "1.21.0 @360404cc56"
+  }
+ },
+ "defects": {
+  "lgbm_threshold": "onnxmltools PR 810 (issue 806): float64 LightGBM thresholds rounded to nearest float32",
+  "lgbm_zero": "onnxmltools PR 814: zero_as_missing splits ignore the default child for 0",
+  "xgb_dart": "onnxmltools PR 813: DART tree weights ignored",
+  "hgb_threshold": "skl2onnx PR 1227: HistGradientBoosting thresholds rounded to nearest float32"
+ },
+ "settings": {
+  "tolerance": 1e-05,
+  "margin_tolerance": 0.0001,
+  "replay_rows": 2000,
+  "probe_set": "crossing",
+  "leafparity_input_dtype": "float32"
+ },
+ "models": {
+  "lgbm_threshold": {
+   "defect": "onnxmltools PR 810 (issue 806): float64 LightGBM thresholds rounded to nearest float32",
+   "graphs": {
+    "released": {
+     "replay": {
+      "label_flips": 0,
+      "rows_failing": 0,
+      "rows_failing_margin": 1,
+      "max_deviation": 7.814700789032791e-06,
+      "prob_passes": 1.0,
+      "margin_prob_passes": 0.9955384553995694
+     },
+     "probes": {
+      "probes": 12000,
+      "label_flips": 66,
+      "failing": 2440,
+      "failing_margin": 2465,
+      "detected": true,
+      "margin_detected": true,
+      "seconds": 0.11
+     },
+     "leafparity": {
+      "verdict": "NOT EQUIVALENT",
+      "detected": true,
+      "class_change_found": true,
+      "problem_kinds": {
+       "precision": 18
+      },
+      "max_raw_difference_found": 34.11386146414232,
+      "rounding_allowance": 0.002550981442082445,
+      "seconds": 36.2
+     }
+    },
+    "fixed": {
+     "replay": {
+      "label_flips": 0,
+      "rows_failing": 0,
+      "rows_failing_margin": 0,
+      "max_deviation": 1.9885082580550772e-07,
+      "prob_passes": 1.0,
+      "margin_prob_passes": 1.0
+     },
+     "probes": {
+      "probes": 12000,
+      "label_flips": 0,
+      "failing": 5,
+      "failing_margin": 5,
+      "detected": true,
+      "margin_detected": true,
+      "seconds": 0.11
+     },
+     "leafparity": {
+      "verdict": "NOT EQUIVALENT",
+      "detected": true,
+      "class_change_found": true,
+      "problem_kinds": {
+       "precision": 1
+      },
+      "max_raw_difference_found": 1.726235054428918,
+      "rounding_allowance": 0.002550981442082445,
+      "seconds": 6.5
+     }
+    }
+   }
+  },
+  "lgbm_zero": {
+   "defect": "onnxmltools PR 814: zero_as_missing splits ignore the default child for 0",
+   "graphs": {
+    "released": {
+     "replay": {
+      "label_flips": 14785,
+      "rows_failing": 148156,
+      "rows_failing_margin": 437322,
+      "max_deviation": 0.9999999999988076,
+      "prob_passes": 0.0,
+      "margin_prob_passes": 0.0
+     },
+     "probes": {
+      "probes": 12000,
+      "label_flips": 662,
+      "failing": 8845,
+      "failing_margin": 12000,
+      "detected": true,
+      "margin_detected": true,
+      "seconds": 0.11
+     },
+     "leafparity": {
+      "verdict": "NOT EQUIVALENT",
+      "detected": true,
+      "class_change_found": true,
+      "problem_kinds": {
+       "precision": 18,
+       "zero": 27
+      },
+      "max_raw_difference_found": 2012.5331364450046,
+      "rounding_allowance": 0.039059369221681,
+      "seconds": 68.4
+     }
+    },
+    "after810": {
+     "replay": {
+      "label_flips": 14785,
+      "rows_failing": 148155,
+      "rows_failing_margin": 437322,
+      "max_deviation": 0.9999999999988076,
+      "prob_passes": 0.0,
+      "margin_prob_passes": 0.0
+     },
+     "probes": {
+      "probes": 12000,
+      "label_flips": 674,
+      "failing": 8841,
+      "failing_margin": 12000,
+      "detected": true,
+      "margin_detected": true,
+      "seconds": 0.3
+     },
+     "leafparity": {
+      "verdict": "NOT EQUIVALENT",
+      "detected": true,
+      "class_change_found": true,
+      "problem_kinds": {
+       "zero": 27,
+       "precision": 1
+      },
+      "max_raw_difference_found": 2005.171140287435,
+      "rounding_allowance": 0.039059369221681,
+      "seconds": 66.1
+     }
+    },
+    "fixed": {
+     "replay": {
+      "label_flips": 0,
+      "rows_failing": 0,
+      "rows_failing_margin": 2,
+      "max_deviation": 2.4836209400191933e-07,
+      "prob_passes": 1.0,
+      "margin_prob_passes": 0.9910968062708491
+     },
+     "probes": {
+      "error": "NotImplementedError: [ERR] Unsupported tree node mode(s): ['BRANCH_EQ']",
+      "detected": null,
+      "margin_detected": null,
+      "failing": null,
+      "failing_margin": null,
+      "probes": 0
+     },
+     "leafparity": {
+      "error": "timeout after 600 s",
+      "detected": false,
+      "seconds": 600.1
+     }
+    }
+   }
+  },
+  "xgb_dart": {
+   "defect": "onnxmltools PR 813: DART tree weights ignored",
+   "graphs": {
+    "released": {
+     "replay": {
+      "label_flips": 1123,
+      "rows_failing": 160846,
+      "rows_failing_margin": 447275,
+      "max_deviation": 0.8783643245697021,
+      "prob_passes": 0.0,
+      "margin_prob_passes": 0.0
+     },
+     "probes": {
+      "probes": 29486,
+      "label_flips": 3557,
+      "failing": 29479,
+      "failing_margin": 29486,
+      "detected": true,
+      "margin_detected": true,
+      "seconds": 0.27
+     },
+     "leafparity": {
+      "error": "SelfCheckError: self-check failed for the original model: leaf values reproduced by leafparity differ from the real runtime's raw output by 21.2, more than the proven floating-point allowance (0.00127). The analysis was stopped.",
+      "detected": false,
+      "seconds": 8.6
+     }
+    },
+    "fixed": {
+     "replay": {
+      "label_flips": 0,
+      "rows_failing": 0,
+      "rows_failing_margin": 0,
+      "max_deviation": 3.8743019104003906e-07,
+      "prob_passes": 1.0,
+      "margin_prob_passes": 1.0
+     },
+     "probes": {
+      "probes": 29486,
+      "label_flips": 0,
+      "failing": 0,
+      "failing_margin": 0,
+      "detected": false,
+      "margin_detected": false,
+      "seconds": 0.21
+     },
+     "leafparity": {
+      "error": "SelfCheckError: self-check failed for the original model: leaf values reproduced by leafparity differ from the real runtime's raw output by 21.2, more than the proven floating-point allowance (0.00127). The analysis was stopped.",
+      "detected": false,
+      "seconds": 8.3
+     }
+    }
+   }
+  },
+  "hgb_threshold": {
+   "defect": "skl2onnx PR 1227: HistGradientBoosting thresholds rounded to nearest float32",
+   "graphs": {
+    "released": {
+     "replay": {
+      "label_flips": 0,
+      "rows_failing": 0,
+      "rows_failing_margin": 0,
+      "max_deviation": 1.99289165447869e-07,
+      "prob_passes": 1.0,
+      "margin_prob_passes": 1.0
+     },
+     "probes": {
+      "probes": 12000,
+      "label_flips": 0,
+      "failing": 1,
+      "failing_margin": 1,
+      "detected": true,
+      "margin_detected": true,
+      "seconds": 0.14
+     },
+     "leafparity": {
+      "not_applicable": "HistGradientBoosting is not supported by Leafparity 0.1.2"
+     }
+    },
+    "fixed": {
+     "replay": {
+      "label_flips": 0,
+      "rows_failing": 0,
+      "rows_failing_margin": 0,
+      "max_deviation": 1.99289165447869e-07,
+      "prob_passes": 1.0,
+      "margin_prob_passes": 1.0
+     },
+     "probes": {
+      "probes": 12000,
+      "label_flips": 0,
+      "failing": 0,
+      "failing_margin": 0,
+      "detected": false,
+      "margin_detected": false,
+      "seconds": 0.13
+     },
+     "leafparity": {
+      "not_applicable": "HistGradientBoosting is not supported by Leafparity 0.1.2"
+     }
+    }
+   }
+  }
+ }
+}

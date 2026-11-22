@@ -59,7 +59,10 @@ REAL = {
     "ort_1.26_1.27": "ONNX Runtime 1.26.0/1.27.0 label single-column binary graphs as attack when the score is positive "
                      "(onnxruntime issue 28557; PRs 27552, 28685; fixed in 1.28.0)",
     "skl2onnx_1.20_hgb": "skl2onnx 1.20 rounds HistGradientBoosting thresholds to the nearest float32 "
-                         "(fixed by sklearn-onnx PR 1227)",
+                         "(fixed by sklearn-onnx PR 1227, in no release as of Nov 2026)",
+    "onnxmltools_810": "onnxmltools 1.16.0 rounds LightGBM thresholds to the nearest float32 (PR 810, issue 806; unreleased fix)",
+    "onnxmltools_814": "onnxmltools ignores LightGBM zero_as_missing default children (PR 814; unreleased fix)",
+    "onnxmltools_813": "onnxmltools ignores XGBoost DART tree weights (PR 813; unreleased fix)",
     "hummingbird_base": "Hummingbird 0.4.12 drops the graph's base_values (observed in exp39)",
     "own_float64": "the project's own early exporter traversed in float64 (mirrored by arithmetic/float64)",
 }
@@ -165,10 +168,25 @@ def main():
                 "checks": {"replay_2000": all(r["replay"]["pass_conf"] < 0.5 for r in bad.values()),
                            "crossing": all(r["crossing"]["gate_fails"] for r in bad.values())}})
 
-    entries.append({"id": "exp12/skl2onnx_1.20/CICIDS2017/sklearn_hgb", "model": "CICIDS2017 sklearn_hgb",
-                    "injected_into": "converter release", "fault_model": "single-switch, every node (rounded thresholds)",
-                    "theorem": "proved", "provenance": "real: " + REAL["skl2onnx_1.20_hgb"], "changes_output": True,
-                    "checks": {}, "note": "measured as converter divergence in exp12/exp12b/exp19"})
+    # real converter defects in the latest releases (exp47): each graph from the converter build that has
+    # exactly that defect, checked against the training model
+    exp47 = load("exp47_converter_releases.json")
+    if exp47:
+        pick = {"lgbm_threshold": ("released", "single-switch, every node (rounded thresholds)", "proved", "onnxmltools_810"),
+                "lgbm_zero": ("after810", "missing-value routing (zero as missing)", "empirical", "onnxmltools_814"),
+                "xgb_dart": ("released", "leaf weights (DART tree weights)", "empirical", "onnxmltools_813"),
+                "hgb_threshold": ("released", "single-switch, every node (rounded thresholds)", "proved", "skl2onnx_1.20_hgb")}
+        for name, (tag, fm, th, real) in pick.items():
+            g = exp47["models"][name]["graphs"][tag]
+            lp = g["leafparity"]
+            entries.append({
+                "id": f"exp47/{name}/{tag}", "model": f"CICIDS2017 {name.split('_')[0]} (no scaler)",
+                "injected_into": "converter release", "fault_model": fm, "theorem": th,
+                "provenance": "real: " + REAL[real], "changes_output": True,
+                "checks": {"replay_2000": g["replay"]["prob_passes"] < 0.5, "crossing": g["probes"]["detected"],
+                           "crossing_margin": g["probes"]["margin_detected"],
+                           "leafparity": None if "not_applicable" in lp else bool(lp.get("detected")),
+                           "leafparity_error": lp.get("error")}})
 
     summary = defaultdict(lambda: defaultdict(lambda: [0, 0]))
     for e in entries:
@@ -188,6 +206,8 @@ def main():
             return "single-switch, one node" if "one node" in fm else "single-switch, many nodes"
         if fm.startswith("feature mapping"):
             return "feature mapping"
+        if fm.startswith("missing-value"):
+            return "missing-value routing"
         if fm.startswith("leaf weight"):
             return "leaf weights"
         if fm == "base value":

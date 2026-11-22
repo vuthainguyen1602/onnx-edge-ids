@@ -98,3 +98,31 @@ def single_node_mutants(base, onnx_path, seed=0, count=20):
         m["threshold"] = t
         out[f"node_{int(v)}"] = m
     return out
+
+
+# Coupled single-node faults (exp40): one element changed, but not a single threshold switch on the
+# node's own feature, so the crossing pair's completeness argument does not cover them.
+
+def coupled_single_node_mutants(base, seed=0, count=20):
+    """name -> artifact arrays with one leaf's scores swapped (negated for a single score column), or one
+    internal node's split feature replaced by another feature; ``count`` of each."""
+    rng = np.random.default_rng(seed)
+    is_leaf = base["is_leaf"]
+    leaves = np.sort(rng.choice(np.flatnonzero(is_leaf), count, replace=False))
+    internal = np.sort(rng.choice(np.flatnonzero(~is_leaf), count, replace=False))
+    n_features = int(np.max(base["feature"][~is_leaf])) + 1
+    out = {}
+    for v in leaves:
+        ls = base["leaf_scores"].copy()
+        ls[v] = ls[v, ::-1] if ls.shape[1] == 2 else -ls[v]
+        if np.array_equal(ls[v], base["leaf_scores"][v]):
+            continue  # a leaf whose two scores are equal (or zero) has nothing to swap
+        m = dict(base); m["leaf_scores"] = ls
+        out[f"leaf_{int(v)}"] = m
+    for v in internal:
+        f = base["feature"].copy()
+        other = int(rng.integers(0, n_features - 1))
+        f[v] = other if other < f[v] else other + 1
+        m = dict(base); m["feature"] = f
+        out[f"feature_{int(v)}"] = m
+    return out

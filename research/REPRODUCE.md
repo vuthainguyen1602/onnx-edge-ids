@@ -230,6 +230,10 @@ python research/code/experiments/exp40_fault_class_ablation.py --data $DATA
 for py in /path/to/ort1.26.0/bin/python /path/to/ort1.27.0/bin/python venv/bin/python; do
   PYTHONPATH=research/code $py research/code/experiments/exp41_ort_release_gate.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
 done
+# Hummingbird on a CUDA GPU (Jetson Orin, JetPack 6.2 with cuda-libraries-12-6 installed): venv with NVIDIA's JetPack 6.1
+# PyTorch wheel (torch-2.5.0a0+872d972e41.nv24.08), numpy<2, hummingbird-ml, onnxruntime==1.23.2; cusparseLt 0.6.2.3 from
+# NVIDIA's redistributable archive on LD_LIBRARY_PATH (~25 min on the board)
+PYTHONPATH=research/code ~/hbvenv2/bin/python research/code/experiments/exp42_hummingbird_cuda.py --cicids $DATA --unsw $UNSW --ton-iot $TON/train_test_network.csv
 # cross-architecture ties: write probe sets, run both runtimes on each machine, compare.
 # the two tie-prone models are the CICIDS2017 RF of seed 4 (exp5 --seed 4 --models sklearn_rf) and the UNSW-NB15 RF of seed 2
 python research/code/experiments/exp27_make_probe_sets.py --out $EXP27 --cicids $DATA --unsw $UNSW \
@@ -363,6 +367,7 @@ Paths are relative to `research/code/`.
 | Hummingbird as a runtime of a different family, and its dropped base values | `results/exp39_hummingbird.json` |
 | Fault-class ablation, coupled one-element faults (`tab:faultsummary`, EASE version) | `results/exp40_fault_class_ablation.json` |
 | The gate (probes and replay) under ONNX Runtime 1.26.0, 1.27.0 and 1.30.0 | `results/exp41_ort_release_gate_<version>.json` |
+| Hummingbird on the Jetson's CUDA GPU at float32, TF32 and bf16 matmul precision | `results/exp42_hummingbird_cuda.json` |
 | Backend cost (`tab:engines`) | `results_jetson/exp8_summary.json`, `results_jetson/exp8_summary_zeromq_kafkareplay.json`, `results_jetson/exp6_gate_node.json`, `results_jetson/exp6_gate_node_zeromq_kafkareplay.json` |
 | Cold start (`tab:coldstart`) | `results_jetson/exp8_summary.json` (ONNX Runtime and per-tree rows, pooled), `results_jetson/exp8_cold_start_j2_head.json` (lockstep row) |
 | End-to-end latency (`tab:e2e`) | `results_jetson/exp7_e2e.json`, `results_jetson/exp7_e2e_zeromq_kafkareplay.json` |

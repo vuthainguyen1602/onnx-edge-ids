@@ -1,0 +1,1931 @@
+{
+  "versions": {
+    "hummingbird": "0.4.12",
+    "torch": "2.5.0a0+872d972e41.nv24.08",
+    "cuda": "12.6",
+    "onnxruntime": "1.23.2",
+    "numpy": "1.26.4"
+  },
+  "machine": "aarch64 ubuntu",
+  "gpu": "Orin",
+  "replay_rows": 2000,
+  "datasets": {
+    "CICIDS2017": {
+      "deployed_rf": {
+        "reference": "graph",
+        "probes": {
+          "three": 287223,
+          "crossing": 191482
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 22.7
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 22.0
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 22.2
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 22.2
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 22.0
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 59.2
+          }
+        }
+      },
+      "sklearn_rf": {
+        "reference": "graph",
+        "probes": {
+          "three": 384945,
+          "crossing": 256630
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 31.5
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 31.5
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 31.6
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 31.4
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 31.4
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 71.1
+          }
+        }
+      },
+      "sklearn_hgb": {
+        "reference": "base_values zeroed",
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.960464477539062e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.7
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.960464477539062e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.5
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.960464477539062e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.4
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.960464477539062e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.4
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 4.172325134277344e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.960464477539062e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.4
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 5.066394805908203e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 20.5
+          }
+        }
+      },
+      "lightgbm": {
+        "reference": "graph",
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 4.1
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 4.0
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.9
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.9
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 5.960464477539062e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 4.0
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.854534149169922e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 6.854534149169922e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 23.3
+          }
+        }
+      },
+      "xgboost_hist": {
+        "reference": "base_values zeroed",
+        "probes": {
+          "three": 27210,
+          "crossing": 18140
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.682209014892578e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.8
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.682209014892578e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.8
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.682209014892578e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.6
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.682209014892578e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.8
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.682209014892578e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.6
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 9.1
+          }
+        }
+      }
+    },
+    "UNSW-NB15": {
+      "sklearn_rf": {
+        "reference": "graph",
+        "probes": {
+          "three": 726261,
+          "crossing": 484174
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 74.7
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 74.6
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 74.7
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 74.0
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 74.7
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 131.4
+          }
+        }
+      },
+      "sklearn_hgb": {
+        "reference": "base_values zeroed",
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 5.0
+          }
+        }
+      },
+      "lightgbm": {
+        "reference": "graph",
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.9
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.9
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.9
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.980232238769531e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.9
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 4.6
+          }
+        }
+      },
+      "xgboost_hist": {
+        "reference": "base_values zeroed",
+        "probes": {
+          "three": 53916,
+          "crossing": 35944
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.2
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 4.172325134277344e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.9
+          }
+        }
+      }
+    },
+    "ToN-IoT": {
+      "sklearn_rf": {
+        "reference": "graph",
+        "probes": {
+          "three": 228057,
+          "crossing": 152038
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 10,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 6,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 11.8
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 10,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 6,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 12.1
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 10,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 6,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 11.7
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 10,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 6,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 12.0
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 10,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 6,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 11.7
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 10,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": true
+            },
+            "crossing": {
+              "label_flips": 6,
+              "rows_over_tolerance": 0,
+              "max_delta": 3.5762786865234375e-07,
+              "gate_fails": true
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 29.1
+          }
+        }
+      },
+      "sklearn_hgb": {
+        "reference": "base_values zeroed",
+        "probes": {
+          "three": 16470,
+          "crossing": 10980
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.9
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.7
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.7
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.9
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.7
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 3.9
+          }
+        }
+      },
+      "lightgbm": {
+        "reference": "graph",
+        "probes": {
+          "three": 18000,
+          "crossing": 12000
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.1
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.384185791015625e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 1.0
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.980232238769531e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 5.3
+          }
+        }
+      },
+      "xgboost_hist": {
+        "reference": "base_values zeroed",
+        "probes": {
+          "three": 20805,
+          "crossing": 13870
+        },
+        "variants": {
+          "cuda_gemm_fp32": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.6
+          },
+          "cuda_gemm_tf32": {
+            "device": "cuda",
+            "matmul_precision": "high",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.6
+          },
+          "cuda_gemm_bf16": {
+            "device": "cuda",
+            "matmul_precision": "medium",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.7
+          },
+          "cuda_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.5
+          },
+          "cuda_perf_tree_trav": {
+            "device": "cuda",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.384185791015625e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 1.7881393432617188e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 0.5
+          },
+          "cpu_gemm": {
+            "device": "cpu",
+            "matmul_precision": "highest",
+            "three": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.086162567138672e-07,
+              "gate_fails": false
+            },
+            "crossing": {
+              "label_flips": 0,
+              "rows_over_tolerance": 0,
+              "max_delta": 2.086162567138672e-07,
+              "gate_fails": false
+            },
+            "replay": {
+              "label_flips": 0,
+              "max_delta": 2.086162567138672e-07,
+              "pass_labels": 1.0,
+              "pass_conf": 1.0
+            },
+            "seconds": 2.2
+          }
+        }
+      }
+    }
+  }
+}

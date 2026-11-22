@@ -1,0 +1,1037 @@
+{
+ "settings": {
+  "train_days": [
+   "2018-02-14",
+   "2018-02-15",
+   "2018-02-16"
+  ],
+  "test_days": [
+   "2018-02-20",
+   "2018-02-21",
+   "2018-02-22",
+   "2018-02-23",
+   "2018-02-28",
+   "2018-03-01",
+   "2018-03-02"
+  ],
+  "day_rows": 200000,
+  "train_rows": 600000,
+  "tolerance": 1e-05,
+  "replay_rows": 2000
+ },
+ "days": {
+  "2018-02-20": {
+   "rows": 1201060,
+   "rows_used": 200000,
+   "attack_rate": 0.0951,
+   "attack_types": [
+    "DDoS attacks-LOIC-HTTP"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 0.398,
+   "psi_max": 0.681,
+   "features_psi_over_0.25": 20
+  },
+  "2018-02-21": {
+   "rows": 131328,
+   "rows_used": 131328,
+   "attack_rate": 0.4485,
+   "attack_types": [
+    "DDOS attack-HOIC",
+    "DDOS attack-LOIC-UDP"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 3.586,
+   "psi_max": 6.364,
+   "features_psi_over_0.25": 28
+  },
+  "2018-02-22": {
+   "rows": 167550,
+   "rows_used": 167550,
+   "attack_rate": 0.0004,
+   "attack_types": [
+    "Brute Force -Web",
+    "Brute Force -XSS",
+    "SQL Injection"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 0.466,
+   "psi_max": 1.39,
+   "features_psi_over_0.25": 23
+  },
+  "2018-02-23": {
+   "rows": 167509,
+   "rows_used": 167509,
+   "attack_rate": 0.0006,
+   "attack_types": [
+    "Brute Force -Web",
+    "Brute Force -XSS",
+    "SQL Injection"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 0.462,
+   "psi_max": 1.372,
+   "features_psi_over_0.25": 23
+  },
+  "2018-02-28": {
+   "rows": 89217,
+   "rows_used": 89217,
+   "attack_rate": 0.1124,
+   "attack_types": [
+    "Infilteration"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 0.458,
+   "psi_max": 1.404,
+   "features_psi_over_0.25": 25
+  },
+  "2018-03-01": {
+   "rows": 48888,
+   "rows_used": 48888,
+   "attack_rate": 0.2332,
+   "attack_types": [
+    "Infilteration"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 0.475,
+   "psi_max": 1.424,
+   "features_psi_over_0.25": 21
+  },
+  "2018-03-02": {
+   "rows": 159515,
+   "rows_used": 159515,
+   "attack_rate": 0.1862,
+   "attack_types": [
+    "Bot"
+   ],
+   "unseen_attack_share_frozen": 1.0,
+   "psi_mean": 0.592,
+   "psi_max": 1.73,
+   "features_psi_over_0.25": 23
+  }
+ },
+ "frozen": {
+  "sklearn_rf": {
+   "train_seconds": 42.1,
+   "gate": {
+    "probes": 250898,
+    "float32": {
+     "fails": false,
+     "failing_probes": 0
+    },
+    "float64": {
+     "fails": true,
+     "failing_probes": 85903
+    }
+   },
+   "days": {
+    "2018-02-20": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 14,
+     "float64_rows_over_tolerance": 1306,
+     "float64_divergence_rate": 0.00653,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 2.039456017104638e-06,
+     "detection": {
+      "precision": 0.9248,
+      "recall": 0.8115,
+      "f1": 0.8644,
+      "fpr": 0.00694,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.8115
+     }
+    },
+    "2018-02-21": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.748603820800781e-07,
+     "float64_label_flips": 12,
+     "float64_rows_over_tolerance": 4170,
+     "float64_divergence_rate": 0.031752558479532164,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 9.391093737663217e-29,
+     "detection": {
+      "precision": 0.9999,
+      "recall": 0.9865,
+      "f1": 0.9932,
+      "fpr": 6e-05,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.9865
+     }
+    },
+    "2018-02-22": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 8,
+     "float64_rows_over_tolerance": 978,
+     "float64_divergence_rate": 0.005837063563115488,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 8.225005400693229e-06,
+     "detection": {
+      "precision": 0.0025,
+      "recall": 0.0548,
+      "f1": 0.0048,
+      "fpr": 0.00948,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0548
+     }
+    },
+    "2018-02-23": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 2,
+     "float64_rows_over_tolerance": 1024,
+     "float64_divergence_rate": 0.006113104370511435,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 4.719858272877149e-06,
+     "detection": {
+      "precision": 0.0043,
+      "recall": 0.0667,
+      "f1": 0.0081,
+      "fpr": 0.00962,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0667
+     }
+    },
+    "2018-02-28": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 1,
+     "float64_rows_over_tolerance": 712,
+     "float64_divergence_rate": 0.00798054182498851,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 1.0974420505349304e-07,
+     "detection": {
+      "precision": 0.1306,
+      "recall": 0.0099,
+      "f1": 0.0184,
+      "fpr": 0.00832,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0099
+     }
+    },
+    "2018-03-01": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 1,
+     "float64_rows_over_tolerance": 272,
+     "float64_divergence_rate": 0.005563737522500409,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 1.4252966191508518e-05,
+     "detection": {
+      "precision": 0.3235,
+      "recall": 0.0087,
+      "f1": 0.0169,
+      "fpr": 0.00552,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0087
+     }
+    },
+    "2018-03-02": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 22,
+     "float64_rows_over_tolerance": 1302,
+     "float64_divergence_rate": 0.008162241795442435,
+     "float64_divergence_rate_training_days": 0.01152,
+     "replay_pass_float64_recording_training_days": 8.625280801595757e-11,
+     "replay_pass_float64_recording_this_day": 7.608075156453879e-08,
+     "detection": {
+      "precision": 0.1818,
+      "recall": 0.0088,
+      "f1": 0.0167,
+      "fpr": 0.00901,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0088
+     }
+    }
+   }
+  },
+  "xgboost_hist": {
+   "train_seconds": 2.5,
+   "gate": {
+    "probes": 10770,
+    "float32": {
+     "fails": false,
+     "failing_probes": 0
+    },
+    "float64": {
+     "fails": true,
+     "failing_probes": 354
+    }
+   },
+   "days": {
+    "2018-02-20": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 6.469782696250093e-07,
+     "float64_label_flips": 8,
+     "float64_rows_over_tolerance": 12279,
+     "float64_divergence_rate": 0.061395,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 9.24116630735877e-56,
+     "detection": {
+      "precision": 0.9218,
+      "recall": 0.8143,
+      "f1": 0.8647,
+      "fpr": 0.00726,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.8143
+     }
+    },
+    "2018-02-21": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 5.019410702633564e-07,
+     "float64_label_flips": 10470,
+     "float64_rows_over_tolerance": 16986,
+     "float64_divergence_rate": 0.1293402777777778,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 4.976315035758154e-121,
+     "detection": {
+      "precision": 0.9999,
+      "recall": 0.9479,
+      "f1": 0.9732,
+      "fpr": 6e-05,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.9479
+     }
+    },
+    "2018-02-22": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 2.518286758013133e-07,
+     "float64_label_flips": 21,
+     "float64_rows_over_tolerance": 7385,
+     "float64_divergence_rate": 0.044076395105938526,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 7.020560616781496e-40,
+     "detection": {
+      "precision": 0.0033,
+      "recall": 0.0685,
+      "f1": 0.0063,
+      "fpr": 0.00894,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0685
+     }
+    },
+    "2018-02-23": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 3.590461511437937e-07,
+     "float64_label_flips": 8,
+     "float64_rows_over_tolerance": 7497,
+     "float64_divergence_rate": 0.044755804165746316,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 1.6936165838171634e-40,
+     "detection": {
+      "precision": 0.0034,
+      "recall": 0.0476,
+      "f1": 0.0063,
+      "fpr": 0.00887,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0476
+     }
+    },
+    "2018-02-28": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 4.040922792492019e-07,
+     "float64_label_flips": 1,
+     "float64_rows_over_tolerance": 4668,
+     "float64_divergence_rate": 0.05232186690877299,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 2.0975846242325762e-47,
+     "detection": {
+      "precision": 0.1319,
+      "recall": 0.0095,
+      "f1": 0.0177,
+      "fpr": 0.00789,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0095
+     }
+    },
+    "2018-03-01": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 2.2663307874815075e-07,
+     "float64_label_flips": 2,
+     "float64_rows_over_tolerance": 2844,
+     "float64_divergence_rate": 0.05817378497790869,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 8.740757436145018e-53,
+     "detection": {
+      "precision": 0.3333,
+      "recall": 0.0088,
+      "f1": 0.0171,
+      "fpr": 0.00534,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0088
+     }
+    },
+    "2018-03-02": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 3.6322409702194136e-07,
+     "float64_label_flips": 4,
+     "float64_rows_over_tolerance": 6776,
+     "float64_divergence_rate": 0.042478763752625145,
+     "float64_divergence_rate_training_days": 0.09706,
+     "replay_pass_float64_recording_training_days": 2.078668128038262e-89,
+     "replay_pass_float64_recording_this_day": 1.9807486594506243e-38,
+     "detection": {
+      "precision": 0.1589,
+      "recall": 0.007,
+      "f1": 0.0135,
+      "fpr": 0.00852,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.007
+     }
+    }
+   }
+  }
+ },
+ "expanding": {
+  "sklearn_rf": {
+   "days": {
+    "2018-02-20": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 14,
+     "float64_rows_over_tolerance": 1306,
+     "float64_divergence_rate": 0.00653,
+     "float64_divergence_rate_training_days": 0.0105,
+     "replay_pass_float64_recording_training_days": 6.785737960583438e-10,
+     "replay_pass_float64_recording_this_day": 2.039456017104638e-06,
+     "detection": {
+      "precision": 0.9248,
+      "recall": 0.8115,
+      "f1": 0.8644,
+      "fpr": 0.00694,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.8115
+     },
+     "gate": {
+      "probes": 250898,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 85903
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16"
+     ]
+    },
+    "2018-02-21": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.748603820800781e-07,
+     "float64_label_flips": 14,
+     "float64_rows_over_tolerance": 2364,
+     "float64_divergence_rate": 0.01800073099415205,
+     "float64_divergence_rate_training_days": 0.00274,
+     "replay_pass_float64_recording_training_days": 0.004138088378412197,
+     "replay_pass_float64_recording_this_day": 1.6685107223805705e-16,
+     "detection": {
+      "precision": 1.0,
+      "recall": 0.9571,
+      "f1": 0.9781,
+      "fpr": 1e-05,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.9571
+     },
+     "gate": {
+      "probes": 222360,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 62079
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20"
+     ]
+    },
+    "2018-02-22": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 6.556510925292969e-07,
+     "float64_label_flips": 4,
+     "float64_rows_over_tolerance": 557,
+     "float64_divergence_rate": 0.0033243807818561623,
+     "float64_divergence_rate_training_days": 0.00302,
+     "replay_pass_float64_recording_training_days": 0.002359893462205262,
+     "replay_pass_float64_recording_this_day": 0.001281354412811177,
+     "detection": {
+      "precision": 0.0007,
+      "recall": 0.0137,
+      "f1": 0.0013,
+      "fpr": 0.00844,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0137
+     },
+     "gate": {
+      "probes": 202324,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 54245
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21"
+     ]
+    },
+    "2018-02-23": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 2,
+     "float64_rows_over_tolerance": 509,
+     "float64_divergence_rate": 0.003038642699795235,
+     "float64_divergence_rate_training_days": 0.00264,
+     "replay_pass_float64_recording_training_days": 0.005056999828311157,
+     "replay_pass_float64_recording_this_day": 0.00227326649706431,
+     "detection": {
+      "precision": 0.0211,
+      "recall": 0.2857,
+      "f1": 0.0393,
+      "fpr": 0.00832,
+      "recall_seen_types": 0.2857,
+      "recall_unseen_types": null
+     },
+     "gate": {
+      "probes": 205538,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 57932
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22"
+     ]
+    },
+    "2018-02-28": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 1,
+     "float64_rows_over_tolerance": 561,
+     "float64_divergence_rate": 0.00628803927502606,
+     "float64_divergence_rate_training_days": 0.00282,
+     "replay_pass_float64_recording_training_days": 0.003524673813404579,
+     "replay_pass_float64_recording_this_day": 3.319207448146349e-06,
+     "detection": {
+      "precision": 0.1447,
+      "recall": 0.0102,
+      "f1": 0.019,
+      "fpr": 0.00761,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0102
+     },
+     "gate": {
+      "probes": 219400,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 59318
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23"
+     ]
+    },
+    "2018-03-01": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 7.152557373046875e-07,
+     "float64_label_flips": 2,
+     "float64_rows_over_tolerance": 754,
+     "float64_divergence_rate": 0.015423007691048929,
+     "float64_divergence_rate_training_days": 0.00466,
+     "replay_pass_float64_recording_training_days": 8.768293162698909e-05,
+     "replay_pass_float64_recording_this_day": 3.157663442336071e-14,
+     "detection": {
+      "precision": 0.4831,
+      "recall": 0.0264,
+      "f1": 0.0501,
+      "fpr": 0.00859,
+      "recall_seen_types": 0.0264,
+      "recall_unseen_types": null
+     },
+     "gate": {
+      "probes": 441934,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 118966
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23",
+      "2018-02-28"
+     ]
+    },
+    "2018-03-02": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 5.960464477539062e-07,
+     "float64_label_flips": 2,
+     "float64_rows_over_tolerance": 4705,
+     "float64_divergence_rate": 0.029495658715481304,
+     "float64_divergence_rate_training_days": 0.0051,
+     "replay_pass_float64_recording_training_days": 3.621276874202698e-05,
+     "replay_pass_float64_recording_this_day": 9.884730919825881e-27,
+     "detection": {
+      "precision": 0.0205,
+      "recall": 0.0009,
+      "f1": 0.0018,
+      "fpr": 0.01033,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0009
+     },
+     "gate": {
+      "probes": 537796,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 151053
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23",
+      "2018-02-28",
+      "2018-03-01"
+     ]
+    }
+   }
+  },
+  "xgboost_hist": {
+   "days": {
+    "2018-02-20": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 6.469782696250093e-07,
+     "float64_label_flips": 8,
+     "float64_rows_over_tolerance": 12279,
+     "float64_divergence_rate": 0.061395,
+     "float64_divergence_rate_training_days": 0.09544,
+     "replay_pass_float64_recording_training_days": 7.494770219015139e-88,
+     "replay_pass_float64_recording_this_day": 9.24116630735877e-56,
+     "detection": {
+      "precision": 0.9218,
+      "recall": 0.8143,
+      "f1": 0.8647,
+      "fpr": 0.00726,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.8143
+     },
+     "gate": {
+      "probes": 10770,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 354
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16"
+     ]
+    },
+    "2018-02-21": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 4.386267942191324e-07,
+     "float64_label_flips": 4242,
+     "float64_rows_over_tolerance": 37676,
+     "float64_divergence_rate": 0.28688474658869395,
+     "float64_divergence_rate_training_days": 0.06218,
+     "replay_pass_float64_recording_training_days": 1.733726463818439e-56,
+     "replay_pass_float64_recording_this_day": 2.086661779508241e-294,
+     "detection": {
+      "precision": 0.9997,
+      "recall": 0.4687,
+      "f1": 0.6382,
+      "fpr": 0.0001,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.4687
+     },
+     "gate": {
+      "probes": 12580,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 1045
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20"
+     ]
+    },
+    "2018-02-22": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 2.957530403913111e-07,
+     "float64_label_flips": 4,
+     "float64_rows_over_tolerance": 9718,
+     "float64_divergence_rate": 0.058000596836765145,
+     "float64_divergence_rate_training_days": 0.0981,
+     "replay_pass_float64_recording_training_days": 2.07383333737648e-90,
+     "replay_pass_float64_recording_this_day": 1.262569404336363e-52,
+     "detection": {
+      "precision": 0.0007,
+      "recall": 0.0137,
+      "f1": 0.0013,
+      "fpr": 0.00841,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0137
+     },
+     "gate": {
+      "probes": 12392,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 2817
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21"
+     ]
+    },
+    "2018-02-23": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 4.366506862751862e-07,
+     "float64_label_flips": 1523,
+     "float64_rows_over_tolerance": 33036,
+     "float64_divergence_rate": 0.19721925389083572,
+     "float64_divergence_rate_training_days": 0.18258,
+     "replay_pass_float64_recording_training_days": 7.771752718112261e-176,
+     "replay_pass_float64_recording_this_day": 1.562772087709787e-191,
+     "detection": {
+      "precision": 0.2061,
+      "recall": 0.2571,
+      "f1": 0.2288,
+      "fpr": 0.00062,
+      "recall_seen_types": 0.2571,
+      "recall_unseen_types": null
+     },
+     "gate": {
+      "probes": 12274,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 1938
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22"
+     ]
+    },
+    "2018-02-28": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 4.956297400271481e-07,
+     "float64_label_flips": 26,
+     "float64_rows_over_tolerance": 3049,
+     "float64_divergence_rate": 0.03417510115785108,
+     "float64_divergence_rate_training_days": 0.06572,
+     "replay_pass_float64_recording_training_days": 8.997132846054e-60,
+     "replay_pass_float64_recording_this_day": 6.263174754234385e-31,
+     "detection": {
+      "precision": 0.1406,
+      "recall": 0.0096,
+      "f1": 0.0179,
+      "fpr": 0.00741,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.0096
+     },
+     "gate": {
+      "probes": 12584,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 1136
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23"
+     ]
+    },
+    "2018-03-01": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 5.722792384421638e-07,
+     "float64_label_flips": 183,
+     "float64_rows_over_tolerance": 29396,
+     "float64_divergence_rate": 0.6012927507772868,
+     "float64_divergence_rate_training_days": 0.4684,
+     "replay_pass_float64_recording_training_days": 0.0,
+     "replay_pass_float64_recording_this_day": 0.0,
+     "detection": {
+      "precision": 0.3614,
+      "recall": 0.0222,
+      "f1": 0.0418,
+      "fpr": 0.01192,
+      "recall_seen_types": 0.0222,
+      "recall_unseen_types": null
+     },
+     "gate": {
+      "probes": 28514,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 9733
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23",
+      "2018-02-28"
+     ]
+    },
+    "2018-03-02": {
+     "float32_label_flips": 0,
+     "float32_max_deviation": 6.609792120304547e-07,
+     "float64_label_flips": 132,
+     "float64_rows_over_tolerance": 87095,
+     "float64_divergence_rate": 0.5459988088894462,
+     "float64_divergence_rate_training_days": 0.47748,
+     "replay_pass_float64_recording_training_days": 0.0,
+     "replay_pass_float64_recording_this_day": 0.0,
+     "detection": {
+      "precision": 0.1344,
+      "recall": 0.003,
+      "f1": 0.0059,
+      "fpr": 0.00441,
+      "recall_seen_types": null,
+      "recall_unseen_types": 0.003
+     },
+     "gate": {
+      "probes": 32160,
+      "float32": {
+       "fails": false,
+       "failing_probes": 0
+      },
+      "float64": {
+       "fails": true,
+       "failing_probes": 11791
+      }
+     },
+     "train_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23",
+      "2018-02-28",
+      "2018-03-01"
+     ]
+    }
+   }
+  }
+ },
+ "deployed_rf": {
+  "note": "trained on CICIDS2017; every 2018 attack type is unseen",
+  "days": {
+   "2018-02-20": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 1.0728836059570312e-06,
+    "float64_label_flips": 3,
+    "float64_rows_over_tolerance": 1918,
+    "float64_divergence_rate": 0.00959,
+    "detection": {
+     "precision": 0.5138,
+     "recall": 0.4662,
+     "f1": 0.4889,
+     "fpr": 0.04639,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.4662
+    }
+   },
+   "2018-02-21": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 9.5367431640625e-07,
+    "float64_label_flips": 0,
+    "float64_rows_over_tolerance": 30,
+    "float64_divergence_rate": 0.00022843567251461987,
+    "detection": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "fpr": 0.00014,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.0
+    }
+   },
+   "2018-02-22": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 1.0132789611816406e-06,
+    "float64_label_flips": 1,
+    "float64_rows_over_tolerance": 1466,
+    "float64_divergence_rate": 0.008749626977021785,
+    "detection": {
+     "precision": 0.0005,
+     "recall": 0.1781,
+     "f1": 0.0011,
+     "fpr": 0.1426,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.1781
+    }
+   },
+   "2018-02-23": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 1.0728836059570312e-06,
+    "float64_label_flips": 1,
+    "float64_rows_over_tolerance": 1415,
+    "float64_divergence_rate": 0.008447307308861016,
+    "detection": {
+     "precision": 0.0011,
+     "recall": 0.2476,
+     "f1": 0.0021,
+     "fpr": 0.14568,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.2476
+    }
+   },
+   "2018-02-28": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 1.0728836059570312e-06,
+    "float64_label_flips": 6,
+    "float64_rows_over_tolerance": 907,
+    "float64_divergence_rate": 0.010166223925933398,
+    "detection": {
+     "precision": 0.1178,
+     "recall": 0.0181,
+     "f1": 0.0313,
+     "fpr": 0.01712,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.0181
+    }
+   },
+   "2018-03-01": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 1.0728836059570312e-06,
+    "float64_label_flips": 1,
+    "float64_rows_over_tolerance": 509,
+    "float64_divergence_rate": 0.010411552937326133,
+    "detection": {
+     "precision": 0.1095,
+     "recall": 0.0197,
+     "f1": 0.0334,
+     "fpr": 0.04879,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.0197
+    }
+   },
+   "2018-03-02": {
+    "float32_label_flips": 0,
+    "float32_max_deviation": 1.0132789611816406e-06,
+    "float64_label_flips": 1,
+    "float64_rows_over_tolerance": 1195,
+    "float64_divergence_rate": 0.007491458483528195,
+    "detection": {
+     "precision": 0.0008,
+     "recall": 0.0003,
+     "f1": 0.0005,
+     "fpr": 0.09215,
+     "recall_seen_types": null,
+     "recall_unseen_types": 0.0003
+    }
+   }
+  }
+ }
+}

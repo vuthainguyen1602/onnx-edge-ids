@@ -41,7 +41,7 @@ The research context that exposed the software need is that an IDS model can be 
 
 - `src/onnx_edge_ids/`: reusable ONNX/NumPy inference package.
 - `artifacts/`: the served ONNX and NumPy artifacts plus the feature-column metadata.
-- `scripts/export_numpy.py`: convert an ONNX tree-ensemble artifact to the NumPy format (`BRANCH_LEQ` and `BRANCH_LT` splits as scikit-learn, LightGBM and XGBoost export them, one or two score columns, base values, NONE/LOGISTIC/SOFTMAX; other split modes are refused).
+- `scripts/export_numpy.py`: convert an ONNX tree-ensemble artifact to the NumPy format (`BRANCH_LEQ` and `BRANCH_LT` splits as scikit-learn, LightGBM and XGBoost export them, one or two score columns, base values, missing-value routing (`nodes_missing_value_tracks_true`, so a NaN input takes the branch ONNX Runtime gives it), NONE/LOGISTIC/SOFTMAX; other split modes are refused).
 - `scripts/export_artifacts.sh`: create the NumPy artifact from an ONNX artifact.
 - `scripts/validate_parity.py`: check that the NumPy artifact reproduces the ONNX artifact on replayed rows and on a boundary probe of every split threshold; exits non-zero outside tolerance.
 - `scripts/init_topics.py`: create Kafka input/suspicious topics.
@@ -77,7 +77,8 @@ Validate that the two backends agree before deploying. The script fails the
 command rather than only printing a warning, and it runs three checks:
 
 - structure: the NumPy artifact must hold the ONNX graph's tree layout,
-  thresholds, split modes, leaf weights, scaler and base values, equal value
+  thresholds, split modes, missing-value routing, leaf weights, scaler and
+  base values, equal value
   for value once both are cast to float32 (the precision both runtimes serve),
   and must declare float32 serving, so an exporter that mis-reads the graph
   fails before any arithmetic is compared;

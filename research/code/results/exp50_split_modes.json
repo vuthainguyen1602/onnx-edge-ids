@@ -40,6 +40,14 @@
    },
    "shipped_numpy_engine": {
     "export": "ok",
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine_0.11.0": {
+    "export": "ok",
     "failing": 4067,
     "by_kind": {
      "monotone_crossing": 0,
@@ -211,6 +219,14 @@
    },
    "shipped_numpy_engine": {
     "export": "ok",
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine_0.11.0": {
+    "export": "ok",
     "failing": 2234,
     "by_kind": {
      "monotone_crossing": 0,
@@ -250,6 +266,14 @@
     }
    },
    "shipped_numpy_engine": {
+    "export": "ok",
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine_0.11.0": {
     "export": "ok",
     "failing": 2234,
     "by_kind": {
@@ -291,6 +315,14 @@
    },
    "shipped_numpy_engine": {
     "export": "ok",
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine_0.11.0": {
+    "export": "ok",
     "failing": 5983,
     "by_kind": {
      "monotone_crossing": 0,
@@ -331,6 +363,14 @@
    },
    "shipped_numpy_engine": {
     "export": "ok",
+    "failing": 0,
+    "by_kind": {
+     "monotone_crossing": 0,
+     "missing": 0
+    }
+   },
+   "shipped_numpy_engine_0.11.0": {
+    "export": "ok",
     "failing": 5983,
     "by_kind": {
      "monotone_crossing": 0,
@@ -338,5 +378,6 @@
     }
    }
   }
- }
+ },
+ "note": "shipped_numpy_engine: the toolkit engine after it reads nodes_missing_value_tracks_true (0.12.0); shipped_numpy_engine_0.11.0: the same run with the 0.11.0 engine, which ignored the flags."
 }

@@ -52,6 +52,12 @@ class NumpyInferenceEngine(InferenceEngine):
         self.strict = (data["strict"].astype(bool, copy=False) if "strict" in files
                        else np.zeros(len(self.left), dtype=bool))
         self.any_strict = bool(self.strict.any())
+        # Where nodes_missing_value_tracks_true is set, ONNX Runtime sends a NaN
+        # input to the true (left) branch; elsewhere the comparison is false and
+        # NaN goes right. Older artifacts carry no flags: NaN always goes right.
+        self.missing_true = (data["missing_true"].astype(bool, copy=False) if "missing_true" in files
+                             else np.zeros(len(self.left), dtype=bool))
+        self.any_missing_true = bool(self.missing_true.any())
         n_targets = int(self.leaf_scores.shape[1])
         self.base_values = (data["base_values"].astype(self.inference_dtype, copy=False) if "base_values" in files
                             else np.zeros(n_targets, dtype=self.inference_dtype))
@@ -99,6 +105,8 @@ class NumpyInferenceEngine(InferenceEngine):
                     go_left = np.where(self.strict[cur], value < thr, value <= thr)
                 else:
                     go_left = value <= thr
+                if self.any_missing_true:
+                    go_left |= self.missing_true[cur] & np.isnan(value)
                 nxt = np.where(go_left, self.left[cur], self.right[cur])
                 node[t_idx, r_idx] = nxt
                 active[t_idx, r_idx] = ~self.is_leaf[nxt]

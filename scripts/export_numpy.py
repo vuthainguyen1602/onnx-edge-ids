@@ -11,7 +11,8 @@ split modes raise.
 
 The exported ``.npz`` contains:
   * fitted scaler offset/scale,
-  * flattened tree nodes with their split mode (``strict``: BRANCH_LT),
+  * flattened tree nodes with their split mode (``strict``: BRANCH_LT) and
+    missing-value routing (``missing_true``: NaN goes to the true branch),
   * per-leaf scores and base values,
   * feature-column and post-transform metadata.
 
@@ -81,7 +82,7 @@ def main():
         args.out,
         metadata_json=json.dumps(metadata),
         **{k: g[k] for k in ("offset", "scale", "tree_offsets", "left", "right", "feature",
-                             "threshold", "is_leaf", "strict", "leaf_scores", "base_values")},
+                             "threshold", "is_leaf", "strict", "missing_true", "leaf_scores", "base_values")},
     )
     size_mb = os.path.getsize(args.out) / (1024 * 1024)
     print(f"[OK] Feature order matches {args.features}" if args.features else "[OK] Loaded ONNX")

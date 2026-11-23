@@ -9,8 +9,10 @@ ONNX Runtime serves, not from the exporter's output.
 Supported: an optional ``ai.onnx.ml.Scaler`` in front of one
 ``TreeEnsembleClassifier`` with ``BRANCH_LEQ`` or ``BRANCH_LT`` splits (the
 modes scikit-learn, LightGBM and XGBoost exports use), one or two score
-columns, ``base_values``, and the NONE / LOGISTIC / SOFTMAX post-transforms.
-Any other split mode raises, so an unsupported graph fails loudly.
+columns, ``base_values``, ``nodes_missing_value_tracks_true`` (a NaN input goes
+to the true branch where the flag is set, as ONNX Runtime routes it), and the
+NONE / LOGISTIC / SOFTMAX post-transforms. Any other split mode raises, so an
+unsupported graph fails loudly.
 """
 
 import json
@@ -100,6 +102,10 @@ def read_onnx_forest(model_path):
         right[i] = lookup[(t, int(fn[i]))]
     feature = np.where(is_leaf, -1, ens["nodes_featureids"][order]).astype(np.int64)
     threshold = np.where(is_leaf, 0.0, ens["nodes_values"][order].astype(np.float64))
+    flags = ens.get("nodes_missing_value_tracks_true", np.zeros(n, dtype=np.int64))
+    if len(flags) != n:
+        flags = np.zeros(n, dtype=np.int64)  # attribute absent (protobuf drops an empty list)
+    missing_true = (flags[order] != 0) & ~is_leaf
     trees = np.unique(tree_s)
     tree_offsets = np.append(np.searchsorted(tree_s, trees, side="left"), n).astype(np.int64)
 
@@ -135,6 +141,7 @@ def read_onnx_forest(model_path):
         "threshold": threshold,
         "is_leaf": is_leaf,
         "strict": strict,
+        "missing_true": missing_true,
         "leaf_scores": leaf_scores,
         "base_values": base,
         "post_transform": post,
@@ -145,7 +152,7 @@ def read_onnx_forest(model_path):
 
 
 ARRAY_KEYS = ("offset", "scale", "tree_offsets", "left", "right", "feature", "threshold",
-              "is_leaf", "strict", "leaf_scores", "base_values")
+              "is_leaf", "strict", "missing_true", "leaf_scores", "base_values")
 
 
 def check_npz_matches_onnx(npz_path, onnx_path):
@@ -159,8 +166,8 @@ def check_npz_matches_onnx(npz_path, onnx_path):
     reason the artifact must declare float32 inference: an engine serving the
     same values in float64 is the precision fault this gate exists to catch.
     An empty list means the artifact is structurally the graph: same tree
-    layout, split features, thresholds, split modes, leaf weights, scaler, base
-    values and serving precision. It does not check arithmetic; that is the
+    layout, split features, thresholds, split modes, missing-value routing, leaf
+    weights, scaler, base values and serving precision. It does not check arithmetic; that is the
     probes' job.
     """
     ref = read_onnx_forest(onnx_path)
@@ -169,6 +176,7 @@ def check_npz_matches_onnx(npz_path, onnx_path):
     got = {k: data[k] for k in data.files}
     got.setdefault("strict", np.zeros(len(got["left"]), dtype=bool))
     got.setdefault("base_values", np.zeros(got["leaf_scores"].shape[1]))
+    got.setdefault("missing_true", np.zeros(len(got["left"]), dtype=bool))
     problems = []
     for key in ARRAY_KEYS:
         a, b = np.asarray(got[key]), np.asarray(ref[key])

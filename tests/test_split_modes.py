@@ -23,7 +23,7 @@ from onnx_edge_ids.onnx_artifact import check_npz_matches_onnx, read_onnx_forest
 onnx = pytest.importorskip("onnx")
 
 
-def _graph(path, mode="BRANCH_LT"):
+def _graph(path, mode="BRANCH_LT", missing=(0,) * 8):
     from onnx import TensorProto, helper
 
     # tree 0: x0 < 0.5 ? (x1 < -1.0 ? -2.0 : 0.5) : 1.5 ; tree 1: x1 < 0.25 ? -0.75 : 0.75
@@ -35,7 +35,7 @@ def _graph(path, mode="BRANCH_LT"):
         nodes_modes=[mode, mode, "LEAF", "LEAF", "LEAF", mode, "LEAF", "LEAF"],
         nodes_truenodeids=[1, 3, 0, 0, 0, 1, 0, 0],
         nodes_falsenodeids=[2, 4, 0, 0, 0, 2, 0, 0],
-        nodes_missing_value_tracks_true=[0] * 8,
+        nodes_missing_value_tracks_true=list(missing),
         class_treeids=[0, 0, 0, 1, 1],
         class_nodeids=[2, 3, 4, 1, 2],
         class_ids=[0, 0, 0, 0, 0],
@@ -158,3 +158,43 @@ def test_structure_check_requires_float32_serving_and_compares_exactly_at_float3
     f64["metadata_json"] = json.dumps({**meta, "inference_dtype": "float64"})
     np.savez(tmp_path / "f64.npz", **f64)
     assert any(p.startswith("inference_dtype") for p in check_npz_matches_onnx(tmp_path / "f64.npz", graph))
+
+
+# NaN goes to the true branch at tree 0's root and at tree 1's root, and to the false branch at node (0, 1)
+MISSING = (1, 0, 0, 0, 0, 1, 0, 0)
+
+
+def _nan_rows():
+    v = [np.nan, -5.0, 0.0, 5.0]
+    return np.array([[a, b] for a in v for b in v], dtype=np.float32)
+
+
+@pytest.mark.parametrize("mode", ["BRANCH_LT", "BRANCH_LEQ"])
+def test_numpy_engine_routes_nan_like_onnx_runtime(tmp_path, mode):
+    pytest.importorskip("onnxruntime")
+    graph = _graph(tmp_path / "nan.onnx", mode=mode, missing=MISSING)
+    npz = _export(graph, tmp_path / "nan.npz")
+    assert read_onnx_forest(graph)["missing_true"].tolist() == [bool(m) for m in MISSING]
+    assert check_npz_matches_onnx(npz, graph) == []
+    x = _nan_rows()
+    a = create_inference_engine("onnx", str(graph)).predict_batch(x)
+    b = create_inference_engine("numpy", str(npz)).predict_batch(x)
+    assert (a.predictions == b.predictions).all()
+    assert float(np.abs(a.confidences - b.confidences).max()) <= 1e-6
+
+
+def test_structure_check_catches_dropped_missing_value_flags(tmp_path):
+    """An artifact without the flags (as exported before they were read) routes NaN to the false
+    branch everywhere: the structure check names it and the engine disagrees with ONNX Runtime on NaN."""
+    pytest.importorskip("onnxruntime")
+    graph = _graph(tmp_path / "nan.onnx", missing=MISSING)
+    npz = _export(graph, tmp_path / "nan.npz")
+    data = dict(np.load(npz, allow_pickle=False))
+    del data["missing_true"]
+    old = tmp_path / "no_flags.npz"
+    np.savez(old, **data)
+    assert any(p.startswith("missing_true") for p in check_npz_matches_onnx(old, graph))
+    x = _nan_rows()
+    a = create_inference_engine("onnx", str(graph)).predict_batch(x)
+    b = create_inference_engine("numpy", str(old)).predict_batch(x)
+    assert float(np.abs(a.confidences - b.confidences).max()) > 1e-5

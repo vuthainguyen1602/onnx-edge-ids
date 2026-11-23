@@ -1,10 +1,10 @@
 {
   "title": "ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection",
-  "description": "<p>ONNX-EdgeIDS is research software for deploying machine-learning network intrusion detection on resource-constrained edge devices. It provides Kafka and ZeroMQ replay for CICIDS2017-derived flow records, a first-stage anomaly gate that filters high-volume traffic, and a second-stage tree-ensemble classifier served by ONNX Runtime or by a dependency-minimal NumPy engine exported from the same ONNX graph, together with a release gate that checks the two runtimes agree before deployment.</p><p>This release fixes the NumPy engine: it now routes a NaN input by the graph's <code>nodes_missing_value_tracks_true</code> flags as ONNX Runtime does, the exporter writes the flags into the artifact and the release gate's structure check compares them. Up to 0.11.0 the engine ignored the flags; the serving path was not affected, since its feature builder maps non-finite values to 0, and artifacts without set flags, such as the shipped forest, are unchanged. The research results are those of 0.11.0, with the missing-value experiment rerun on the fixed engine.</p>",
+  "description": "<p>ONNX-EdgeIDS is research software for deploying machine-learning network intrusion detection on resource-constrained edge devices. It provides Kafka and ZeroMQ replay for CICIDS2017-derived flow records, a first-stage anomaly gate that filters high-volume traffic, and a second-stage tree-ensemble classifier served by ONNX Runtime or by a dependency-minimal NumPy engine exported from the same ONNX graph, together with a release gate that checks the two runtimes agree before deployment.</p><p>This release hardens the ONNX reader shared by the exporter, the boundary probes and the release gate's structure check: it now refuses any graph that is not an optional <code>Scaler</code> followed by one <code>TreeEnsembleClassifier</code>, apart from value-preserving output wrappers (Identity, a widening Cast, Mul by 1, an ArgMax label). Up to 0.12.0 it ignored other operators, so a graph with, for example, an Imputer in front would have been half-read instead of refused. Every graph the toolkit and the research code export is accepted unchanged, and the research results are those of 0.12.0.</p>",
   "upload_type": "software",
   "license": "MIT",
   "access_right": "open",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "language": "eng",
   "creators": [
     {

@@ -11,8 +11,10 @@ Supported: an optional ``ai.onnx.ml.Scaler`` in front of one
 modes scikit-learn, LightGBM and XGBoost exports use), one or two score
 columns, ``base_values``, ``nodes_missing_value_tracks_true`` (a NaN input goes
 to the true branch where the flag is set, as ONNX Runtime routes it), and the
-NONE / LOGISTIC / SOFTMAX post-transforms. Any other split mode raises, so an
-unsupported graph fails loudly.
+NONE / LOGISTIC / SOFTMAX post-transforms. Any other split mode raises, and so
+does any other operator in the graph, except value-preserving output wrappers
+(Identity, a widening Cast, Mul by 1, an ArgMax label), so an unsupported graph
+fails loudly instead of being half-read.
 """
 
 import json
@@ -42,6 +44,90 @@ def _one(graph, op_type, required=True):
     if len(nodes) > 1 or (required and not nodes):
         raise ValueError(f"[ERR] Expected {'exactly' if required else 'at most'} one {op_type} node, found {len(nodes)}")
     return nodes[0] if nodes else None
+
+
+# Output-side wrappers converters add around the tree node; none changes a value
+# the engines compare. Cast targets: FLOAT, INT32, INT64, DOUBLE (exact widenings
+# of a float32 probability, or integer labels); a narrowing cast such as FLOAT16 is refused.
+_PASS_THROUGH_CASTS = {1, 6, 7, 11}
+
+
+def _check_graph_form(model, ens_node, scaler_node):
+    """Refuse any graph that is not [Scaler ->] TreeEnsembleClassifier plus value-preserving outputs.
+
+    The exporter reads only the Scaler and the tree node, so an operator anywhere
+    else that changes a value (an Imputer or encoder in front, a calibration step
+    behind) would be silently left out of the NumPy artifact and the probes.
+    """
+    from onnx import numpy_helper
+
+    graph = model.graph
+    consts = {i.name: numpy_helper.to_array(i) for i in graph.initializer}
+    for n in graph.node:
+        if n.op_type == "Constant":
+            for a in n.attribute:
+                if a.name == "value":
+                    consts[n.output[0]] = numpy_helper.to_array(a.t)
+    inputs = [i.name for i in graph.input if i.name not in consts]
+    if len(inputs) != 1:
+        raise NotImplementedError(f"[ERR] Expected one graph input, found {len(inputs)}: {inputs}")
+    if scaler_node is not None:
+        if list(scaler_node.input) != inputs:
+            raise NotImplementedError("[ERR] Scaler must read the graph input directly")
+        front = scaler_node.output[0]
+    else:
+        front = inputs[0]
+    if list(ens_node.input) != [front]:
+        raise NotImplementedError(
+            f"[ERR] TreeEnsembleClassifier must read {'the Scaler output' if scaler_node is not None else 'the graph input'}"
+            f", reads {list(ens_node.input)}")
+
+    producer = {o: n for n in graph.node for o in n.output}
+    label_src, prob_src = ens_node.output[0], ens_node.output[1] if len(ens_node.output) > 1 else None
+
+    def source(name, allow_argmax):
+        """Follow value-preserving wrappers back to the tree node's output (or ArgMax of its probabilities)."""
+        while name not in (label_src, prob_src):
+            node = producer.get(name)
+            if node is None:
+                raise NotImplementedError(f"[ERR] Graph output depends on '{name}', not on the tree ensemble")
+            op = node.op_type
+            attrs = {a.name: a for a in node.attribute}
+            if op == "Identity":
+                name = node.input[0]
+            elif op == "Cast" and "to" in attrs and attrs["to"].i in _PASS_THROUGH_CASTS:
+                name = node.input[0]
+            elif op == "Mul" and len(node.input) == 2:
+                data = [i for i in node.input if i not in consts]
+                ones = [i for i in node.input if i in consts]
+                if len(data) != 1 or len(ones) != 1 or not np.all(consts[ones[0]] == 1):
+                    raise NotImplementedError(f"[ERR] Unsupported Mul node '{node.name or node.output[0]}' (only by 1)")
+                name = data[0]
+            elif op == "ArgMax" and allow_argmax:
+                axis = attrs["axis"].i if "axis" in attrs else 0
+                if axis not in (1, -1) or source(node.input[0], False) != prob_src:
+                    raise NotImplementedError("[ERR] ArgMax label must take axis 1 of the probabilities")
+                return "argmax"
+            else:
+                raise NotImplementedError(
+                    f"[ERR] Unsupported operator {node.domain or 'ai.onnx'}:{op} ('{node.name or node.output[0]}'); "
+                    "only [Scaler ->] TreeEnsembleClassifier with Identity, widening Cast, Mul by 1 "
+                    "or an ArgMax label is supported")
+        return name
+
+    outputs = [o.name for o in graph.output]
+    if len(outputs) < 2 or prob_src is None:
+        raise NotImplementedError("[ERR] Graph must output a label and a probability tensor")
+    if source(outputs[0], True) not in (label_src, "argmax"):
+        raise NotImplementedError("[ERR] First graph output must be the tree ensemble's label")
+    if source(outputs[1], False) != prob_src:
+        raise NotImplementedError("[ERR] Second graph output must be the tree ensemble's probabilities")
+    allowed = {id(ens_node)} | ({id(scaler_node)} if scaler_node is not None else set())
+    for n in graph.node:
+        if id(n) in allowed or n.op_type in ("Identity", "Cast", "Mul", "ArgMax", "Constant"):
+            continue
+        raise NotImplementedError(f"[ERR] Unsupported operator {n.domain or 'ai.onnx'}:{n.op_type} "
+                                  f"('{n.name or n.output[0]}')")
 
 
 def _input_dim(model):
@@ -74,8 +160,10 @@ def read_onnx_forest(model_path):
 
     model = onnx.load(str(model_path))
     n_features = _input_dim(model)
-    ens = _attrs(_one(model.graph, "TreeEnsembleClassifier"))
+    ens_node = _one(model.graph, "TreeEnsembleClassifier")
     scaler = _one(model.graph, "Scaler", required=False)
+    _check_graph_form(model, ens_node, scaler)
+    ens = _attrs(ens_node)
 
     modes = ens["nodes_modes"]
     bad = sorted({m for m in modes if m != "LEAF" and m not in SPLIT_MODES})

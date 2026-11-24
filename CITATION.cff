@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use ONNX-EdgeIDS, please cite the Software Impacts article or this archived software release."
+message: "If you use ONNX-EdgeIDS, please cite this archived software release."
 title: "ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection"
 type: software
 authors:

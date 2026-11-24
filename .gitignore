@@ -11,7 +11,7 @@
 *.synctex.gz
 *.pdf
 
-# The Software Impacts manuscript is maintained outside this code repository
+# Local manuscript drafts are never committed
 /manuscript/
 
 # Local experiment outputs

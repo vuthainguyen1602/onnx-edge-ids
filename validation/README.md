@@ -6,8 +6,8 @@ synthetic replay rows plus 287,223 boundary probes (95,741 internal nodes x 3
 values, 815 distinct feature/threshold pairs, 99.92% reaching their node under
 float32), 0 label disagreements, maximum confidence difference 4.2e-7, 16 s.
 
-`parity_hosts_20261013.json` collects the `scripts/validate_parity.py` reports
-quoted by the Software Impacts article (Table "Artifact validation"). The same
+`parity_hosts_20261013.json` collects the `scripts/validate_parity.py` reports.
+The same
 ONNX artifact (`artifacts/ids_rf.onnx`, md5 `60de6235…`) and its NumPy export
 were run on four Python environments over the first 2,000 and all 10,000 rows
 of the CICIDS2017-derived replay CSV (`replay_cicids2017.csv`, md5

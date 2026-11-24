@@ -2,40 +2,21 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22731927.svg)](https://doi.org/10.5281/zenodo.22731927)
 
-This repository is the software and the workspace for a **Software Impacts**
-article about it. A separate, longer systems paper that studies the same
-software lives under [`research/`](research/) with its own experiment code; the two
-manuscripts are independent and the Software Impacts article does not depend on
-anything in `research/`.
+ONNX-EdgeIDS serves portable ONNX or transparent NumPy IDS artifacts on
+Jetson-class edge devices. It covers the serving side of the problem: flow
+replay over ZeroMQ or Kafka, a first-stage gate, a second-stage classifier node,
+and scripts for measuring throughput and latency without carrying a heavyweight
+training runtime into the inference path.
 
-Software Impacts publishes short software publications. The submission should
-make the software artifact citable and reusable, with an impact overview and
-metadata about the current code version. The journal page and indexed examples
-describe the format as a short descriptive paper of about three pages with an
-Impact Overview statement and code/repository metadata.
-
-## Proposed Software Name
-
-**ONNX-EdgeIDS**
-
-## Proposed Title
-
-ONNX-EdgeIDS: A Lightweight Two-Stage Edge Serving Toolkit for Network Intrusion Detection
-
-## Software Pitch
-
-ONNX-EdgeIDS serves portable ONNX or transparent NumPy IDS artifacts on Jetson-class edge devices. The package focuses on the serving side of the problem: flow replay over ZeroMQ or Kafka, a first-stage gate, a second-stage classifier node, and scripts for measuring throughput and latency without carrying a heavyweight training runtime into the inference path.
-
-## Why This Fits Software Impacts
-
-The core contribution is reusable software:
+The core pieces are:
 
 - artifact preparation: ONNX artifact to lightweight NumPy fallback;
 - runtime: ONNX/NumPy classifier interface for network flows streamed over ZeroMQ or Kafka;
 - validation: ONNX-versus-NumPy prediction checks;
 - benchmark scripts: edge inference cost, latency, memory, and energy.
 
-The research context that exposed the software need is that an IDS model can be accurate while the serving stack is still too heavy for edge hardware. This article focuses on the resulting software artifact and its impact, not on a full distributed IDS evaluation.
+A systems paper that studies the same software lives under
+[`research/`](research/) with its own experiment code.
 
 ## Files
 
@@ -53,7 +34,6 @@ The research context that exposed the software need is that an IDS model can be 
 - `docs/deploy_2jetson.md`: two-Jetson test plan using thesis gate + ONNX classifier.
 - `deploy/sync_to_jetson.sh`: rsync this repo to a Jetson node.
 - `experiments/plan.md`: validation and benchmark plan.
-- `notes/paper_pitch.md`: idea notes and contribution boundaries.
 - `research/`: systems paper (experiment code and result files): boundary-directed runtime parity testing, its generalization to scikit-learn/LightGBM/XGBoost exports and to converter parity, an ONNX Runtime release sweep, block-lockstep traversal, exact early exit, behaviour under distribution shift. See `research/README.md`.
 
 ## Dataset
@@ -160,15 +140,6 @@ python scripts/classifier_node.py \
   --model artifacts/ids_rf_numpy.npz \
   --features artifacts/feature_columns.json
 ```
-
-## Before Submission
-
-- [x] Software release archived (Zenodo DOIs in `CITATION.cff` and the article).
-- [x] Export validation on replay flows on four hosts/runtimes: `validation/`.
-- [x] Workflow figure (train / export / release gate / serve) in the article.
-- [x] Fill the Software Impacts submission form (repository URL, tag, license,
-      archive DOI, contact e-mail) from `submission_checklist.md`; submitted
-      2026-10-13.
 
 ## Citation And License
 

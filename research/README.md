@@ -2,7 +2,7 @@
 
 Full systems-paper treatment of the software in this repository: a framework-agnostic ONNX/NumPy serving toolkit for a two-stage Kafka edge intrusion detection pipeline on Jetson Orin Nano Super.
 
-The manuscript is kept outside this repository. This directory was called `lncs/` up to release v0.4.0; archived releases still use that name, and their paths are those of the old layout. This is a different manuscript from the short Software Impacts article about the same software, and the two are meant to be read independently.
+The manuscript is kept outside this repository. This directory was called `lncs/` up to release v0.4.0; archived releases still use that name, and their paths are those of the old layout.
 
 ## Research question
 
@@ -60,5 +60,4 @@ The manuscript is not in this repository. `REPRODUCE.md` maps each of its tables
 
 ## Cross-reference
 
-- Software Impacts article on the same software: `../notes/paper_pitch.md`, `../submission_checklist.md`
 - Earlier distributed-deployment work and the thesis (out of scope here): [`vuthainguyen1602/Thesis_IDS`](https://github.com/vuthainguyen1602/Thesis_IDS)
